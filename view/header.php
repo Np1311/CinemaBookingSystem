@@ -9,7 +9,7 @@
             .header {
                 
                 background: black;
-                color: yellow;
+                color: white;
                 font-size: 20px;
                 width:100%;
                 height:50px; 
