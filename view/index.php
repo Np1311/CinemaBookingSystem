@@ -1,5 +1,4 @@
 <?php
-require ("header.php");
 session_start();
 function checker($email){
    
@@ -204,9 +203,11 @@ function checker($email){
             .movie button:hover {
                 background-color: #0055cc;
             }
+            
         </style>
     </head>
     <body>
+        <?php require ('header.html');?>
         <div class="slideShowContainer">
             <div class="slideshow-container">
 
@@ -376,6 +377,8 @@ function checker($email){
             
             
         }
+        require('footer.html');
         ?>
+        
     </body>
 </html>
