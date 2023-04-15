@@ -1,18 +1,19 @@
 <?php
-$conn = new mysqli('localhost','root', '');
-
-class database {
-    public function createDatabase($dbName){
+$conn = ;
+class customer{
+    public function createTable($tableName){
         global $conn;
-        $sql = "CREATE DATABASE IF NOT EXISTS $databseName";
-        try {
-            mysqli_query($conn, $sql); 
-            echo "Database created successfully"; }
-        catch(mysqli_sql_exception $e) {
-            die("Error creating database: " . mysqli_error($conn)); }
-        }
+        $conn -> select_db("CSIT314Try");
+        $sql = "CREATE TABLE IF NOT EXISTS `customer` (
+            `staff_id` varchar(5) NOT NULL,
+            `id` int(11) NOT NULL DEFAULT 0
+          );";
+    
+          if ($conn->query($sql) === TRUE) {
+              echo "Table subject created successfully";
+          } else {
+              echo "Error creating table: " . $conn->error;
+          }
+    }
 }
-
-$con = new database;
-$con -> createDatabase("CSIT134Try");
 ?>
