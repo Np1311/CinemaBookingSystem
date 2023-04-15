@@ -17,5 +17,5 @@ class database {
 
 
 $con = new database;
-$con -> createDatabase("CSIT134Try");
+$con -> createDatabase("CSIT134_Test");
 ?>
