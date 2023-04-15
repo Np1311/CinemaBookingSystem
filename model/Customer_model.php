@@ -6,13 +6,13 @@ class customer{
         $conn -> select_db("CSIT314_Test");
         $sql = "CREATE TABLE IF NOT EXISTS `customer` (
             `customer_id` int NOT NULL AUTO_INCREMENT,
-            `fname` varchar(128) NOT NULL,
-            `lname` varchar(128) NOT NULL,
+            `fname` varchar(255) NOT NULL,
+            `lname` varchar(255) NOT NULL,
             `seat_row` int NOT NULL DEFAULT 0,
             `seat_column`INT NOT NULL DEFAULT 0,
             `phone` INT NOT NULL DEFAULT 0,
-            `email` VARCHAR(128) NOT NULL,
-            `password` VARCHAR(128) NOT NULL,
+            `email` VARCHAR(255) NOT NULL,
+            `password` VARCHAR(255) NOT NULL,
             `dob` DATE NOT NULL,
             PRIMARY KEY(customer_id)
           );";
