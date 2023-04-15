@@ -13,6 +13,6 @@ class database {
         }
 }
 
-$con = new database
+$con = new database;
 $con -> createDatabase("CSIT134Try");
 ?>
