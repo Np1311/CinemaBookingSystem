@@ -1,5 +1,5 @@
 <?php
-require('header.php');
+require('header.html');
 session_start();
 
 ?>
@@ -68,116 +68,73 @@ session_start();
             outline: none;
             }
 
-            .error {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 10px;
-            }
+            .password-toggle {
+			display: inline-block;
+			margin-left: 10px;
+			cursor: pointer;
+		    }
         </style>
-
+        
     </head>
     <body>
         <div class = 'formContainer'>
-            <form action="controler/signup_controller.php" method="post">
+            <form action="../controller/signUp_controller.php" method="post">
                 <label for="fname">First Name:</label>
-                <input type="text" id="fname" name="fname" required><br>
+                <input type="text" id="fname" name="fname" ><br>
 
                 <label for="lname">Last Name:</label>
-                <input type="text" id="lname" name="lname" required><br>
+                <input type="text" id="lname" name="lname" ><br>
 
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required><br>
+                <input type="tel" id="phone" name="phone" ><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
+                <input type="email" id="email" name="email" ><br>
 
                 <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" required><br>
+                <input type="date" id="dob" name="dob" ><br>
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required></br>
-
-                    
-                <input class="form-check-input" type="checkbox" onclick="myFunction('password')">&nbspShow Password</input></br></br>
-                   
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required></br>
-                    
-                <input  style="font-size: 10px;" class="form-check-input" type="checkbox" onclick="myFunction('confirm-password')"> &nbspShow Password</input>
+                <input type="password" id="password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('password')">Show</span><br><br>
                 
-                <div > <span id = 'password-message'></span></div>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')">Show</span><br>
+                <span id="password-error" style="color: red;"></span><br>
+                
+               
 
+                
 
-                <label for="membership">Membership Type:</label>
-                <select id="membership" name="membership">
-                    <option value="basic">Basic</option>
-                    <option value="premium">Premium</option>
-                    <option value="vip">VIP</option>
-                </select><br>
-
-                <input type="submit" value="Submit">
+                <input type="submit" name='submit' value="submit">
             </form>
         </div>
         <script>
-            function myFunction(type) {
-            var x = document.getElementById(type);
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-            }
-            let slideIndex = 1;
-            showSlides(slideIndex);
-
-            function plusSlides(n) {
-            showSlides(slideIndex += n);
-            }
-
-            function currentSlide(n) {
-            showSlides(slideIndex = n);
-            }
-
-            function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}    
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";  
-            dots[slideIndex-1].className += " active";
-            }
-            const password = document.getElementById("password");
-            const confirmPassword = document.getElementById("confirm-password");
-            const passwordMessage = document.getElementById("password-message");
-
-            // Function to check if passwords match
-            function checkPasswords() {
-            if (password.value !== confirmPassword.value) {
-                passwordMessage.innerHTML = "Passwords do not match.";
-            } else {
-                passwordMessage.innerHTML = "";
-            }
-            }
-
-            // Listen for changes to the password and confirm password fields
-            password.addEventListener("input", checkPasswords);
-            confirmPassword.addEventListener("input", checkPasswords);
-
-            const form = document.querySelector('form');
-            form.addEventListener('submit', (event) => {
-                // Prevent form submission if passwords do not match
-                if (password.value !== confirmPassword.value) {
-                    event.preventDefault();
-                    passwordMessage.innerHTML = "Passwords do not match.";
+            function togglePasswordVisibility(id) {
+                var input = document.getElementById(id);
+                if (input.type === "password") {
+                    input.type = "text";
+                    event.target.textContent = "Hide";
+                } else {
+                    input.type = "password";
+                    event.target.textContent = "Show";
                 }
+            }
+            
+            document.querySelector("form").addEventListener("submit", function(event) {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm-password").value;
+            var passwordError = document.getElementById("password-error");
+
+            if (password != confirmPassword) {
+                passwordError.textContent = "Passwords do not match.";
+                event.preventDefault();
+            } else {
+                passwordError.textContent = "";
+            }
             });
+
         </script>
     </body>
 </html>
