@@ -78,7 +78,7 @@ session_start();
     </head>
     <body>
         <div class = 'formContainer'>
-            <form action="../controller/signUp_controller.php" method="post">
+            <form method="post">
                 <label for="fname">First Name:</label>
                 <input type="text" id="fname" name="fname" ><br>
 
@@ -110,6 +110,9 @@ session_start();
                 <input type="submit" name='submit' value="submit">
             </form>
         </div>
+        <?php
+        require ('../controller/signUp_controller.php');
+        ?>
         <script>
             function togglePasswordVisibility(id) {
                 var input = document.getElementById(id);

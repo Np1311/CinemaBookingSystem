@@ -19,12 +19,13 @@ class customer{
           );";
     
           if ($conn->query($sql) === TRUE) {
-              echo "Table customer created successfully";
+              //echo "Table customer created successfully";
           } else {
               echo "Error creating table: " . $conn->error;
           }
     }
     public function createUser($fname,$lname,$phone,$email,$password,$date){
+        global $conn;
         $conn -> select_db("CSIT314_Test");
         $mysql_date = date('Y-m-d', strtotime($date));
         $sql = "INSERT INTO customer (fname, lname, phone, email,`password`, dob)
@@ -32,12 +33,13 @@ class customer{
         VALUES ('$fname','$lname','$phone','$email','$password','$mysql_date');";
         try {
             mysqli_query($conn, $sql); 
-            echo "Data Added successfully"; }
+            return true; }
         catch(mysqli_sql_exception $e) {
-            die("Error creating database: " . mysqli_error($conn)); }
+            //die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error creating user")</script>'; 
+        return false;}
     }
 }
 
-$con = new customer;
-$con -> createTable();
+
 ?>
