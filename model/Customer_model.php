@@ -14,6 +14,7 @@ class customer{
             `email` VARCHAR(255) NOT NULL,
             `password` VARCHAR(255) NOT NULL,
             `dob` DATE NOT NULL,
+            
             PRIMARY KEY(customer_id)
           );";
     
@@ -22,6 +23,18 @@ class customer{
           } else {
               echo "Error creating table: " . $conn->error;
           }
+    }
+    public function createUser($fname,$lname,$phone,$email,$password,$date){
+        $conn -> select_db("CSIT314_Test");
+        $mysql_date = date('Y-m-d', strtotime($date));
+        $sql = "INSERT INTO customer (fname, lname, phone, email,`password`, dob)
+
+        VALUES ('$fname','$lname','$phone','$email','$password','$mysql_date');";
+        try {
+            mysqli_query($conn, $sql); 
+            echo "Data Added successfully"; }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating database: " . mysqli_error($conn)); }
     }
 }
 
