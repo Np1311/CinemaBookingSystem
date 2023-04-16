@@ -9,7 +9,7 @@ class customer{
         global $conn;
         $conn -> select_db("CSIT314_Test");
         $sql = "CREATE TABLE IF NOT EXISTS `customer` (
-            `customer_id` int NOT NULL AUTO_INCREMENT,
+            
             `fname` varchar(255) NOT NULL,
             `lname` varchar(255) NOT NULL,
             `seat_row` int NOT NULL DEFAULT 0,
@@ -19,7 +19,7 @@ class customer{
             `password` VARCHAR(255) NOT NULL,
             `dob` DATE NOT NULL,
             
-            PRIMARY KEY(customer_id)
+            PRIMARY KEY(phone)
           );";
     
           if ($conn->query($sql) === TRUE) {
