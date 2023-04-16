@@ -1,6 +1,10 @@
 <?php
 $conn = new mysqli('localhost','root', '');
 class customer{
+    
+    private $phone;
+    private $password;
+
     public function createTable(){
         global $conn;
         $conn -> select_db("CSIT314_Test");
@@ -39,7 +43,52 @@ class customer{
             echo '<script>alert("error creating user")</script>'; 
         return false;}
     }
+    public function getPhoneandPass(){
+        global $conn;
+        $conn -> select_db("CSIT314_Test");
+        $array = array();
+        
+        $sql = "SELECT phone, `password` FROM `customer`;";
+        
+        $result = $conn->query($sql);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+          $array[$row['phone']] = $row['password'];
+        }
+       
+  
+  
+        return $array;
+    }
+    public function setAccount($user){
+        $this->phone = $user;
+    }
+    public function getAccount() {
+        return $this->phone;
+    }
+    public function checkUser($loginPhone, $loginPass){
+        $found = 'not found';
+        $arr = $this->getPhoneandPass();
+        foreach ($arr as $x => $x_value){
+            if ($loginPhone== $x){
+                 
+                $found = 'found';
+                if ($loginPass == $x_value){
+                   $this->setAccount($loginPhone);
+                   echo "<script>alert('true password');</script>";
+                }else  
+                    echo "<script>alert('wrong password');</script>";
+            }
+        }
+        if ($found == 'not found'){
+            echo "<script>alert('User not found');</script>";
+        }
+    }
 }
 
-
+$con = new customer;
+//$arr = $con -> getPhoneandPass();
+// print_r($arr);
+$con->checkUser(87945631,'qwe');
+print($con->getAccount());
 ?>
