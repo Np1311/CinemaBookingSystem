@@ -1,24 +1,6 @@
 <?php
 session_start();
-function checker($email){
-   
-   
-   
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid";
-        echo "<script>document.getElementById('emailErr').innerHTML = '$emailErr';</script>";
-    }else {
-        $emailErr = "false";
-    }
 
-   
-    
-   
-    if($emailErr == 'false' ){
-        
-        echo" <script>window.location='homePage.php';</script>"; 
-    }
-}
 ?>
 <html>
     <head>
@@ -249,12 +231,12 @@ function checker($email){
 
         </div>
          <div class="formContainer"  style="text-align:center;"  >
-            <form method='post' >
+            <form action = 'login_controller.php'method='post' >
             </br></br>
                 <div class="signIn" style="text-align:left;"> 
-                    <span class="input-group-text" id="emailSpan">Email</span>
-                    <input class="form-control" type="text" name="email" id="email" required>
-                    <span class="input-group-text" id="emailErr"></span></br>
+                    <span class="input-group-text" id="phone">Phone</span>
+                    <input class="form-control" type="text" name="phone" id="phone" required>
+                    
                     
                     </br></br>
                    
@@ -367,16 +349,7 @@ function checker($email){
             }
         </script>
         <?php
-        if(isset($_POST['submit'])){
-            
-            $_SESSION['email']=$_POST['email'];
-           
-            $_SESSION['pass'] = $_POST['pass'];
-
-            checker($_SESSION['email']);
-            
-            
-        }
+        
         require('footer.html');
         ?>
         

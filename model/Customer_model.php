@@ -76,8 +76,10 @@ class customer{
                 if ($loginPass == $x_value){
                    $this->setAccount($loginPhone);
                    echo "<script>alert('true password');</script>";
+                   return true;
                 }else  
                     echo "<script>alert('wrong password');</script>";
+                    return false;
             }
         }
         if ($found == 'not found'){
