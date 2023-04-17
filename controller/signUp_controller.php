@@ -1,5 +1,5 @@
 <?php
-require ('../model/customer_model.php');
+require ('model/customer_model.php');
 //require ('../view/header.php');
 if (isset($_POST['submit'])){
     $fname = $_POST['fname'];
@@ -12,7 +12,7 @@ if (isset($_POST['submit'])){
     $con -> createTable();
     if ($con -> createUser($fname,$lname,$phone,$email,$password,$dob)){
         echo '<script>alert("Sign up succesful")</script>'; 
-        echo" <script>window.location='../view/index.php';</script>";
+        echo" <script>window.location='view/index.php';</script>";
     }
 }
 

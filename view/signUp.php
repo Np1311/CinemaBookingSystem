@@ -111,7 +111,7 @@ session_start();
             </form>
         </div>
         <?php
-        require ('../controller/signUp_controller.php');
+        require ('controller/signUp_controller.php');
         ?>
         <script>
             function togglePasswordVisibility(id) {
