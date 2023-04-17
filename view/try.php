@@ -104,34 +104,39 @@
 	</div>
 </body>
 </html> -->
-<?php
-// Assume we have fetched the user's profile data from a database
-$user = array(
-    'first_name' => 'John',
-    'last_name' => 'Doe',
-    'email' => 'johndoe@example.com',
-    'date_of_birth' => '1990-01-01',
-    'phone' => '123-456-7890'
-);
-
-// Use HTML and CSS to display the user's profile data
-?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>User Profile</title>
   <style>
-    .profile {
-      max-width: 600px;
-      margin: auto;
-      border: 1px solid #ccc;
-      padding: 20px;
+    /* General styles */
+    body {
+      margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       font-size: 16px;
     }
     
+    /* Header styles */
+    header {
+      background-color: black;
+      color: white;
+      padding: 20px;
+    }
+    
     h1 {
-      margin-top: 0;
+      margin: 0;
+      font-size: 36px;
+    }
+    
+    /* Profile styles */
+    .profile {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
     
     table {
@@ -150,11 +155,37 @@ $user = array(
       background-color: #eee;
       font-weight: bold;
     }
+    
+    /* Footer styles */
+    footer {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <div class="profile">
+<?php
+  // Assume we have fetched the user's profile data from a database
+  $user = array(
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+    'email' => 'johndoe@example.com',
+    'date_of_birth' => '1990-01-01',
+    'phone' => '123-456-7890'
+  );
+  ?>
+  <header>
     <h1>User Profile</h1>
+  </header>
+  
+  <div class="profile">
     <table>
       <tr>
         <th>First Name</th>
@@ -178,5 +209,10 @@ $user = array(
       </tr>
     </table>
   </div>
+  
+  <footer>
+    <p>&copy; 2023 My Company, Inc. All rights reserved.</p>
+  </footer>
 </body>
 </html>
+
