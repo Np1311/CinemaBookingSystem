@@ -86,9 +86,10 @@ class customer{
     }
 }
 
-// $con = new customer;
-// //$arr = $con -> getPhoneandPass();
-// // print_r($arr);
+$con = new customer;
+//$arr = $con -> getPhoneandPass();
+// print_r($arr);
 // $con->checkUser(87945631,'qwe');
-// print($con->getAccount());
+//print($con->getAccount());
+// $con->createTable();
 ?>
