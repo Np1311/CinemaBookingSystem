@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>Movie List</title>
@@ -102,5 +102,81 @@
 			</div>
 		</div>
 	</div>
+</body>
+</html> -->
+<?php
+// Assume we have fetched the user's profile data from a database
+$user = array(
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+    'email' => 'johndoe@example.com',
+    'date_of_birth' => '1990-01-01',
+    'phone' => '123-456-7890'
+);
+
+// Use HTML and CSS to display the user's profile data
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+  <style>
+    .profile {
+      max-width: 600px;
+      margin: auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+    
+    h1 {
+      margin-top: 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    
+    th {
+      background-color: #eee;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <h1>User Profile</h1>
+    <table>
+      <tr>
+        <th>First Name</th>
+        <td><?php echo $user['first_name']; ?></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td><?php echo $user['last_name']; ?></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><?php echo $user['email']; ?></td>
+      </tr>
+      <tr>
+        <th>Date of Birth</th>
+        <td><?php echo date('d/m/Y', strtotime($user['date_of_birth'])); ?></td>
+      </tr>
+      <tr>
+        <th>Phone Number</th>
+        <td><?php echo $user['phone']; ?></td>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>
