@@ -231,7 +231,7 @@ session_start();
 
         </div>
          <div class="formContainer"  style="text-align:center;"  >
-            <form action = 'login_controller.php'method='post' >
+            <form action = '../controller/login_controller.php'method='post' >
             </br></br>
                 <div class="signIn" style="text-align:left;"> 
                     <span class="input-group-text" id="phone">Phone</span>
