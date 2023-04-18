@@ -74,13 +74,14 @@ $customer -> getProfile($cust);
 <body>
 <?php
   // Assume we have fetched the user's profile data from a database
-  $user = array(
+  $_SESSION['profile'] = array(
     'first_name' => $customer -> getFname(),
     'last_name' => $customer -> getLname(),
     'email' => $customer -> getEmail(),
     'date_of_birth' => $customer -> getDob(),
     'phone' => $cust
   );
+
 
   require ('header_login.html');
   ?>
@@ -89,26 +90,26 @@ $customer -> getProfile($cust);
     <table>
       <tr>
         <th>First Name</th>
-        <td><?php echo $user['first_name']; ?></td>
+        <td><?php echo $_SESSION['profile']['first_name']; ?></td>
       </tr>
       <tr>
         <th>Last Name</th>
-        <td><?php echo $user['last_name']; ?></td>
+        <td><?php echo $_SESSION['profile']['last_name']; ?></td>
       </tr>
       <tr>
         <th>Email</th>
-        <td><?php echo $user['email']; ?></td>
+        <td><?php echo $_SESSION['profile']['email']; ?></td>
       </tr>
       <tr>
         <th>Date of Birth</th>
-        <td><?php echo $user['date_of_birth']; ?></td>
+        <td><?php echo $_SESSION['profile']['date_of_birth']; ?></td>
       </tr>
       <tr>
         <th>Phone Number</th>
-        <td><?php echo $user['phone']; ?></td>
+        <td><?php echo $_SESSION['profile']['phone']; ?></td>
       </tr>
     </table>
-    <button class="button" onclick="location.href='edit_profile.php'">Edit Profile</button>
+    <button class="button" onclick="location.href='customer_update.php'">Edit Profile</button>
   </div>
   
   <?php require ('footer.html');?>

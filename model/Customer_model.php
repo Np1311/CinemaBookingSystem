@@ -147,9 +147,25 @@ class customer{
         $this->setProfile($row['fname'],$row['lname'],$row['email'],$dob,$row['password']);
        
     }
+    public function updateUser($fname,$lname,$phone,$email,$date,$oldPhone){
+        global $conn;
+        $conn -> select_db("CSIT314_Test");
+        $mysql_date = date('Y-m-d', strtotime($date));
+        $sql =" UPDATE `customer` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `phone`='$phone' WHERE phone = '$oldPhone';";
+
+        try {
+            mysqli_query($conn, $sql); 
+            echo '<script>alert("good to go")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error creating user")</script>'; 
+        return false;}
+    }
 }
 
-$con = new customer;
+//$con = new customer;
 //$arr = $con -> getPhoneandPass();
 // print_r($arr);
 // $con->checkUser(87945631,'qwe');

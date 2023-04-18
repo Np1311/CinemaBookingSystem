@@ -50,6 +50,19 @@
             cursor: pointer;
             }
 
+            .back {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            margin-top: 4px;
+            font-family: Arial;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+
+
             
             #home {
             text-decoration: none;
@@ -69,13 +82,19 @@
             <div></div>
             <div></div>
             <div class = 'logoutbtn'>
+                <button class="back" onclick="location.href='../view/customer_home_view.php'">Back</button> &nbsp&nbsp
                 <button class="logout" onclick="location.href='../controller/logout.php'">
                 logout
                 </button>
+                
             </div>
             
         </div>
-        
+        <script>
+            function goBack() {
+              window.history.go(-1);
+            }
+          </script>
     </body>
 
 </html>
