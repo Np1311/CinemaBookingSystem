@@ -82,7 +82,7 @@ $customer -> getProfile($cust);
     'phone' => $cust
   );
 
-  require ('header.html');
+  require ('header_login.html');
   ?>
   
   <div class="profile">
