@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION['profile'] = 'admin';
+$_SESSION['profile'] = 'system_admin';
 require('header_login.html')
 
 
@@ -53,19 +53,41 @@ require('header_login.html')
         input[type="submit"]:hover {
             background-color: #3e8e41;
         }
+        .btn-primary{
+                background-color: blue; 
+                border: 2px solid white;
+                color: white;
+                padding: 15px ;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 8px;
+                width: 400px;
+                /* margin-left: 100px; */
+        }
     </style>
 </head>
 <body>
     
     <div class ='login-form' ><h2>Login</h2>
-        <form action="login.php" method="post">
-            <label for="username">Phone:</label>
-            <input type="text" id="phone" name="phone"><br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <input  style="font-size: 10px;" class="form-check-input mt-0" type="checkbox" onclick="myFunction('password')"> &nbspShow Password</input>
-            <input type="submit" value="Login">
-        </form>
+        <form method='post' >
+            </br></br>
+                
+                    <span class="input-group-text" id="phone">Phone</span>
+                    <input class="form-control" type="text" name="phone" id="phone" required>
+                    
+                    
+                    </br></br>
+                   
+                    <span class="input-group-text" id="basic-addon1">Password</span>
+                    <input class="form-control" type="password" name="pass" id="pass" required>
+                    
+                    <input  style="font-size: 10px;" class="form-check-input mt-0" type="checkbox" onclick="myFunction('pass')"> &nbspShow Password</input>
+                
+                </br>
+                <button class="btn-primary" type ='submit' name='submit' value='submit'> Submit </button>
+            </form>
     </div>
     <script>
             function myFunction(type) {
@@ -77,5 +99,8 @@ require('header_login.html')
             }
         }
     </script>
+    <?php
+    require('login_boundary.php');
+    ?>
 </body>
 </html>

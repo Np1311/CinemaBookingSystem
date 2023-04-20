@@ -1,11 +1,18 @@
 <?php
 $conn = new mysqli('localhost','root', '');
+require ('user_model.php');
 
-class admin {
-    public function createTable($profile){
+class admin extends user{
+    private $profile;
+
+    public function __construct($profile){
+        $this->profile = $profile;
+    }
+
+    public function createTable(){
         global $conn;
         $conn -> select_db("CSIT314_Test");
-        if ($profile == 'customer'){
+        if ($this->profile == 'customer'){
             $sql = "CREATE TABLE IF NOT EXISTS `customer` (
                 
                 `fname` varchar(255) NOT NULL,
@@ -20,6 +27,7 @@ class admin {
                 PRIMARY KEY(phone)
             );";
         }else{
+            $profile = $this->profile;
             $sql = "CREATE TABLE IF NOT EXISTS `$profile` (
                 
                 `fname` varchar(255) NOT NULL,
@@ -39,5 +47,10 @@ class admin {
               echo "Error creating table: " . $conn->error;
           }
     }
+
 }
+
+$adm = new admin('system_admin');
+
+$adm -> createUser('system_admin','Dan','redo',12345678,'bbb@gmail.com','asd','2022-10-09');
 ?>

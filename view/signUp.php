@@ -1,6 +1,7 @@
 <?php
 require('header.html');
 session_start();
+$_SESSION['profile']='customer';
 
 ?>
 

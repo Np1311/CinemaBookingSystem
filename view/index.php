@@ -349,18 +349,7 @@ session_start();
             }
         </script>
         <?php
-        require('../controller/login_controller.php');
-        if (isset($_POST['submit'])){
-            $phone = $_POST['phone'];
-            $pass = $_POST['pass'];
-            $profile = 'customer';
-            
-            $controller = new login_controller ($profile,$phone,$pass);
-            
-            $controller->login();
-                
-            
-        }
+        require('login_boundary.php');
         
         require('footer.html');
         ?>

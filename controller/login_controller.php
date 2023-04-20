@@ -24,8 +24,11 @@ class login_controller{
             //$userArr = $user -> getAccount();
             $user -> setAccount($this->uid);
             $_SESSION['user'] = $user -> getAccount();
-
-            echo" <script>window.location='../view/customer_home_view.php';</script>";
+            if($this->profile == 'customer'){
+            echo" <script>window.location='../view/customer_home_view.php';</script>";}
+            else if ($this->profile == 'system_admin'){
+                echo" <script>window.location='../view/admin_home_view.php';</script>";
+            }
 
             
             // $userArr = $user -> getAccount();
