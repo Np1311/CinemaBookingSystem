@@ -24,10 +24,10 @@ class login{
   
         return $array;
     }
-    public function checkUser($loginPhone, $loginPass){
+    public function checkUser($profile,$loginPhone, $loginPass){
         global $user;
         $found = 'not found';
-        $arr = $this->getPhoneandPass();
+        $arr = $this->getPhoneandPass($profile);
         foreach ($arr as $x => $x_value){
             if ($loginPhone== $x){
                  

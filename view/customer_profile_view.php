@@ -1,10 +1,12 @@
 <?php
 session_start();
-require('../model/customer_model.php');
+require('../model/user_model.php');
 
-$cust = $_SESSION['user'];
+$customer = new user;
 
-$customer = new customer;
+$cust =  $_SESSION['user'];
+
+//echo $customer -> getAccount();
 
 $customer -> getProfile($cust);
 
@@ -83,7 +85,7 @@ $customer -> getProfile($cust);
   );
 
 
-  require ('header_login.html');
+  //require ('header_login.html');
   ?>
   
   <div class="profile">

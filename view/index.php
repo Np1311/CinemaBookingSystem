@@ -231,7 +231,7 @@ session_start();
 
         </div>
          <div class="formContainer"  style="text-align:center;"  >
-            <form action = '../controller/login_controller.php'method='post' >
+            <form method='post' >
             </br></br>
                 <div class="signIn" style="text-align:left;"> 
                     <span class="input-group-text" id="phone">Phone</span>
@@ -349,6 +349,18 @@ session_start();
             }
         </script>
         <?php
+        require('../controller/login_controller.php');
+        if (isset($_POST['submit'])){
+            $phone = $_POST['phone'];
+            $pass = $_POST['pass'];
+            $profile = 'customer';
+            
+            $controller = new login_controller ($profile,$phone,$pass);
+            
+            $controller->login();
+                
+            
+        }
         
         require('footer.html');
         ?>

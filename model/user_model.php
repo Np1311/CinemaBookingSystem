@@ -1,5 +1,5 @@
 <?php
-
+require('database_model.php');
 class user {
     private $phone;
     private $password;

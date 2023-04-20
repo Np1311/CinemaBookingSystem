@@ -1,20 +1,39 @@
 <?php
 session_start();
 require('../model/login_model.php');
+$con = new login;
 
-if (isset($_POST['submit'])){
-    $phone = $_POST['phone'];
-    $pass = $_POST['pass'];
-    
-    $con = new login;
-    
-    if($con -> checkUser($phone ,$pass)){
-        echo" <script>window.location='../view/customer_home_view.php';</script>";
+
+
+class login_controller{
+    private $profile;
+    private $uid;
+    private $pass;
+
+    public function __construct($profile,$phone, $pass){
+        $this->profile = $profile;
+        $this->uid = $phone;
+        $this->pass = $pass;
     }
-    $user -> setAccount($phone);
-    $_SESSION['user'] = $user -> getAccount();
-        
-    
-}
 
+    public function login(){
+        global $con;
+        global $user;
+
+        if($con -> checkUser($this->profile,$this->uid ,$this->pass)){
+            //$userArr = $user -> getAccount();
+            $user -> setAccount($this->uid);
+            $_SESSION['user'] = $user -> getAccount();
+
+            echo" <script>window.location='../view/customer_home_view.php';</script>";
+
+            
+            // $userArr = $user -> getAccount();
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+}
 ?>
