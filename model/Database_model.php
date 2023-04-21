@@ -19,5 +19,3 @@ class database {
 $con = new database;
 $con -> createDatabase("CSIT314_Test");
 ?>
-git config --global user.email "csit314projectt@gmail.com"
-git config --global user.name "wiltzy"
