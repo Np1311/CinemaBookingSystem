@@ -50,7 +50,7 @@ class admin extends user{
 
 }
 
-$adm = new admin('system_admin');
+// $adm = new admin('system_admin');
 
-$adm -> createUser('system_admin','Dan','redo',12345678,'bbb@gmail.com','asd','2022-10-09');
+// $adm -> createUser('system_admin','Dan','redo',12345678,'bbb@gmail.com','asd','2022-10-09');
 ?>

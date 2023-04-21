@@ -65,12 +65,12 @@ class user {
         return $this->password;
     }
     
-    public function getProfile($phone){
+    public function getProfile($profile,$phone){
         global $conn;
 
         $conn -> select_db('CSIT314_Test');
 
-        $sql = "SELECT * FROM `customer` WHERE phone = '$phone';";
+        $sql = "SELECT * FROM `$profile` WHERE phone = '$phone';";
         $result = $conn->query($sql);
 
         // check if the query was successful

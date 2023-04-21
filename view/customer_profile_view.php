@@ -8,7 +8,7 @@ $cust =  $_SESSION['user'];
 
 //echo $customer -> getAccount();
 
-$customer -> getProfile($cust);
+$customer -> getProfile($_SESSION['profile'],$cust);
 
 
 ?>
