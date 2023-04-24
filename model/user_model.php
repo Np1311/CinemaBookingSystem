@@ -108,6 +108,18 @@ class user {
     public function echoUser(){
         echo 'try';
     }
+    public function getAllProfile($profile){
+        global $conn;
+        $conn -> select_db("CSIT314_Test");
+        $array=[];
+        $sql = "SELECT * FROM `$profile`;"; 
+
+        $result = $conn->query($sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $array[] =  $row;
+        }
+        return $array;
+    }
 }
 // $con = new user;
 

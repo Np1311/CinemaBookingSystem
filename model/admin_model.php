@@ -5,7 +5,7 @@ require ('user_model.php');
 class admin extends user{
     private $profile;
 
-    public function __construct($profile){
+    public function _construct($profile){
         $this->profile = $profile;
     }
 
@@ -47,6 +47,7 @@ class admin extends user{
               echo "Error creating table: " . $conn->error;
           }
     }
+    
 
 }
 
