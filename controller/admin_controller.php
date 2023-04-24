@@ -13,7 +13,7 @@ class admin_controller{
         global $showProfile;
         $arr = $showProfile->getAllProfile($profile);
         echo "<table>";
-        echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th></tr>";
+        echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Action</th></tr>";
 
         // loop through results and display in table rows
         if(count($arr) > 0 )
@@ -26,6 +26,12 @@ class admin_controller{
                 echo "<td>" . $array['email'] . "</td>";
                 echo "<td>" . $array['password'] . "</td>";
                 echo "<td>" . $array['dob'] . "</td>";
+                echo '<td >
+                    <button class="btn btn-primary"><a href="update.php?updateID='.$array['phone'].'"
+                    class="text-light">Update</a></button>
+                    <button class="btn-danger"><a href="delete.php?deleteID='.$array['phone'].'" class="text-light">Delete</a></
+                    button> 
+                    </td>' ; 
                 echo "</tr>";
             }
         }
