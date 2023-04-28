@@ -31,7 +31,7 @@ class admin_controller{
                     echo "<td>" . $array['password'] . "</td>";
                     echo "<td>" . $array['dob'] . "</td>";
                     echo '<td >
-                        <button class="btn btn-primary"><a href="update.php?updateID='.$array['phone'].'"
+                        <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$element.'"
                         class="text-light">Update</a></button>
                         <button class="btn-danger"><a href="delete.php?deleteID='.$array['phone'].'" class="text-light">Delete</a></
                         button> 

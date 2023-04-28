@@ -76,7 +76,7 @@ $customer -> getProfile($_SESSION['profile'],$cust);
 <body>
 <?php
   // Assume we have fetched the user's profile data from a database
-  $_SESSION['profile'] = array(
+  $_SESSION['profileInfo'] = array(
     'first_name' => $customer -> getFname(),
     'last_name' => $customer -> getLname(),
     'email' => $customer -> getEmail(),
@@ -92,23 +92,23 @@ $customer -> getProfile($_SESSION['profile'],$cust);
     <table>
       <tr>
         <th>First Name</th>
-        <td><?php echo $_SESSION['profile']['first_name']; ?></td>
+        <td><?php echo $_SESSION['profileInfo']['first_name']; ?></td>
       </tr>
       <tr>
         <th>Last Name</th>
-        <td><?php echo $_SESSION['profile']['last_name']; ?></td>
+        <td><?php echo $_SESSION['profileInfo']['last_name']; ?></td>
       </tr>
       <tr>
         <th>Email</th>
-        <td><?php echo $_SESSION['profile']['email']; ?></td>
+        <td><?php echo $_SESSION['profileInfo']['email']; ?></td>
       </tr>
       <tr>
         <th>Date of Birth</th>
-        <td><?php echo $_SESSION['profile']['date_of_birth']; ?></td>
+        <td><?php echo $_SESSION['profileInfo']['date_of_birth']; ?></td>
       </tr>
       <tr>
         <th>Phone Number</th>
-        <td><?php echo $_SESSION['profile']['phone']; ?></td>
+        <td><?php echo $_SESSION['profileInfo']['phone']; ?></td>
       </tr>
     </table>
     <button class="button" onclick="location.href='customer_update.php'">Edit Profile</button>

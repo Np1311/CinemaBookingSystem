@@ -59,7 +59,7 @@ require ('header_login.html');
 </head>
 <body>
     <?php
-    $user = $_SESSION['profile'];
+    $user = $_SESSION['profileInfo'];
     $dob = DateTime::createFromFormat('d/m/Y', $user['date_of_birth']);
     $formatted_dob = $dob->format('Y-m-d');
     ?>

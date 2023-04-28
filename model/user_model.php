@@ -18,6 +18,7 @@ class user {
         VALUES ('$fname','$lname','$phone','$email','$password','$mysql_date');";
         try {
             mysqli_query($conn, $sql); 
+            $this->setProfile($fname,$lname,$phone,$email,$mysql_date,$password);
             return true; }
         catch(mysqli_sql_exception $e) {
             //die("Error creating user: " . mysqli_error($conn)); 
@@ -28,7 +29,7 @@ class user {
     public function setAccount($user){
         $this->phone = $user;
     }
-    public function setProfile($fname, $lname, $email, $dob, $password){
+    public function setProfile($fname, $lname, $phone,$email, $dob, $password){
         // sanitize input data
         $fname = filter_var($fname, FILTER_SANITIZE_STRING);
         $lname = filter_var($lname, FILTER_SANITIZE_STRING);
@@ -67,6 +68,7 @@ class user {
     
     public function getProfile($profile,$phone){
         global $conn;
+        $arr = array();
 
         $conn -> select_db('CSIT314_Test');
 
@@ -80,13 +82,15 @@ class user {
         }
 
         // fetch the result row as an associative array
-        $row = $result->fetch_assoc();
-        $date = $row['dob'];
-        $dob = date("d/m/Y", strtotime($date));
         
-
+        // $date = $row['dob'];
+        // $dob = date("d/m/Y", strtotime($date));
+        while ($row = mysqli_fetch_assoc($result) ) {
+            $arr = $row;
+        }
+        return $arr;
         // assign the value to a variable
-        $this->setProfile($row['fname'],$row['lname'],$row['email'],$dob,$row['password']);
+        
        
     }
     public function updateUser($fname,$lname,$phone,$email,$date,$oldPhone){
