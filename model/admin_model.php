@@ -9,10 +9,10 @@ class admin extends user{
         $this->profile = $profile;
     }
 
-    public function createTable(){
+    public function createTable($profile){
         global $conn;
         $conn -> select_db("CSIT314_Test");
-        if ($this->profile == 'customer'){
+        if ($profile == 'customer'){
             $sql = "CREATE TABLE IF NOT EXISTS `customer` (
                 
                 `fname` varchar(255) NOT NULL,
@@ -27,7 +27,7 @@ class admin extends user{
                 PRIMARY KEY(phone)
             );";
         }else{
-            $profile = $this->profile;
+            
             $sql = "CREATE TABLE IF NOT EXISTS `$profile` (
                 
                 `fname` varchar(255) NOT NULL,
@@ -43,9 +43,21 @@ class admin extends user{
 
           if ($conn->query($sql) === TRUE) {
               echo "Table customer created successfully";
+              return true;
           } else {
               echo "Error creating table: " . $conn->error;
+              return false;
           }
+    }
+    public function listedProfile(){
+        global $conn;
+        $array = array();
+        $sql = "SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = 'CSIT314_Test';";
+        $result = $conn->query($sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $array[]= $row['TABLE_NAME'];
+        }
+        return $array;
     }
     
 
