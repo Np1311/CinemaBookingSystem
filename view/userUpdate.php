@@ -1,12 +1,27 @@
 <?php
-require('../model/admin_model.php');
+require('../controller/user_update_controller.php');
 $curProfile = $_GET['curProfile'];
 $userID = $_GET['updateID'];
-print_r($curProfile);
-print_r($userID);
-$admin = new admin;
-$arr = $admin->getProfile($curProfile,$userID);
-print_r($arr);
+$userAccount = new user_update_controller;
+$userAccount -> showUpdate($curProfile,$userID);
+if(isset($_POST['submit'])){
+    $fname = $_POST['first_name'];
+    $lname = $_POST['last_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $dob = $_POST['date_of_birth'];
+    $status = $_POST['status'];
+    if($userAccount ->validateUser($curProfile,$fname,$lname,$phone,$email,$dob,$status,$userID)){
+        echo" <script>window.location='../view/admin_home_view.php';</script>";
+    }
+
+}
+
+// print_r($curProfile);
+// print_r($userID);
+
+// $arr = $admin->getProfile($curProfile,$userID);
+// print_r($arr);
 
 ?>
 <html>

@@ -23,6 +23,7 @@ class admin extends user{
                 `email` VARCHAR(255) NOT NULL,
                 `password` VARCHAR(255) NOT NULL,
                 `dob` DATE NOT NULL,
+                `status` VARCHAR(25) DEFAULT 'active',
                 
                 PRIMARY KEY(phone)
             );";
@@ -36,6 +37,7 @@ class admin extends user{
                 `email` VARCHAR(255) NOT NULL,
                 `password` VARCHAR(255) NOT NULL,
                 `dob` DATE NOT NULL,
+                `status` VARCHAR(25) DEFAULT 'active',
                 
                 PRIMARY KEY(phone)
             );";
@@ -58,6 +60,20 @@ class admin extends user{
           $array[]= $row['TABLE_NAME'];
         }
         return $array;
+    }
+    public function suspendAccount($curProfile,$userID){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "UPDATE `$curProfile` SET `status` = 'suspend' WHERE `phone` = '$userID';";
+        try {
+            mysqli_query($conn, $sql); 
+            echo '<script>alert("good to go")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;}
     }
     
 

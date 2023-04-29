@@ -93,11 +93,11 @@ class user {
         
        
     }
-    public function updateUser($fname,$lname,$phone,$email,$date,$oldPhone){
+    public function updateUser($curProfile,$fname,$lname,$phone,$email,$date,$status,$oldPhone){
         global $conn;
         $conn -> select_db("CSIT314_Test");
         $mysql_date = date('Y-m-d', strtotime($date));
-        $sql =" UPDATE `customer` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `phone`='$phone' WHERE phone = '$oldPhone';";
+        $sql =" UPDATE `$curProfile` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `phone`='$phone' ,`status`='$status' WHERE phone = '$oldPhone';";
 
         try {
             mysqli_query($conn, $sql); 
