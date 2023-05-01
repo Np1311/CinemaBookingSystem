@@ -1,7 +1,7 @@
 <?php
 require('../model/admin_model.php');
 
-$showProfile = new admin;
+$system_admin_session = new admin;
 
 // $system_admin = $showProfile->getAllProfile('system_admin');
 // $manager = $showProfile->getAllProfile('manager');
@@ -10,11 +10,11 @@ $showProfile = new admin;
 
 class admin_controller{
     public function displayUser(){
-        global $showProfile;
+        global $system_admin_session;
         
-        $profileArr = $showProfile->listedProfile();
+        $profileArr = $system_admin_session->listedProfile();
         foreach ($profileArr as $element) {
-            $arr = $showProfile->getAllProfile($element);
+            $arr = $system_admin_session->getAllProfile($element);
             echo "<h2>$element</h2>";
             echo "<table>";
             echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Status</th><th>Action</th></tr>";
@@ -45,15 +45,15 @@ class admin_controller{
         }
     }
     public function validateProfile($newProfile){
-        global $showProfile;
-        $profileArr = $showProfile -> listedProfile();
+        global $system_admin_session;
+        $profileArr = $system_admin_session -> listedProfile();
         if (in_array($newProfile, $profileArr))
         {
             return false;
         }
         else
         {
-            if($showProfile->createTable($newProfile)){
+            if($system_admin_session->createTable($newProfile)){
                 return true;
             }else{
                 return false;
@@ -67,10 +67,18 @@ class admin_controller{
 if(isset($_GET['deleteID'])){
     $userID = $_GET['deleteID'];
     $curProfile = $_GET['curProfile'];
-    if($showProfile->suspendAccount($curProfile,$userID)){
+    if($system_admin_session->suspendAccount($curProfile,$userID)){
         echo" <script>window.location='../view/admin_home_view.php';</script>";
         return true;
     }
 
+}
+
+if(isset($_POST['deleteProfile'])){
+    $deleteProfile = $_POST['deleteProfile'];
+    if($system_admin_session->deleteProfile($deleteProfile)){
+        echo" <script>window.location='../view/admin_home_view.php';</script>";
+        return true;
+    }
 }
 ?>

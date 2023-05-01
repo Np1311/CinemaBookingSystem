@@ -75,6 +75,20 @@ class admin extends user{
             echo '<script>alert("error updating user")</script>'; 
         return false;}
     }
+    public function deleteProfile($profile){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "DROP TABLE '$profile'";
+        try {
+            mysqli_query($conn, $sql); 
+            echo '<script>alert("'.$profile.' deleted")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;}
+    }
     
 
 }
