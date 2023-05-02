@@ -61,7 +61,7 @@ class admin_controller{
         }
     }
 
-    public function addAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
+    public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
         global $system_admin_session;
         if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$date)){
             return true;
