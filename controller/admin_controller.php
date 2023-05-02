@@ -32,9 +32,9 @@ class admin_controller{
                     echo "<td>" . $array['dob'] . "</td>";
                     echo "<td>" . $array['status'] . "</td>";
                     echo '<td >
-                        <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$element.'"
+                        <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'"
                         class="text-light">Update</a></button>
-                        <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$element.'" class="text-light">Delete</a></
+                        <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></
                         button> 
                         </td>' ; 
                     echo "</tr>";

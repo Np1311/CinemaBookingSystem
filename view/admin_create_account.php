@@ -129,7 +129,7 @@ $controller = new admin_controller;
             $password = $_POST['password'];
             
         
-            if ($controller -> createAccout($profile,$fname,$lname,$phone,$email,$password,$dob)){
+            if ($controller -> createAccount($profile,$fname,$lname,$phone,$email,$password,$dob)){
                 echo '<script>alert("Create Account succesful")</script>'; 
                 echo" <script>window.location='../view/admin_home_view.php';</script>";
             }
