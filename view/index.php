@@ -185,6 +185,107 @@ session_start();
             .movie button:hover {
                 background-color: #0055cc;
             }
+            /* Style the banner */
+            .banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a237e;
+            color: #fff;
+            padding: 20px;
+            }
+
+            /* Style the left partition */
+            .banner-left {
+            flex-basis: 33.33%;
+            padding-right: 20px;
+            border-right: 1px solid #fff;
+            }
+
+            /* Style the middle partition */
+            .banner-middle {
+            flex-basis: 33.33%;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-right: 1px solid #fff;
+            }
+
+            /* Style the right partition */
+            .banner-right {
+            flex-basis: 33.33%;
+            padding-left: 20px;
+            }
+
+            /* Style the banner divider */
+            .banner-divider {
+            height: 50%;
+            border-left: 1px solid #fff;
+            margin: 0 20px;
+            }
+
+            /* Style the footer */
+            .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkseagreen;
+            color: #fff;
+            }
+
+            /* Style the footer */
+            .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: #fff;
+            padding: 1px;
+            font-size: 13px;
+            }
+
+            /* Style the system administrators partition */
+            .footer-admins {
+            flex-basis: 5%;
+            padding-right: 20px;
+            }
+
+            /* Style the managers partition */
+            .footer-managers {
+            flex-basis: 5%;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-left: 1px solid #fff;
+            border-right: 1px solid #fff;
+            }
+
+            /* Style the staff partition */
+            .footer-staff {
+            flex-basis: 5%;
+            padding-left: 5px;
+            }
+
+            /* Style the line partition */
+            .footer-line {
+            height: 100%;
+            width: 1px;
+            background-color: #fff;
+            }
+            a:visited{
+                color:grey;
+            }
+            a:link{
+                color:white;
+            }
+            a:hover{
+                color:grey;
+            }
+            a:focus{
+                color:grey;
+            }
+            a:active{
+                color:white;
+            }
+
             
         </style>
     </head>
@@ -349,10 +450,39 @@ session_start();
             }
         </script>
         <?php
-        require('login_boundary.php');
+        require('../controller/login_controller.php');
+        if (isset($_POST['submit'])){
+            $phone = $_POST['phone'];
+            $pass = $_POST['pass'];
+            if(isset($_SESSION['profile'])== null){
+                $_SESSION['profile'] = 'customer';
+            }
+            echo $_SESSION['profile'];
+            
+            $controller = new login_controller();
+            
+            $controller->validateLogin($_SESSION['profile'],$phone,$pass);
+                
+            
+        }
         
         require('footer.html');
         ?>
-        
+        <footer class="footer">
+            <div class="footer-admins">
+                <!-- Content for system administrators partition goes here -->
+                <a href="login_view.php?profile=system_admin">System Administrator</a>
+            </div>
+            <div class="footer-line"></div>
+            <div class="footer-managers">
+                <!-- Content for managers partition goes here -->
+                <a href="login_view.php?profile=manager">Manager</a>
+            </div>
+            <div class="footer-line"></div>
+            <div class="footer-staff">
+                <!-- Content for staff partition goes here -->
+                <a href="login_view.php?profile=staff">Staff</a>
+            </div>
+        </footer>
     </body>
 </html>
