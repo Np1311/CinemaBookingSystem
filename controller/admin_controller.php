@@ -85,6 +85,13 @@ class admin_controller{
             echo "<option value='" . $element . "'>" . $element . "</option>";
         }
     }
+    public function susProfile($deleteProfile){
+        global $system_admin_session;
+        if($system_admin_session->deleteProfile($deleteProfile)){
+            
+            return true;
+        }
+    }
 
 }
 // $admin = new admin_controller;
@@ -94,11 +101,11 @@ class admin_controller{
 
 // }
 
-if(isset($_POST['deleteProfile'])){
-    $deleteProfile = $_POST['deleteProfile'];
-    if($system_admin_session->deleteProfile($deleteProfile)){
-        echo" <script>window.location='../view/admin_home_view.php';</script>";
-        return true;
-    }
-}
+// if(isset($_POST['deleteProfile'])){
+//     $deleteProfile = $_POST['deleteProfile'];
+//     if($system_admin_session->deleteProfile($deleteProfile)){
+//         echo" <script>window.location='../view/admin_home_view.php';</script>";
+//         return true;
+//     }
+// }
 ?>

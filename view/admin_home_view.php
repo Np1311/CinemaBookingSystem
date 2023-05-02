@@ -21,6 +21,10 @@ if(isset($_GET['deleteID'])){
 
         <a href="admin_add_account.php">
             <button>Add account</button>
+        </a> </br>
+
+        <a href="admin_delete_profile.php">
+            <button>Delete profile</button>
         </a> 
     </body>
 </html>

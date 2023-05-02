@@ -78,7 +78,7 @@ class admin extends user{
     public function deleteProfile($profile){
         global $conn;
         $conn->select_db('CSIT314_Test');
-        $sql = "DROP TABLE '$profile'";
+        $sql = "UPDATE $profile SET `status` = 'suspend';";
         try {
             mysqli_query($conn, $sql); 
             echo '<script>alert("'.$profile.' deleted")</script>'; 
