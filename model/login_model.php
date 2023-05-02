@@ -49,10 +49,10 @@ class login{
                 $found = 'found';
                 if ($this->pass == $x_value){
                    $user->setAccount($this->uid);
-                   echo "<script>alert('true password');</script>";
+                   echo "<script>alert('Password Correct');</script>";
                    return true;
                 }else  
-                    echo "<script>alert('wrong password');</script>";
+                    echo "<script>alert('Inccorect password');</script>";
                     return false;
             }
         }
