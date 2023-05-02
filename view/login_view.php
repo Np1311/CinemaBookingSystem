@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION['profile'] = 'system_admin';
+$_SESSION['profile'] = $_GET['profile'];
 require('header_login.html')
 
 

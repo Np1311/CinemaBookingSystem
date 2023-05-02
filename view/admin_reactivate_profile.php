@@ -49,7 +49,7 @@ $controller =  new admin_controller;
         <div class = 'formContainer'>
             <form method="post">
                 <label for="profile">Profile:</label>
-                <select name="deleteProfile">
+                <select name="reactivate">
                     <?php
                         $controller->showProfile();
                     ?>
@@ -59,10 +59,10 @@ $controller =  new admin_controller;
         </div>
         <?php
 
-            if(isset($_POST['deleteProfile'])){
-                $deleteProfile = $_POST['deleteProfile'];
-                echo $deleteProfile;
-                if($controller->susProfile($deleteProfile)){
+            if(isset($_POST['reactivate'])){
+                $reactivateProfile = $_POST['reactivate'];
+                echo $reactivateProfile;
+                if($controller->reactivateProfile($reactivateProfile)){
                     echo" <script>window.location='../view/admin_home_view.php';</script>";
                     // return true;
                 }

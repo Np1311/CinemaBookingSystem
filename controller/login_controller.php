@@ -29,6 +29,10 @@ class login_controller{
             echo" <script>window.location='../view/customer_home_view.php';</script>";}
             else if ($profile == 'system_admin'){
                 echo" <script>window.location='../view/admin_home_view.php';</script>";
+            }else if ($profile == 'staff'){
+                echo" <script>window.location='../view/staff_home_view.php';</script>";
+            }else if ($profile == 'manager'){
+                echo" <script>window.location='../view/manager_home_view.php';</script>";
             }
 
             

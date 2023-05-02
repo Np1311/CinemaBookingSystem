@@ -92,6 +92,13 @@ class admin_controller{
             return true;
         }
     }
+    public function reactivateProfile($reactivateProfile){
+        global $system_admin_session;
+        if($system_admin_session->activateProfile($reactivateProfile)){
+            
+            return true;
+        }
+    }
 
 }
 // $admin = new admin_controller;

@@ -89,6 +89,20 @@ class admin extends user{
             echo '<script>alert("error updating user")</script>'; 
         return false;}
     }
+    public function activateProfile($profile){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "UPDATE $profile SET `status` = 'active';";
+        try {
+            mysqli_query($conn, $sql); 
+            echo '<script>alert("'.$profile.' activated")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;}
+    }
     
 
 }
