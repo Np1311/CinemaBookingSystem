@@ -6,6 +6,15 @@ require('user_model.php');
 $user = new user;
 
 class login{
+    private $profile;
+    private $uid;
+    private $pass;
+
+    public function _construct($profile,$phone, $pass){
+        $this->profile = $profile;
+        $this->uid = $phone;
+        $this->pass = $pass;
+    }
     
     public function getPhoneandPass($profile){
         global $conn;
@@ -24,16 +33,16 @@ class login{
   
         return $array;
     }
-    public function checkUser($profile,$loginPhone, $loginPass){
+    public function checkUser(){
         global $user;
         $found = 'not found';
-        $arr = $this->getPhoneandPass($profile);
+        $arr = $this->getPhoneandPass($this->profile);
         foreach ($arr as $x => $x_value){
-            if ($loginPhone== $x){
+            if ($this->uid== $x){
                  
                 $found = 'found';
-                if ($loginPass == $x_value){
-                   $user->setAccount($loginPhone);
+                if ($this->pass == $x_value){
+                   $user->setAccount($this->uid);
                    echo "<script>alert('true password');</script>";
                    return true;
                 }else  
