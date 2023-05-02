@@ -13,9 +13,9 @@ class admin_controller{
         global $system_admin_session;
         
         $profileArr = $system_admin_session->listedProfile();
-        foreach ($profileArr as $element) {
-            $arr = $system_admin_session->getAllProfile($element);
-            echo "<h2>$element</h2>";
+        foreach ($profileArr as $profile) {
+            $arr = $system_admin_session->getAllProfile($profile);
+            echo "<h2>$profile</h2>";
             echo "<table>";
             echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Status</th><th>Action</th></tr>";
 
@@ -61,7 +61,7 @@ class admin_controller{
         }
     }
 
-    public function addAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
+    public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
         global $system_admin_session;
         if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$date)){
             return true;
@@ -85,6 +85,13 @@ class admin_controller{
             echo "<option value='" . $element . "'>" . $element . "</option>";
         }
     }
+    public function susProfile($deleteProfile){
+        global $system_admin_session;
+        if($system_admin_session->deleteProfile($deleteProfile)){
+            
+            return true;
+        }
+    }
 
 }
 // $admin = new admin_controller;
@@ -94,11 +101,11 @@ class admin_controller{
 
 // }
 
-if(isset($_POST['deleteProfile'])){
-    $deleteProfile = $_POST['deleteProfile'];
-    if($system_admin_session->deleteProfile($deleteProfile)){
-        echo" <script>window.location='../view/admin_home_view.php';</script>";
-        return true;
-    }
-}
+// if(isset($_POST['deleteProfile'])){
+//     $deleteProfile = $_POST['deleteProfile'];
+//     if($system_admin_session->deleteProfile($deleteProfile)){
+//         echo" <script>window.location='../view/admin_home_view.php';</script>";
+//         return true;
+//     }
+// }
 ?>
