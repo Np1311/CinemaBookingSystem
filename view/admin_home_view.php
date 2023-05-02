@@ -4,6 +4,12 @@ $admin = new admin_controller;
 
 $admin->displayUser();
 // $admin->displayUser('customer');
+$admin = new admin_controller;
+// $admin -> validateProfile('customer');
+if(isset($_GET['deleteID'])){
+   $admin->deleteAccount(); 
+
+}
 ?>
 <html>
     <head>
@@ -11,6 +17,10 @@ $admin->displayUser();
     <body>
         <a href="admin_add_profile.php">
             <button>Add profile</button>
+        </a> </br>
+
+        <a href="admin_add_account.php">
+            <button>Add account</button>
         </a> 
     </body>
 </html>

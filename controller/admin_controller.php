@@ -34,7 +34,7 @@ class admin_controller{
                     echo '<td >
                         <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$element.'"
                         class="text-light">Update</a></button>
-                        <button class="btn-danger"><a href="../controller/admin_controller.php?deleteID='.$array['phone'].'&curProfile='.$element.'" class="text-light">Delete</a></
+                        <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$element.'" class="text-light">Delete</a></
                         button> 
                         </td>' ; 
                     echo "</tr>";
@@ -61,18 +61,38 @@ class admin_controller{
         }
     }
 
-}
-// $admin = new admin_controller;
-// $admin -> validateProfile('customer');
-if(isset($_GET['deleteID'])){
-    $userID = $_GET['deleteID'];
-    $curProfile = $_GET['curProfile'];
-    if($system_admin_session->suspendAccount($curProfile,$userID)){
-        echo" <script>window.location='../view/admin_home_view.php';</script>";
-        return true;
+    public function addAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
+        global $system_admin_session;
+        if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$date)){
+            return true;
+        }
+
+    }
+    public function deleteAccount(){
+        global $system_admin_session;
+        $userID = $_GET['deleteID'];
+        $curProfile = $_GET['curProfile'];
+        if($system_admin_session->suspendAccount($curProfile,$userID)){
+            echo" <script>window.location='../view/admin_home_view.php';</script>";
+            return true;
+        }
+    }
+    public function showProfile(){
+        global $system_admin_session;
+        
+        $profileArr = $system_admin_session->listedProfile();
+        foreach ($profileArr as $element) {
+            echo "<option value='" . $element . "'>" . $element . "</option>";
+        }
     }
 
 }
+// $admin = new admin_controller;
+// // $admin -> validateProfile('customer');
+// if(isset($_GET['deleteID'])){
+//    $admin->deleteAccount(); 
+
+// }
 
 if(isset($_POST['deleteProfile'])){
     $deleteProfile = $_POST['deleteProfile'];
