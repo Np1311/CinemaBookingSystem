@@ -59,8 +59,8 @@ class database {
 }
 
 
-$con = new database;
-$con -> createDatabase("CSIT314_Test");
-$con -> createFirstProfile();
-$con -> createFirstUser();
+// $con = new database;
+// $con -> createDatabase("CSIT314_Test");
+// $con -> createFirstProfile();
+// $con -> createFirstUser();
 ?>

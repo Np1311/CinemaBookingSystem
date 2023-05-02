@@ -8,9 +8,9 @@ if (isset($_POST['submit'])){
     }
     echo $_SESSION['profile'];
     
-    $controller = new login_controller ($_SESSION['profile'],$phone,$pass);
+    $controller = new login_controller();
     
-    $controller->login();
+    $controller->validateLogin($_SESSION['profile'],$phone,$pass);
         
     
 }

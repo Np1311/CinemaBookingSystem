@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('../model/login_model.php');
-$con = new login;
+
 
 
 
@@ -16,11 +16,12 @@ class login_controller{
     //     $this->pass = $pass;
     // }
 
-    public function login($profile,$loginPhone, $loginPass){
-        global $con;
+    public function validateLogin($profile,$loginPhone, $loginPass){
         global $user;
+        echo $profile;
+        $login = new login($profile,$loginPhone, $loginPass);
 
-        if($con -> checkUser($profile,$loginPhone ,$loginPass)){
+        if($login -> checkUser()){
             //$userArr = $user -> getAccount();
             $user -> setAccount($loginPhone);
             $_SESSION['user'] = $user -> getAccount();
