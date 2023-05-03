@@ -32,7 +32,7 @@ class login_controller{
             }else if ($profile == 'staff'){
                 echo" <script>window.location='../view/staff_home_view.php';</script>";
             }else if ($profile == 'manager'){
-                echo" <script>window.location='../view/manager_home_view.php';</script>";
+                echo" <script>window.location='../view/manager/manager_home_view.php';</script>";
             }
 
             
