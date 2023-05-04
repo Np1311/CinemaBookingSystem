@@ -5,6 +5,7 @@ session_start();
 <html>
     <head>
         <title>Capybara Cinema</title>
+        <link rel="icon" type="image/x-icon" href="CSIT314-2/favicon.ico">
         <style>
             .formContainer{
                 
@@ -42,7 +43,7 @@ session_start();
             }
             
 
-            body {background-color: gray}
+            body {background-color: #FFC97A }
             .slideShowContainer {box-sizing: border-box}
             body {font-family: Verdana, sans-serif; margin:0}
             .mySlides {display: none}

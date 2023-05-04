@@ -2,11 +2,10 @@
 <html>
     <head>
        
-        
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <style>
             .header {
-                
-                background: black;
+                background: #C27F30;
                 color: white;
                 font-size: 20px;
                 width:100%;
@@ -14,16 +13,25 @@
                 position:fixed;
                 top:0;
                 left:0;
-                font-family : Arial ;
+                font-family: ARVO;
                 display: grid;
                 grid-template-columns: auto auto auto auto;
-                gap: 200px;
-                
                 padding: 10px;
-
                 z-index: 999;
 
-                
+                display: flex;
+                justify-content: space-between;
+            }
+
+            /* h2, h5 {
+                margin: 0;
+                display: block;   
+            } */
+
+            .header-image {
+                float: right;
+                height: 50px; /* set the height to match the height of the header */
+                margin-left: 10px; /* add some margin to separate the image from the text */
             }
 
             h2{
@@ -57,9 +65,17 @@
             border: none;
             }
 
-            .dropdown {
+            /* .dropdown {
             position: relative;
             display: inline-block;
+            } */
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                margin-right: 50px;
+                top: 5px;
+                right: 10px;
             }
 
             .dropdown-content {
@@ -69,6 +85,9 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
+
+            right: 0;
+            left: auto;
             }
 
             .dropdown-content a {
@@ -87,15 +106,35 @@
             text-decoration: none;
             color: inherit;
             }
+            #cinemaTitle{
+               
+                display: inline-block;
+                justify-content: center;
+                align-items: center;
+
+            }
           
         </style>
     </head>
     <body>
         <div class="header">
-            <div><h2><a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a></h2></div>
-            <div></div>
+            <div class="cinemaTitle">
+                <img src="cap2.png" alt="Your Image" class="header-image">
+                <h2><a href="index.php" id="home">&nbsp&nbspCAPYBARA CINEMA</a></h2>
+                
+            </div>
+        
+            
+            
             <div></div>
             <div class="dropdown">
+        <!-- <div class="header">
+             <div><h2><a href="index.php" id="home">&nbsp&nbspCAPYBARA CINEMA</a></h2></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            <div><h5><a href="index.php" id="home">SPEND YOUR TIME WITH US</a></h5></div>
+                <div class="dropdown"> -->
                 <button class="dropbtn">
                 <div class="container" onclick="myFunction(this)">
                     <div class="bar1"></div>
