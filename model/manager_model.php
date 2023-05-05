@@ -118,7 +118,7 @@ class manager extends user{
             id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             movieName VARCHAR(225) NOT NULL,
             movieBanner VARCHAR(225) NOT NULL,
-            relData date NOT NULL,
+            relDate date NOT NULL,
             genre VARCHAR(225) NOT NULL,
             duration INT(4) NOT NULL,
             `status` VARCHAR(10) NOT NULL DEFAULT 'active')";
@@ -130,7 +130,7 @@ class manager extends user{
             }
             $mysql_date = date('Y-m-d', strtotime($relDate));
 
-            $sql2 = "INSERT INTO cinemaMovie (movieName, movieBanner, relData, genre, duration) VALUES ('$movieName', '$movieBanner', '$mysql_date', '$genre', '$duration');";
+            $sql2 = "INSERT INTO cinemaMovie (movieName, movieBanner, relDate, genre, duration) VALUES ('$movieName', '$movieBanner', '$mysql_date', '$genre', '$duration');";
 
             try {
                 mysqli_query($conn, $sql2); 
@@ -142,6 +142,28 @@ class manager extends user{
                 echo '<script>alert("error updating user")</script>'; 
                 return false;
             }
+    }
+    public function getMovie(){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "SELECT * FROM `cinemaMovie` ";
+
+        $result = $conn->query($sql);
+
+        // check if the query was successful
+        if (!$result) {
+        echo "Error: " . $conn->error;
+        exit();
+        }
+
+        // fetch the result row as an associative array
+        
+        while ($row = mysqli_fetch_assoc($result) ) {
+            $array[] = $row;
+        }
+
+        return $array;
     }
 }
 

@@ -53,6 +53,14 @@ class manager_controller{
         }
     }
 
+    public function viewMovieController(){
+        global $manager;
+
+        $array = $manager -> getMovie();
+
+        return $array;
+    }
+
 }
 
 $controller = new manager_controller;
