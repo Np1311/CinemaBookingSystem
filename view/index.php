@@ -3,24 +3,40 @@ session_start();
 
 ?>
 <html>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> <!--Show password-->
     <head>
-        <title>Capybara Cinema</title>
-        <link rel="icon" type="image/x-icon" href="CSIT314-2/favicon.ico">
+    <script type="text/javascript"> 
+    function togglePasswordVisibility() 
+    {
+    const passwordInput = document.getElementById('password-input');
+    const showPasswordIcon = document.querySelector('.show-password-icon');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      showPasswordIcon.classList.remove('fa-eye-slash');
+      showPasswordIcon.classList.add('fa-eye');
+    } else {
+      passwordInput.type = 'password';
+      showPasswordIcon.classList.remove('fa-eye');
+      showPasswordIcon.classList.add('fa-eye-slash');
+    }
+    } //show password
+</script>
+
+    <title>Capybara Cinema</title>
         <style>
-            .formContainer{
-                
-                background: black;
-                color: white;
-                margin: auto;
-                width: 30%;
-                border: 3px solid white;
-                padding: 10px;
-                font-family : Arial ;
-                margin-top: 80px;
-            
-            }
+        form {
+        width: 400px;
+        margin: 0 auto;
+        background-color: #FFFFFF;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px #666666;
+        }
             .btn-primary{
-                background-color: blue; 
+                background-color: #bd9a7a; 
                 border: 2px solid white;
                 color: white;
                 padding: 15px ;
@@ -43,7 +59,7 @@ session_start();
             }
             
 
-            body {background-color: #FFC97A }
+            body {background-color: #e7dbd0 }
             .slideShowContainer {box-sizing: border-box}
             body {font-family: Verdana, sans-serif; margin:0}
             .mySlides {display: none}
@@ -178,13 +194,14 @@ session_start();
                 padding: 10px;
                 border: none;
                 border-radius: 5px;
-                background-color: #0077ff;
+                background-color: #bd9a7a;
                 color: #fff;
                 font-size: 16px;
                 cursor: pointer;
             }
             .movie button:hover {
-                background-color: #0055cc;
+                background-color: #FFFFFF; 
+                color: #0a0805;
             }
             /* Style the banner */
             .banner {
@@ -286,6 +303,26 @@ session_start();
             a:active{
                 color:white;
             }
+            .password-container {
+            position: relative;
+            }
+
+            .show-password-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            }
+
+            input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #CCCCCC;
+            margin-bottom: 20px;
+        }
+            
 
             
         </style>
@@ -335,18 +372,18 @@ session_start();
          <div class="formContainer"  style="text-align:center;"  >
             <form method='post' >
             </br></br>
-                <div class="signIn" style="text-align:left;"> 
-                    <span class="input-group-text" id="phone">Phone</span>
-                    <input class="form-control" type="text" name="phone" id="phone" required>
-                    
-                    
-                    </br></br>
-                   
-                    <span class="input-group-text" id="basic-addon1">Password</span>
-                    <input class="form-control" type="password" name="pass" id="pass" required>
-                    
-                    <input  style="font-size: 10px;" class="form-check-input mt-0" type="checkbox" onclick="myFunction('pass')"> &nbspShow Password</input>
+            <div class="signIn" style="text-align:left;"> 
+                <span class="input-group-text" id="phone-label">Phone</span>
+                <input class="form-control" type="text" name="phone" id="phone" required>
+                                
+            </br></br>
+                            
+                <div class="password-container">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+                <input type="password" placeholder="Enter Password" id="password-input">
+                <i class="show-password-icon fa fa-eye-slash" aria-hidden="true" onclick="togglePasswordVisibility()"></i>
                 </div>
+            </div>
                 </br>
                 <button class="btn-primary" type ='submit' name='submit' value='submit'> Submit </button>
                 <h3></br>Don't have account ? <a href="signUp.php">Sign up</a></h3>
