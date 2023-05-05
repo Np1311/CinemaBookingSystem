@@ -58,6 +58,7 @@ require('header.html')
             border-radius: 3px;
             border: 1px solid #CCCCCC;
             margin-bottom: 20px;
+            box-sizing: border-box;
         }
         input[type="submit"] {
             background-color: #4CAF50;
@@ -93,13 +94,7 @@ require('header.html')
             transform: translateY(-50%);
             cursor: pointer;
             }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 3px;
-            border: 1px solid #CCCCCC;
-            margin-bottom: 20px;
-        }
+        
     </style>
 </head>
 <body>
