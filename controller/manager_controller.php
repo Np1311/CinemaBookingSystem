@@ -45,6 +45,14 @@ class manager_controller{
         }
     }
 
+    public function createMovieController($movieName,$movieBanner, $relDate, $genre, $duration){
+        global $manager;
+
+        if($manager -> createMovie($movieName,$movieBanner, $relDate, $genre, $duration)){
+            return true;
+        }
+    }
+
 }
 
 $controller = new manager_controller;
