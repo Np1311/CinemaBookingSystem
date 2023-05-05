@@ -5,12 +5,12 @@
     </head>
     <body>
         <div class="adminButton">
-            <a href="manager_create_cinema.php">
-                <button id='bodyButton'>Create Cinema</button>
+            <a href="manager_view_cinemaRoom.php">
+                <button id='bodyButton'>Manage Room</button>
             </a> </br>
 
-            <!-- <a href="admin_create_account.php">
-                <button id='bodyButton'>Create account</button>
+            <!-- <a href="manager_view_cinema.php">
+                <button id='bodyButton'>View Cinema Room</button>
             </a> </br>
 
             <a href="admin_delete_profile.php">

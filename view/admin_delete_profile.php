@@ -63,7 +63,8 @@ $controller =  new admin_controller;
                 $deleteProfile = $_POST['deleteProfile'];
                 echo $deleteProfile;
                 if($controller->susProfile($deleteProfile)){
-                    echo" <script>window.location='../view/admin_home_view.php';</script>";
+                    echo '<script>alert("good to go")</script>'; 
+                    echo" <script>window.location='admin_home_view.php';</script>";
                     // return true;
                 }
             }

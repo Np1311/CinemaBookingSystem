@@ -63,6 +63,7 @@ $controller =  new admin_controller;
                 $reactivateProfile = $_POST['reactivate'];
                 echo $reactivateProfile;
                 if($controller->reactivateProfile($reactivateProfile)){
+                    echo '<script>alert("'.$reactivateProfile.' activated")</script>'; 
                     echo" <script>window.location='../view/admin_home_view.php';</script>";
                     // return true;
                 }

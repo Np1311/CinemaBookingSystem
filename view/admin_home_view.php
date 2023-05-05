@@ -7,7 +7,9 @@ $admin->displayUser();
 $admin = new admin_controller;
 // $admin -> validateProfile('customer');
 if(isset($_GET['deleteID'])){
-   $admin->deleteAccount(); 
+   if($admin->deleteAccount()){
+        echo" <script>window.location='admin_home_view.php';</script>";
+   }
 
 }
 ?>

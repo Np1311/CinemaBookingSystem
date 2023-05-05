@@ -3,7 +3,34 @@ require('../controller/user_update_controller.php');
 $curProfile = $_GET['curProfile'];
 $userID = $_GET['updateID'];
 $userAccount = new user_update_controller;
-$userAccount -> showUpdate($curProfile,$userID);
+$arr = $userAccount -> showUpdate($curProfile,$userID);
+echo "<div class='profile'>";
+echo "<h1>Update Profile</h1>";
+echo "<form  method='post'>";
+    echo "<label for='first_name'>First Name:</label>";
+    echo "<input type='text' name='first_name' id='first_name' value=".$arr['fname']."><br><br>";
+    echo '<label for="last_name">Last Name:</label>';
+    echo "<input type='text' name='last_name' id='last_name' value=".$arr['lname']."><br><br>";
+    echo '<label for="email">Email:</label>';
+    echo "<input type='email' name='email' id='email' value=".$arr['email']."><br><br>";
+    echo '<label for="date_of_birth">Date of Birth:</label>';
+    echo "<input type='date' name='date_of_birth' id='date_of_birth' value=".$arr['dob']."><br><br>";
+    echo '<label for="phone">Phone Number:</label>';
+    echo "<input type='text' name='phone' id='phone' value=".$arr['phone']."><br><br>";
+    echo '<label for="status">Status:</label>';
+    echo '<select class="form-control" name="status">';
+        if($arr['status'] == 'active') {
+            echo '<option value="active" SELECTED> active </option>';
+            echo '<option value="suspend" > suspend </option>';
+        } else{
+            echo '<option value="active"> active </option>';
+            echo '<option value="suspend" SELECTED> suspend </option>';
+        }
+            
+    echo'</select><br><br>';
+    echo '<input type="submit" name="submit" value="Save Changes">';
+echo "</form>";
+echo "</div>";
 if(isset($_POST['submit'])){
     $fname = $_POST['first_name'];
     $lname = $_POST['last_name'];
@@ -12,6 +39,7 @@ if(isset($_POST['submit'])){
     $dob = $_POST['date_of_birth'];
     $status = $_POST['status'];
     if($userAccount ->validateUser($curProfile,$fname,$lname,$phone,$email,$dob,$status,$userID)){
+        
         echo" <script>window.location='../view/admin_home_view.php';</script>";
     }
 

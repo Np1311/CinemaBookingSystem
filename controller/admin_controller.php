@@ -13,6 +13,10 @@ class admin_controller{
         global $system_admin_session;
         
         $profileArr = $system_admin_session->listedProfile();
+        $profileArr = array_filter($profileArr, function($profile) {
+            return stripos($profile, 'cinema') === false;
+        });
+        
         foreach ($profileArr as $profile) {
             $arr = $system_admin_session->getAllProfile($profile);
             echo "<h2>$profile</h2>";
@@ -73,7 +77,7 @@ class admin_controller{
         $userID = $_GET['deleteID'];
         $curProfile = $_GET['curProfile'];
         if($system_admin_session->suspendAccount($curProfile,$userID)){
-            echo" <script>window.location='../view/admin_home_view.php';</script>";
+            // echo" <script>window.location='../view/admin_home_view.php';</script>";
             return true;
         }
     }
