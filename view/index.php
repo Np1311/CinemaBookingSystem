@@ -255,7 +255,7 @@ session_start();
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black;
+            background-color: #bd9a7a;
             color: #fff;
             padding: 1px;
             font-size: 13px;
@@ -293,16 +293,16 @@ session_start();
                 color:grey;
             }
             a:link{
-                color:white;
+                color:black; /*beside Don't have account*/
             }
             a:hover{
-                color:grey;
+                color:red;
             }
             a:focus{
-                color:grey;
+                color:red;
             }
             a:active{
-                color:white;
+                color:red;
             }
             .password-container {
             position: relative;
