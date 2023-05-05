@@ -101,7 +101,7 @@ class user {
 
         try {
             mysqli_query($conn, $sql); 
-            echo '<script>alert("good to go")</script>'; 
+            //echo '<script>alert("good to go")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {

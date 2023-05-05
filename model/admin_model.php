@@ -67,7 +67,7 @@ class admin extends user{
         $sql = "UPDATE `$curProfile` SET `status` = 'suspend' WHERE `phone` = '$userID';";
         try {
             mysqli_query($conn, $sql); 
-            echo '<script>alert("good to go")</script>'; 
+            
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -81,7 +81,7 @@ class admin extends user{
         $sql = "UPDATE $profile SET `status` = 'suspend';";
         try {
             mysqli_query($conn, $sql); 
-            echo '<script>alert("'.$profile.' deleted")</script>'; 
+            
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -95,7 +95,7 @@ class admin extends user{
         $sql = "UPDATE $profile SET `status` = 'active';";
         try {
             mysqli_query($conn, $sql); 
-            echo '<script>alert("'.$profile.' activated")</script>'; 
+            
             return true; 
         }
         catch(mysqli_sql_exception $e) {
