@@ -9,14 +9,31 @@ require('header_login.html')
 
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript">
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password-input');
+        const showPasswordIcon = document.querySelector('.show-password-icon');
+
+        if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        showPasswordIcon.classList.remove('fa-eye-slash');
+        showPasswordIcon.classList.add('fa-eye');
+        } else {
+        passwordInput.type = 'password';
+        showPasswordIcon.classList.remove('fa-eye');
+        showPasswordIcon.classList.add('fa-eye-slash');
+        }
+    }
+    </script>
     <title>Admin Login</title>
     <style>
         .login-form{
             margin-top : 100px;
         }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #F8F8F8;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #e7dbd0;
         }
         h2 {
             text-align: center;
@@ -54,7 +71,7 @@ require('header_login.html')
             background-color: #3e8e41;
         }
         .btn-primary{
-                background-color: blue; 
+                background-color: #bd9a7a; 
                 border: 2px solid white;
                 color: white;
                 padding: 15px ;
@@ -66,6 +83,23 @@ require('header_login.html')
                 width: 400px;
                 /* margin-left: 100px; */
         }
+        .password-container {
+            position: relative;
+        }
+        .show-password-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #CCCCCC;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -74,17 +108,19 @@ require('header_login.html')
         <form method='post' >
             </br></br>
                 
-                    <span class="input-group-text" id="phone">Phone</span>
-                    <input class="form-control" type="text" name="phone" id="phone" required>
                     
-                    
-                    </br></br>
-                   
-                    <span class="input-group-text" id="basic-addon1">Password</span>
-                    <input class="form-control" type="password" name="pass" id="pass" required>
-                    
-                    <input  style="font-size: 10px;" class="form-check-input mt-0" type="checkbox" onclick="myFunction('pass')"> &nbspShow Password</input>
-                
+                <div class="signIn" style="text-align:left;"> 
+                <span class="input-group-text" id="phone-label">Phone</span>
+                <input class="form-control" type="text" name="phone" id="phone" required>
+                                
+            </br></br>
+                            
+                <div class="password-container">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+                <input type="password" placeholder="Enter Password" id="password-input">
+                <i class="show-password-icon fa fa-eye-slash" aria-hidden="true" onclick="togglePasswordVisibility()"></i>
+                </div>
+            </div>
                 </br>
                 <button class="btn-primary" type ='submit' name='submit' value='submit'> Submit </button>
             </form>
