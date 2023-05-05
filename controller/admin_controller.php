@@ -67,7 +67,7 @@ class admin_controller{
 
     public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
         global $system_admin_session;
-        if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$date)){
+        if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$dob)){
             return true;
         }
 
@@ -85,6 +85,9 @@ class admin_controller{
         global $system_admin_session;
         
         $profileArr = $system_admin_session->listedProfile();
+        $profileArr = array_filter($profileArr, function($profile) {
+            return stripos($profile, 'cinema') === false;
+        });
         foreach ($profileArr as $element) {
             echo "<option value='" . $element . "'>" . $element . "</option>";
         }

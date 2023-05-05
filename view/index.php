@@ -259,6 +259,7 @@ session_start();
             color: #fff;
             padding: 1px;
             font-size: 13px;
+            background-color: #bd9a7a;
             }
 
             /* Style the system administrators partition */
@@ -380,7 +381,7 @@ session_start();
                             
                 <div class="password-container">
                 <span class="input-group-text" id="basic-addon1">Password</span>
-                <input type="password" placeholder="Enter Password" id="password-input">
+                <input type="password" placeholder="Enter Password" id="password-input" name='pass'>
                 <i class="show-password-icon fa fa-eye-slash" aria-hidden="true" onclick="togglePasswordVisibility()"></i>
                 </div>
             </div>
