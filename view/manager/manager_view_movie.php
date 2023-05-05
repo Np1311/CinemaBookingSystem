@@ -27,17 +27,19 @@ $arr = $controller -> viewMovieController();
                         // $gen=$con->select("genre",$array["genre_id"]);
                         // $genrow=$gen->fetch_assoc();
 
+
                         ?>
                             <div class="col-md-3">
                                 <img src="<?php echo $array["movieBanner"];?>" style="width:100%; height:250px;" alt="Movie <?php echo $array["id"];?>"/> 
                                 <h2 class="text-center mt-2" style="height:40px;"><?php echo $array["movieName"];?></h2>
-                                <p><b>Release Date: </b> <?php echo $array["relDate"];?></p>
+                                <p><b>Release Date: </b> <?php echo $array['relDate']?></p>
                                 
                                 <p><b>Duration: </b> <?php echo $array["duration"];?> minutes</p>
                                 <p><b>Genre: </b> <?php echo $array["genre"];?></p>
-                                <button class="btn btn-primary"><a href="../manager/manager_update_cinema.php?updateID=<?php echo $array["id"];?>"
+                                <p><b>Status: </b> <?php echo $array["status"];?></p>
+                                <button class="btn btn-primary"><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["id"];?>"
                                 class="text-light">Update</a></button>
-                                <button class="btn-danger"><a href="../manager/manager_delete_cinema.php?deleteID=<?php echo $array["id"];?>" class="text-light">Delete</a></button> 
+                                <button class="btn-danger"><a href="../manager/manager_delete_delete.php?deleteID=<?php echo $array["id"];?>" class="text-light">Delete</a></button> 
                             </div>
                         <?php
                     }

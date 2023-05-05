@@ -165,6 +165,48 @@ class manager extends user{
 
         return $array;
     }
+
+    public function updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration,$status){
+        global $conn;
+        $conn -> select_db("CSIT314_Test");
+     
+        
+        $sql =" UPDATE `cinemaMovie` SET `movieName`='$movieName',`movieBanner`='$movieBanner',`relDate`='$relDate',`genre`='$genre', `duration`='$duration' ,`status`='$status' WHERE id = '$updateID';";
+
+        try {
+            mysqli_query($conn, $sql); 
+            
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error creating user")</script>'; 
+        return false;}
+    }
+    
+    public function movieDetail($updateID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "SELECT * FROM `cinemaMovie` WHERE id = '$updateID';";
+
+        $result = $conn->query($sql);
+
+        // check if the query was successful
+        if (!$result) {
+        echo "Error: " . $conn->error;
+        exit();
+        }
+
+        // fetch the result row as an associative array
+        
+        while ($row = mysqli_fetch_assoc($result) ) {
+            $array = $row;
+        }
+
+        return $array;
+    }
+
 }
 
 // $manager_model = new manager;
