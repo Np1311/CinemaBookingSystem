@@ -255,7 +255,7 @@ session_start();
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black;
+            background-color: #bd9a7a;
             color: #fff;
             padding: 1px;
             font-size: 13px;
