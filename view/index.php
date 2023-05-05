@@ -292,16 +292,16 @@ session_start();
                 color:grey;
             }
             a:link{
-                color:white;
+                color:black; /*beside Don't have account*/
             }
             a:hover{
-                color:grey;
+                color:red;
             }
             a:focus{
-                color:grey;
+                color:red;
             }
             a:active{
-                color:white;
+                color:red;
             }
             .password-container {
             position: relative;
