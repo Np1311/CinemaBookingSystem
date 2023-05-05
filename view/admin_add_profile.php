@@ -9,7 +9,7 @@ $admin = new admin_controller;
     <head>
         <style>
             body {
-                background-color: #f2f2f2;
+                background-color: #e7dbd0;
                 font-family: Arial, sans-serif;
             }
             
@@ -42,8 +42,8 @@ $admin = new admin_controller;
             }
             
             button {
-                background-color: #4CAF50;
-                color: white;
+                background-color: #bd9a7a;
+                color: #fff;
                 padding: 10px 20px;
                 border: none;
                 border-radius: 5px;
@@ -52,7 +52,9 @@ $admin = new admin_controller;
             }
             
             button:hover {
-                background-color: #3e8e41;
+                background-color: white;
+                color: #bd9a7a;
+                border: 2px solid;
             }
         </style>
     </head>

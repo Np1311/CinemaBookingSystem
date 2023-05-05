@@ -21,6 +21,7 @@ if(isset($_GET['deleteID'])){
             margin-top: 100px;
             border-collapse: collapse;
             width: 100%;
+            background-color: #fff;
         }
 
         th, td {
@@ -31,9 +32,11 @@ if(isset($_GET['deleteID'])){
         }
 
         th {
-            background-color: #bd9a7a; 
-            color: #FFFFFF;
+            background-color: #bd9a7a;
+            color:#fff;
             font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
         }
 
         tr:hover {
@@ -51,8 +54,8 @@ if(isset($_GET['deleteID'])){
         }
 
         .btn-primary {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #bd9a7a;
+            color: #fff; /*button update */
         }
 
         .btn-primary:hover {
@@ -60,8 +63,8 @@ if(isset($_GET['deleteID'])){
         }
 
         .btn-danger {
-            background-color: #dc3545;
-            color: #fff;
+            background-color: #bd9a7a;
+            color: #fff; /*button delete*/
         }
 
         .btn-danger:hover {
@@ -75,6 +78,7 @@ if(isset($_GET['deleteID'])){
         .update-btn-container {
             display: flex;
             align-items: center;
+            
         }
 
         .update-btn-container button:first-child {
@@ -97,8 +101,6 @@ if(isset($_GET['deleteID'])){
             justify-content: center;
             align-items: center;
             height: 10vh;
-            /* background-color: #FFFFFF; 
-            color: #0a0805; */
         }
 
         #bodyButton {
@@ -107,15 +109,23 @@ if(isset($_GET['deleteID'])){
             border: none;
             border-radius: 4px;
             font-size: 16px;
-            background-color: #007bff;
+            background-color: #bd9a7a; /*button add, edit, update*/
             color: #fff;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
         }
 
-        button:hover {
-            background-color: #0062cc;
+        #bodyButton:hover{
+            background-color: white;
+                color: #bd9a7a;
+                border: 2px solid;
         }
+        button:hover {
+            background-color: #FFFFFF; 
+            color: #0a0805;
+        }
+        body {background-color: #e7dbd0 }
+
 
         @media screen and (max-width: 768px) {
             

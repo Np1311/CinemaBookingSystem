@@ -33,14 +33,16 @@ $controller =  new admin_controller;
             input[type="submit"] {
                 padding: 10px;
                 border: none;
-                background-color: #4CAF50;
+                background-color: #bd9a7a;
                 color: white;
                 border-radius: 5px;
                 cursor: pointer;
             }
 
             input[type="submit"]:hover {
-                background-color: #3e8e41;
+                background-color: white;
+                color: #bd9a7a;
+                border: 2px solid;
             }
         </style>
     </head>
@@ -54,7 +56,7 @@ $controller =  new admin_controller;
                         $controller->showProfile();
                     ?>
                 </select>
-                <input type="submit" name='submit' value="submit">
+                <input type="submit" name='submit' value="Submit">
             </form>
         </div>
         <?php
