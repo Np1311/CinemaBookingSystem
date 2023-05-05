@@ -1,5 +1,6 @@
 <?php
 require('../controller/admin_controller.php');
+require('header_login.html');
 $admin = new admin_controller;
 
 $admin->displayUser();
@@ -17,6 +18,7 @@ if(isset($_GET['deleteID'])){
     <head>
     <style>
         table {
+            margin-top: 100px;
             border-collapse: collapse;
             width: 100%;
         }

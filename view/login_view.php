@@ -2,7 +2,7 @@
 session_start();
 
 $_SESSION['profile'] = $_GET['profile'];
-require('header_login.html')
+require('header.html')
 
 
 ?>
