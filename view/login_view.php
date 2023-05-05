@@ -117,7 +117,7 @@ require('header.html')
                 </div>
             </div>
                 </br>
-                <button class="btn-primary" type ='submit' name='submit' value='submit'> Login </button>
+                <button class="btn-primary" type ='submit' name='submit' value='submit'> Log in </button>
             </form>
     </div>
     <script>
