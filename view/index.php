@@ -289,7 +289,7 @@ session_start();
             background-color: #fff;
             }
             a:visited{
-                color:grey;
+                color:black;
             }
             a:link{
                 color:black; /*beside Don't have account*/
