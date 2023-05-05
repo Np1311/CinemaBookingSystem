@@ -386,7 +386,7 @@ session_start();
                 </div>
             </div>
                 </br>
-                <button class="btn-primary" type ='submit' name='submit' value='submit'> Submit </button>
+                <button class="btn-primary" type ='submit' name='submit' value='submit'> Login </button>
                 <h3></br>Don't have account ? <a href="signUp.php">Sign up</a></h3>
             </form>
             </br>
