@@ -117,7 +117,7 @@ require('header_login.html')
                             
                 <div class="password-container">
                 <span class="input-group-text" id="basic-addon1">Password</span>
-                <input type="password" placeholder="Enter Password" id="password-input">
+                <input type="password" placeholder="Enter Password" id="password-input" name = 'pass'>
                 <i class="show-password-icon fa fa-eye-slash" aria-hidden="true" onclick="togglePasswordVisibility()"></i>
                 </div>
             </div>
