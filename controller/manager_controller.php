@@ -60,7 +60,28 @@ class manager_controller{
 
         return $array;
     }
+    public function updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration,$status){
+        global $manager;
+        
 
+        if($manager -> updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration,$status)){
+            return true;
+        }
+    }
+    public function getMovieDetail($updateID){
+        global $manager;
+
+        $array = $manager -> movieDetail($updateID);
+
+        return $array;
+    }
+    public function deleteMovieController($deleteID){
+        global $manager;
+
+        if($manager -> deleteMovie($deleteID)){
+            return true;
+        }
+    }
 }
 
 $controller = new manager_controller;
