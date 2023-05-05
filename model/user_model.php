@@ -9,10 +9,10 @@ class user {
     private $dob;
 
     
-    public function createUser($profile,$fname,$lname,$phone,$email,$password,$date){
+    public function createUser($profile,$fname,$lname,$phone,$email,$password,$dob){
         global $conn;
         $conn -> select_db("CSIT314_Test");
-        $mysql_date = date('Y-m-d', strtotime($date));
+        $mysql_date = date('Y-m-d', strtotime($dob));
         $sql = "INSERT INTO `$profile` (fname, lname, phone, email,`password`, dob)
 
         VALUES ('$fname','$lname','$phone','$email','$password','$mysql_date');";
