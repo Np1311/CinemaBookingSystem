@@ -200,8 +200,9 @@ session_start();
                 cursor: pointer;
             }
             .movie button:hover {
-                background-color: #FFFFFF; 
-                color: #0a0805;
+                background-color: #fff;
+                color: #bd9a7a;
+                border: 2px solid;
             }
             /* Style the banner */
             .banner {

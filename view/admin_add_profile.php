@@ -52,7 +52,7 @@ $admin = new admin_controller;
             }
             
             button:hover {
-                background-color: white;
+                background-color: #fff;
                 color: #bd9a7a;
                 border: 2px solid;
             }
