@@ -115,7 +115,7 @@ $controller = new admin_controller;
 
                 
 
-                <input type="submit" name='submit' value="submit">
+                <input type="submit" name='submit' value="Create Account">
             </form>
         </div>
         <?php
