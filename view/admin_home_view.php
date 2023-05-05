@@ -17,8 +17,11 @@ if(isset($_GET['deleteID'])){
 <html>
     <head>
     <style>
-        table {
+        .profileTable{
             margin-top: 100px;
+        }
+        table {
+            margin-top: 20px;
             border-collapse: collapse;
             width: 100%;
             background-color: #fff;

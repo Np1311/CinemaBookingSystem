@@ -19,6 +19,7 @@ class admin_controller{
         
         foreach ($profileArr as $profile) {
             $arr = $system_admin_session->getAllProfile($profile);
+            echo "<div class = 'profileTable'>";
             echo "<h2>$profile</h2>";
             echo "<table>";
             echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Status</th><th>Action</th></tr>";
@@ -46,6 +47,7 @@ class admin_controller{
             }
             // close the table
             echo "</table>";
+            echo "</div>";
         }
     }
     public function validateProfile($newProfile){
