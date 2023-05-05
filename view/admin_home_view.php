@@ -31,7 +31,8 @@ if(isset($_GET['deleteID'])){
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #bd9a7a; 
+            color: #FFFFFF;
             font-weight: bold;
         }
 
@@ -96,6 +97,8 @@ if(isset($_GET['deleteID'])){
             justify-content: center;
             align-items: center;
             height: 10vh;
+            /* background-color: #FFFFFF; 
+            color: #0a0805; */
         }
 
         #bodyButton {
