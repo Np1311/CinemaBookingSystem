@@ -55,6 +55,8 @@ $date = $arr['relDate'];
                 $genre = $_POST['genre'];
                 
                 $duration = $_POST['duration'];
+
+                $status = $_POST['status'];
                 
                 // echo $movieName;
                 // echo $movieBanner;

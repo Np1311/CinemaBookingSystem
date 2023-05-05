@@ -39,7 +39,7 @@ $arr = $controller -> viewMovieController();
                                 <p><b>Status: </b> <?php echo $array["status"];?></p>
                                 <button class="btn btn-primary"><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["id"];?>"
                                 class="text-light">Update</a></button>
-                                <button class="btn-danger"><a href="../manager/manager_delete_delete.php?deleteID=<?php echo $array["id"];?>" class="text-light">Delete</a></button> 
+                                <button class="btn-danger"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["id"];?>" class="text-light">Delete</a></button> 
                             </div>
                         <?php
                     }

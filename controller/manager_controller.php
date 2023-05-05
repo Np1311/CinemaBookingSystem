@@ -75,6 +75,13 @@ class manager_controller{
 
         return $array;
     }
+    public function deleteMovieController($deleteID){
+        global $manager;
+
+        if($manager -> deleteMovie($deleteID)){
+            return true;
+        }
+    }
 }
 
 $controller = new manager_controller;

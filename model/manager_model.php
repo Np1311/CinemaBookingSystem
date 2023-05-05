@@ -56,7 +56,7 @@ class manager extends user{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "UPDATE cinemaRoom SET `status` = 'suspend';";
+        $sql = "UPDATE cinemaRoom SET `status` = 'suspend' WHERE id = '$deleteID';";
 
         try {
             mysqli_query($conn, $sql); 
@@ -205,6 +205,24 @@ class manager extends user{
         }
 
         return $array;
+    }
+
+    public function deleteMovie($deleteID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "UPDATE cinemaMovie SET `status` = 'suspend' WHERE id = '$deleteID';";
+
+        try {
+            mysqli_query($conn, $sql); 
+            
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;
+        }
     }
 
 }
