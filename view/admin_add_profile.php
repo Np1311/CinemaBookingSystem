@@ -10,7 +10,7 @@ $admin = new admin_controller;
         <style>
             body {
                 background-color: #e7dbd0;
-                font-family: Arial, sans-serif;
+                font-family: Arial;
             }
             
             /* Style for the profile add form */

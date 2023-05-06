@@ -21,7 +21,7 @@ $customer -> getProfile($_SESSION['profile'],$cust);
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       font-size: 16px;
     }
   
