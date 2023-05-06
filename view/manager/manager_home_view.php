@@ -1,10 +1,16 @@
 <?php
+require("../../view/header_login.php");
 ?>
 <html>
     <head>
+        <style>
+            .managerButton{
+                margin-top : 100px;
+            }
+            </style>
     </head>
     <body>
-        <div class="adminButton">
+        <div class="managerButton">
             <a href="manager_view_cinemaRoom.php">
                 <button id='bodyButton'>Manage Room</button>
             </a> </br>

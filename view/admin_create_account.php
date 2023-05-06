@@ -1,5 +1,5 @@
 <?php
-require('header.html');
+require('header_login.php');
 require('../controller/admin_controller.php');
 session_start();
 $controller = new admin_controller;

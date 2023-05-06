@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <html>
     <head>
        
@@ -50,9 +52,25 @@
             cursor: pointer;
             }
 
-            .logouthover {
+            .back {
+            background-color: #fff ;
+            color: #0a0805 ;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            margin-top: 4px;
+            font-family: Arial;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+
+            .logout:hover {
             background-color: #FFFFFF;
             color: #0a0805;
+            }
+            .back:hover {
+            background-color: #0a0805;
+            color: #ffff;
             }
 
             /* .back {
@@ -75,9 +93,9 @@
             }
            
             
-            .button:hover {
+            /* .button:hover {
             background-color: red;
-            }
+            } */
             
         </style>
     </head>
@@ -87,10 +105,28 @@
             <div></div>
             <div></div>
             <div class = 'logoutbtn'>
-                <!-- <button class="back" onclick="location.href='../view/customer_home_view.php'">Back</button> &nbsp&nbsp -->
-                <button class="logout" onclick="location.href='../controller/logout.php'">
-                Log Out
-                </button>
+                <?php
+                    if($_SESSION['profile'] == 'system_admin'){
+                ?>
+                    <button class="back" onclick="location.href='../view/admin_home_view.php'">Home</button> &nbsp&nbsp
+                    <button class="logout" onclick="location.href='../controller/logout.php'">
+                    Log Out
+                    </button>
+                <?php
+                    }
+                ?>
+                <?php
+                    if($_SESSION['profile'] == 'manager'){
+                ?>
+                    <button class="back" onclick="location.href='../manager/manager_home_view.php'">Home</button> &nbsp&nbsp
+                    <button class="logout" onclick="location.href='../../controller/logout.php'">
+                    Log Out
+                    </button>
+                <?php
+                    }
+                ?>
+                
+                
                 
             </div>
             
