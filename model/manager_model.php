@@ -8,7 +8,7 @@ class manager extends user{
         $conn -> select_db("CSIT314_Test");
 
         $sql = "CREATE TABLE IF NOT EXISTS cinemaRoom (
-                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                roomID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 roomName VARCHAR(225) NOT NULL,
                 roomType VARCHAR(225) NOT NULL,
                 roomCapacity int(5) NOT NULL DEFAULT 0,
@@ -56,7 +56,7 @@ class manager extends user{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "UPDATE cinemaRoom SET `status` = 'suspend' WHERE id = '$deleteID';";
+        $sql = "UPDATE cinemaRoom SET `status` = 'suspend' WHERE roomID = '$deleteID';";
 
         try {
             mysqli_query($conn, $sql); 
@@ -74,7 +74,7 @@ class manager extends user{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "SELECT * FROM `cinemaRoom` WHERE id = '$updateID';";
+        $sql = "SELECT * FROM `cinemaRoom` WHERE roomID = '$updateID';";
 
         $result = $conn->query($sql);
 
@@ -97,7 +97,7 @@ class manager extends user{
         global $conn;
         $conn -> select_db("CSIT314_Test");
         
-        $sql =" UPDATE `cinemaRoom` SET `roomName`='$roomName',`roomType`='$roomType',`roomCapacity`='$roomCapacity',`totalRow`='$totalRow', `totalColumn`='$totalColumn' ,`status`='$status' WHERE id = '$updateID';";
+        $sql =" UPDATE `cinemaRoom` SET `roomName`='$roomName',`roomType`='$roomType',`roomCapacity`='$roomCapacity',`totalRow`='$totalRow', `totalColumn`='$totalColumn' ,`status`='$status' WHERE roomID = '$updateID';";
 
         try {
             mysqli_query($conn, $sql); 
@@ -115,7 +115,7 @@ class manager extends user{
         $conn->select_db('CSIT314_Test');
 
         $sql = "CREATE TABLE IF NOT EXISTS cinemaMovie (
-            id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            movieID INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             movieName VARCHAR(225) NOT NULL,
             movieBanner VARCHAR(225) NOT NULL,
             relDate date NOT NULL,
@@ -128,12 +128,29 @@ class manager extends user{
             } else {
                 echo "Error creating table: " . $conn->error;
             }
+        $sql2 = "CREATE TABLE IF NOT EXISTS cinemaAllocation (
+            allocationID INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            movieID INT(11) UNSIGNED NOT NULL,
+            roomID INT(6) UNSIGNED NOT NULL,
+            timing1 VARCHAR(255) DEFAULT NULL,
+            timing2 VARCHAR(255) DEFAULT NULL,
+            timing3 VARCHAR(255) DEFAULT NULL,
+            timing4 VARCHAR(255) DEFAULT NULL,
+            FOREIGN KEY (movieID) REFERENCES cinemaMovie(movieID),
+            FOREIGN KEY (roomID) REFERENCES cinemaRoom(roomID)
+        );";
+
+        if ($conn->query($sql2) === TRUE) {
+            echo "Table created successfully";
+        } else {
+            echo "Error creating table: " . $conn->error;
+        }
             $mysql_date = date('Y-m-d', strtotime($relDate));
 
-            $sql2 = "INSERT INTO cinemaMovie (movieName, movieBanner, relDate, genre, duration) VALUES ('$movieName', '$movieBanner', '$mysql_date', '$genre', '$duration');";
+            $sql3 = "INSERT INTO cinemaMovie (movieName, movieBanner, relDate, genre, duration) VALUES ('$movieName', '$movieBanner', '$mysql_date', '$genre', '$duration');";
 
             try {
-                mysqli_query($conn, $sql2); 
+                mysqli_query($conn, $sql3); 
                 echo '<script>alert("good to go")</script>'; 
                 return true; 
             }
@@ -147,34 +164,39 @@ class manager extends user{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "SELECT * FROM `cinemaMovie` ";
-
+        //$sql = "SELECT * FROM `cinemaMovie` ";
+        $sql =  "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomName, 
+        a.timing1, a.timing2, a.timing3, a.timing4
+        FROM cinemaMovie m
+        LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
+        LEFT JOIN cinemaRoom r ON r.roomID = a.roomID;";
+ 
         $result = $conn->query($sql);
 
         // check if the query was successful
         if (!$result) {
         echo "Error: " . $conn->error;
-        exit();
-        }
-
-        // fetch the result row as an associative array
-        
-        while ($row = mysqli_fetch_assoc($result) ) {
-            $array[] = $row;
+            $array = [];
+        }else{
+            // fetch the result row as an associative array
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row;
+            }
         }
 
         return $array;
     }
 
-    public function updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration,$status){
+    public function updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
         global $conn;
         $conn -> select_db("CSIT314_Test");
      
         
-        $sql =" UPDATE `cinemaMovie` SET `movieName`='$movieName',`movieBanner`='$movieBanner',`relDate`='$relDate',`genre`='$genre', `duration`='$duration' ,`status`='$status' WHERE id = '$updateID';";
-
+        $sql =" UPDATE `cinemaMovie` SET `movieName`='$movieName',`movieBanner`='$movieBanner',`relDate`='$relDate',`genre`='$genre', `duration`='$duration' ,`status`='$status' WHERE movieID = '$updateID';";
+        $sql2 = "UPDATE `cinemaAllocation` SET `roomID` = '$roomID', `timing1`='$timing1', `timing2`='$timing2', `timing3`='$timing3', `timing4`='$timing4' WHERE movieID = '$updateID' ; ";
         try {
             mysqli_query($conn, $sql); 
+            mysqli_query($conn, $sql2); 
             
             return true; 
         }
@@ -188,7 +210,14 @@ class manager extends user{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "SELECT * FROM `cinemaMovie` WHERE id = '$updateID';";
+        //$sql = "SELECT * FROM `cinemaMovie` WHERE movieID = '$updateID';";
+        $sql =  "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomID, 
+        a.timing1, a.timing2, a.timing3, a.timing4
+        FROM cinemaMovie m
+        LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
+        LEFT JOIN cinemaRoom r ON r.roomID = a.roomID
+        WHERE m.movieID = '$updateID';";
+ 
 
         $result = $conn->query($sql);
 
@@ -211,7 +240,7 @@ class manager extends user{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "UPDATE cinemaMovie SET `status` = 'suspend' WHERE id = '$deleteID';";
+        $sql = "UPDATE cinemaMovie SET `status` = 'suspend' WHERE movieID = '$deleteID';";
 
         try {
             mysqli_query($conn, $sql); 
@@ -225,9 +254,142 @@ class manager extends user{
         }
     }
 
+    public function allocateMovie($movieID,$roomID,$timing1,$timing2,$timing3,$timing4){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        
+
+        $sql2 = "INSERT INTO `cinemaAllocation`(`movieID`, `roomID`, `timing1`, `timing2`, `timing3`, `timing4`) VALUES ('$movieID','$roomID','$timing1','$timing2','$timing3','$timing4')";
+        try {
+            mysqli_query($conn, $sql2); 
+            
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;
+        }
+    }
+
+    public function createFood($foodName,$description, $price, $category, $stock, $image){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "CREATE TABLE IF NOT EXISTS cinemaFoodAndDrink (
+            foodID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            foodName VARCHAR(255) NOT NULL,
+            foodDescription VARCHAR(1000),
+            price DECIMAL(10,2) NOT NULL,
+            category VARCHAR(50),
+            stock INT(5) NOT NULL DEFAULT 0,
+            `image` VARCHAR(255),
+            `status` VARCHAR(10) NOT NULL DEFAULT 'active'
+          );";
+        if ($conn->query($sql) === TRUE) {
+            echo "Table created successfully";
+        } else {
+            echo "Error creating table: " . $conn->error;
+        }
+        $sql2 = "INSERT INTO cinemaFoodAndDrink (foodName, foodDescription, price, category, stock, `image`) VALUES ('$foodName', '$description', '$price', '$category', '$stock', '$image');";
+
+        try {
+            mysqli_query($conn, $sql2); 
+            echo '<script>alert("good to go")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+            return false;
+        }
+    }
+
+    public function viewFoodAndDrink(){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        
+        $sql = "SELECT * FROM cinemaFoodAndDrink;";
+
+        $result = $conn->query($sql);
+
+        // check if the query was successful
+        if (!$result) {
+        echo "Error: " . $conn->error;
+            $array = [];
+        }else{
+            // fetch the result row as an associative array
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row;
+            }
+        }
+
+        return $array;
+
+    }
+
+    public function getFoodAndDrink($updateID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "SELECT * FROM `cinemaFoodAndDrink` WHERE foodID = '$updateID';";
+
+        $result = $conn->query($sql);
+
+        // check if the query was successful
+        if (!$result) {
+        echo "Error: " . $conn->error;
+        exit();
+        }
+
+        // fetch the result row as an associative array
+        
+        while ($row = mysqli_fetch_assoc($result) ) {
+            $arr = $row;
+        }
+
+        return $arr;
+    }
+    public function updateFoodAndDrink($updateID,$foodName,$description, $price, $category, $stock, $image, $status){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "UPDATE cinemaFoodAndDrink SET foodName = '$foodName', foodDescription = '$description' , price = '$price', category = '$category', stock = '$stock', `image`='$image', `status` = '$status' WHERE foodID = '$updateID';";
+
+        try {
+            mysqli_query($conn, $sql); 
+            
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;
+        }
+    }
+    public function deleteFood($deleteID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "UPDATE cinemaFoodAndDrink SET `status` = 'suspend' WHERE foodID = '$deleteID';";
+
+        try {
+            mysqli_query($conn, $sql); 
+            
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;
+        }
+    }
+
+
 }
 
 // $manager_model = new manager;
 
-// $manager_model->updateRoom(1,'Room1','Standard',200,20,10,'active');
+// $manager_model->createFood('hotdog','this is hotdog',5.5,'snack',100,'hotdog.jpg');
 ?>

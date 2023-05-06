@@ -13,7 +13,7 @@ if(count($arr) > 0 )
 {
     foreach($arr as $key => $array){
         echo "<tr>";
-        echo "<td>" . $array['id'] . "</td>";
+        echo "<td>" . $array['roomID'] . "</td>";
         echo "<td>" . $array['roomName'] . "</td>";
         echo "<td>" . $array['roomType'] . "</td>";
         echo "<td>" . $array['roomCapacity'] . "</td>";
@@ -21,9 +21,9 @@ if(count($arr) > 0 )
         echo "<td>" . $array['totalColumn'] . "</td>";
         echo "<td>" . $array['status'] . "</td>";
         echo '<td >
-            <button class="btn btn-primary"><a href="../manager/manager_update_cinema.php?updateID='.$array['id'].'"
+            <button class="btn btn-primary"><a href="../manager/manager_update_cinema.php?updateID='.$array['roomID'].'"
             class="text-light">Update</a></button>
-            <button class="btn-danger"><a href="../manager/manager_delete_cinema.php?deleteID='.$array['id'].'" class="text-light">Delete</a></
+            <button class="btn-danger"><a href="../manager/manager_delete_cinema.php?deleteID='.$array['roomID'].'" class="text-light">Delete</a></
             button> 
             </td>' ; 
         echo "</tr>";
