@@ -14,7 +14,7 @@ $_SESSION['profile']='customer';
             form {
             margin: 0 auto;
             width: 400px;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             }
 
             label {

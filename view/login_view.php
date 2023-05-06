@@ -32,7 +32,7 @@ require('header.html')
             margin-top : 100px;
         }
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial;
             background-color: #e7dbd0;
         }
         h2 {
