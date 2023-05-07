@@ -3,8 +3,7 @@ session_start();
 ?>
 <html>
     <head>
-       
-        
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"> <!--new thing-->
         <style>
             .header {
                 
@@ -26,6 +25,10 @@ session_start();
                 z-index: 999;
 
                 
+            }
+
+            .header-image {
+                height: 50px;
             }
 
             h2{
@@ -101,8 +104,10 @@ session_start();
     </head>
     <body>
         <div class="header">
+            <div>
+            <img src="../cap2.png" alt="Your Image" class="header-image">
+            </div><!--new thing -->
             <div><h2><a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a></h2></div>
-            <div></div>
             <div></div>
             <div class = 'logoutbtn'>
                 <?php
