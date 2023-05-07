@@ -28,6 +28,21 @@ $date = $arr['relDate'];
 
             <label for="duration">Duration:</label>
             <input type="number" id="duration" name="duration" min = '0' max = '9999' value = "<?php echo $arr['duration']?>"><br><br>
+            
+            <label for="roomID">Room ID:</label>
+            <input type="number" id="roomID" name="roomID" value = "<?php echo $arr['roomID']?>"><br><br>
+
+            <label for="timing1">Duration:</label>
+            <input type="text" id="timing1" name="timing1"  value = "<?php echo $arr['timing1']?>"><br><br>
+
+            <label for="timing2">Duration:</label>
+            <input type="text" id="timing2" name="timing2"  value = "<?php echo $arr['timing2']?>"><br><br>
+
+            <label for="timing3">Duration:</label>
+            <input type="text" id="timing3" name="timing3"  value = "<?php echo $arr['timing3']?>"><br><br>
+
+            <label for="timing4">Duration:</label>
+            <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>"><br><br>
 
             <?php
              echo '<select class="form-control" name="status">';
@@ -57,13 +72,23 @@ $date = $arr['relDate'];
                 $duration = $_POST['duration'];
 
                 $status = $_POST['status'];
+
+                $roomID = $_POST['roomID'];
+
+                $timing1 = $_POST['timing1'];
+
+                $timing2 = $_POST['timing2'];
+
+                $timing3 = $_POST['timing3'];
+
+                $timing4 = $_POST['timing4'];
                 
                 // echo $movieName;
                 // echo $movieBanner;
                 // echo $relDate;
                 // echo $genre;
                 // echo $duration;
-                if($controller -> updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status)){
+                if($controller -> updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4)){
                     echo" <script>window.location='../manager/manager_view_movie.php';</script>";
                 }
             }

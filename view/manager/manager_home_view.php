@@ -1,10 +1,16 @@
 <?php
+require("../../view/header_login.php");
 ?>
 <html>
     <head>
+        <style>
+            .managerButton{
+                margin-top : 100px;
+            }
+            </style>
     </head>
     <body>
-        <div class="adminButton">
+        <div class="managerButton">
             <a href="manager_view_cinemaRoom.php">
                 <button id='bodyButton'>Manage Room</button>
             </a> </br>
@@ -13,9 +19,9 @@
                 <button id='bodyButton'>Manage Movie</button>
             </a> </br>
 
-            <!-- <a href="admin_delete_profile.php">
-                <button id='bodyButton'>Delete profile</button>
-            </a>  -->
+            <a href="manager_view_food.php">
+                <button id='bodyButton'>Manage Food</button>
+            </a> 
             <!-- <a href="admin_reactivate_profile.php">
                 <button id='bodyButton'>Reactivate profile</button>
             </a>   -->

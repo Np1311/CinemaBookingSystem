@@ -1,5 +1,5 @@
 <?php
-require('header.html');
+require('header_login.php');
 require('../controller/admin_controller.php');
 session_start();
 $controller = new admin_controller;
@@ -15,7 +15,7 @@ $controller = new admin_controller;
             form {
             margin: 0 auto;
             width: 400px;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             }
 
             label {

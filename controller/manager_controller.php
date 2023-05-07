@@ -37,10 +37,10 @@ class manager_controller{
         return $array;
     }
 
-    public function updateRoomController($updateID,$roomName,$roomType,$roomCapacity,$totalRow,$totalColumn,$status){
+    public function updateRoomController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
         global $manager;
 
-        if($manager -> updateRoom($updateID,$roomName,$roomType,$roomCapacity,$totalRow,$totalColumn,$status)){
+        if($manager -> updateRoom($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4)){
             return true;
         }
     }
@@ -60,11 +60,11 @@ class manager_controller{
 
         return $array;
     }
-    public function updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration,$status){
+    public function updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
         global $manager;
         
 
-        if($manager -> updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration,$status)){
+        if($manager -> updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4)){
             return true;
         }
     }
@@ -79,6 +79,50 @@ class manager_controller{
         global $manager;
 
         if($manager -> deleteMovie($deleteID)){
+            return true;
+        }
+    }
+    public function allocateMovieController($movieID,$roomID,$timing1,$timing2,$timing3,$timing4){
+        global $manager;
+
+        if($manager -> allocateMovie($movieID,$roomID,$timing1,$timing2,$timing3,$timing4)){
+            return true;
+        }
+    }
+    public function createFoodController($foodName,$description, $price, $category, $stock, $image){
+        global $manager;
+
+        if($manager -> createFood($foodName,$description, $price, $category, $stock, $image)){
+            return true;
+        }
+    }
+    public function viewFoodAndDrinkController(){
+        global $manager;
+
+        $array = $manager -> viewFoodAndDrink();
+
+        return $array;
+    }
+
+    public function updateFoodAndDrinkController($updateID,$foodName,$description, $price, $category, $stock, $image, $status){
+        global $manager;
+        
+
+        if($manager -> updateFoodAndDrink($updateID,$foodName,$description, $price, $category, $stock, $image, $status)){
+            return true;
+        }
+    }
+    public function getFoodAndDrinkDetail($updateID){
+        global $manager;
+
+        $array = $manager -> getFoodAndDrink($updateID);
+
+        return $array;
+    }
+    public function deleteFoodController($deleteID){
+        global $manager;
+
+        if($manager -> deleteFood($deleteID)){
             return true;
         }
     }
