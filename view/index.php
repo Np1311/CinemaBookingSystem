@@ -48,6 +48,12 @@ session_start();
                 width: 400px;
                 /* margin-left: 100px; */
             }
+            /*New thing */
+            .btn-primary:hover {
+                background-color: #fff;
+                color: #bd9a7a;
+                border: 2px solid;
+            } 
             .form-control{
                 white-space: nowrap;
                 overflow: hidden;
@@ -376,7 +382,7 @@ session_start();
             </br></br>
             <div class="signIn" style="text-align:left;"> 
                 <span class="input-group-text" id="phone-label">Phone</span>
-                <input class="form-control" type="text" name="phone" id="phone" required>
+                <input class="form-control" type="text" name="phone" id="phone" placeholder="Enter Phone Number" required>
                                 
             </br></br>
                             

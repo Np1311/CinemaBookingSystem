@@ -105,8 +105,8 @@ require('header.html')
                 
                     
                 <div class="signIn" style="text-align:left;"> 
-                <span class="input-group-text" id="phone-label">Phone</span>
-                <input class="form-control" type="text" name="phone" id="phone" required>
+                <span class="input-group-text" id="phone-label" >Phone Number</span> <!--New things 06/05-->
+                <input class="form-control" type="text" name="phone" id="phone" required placeholder="Enter Phone Number">
                                 
             </br></br>
                             

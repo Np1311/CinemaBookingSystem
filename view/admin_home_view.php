@@ -140,18 +140,18 @@ if(isset($_GET['deleteID'])){
     <body>
         <div class="adminButton">
             <a href="admin_add_profile.php">
-                <button id='bodyButton'>Add profile</button>
+                <button id='bodyButton'>Add Profile</button>
             </a> </br>
 
             <a href="admin_create_account.php">
-                <button id='bodyButton'>Create account</button>
+                <button id='bodyButton'>Create Account</button>
             </a> </br>
 
             <a href="admin_delete_profile.php">
-                <button id='bodyButton'>Delete profile</button>
+                <button id='bodyButton'>Delete Profile</button>
             </a> 
             <a href="admin_reactivate_profile.php">
-                <button id='bodyButton'>Reactivate profile</button>
+                <button id='bodyButton'>Reactivate Profile</button>
             </a> 
         </div>
     </body>
