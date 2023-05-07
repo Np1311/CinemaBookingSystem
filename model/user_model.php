@@ -43,7 +43,7 @@ class user {
         $this->dob = $dob;
         $this->password = $password;
       }
-    public function getAccount() {
+    public function getPhone() {
         return $this->phone;
     }
     public function getFname(){
@@ -66,7 +66,7 @@ class user {
         return $this->password;
     }
     
-    public function getProfile($profile,$phone){
+    public function getAccount($profile,$phone){
         global $conn;
         $arr = array();
 
@@ -112,7 +112,7 @@ class user {
     public function echoUser(){
         echo 'try';
     }
-    public function getAllProfile($profile){
+    public function getAllAccount($profile){
         global $conn;
         $conn -> select_db("CSIT314_Test");
         $array=[];

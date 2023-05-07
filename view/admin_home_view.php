@@ -153,6 +153,15 @@ if(isset($_GET['deleteID'])){
             <a href="admin_reactivate_profile.php">
                 <button id='bodyButton'>Reactivate Profile</button>
             </a> 
+            <a href="admin_search_profile.php">
+                <button id='bodyButton'>Search Profile</button>
+            </a> 
+            <a href="admin_search_account.php">
+                <button id='bodyButton'>Search Account</button>
+            </a> 
+            <a href="admin_update_profile.php">
+                <button id='bodyButton'>Update Profile</button>
+            </a> 
         </div>
     </body>
 </html>

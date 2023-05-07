@@ -18,7 +18,7 @@ class admin_controller{
         });
         
         foreach ($profileArr as $profile) {
-            $arr = $system_admin_session->getAllProfile($profile);
+            $arr = $system_admin_session->getAllAccount($profile);
             echo "<div class = 'profileTable'>";
             echo "<h2>$profile</h2>";
             echo "<table>";
@@ -104,6 +104,40 @@ class admin_controller{
     public function reactivateProfile($reactivateProfile){
         global $system_admin_session;
         if($system_admin_session->activateProfile($reactivateProfile)){
+            
+            return true;
+        }
+    }
+
+    public function searchProfile($searchProfile){
+        global $system_admin_session;
+
+        $arrayProfile = $system_admin_session -> listedProfile();
+
+        if (in_array($searchProfile, $arrayProfile)){
+            $array = $system_admin_session->getAllAccount($searchProfile);
+            return $array;
+        }else{
+            return false;
+        }
+    }
+    public function searchAccount($profile,$searchAccount,$searchBy){
+        global $system_admin_session;
+
+        // if($searchBy == 'dob'){
+        //     $searchAccount = 
+        // }
+
+        $array = $system_admin_session->getAccountDetail($profile,$searchAccount,$searchBy);
+
+        return $array;
+
+    }
+    
+    public function updateProfileController($updateProfile,$updateValue){
+        global $system_admin_session;
+
+        if($system_admin_session->updateProfile($updateProfile,$updateValue)){
             
             return true;
         }

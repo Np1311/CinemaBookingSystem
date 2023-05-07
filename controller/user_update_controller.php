@@ -11,7 +11,7 @@ $admin = new admin;
 class user_update_controller{
     public function showUpdate($curProfile,$userID){
         global $admin;
-        $arr = $admin->getProfile($curProfile,$userID);
+        $arr = $admin->getAccount($curProfile,$userID);
         $formatted_dob=date('Y-m-d', strtotime($arr['dob']));
         // $dob = DateTime::createFromFormat('Y-m-d', $arr['dob']);
         // $formatted_dob = $dob->format('d/m/Y');

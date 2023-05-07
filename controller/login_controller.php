@@ -24,7 +24,7 @@ class login_controller{
         if($login -> checkUser()){
             //$userArr = $user -> getAccount();
             $user -> setAccount($loginPhone);
-            $_SESSION['user'] = $user -> getAccount();
+            // $_SESSION['user'] = $user -> getPhone();
             if($profile == 'customer'){
             echo" <script>window.location='../view/customer_home_view.php';</script>";}
             else if ($profile == 'system_admin'){

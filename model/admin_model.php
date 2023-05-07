@@ -103,11 +103,46 @@ class admin extends user{
             echo '<script>alert("error updating user")</script>'; 
         return false;}
     }
+    public function getAccountDetail($profile,$searchAccount,$searchBy){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "SELECT * FROM $profile WHERE `$searchBy` = '$searchAccount';";
+    
+        $result = $conn->query($sql);
+
+        if (!$result) {
+            echo "Error: " . $conn->error;
+                $array = [];
+        }else{
+            // fetch the result row as an associative array
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row;
+            }
+        }
+
+        return $array;
+    } 
+
+    public function updateProfile($updateProfile,$updateValue){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "ALTER TABLE $updateProfile RENAME TO $updateValue;";
+        try {
+            mysqli_query($conn, $sql); 
+            
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+        return false;
+        }
+    }
     
 
 }
 
-// $adm = new admin('system_admin');
+// $adm = new admin();
 
-// $adm -> createUser('system_admin','Dan','redo',12345678,'bbb@gmail.com','asd','2022-10-09');
+// $adm -> updateProfile('admin','system_admin');
 ?>
