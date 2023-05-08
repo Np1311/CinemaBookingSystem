@@ -17,12 +17,13 @@ session_start();
                 left:0;
                 font-family : Arial ;
                 display: grid;
-                grid-template-columns: auto auto auto auto;
+                grid-template-columns: auto auto auto auto !important;
                 gap: 200px;
                 
                 padding: 10px;
 
                 z-index: 999;
+                
 
                 
             }
@@ -31,15 +32,14 @@ session_start();
                 height: 50px;
             }
 
-            h2{
-                display: block;
+            /* h2{
                 
                 margin-block-start: 0.18em !important; 
                 margin-block-end: 0 !important;
                 margin-inline-start: 0px;
                 margin-inline-end: 0px;
                 
-            }
+            } */
             
 
             
@@ -93,6 +93,12 @@ session_start();
             #home {
             text-decoration: none;
             color: inherit;
+            font-size: 30px;
+            align-items: center !important;
+            }
+
+            .logoAndName{
+                display: inline-block !important;  
             }
            
             
@@ -104,11 +110,11 @@ session_start();
     </head>
     <body>
         <div class="header">
-            <div>
+            <div class ='logoAndName'>
             <img src="../cap2.png" alt="Your Image" class="header-image">
-            <h2><a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a></h2>
+            <a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a>
             </div><!--new thing -->
-            <!-- <div><h2><a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a></h2></div> -->
+            <div></div> 
             <div></div>
             <div class = 'logoutbtn'>
                 <?php
@@ -134,7 +140,7 @@ session_start();
                 
                 
                 
-            </div>
+        </div>
             
         </div>
         <script>

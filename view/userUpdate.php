@@ -42,9 +42,9 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         }
 
         body {
-  background-color: #e7dbd0;
-  height: 100%;
-}
+        background-color: #e7dbd0 !important;
+        height: 100%;
+        }
 
         
         label {
