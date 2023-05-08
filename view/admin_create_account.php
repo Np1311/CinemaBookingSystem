@@ -88,26 +88,26 @@ $controller = new admin_controller;
                     ?>
                 </select>
                 <label for="fname">First Name:</label>
-                <input type="text" id="fname" name="fname" ><br>
+                <input type="text" id="fname" name="fname" placeholder="Enter First Name"><br>
 
                 <label for="lname">Last Name:</label>
-                <input type="text" id="lname" name="lname" ><br>
+                <input type="text" id="lname" name="lname" placeholder="Enter Last Name"><br>
 
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" ><br>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number"><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" ><br>
+                <input type="email" id="email" name="email" placeholder="Enter Email"><br>
 
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" name="dob" ><br>
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
                 <span class="password-toggle" onclick="togglePasswordVisibility('password')">Show</span><br><br>
                 
                 <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+                <input type="password" id="confirm-password" name="confirm-password"  placeholder="Enter Confirm Password" required>
                 <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')">Show</span><br>
                 <span id="password-error" style="color: red;"></span><br>
                 
