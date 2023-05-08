@@ -1,5 +1,6 @@
 <?php
 require('../controller/admin_controller.php');
+require('header.html');
 $controller = new admin_controller;
 
 
@@ -7,6 +8,57 @@ $controller = new admin_controller;
 
 <html>
 <head>
+  <style>
+    form {       
+  max-width: 500px; /*New things */
+  margin: 0 auto; /* Set left and right margin to auto */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  position: absolute; /* Position the form absolutely */
+  top: 50%; /* Set the top position to 50% of the screen height */
+  left: 50%; /* Set the left position to 50% of the screen width */
+  transform: translate(-50%, -50%); /* Use the transform property to center the form */
+  }
+
+  body{
+  background-color: #e7dbd0;
+  }
+
+            button[type="submit"] {
+  background-color: #bd9a7a;
+  color: white;
+  /* padding: 5px 10px; */
+  padding: 10px; /*kumar modified*/
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: white;
+  color: #bd9a7a;
+  border: 2px solid;
+}
+
+
+/*the code i implemented kumar*/
+button[type="button"] {
+  background-color: #bd9a7a;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+
+  button[type="button"]:hover {
+    background-color: white;
+    color: #bd9a7a;
+    border: 2px solid;
+  }
+  </style>
   <meta charset="utf-8">
   <title>Search Profile</title>
 </head>
@@ -16,6 +68,7 @@ $controller = new admin_controller;
     <label for="search">Search:</label>
     <input type="text" id="search" name="search" placeholder="Enter search term...">
     <button type="submit" name = 'submit'>Go</button>
+    <button type="button" onclick="window.history.back()">Back</button>
   </form>
   <?php
     if(isset($_POST['submit'])){
