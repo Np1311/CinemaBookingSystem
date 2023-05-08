@@ -1,5 +1,6 @@
 <?php
 require('../controller/admin_controller.php');
+require('header.html');
 $admin = new admin_controller;
 
 // $admin->displayUser('system_admin');
@@ -15,13 +16,26 @@ $admin = new admin_controller;
             
             /* Style for the profile add form */
             form {
-                max-width: 500px;
+                /* max-width: 500px;
                 margin: auto;
                 background-color: #fff;
                 padding: 20px;
                 border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+                
+                max-width: 500px; /*New things */
+                margin: 0 auto; /* Set left and right margin to auto */
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+                position: absolute; /* Position the form absolutely */
+                top: 50%; /* Set the top position to 50% of the screen height */
+                left: 50%; /* Set the left position to 50% of the screen width */
+                transform: translate(-50%, -50%); /* Use the transform property to center the form */
             }
+
+            
             
             .signIn {
                 display: flex;
