@@ -48,9 +48,10 @@ class manager extends user{
         if (!$result) {
             echo "Error: " . $conn->error;
              $array=[];
-        }
+        }else{
         while ($row = mysqli_fetch_assoc($result)) {
             $array[] =  $row;
+        }
         }
         return $array;
 
