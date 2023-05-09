@@ -149,9 +149,9 @@ $_SESSION['profile']='customer';
                 $email = $_POST['email'];
                 $dob = $_POST['dob'];
                 $password = $_POST['password'];
-                $con = new customer;
+                $controller = new signUpController;
             
-                if ($con -> createUser($profile,$fname,$lname,$phone,$email,$password,$dob)){
+                if ($controller -> createAccount($profile,$fname,$lname,$phone,$email,$password,$dob)){
                     echo '<script>alert("Sign up succesful")</script>'; 
                     echo" <script>window.location='../view/index.php';</script>";
                 }

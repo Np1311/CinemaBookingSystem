@@ -1,8 +1,8 @@
 <?php
 require('header_login.php');
-require('../controller/admin_controller.php');
+require('../controller/signUp_controller.php');
 session_start();
-$controller = new admin_controller;
+$controller = new signUpController;
 
 ?>
 
