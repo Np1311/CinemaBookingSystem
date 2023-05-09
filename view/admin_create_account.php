@@ -1,8 +1,11 @@
 <?php
 require('header_login.php');
 require('../controller/signUp_controller.php');
+require('../controller/admin_controller.php');
 session_start();
 $controller = new signUpController;
+$admin_controller = new admin_controller;
+
 
 ?>
 
@@ -84,7 +87,7 @@ $controller = new signUpController;
                 <label for="profile">Profile:</label>
                 <select name="profile">
                     <?php
-                        $controller->showProfile();
+                        $admin_controller->showProfile();
                     ?>
                 </select>
                 <label for="fname">First Name:</label>
