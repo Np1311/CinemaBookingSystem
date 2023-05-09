@@ -1,9 +1,9 @@
 <?php
 require('header_login.php');
-require('../controller/signUp_controller.php');
+
 require('../controller/admin_controller.php');
 session_start();
-$controller = new signUpController;
+
 $admin_controller = new admin_controller;
 
 
@@ -123,6 +123,8 @@ $admin_controller = new admin_controller;
         </div>
         <?php
         if (isset($_POST['submit'])){
+            require('../controller/signUp_controller.php');
+            $controller = new signUpController;
             $profile = $_POST['profile'];
             $fname = $_POST['fname'];
             $lname = $_POST['lname'];
