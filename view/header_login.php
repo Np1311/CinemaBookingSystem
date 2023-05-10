@@ -111,7 +111,7 @@ session_start();
     <body>
         <div class="header">
             <div class ='logoAndName'>
-            <img src="../cap2.png" alt="Your Image" class="header-image">
+            <img src="../cap.png" alt="Your Image" class="header-image">
             <a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a>
             </div><!--new thing -->
             <div></div> 

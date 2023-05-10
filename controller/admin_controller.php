@@ -130,7 +130,14 @@ class admin_controller{
 
         $array = $system_admin_session->getAccountDetail($profile,$searchAccount,$searchBy);
 
-        return $array;
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
+
+        
 
     }
     

@@ -72,10 +72,10 @@ button[type="button"]:hover {
 
 </style>
 <meta charset="utf-8">
-<title>Search Profile</title>
+<title>Search Account</title>
 </head>
 <body>
-  <h1>Search Profile</h1>
+  <h1>Search Account</h1>
   <form  method="post">
     <label for="profile">Profile:  </label>
         <select name="profile">
@@ -108,6 +108,9 @@ button[type="button"]:hover {
         $profile = $_POST['profile'];
         $searchBy = $_POST['searchBy'];
 
+        if($controller->searchAccount($profile,$searchAccount,$searchBy)){
+          echo '<script>alert("'.$searchAccount.' is not found")</script>';  
+        }else{
         $accountArray = $controller->searchAccount($profile,$searchAccount,$searchBy);
 
         echo "<h2>$profile</h2>";
@@ -136,6 +139,7 @@ button[type="button"]:hover {
         // close the table
         echo "</table>";
         echo "</div>";
+        }
     }
   ?>
 </body>
