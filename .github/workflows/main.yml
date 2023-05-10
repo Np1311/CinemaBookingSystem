@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -15,11 +15,6 @@ jobs:
         run: |
           echo "Compiling the code..."
           echo "Compile complete."
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: dist/
 
   test:
     needs: build
@@ -27,10 +22,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: artifacts
       - name: Run unit tests
         run: |
           echo "Running unit tests... This will take about 60 seconds."
@@ -48,10 +39,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: artifacts
       - name: Deploy to production
         if: github.ref == 'refs/heads/main' # Only deploy on main branch
         run: |
