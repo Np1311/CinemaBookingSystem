@@ -1,20 +1,16 @@
 <?php
-require ('../model/customer_model.php');
+include_once ('../model/user_model.php');
+
+$model = new user;
 //require ('../view/header.php');
-if (isset($_POST['submit'])){
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $dob = $_POST['dob'];
-    $password = $_POST['password'];
-    $con = new customer;
-   
-    if ($con -> createUser($fname,$lname,$phone,$email,$password,$dob)){
-        echo '<script>alert("Sign up succesful")</script>'; 
-        echo" <script>window.location='../view/index.php';</script>";
+class SignUpController{
+
+    public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
+        global $model;
+        if($model->createUser($profile,$fname,$lname,$phone,$email,$password,$dob)){
+            return true;
+        }
+
     }
 }
-
-
 ?>

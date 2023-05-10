@@ -1,5 +1,5 @@
 <?php
-require('header.html');
+require('../header.html');
 session_start();
 $_SESSION['profile']='customer';
 
@@ -112,7 +112,7 @@ $_SESSION['profile']='customer';
             </form>
         </div>
         <?php
-        require ('../controller/signUp_controller.php');
+        require ('../../controller/signUp_controller.php');
         ?>
         <script>
             function togglePasswordVisibility(id) {
@@ -140,5 +140,22 @@ $_SESSION['profile']='customer';
             });
 
         </script>
+        <?php
+            if (isset($_POST['submit'])){
+                $profile = 'customer';
+                $fname = $_POST['fname'];
+                $lname = $_POST['lname'];
+                $phone = $_POST['phone'];
+                $email = $_POST['email'];
+                $dob = $_POST['dob'];
+                $password = $_POST['password'];
+                $controller = new signUpController;
+            
+                if ($controller -> createAccount($profile,$fname,$lname,$phone,$email,$password,$dob)){
+                    echo '<script>alert("Sign up succesful")</script>'; 
+                    echo" <script>window.location='../view/index.php';</script>";
+                }
+            }
+        ?>
     </body>
 </html>

@@ -67,13 +67,13 @@ class admin_controller{
         }
     }
 
-    public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
-        global $system_admin_session;
-        if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$dob)){
-            return true;
-        }
+    // public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
+    //     global $system_admin_session;
+    //     if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$dob)){
+    //         return true;
+    //     }
 
-    }
+    // }
     public function deleteAccount(){
         global $system_admin_session;
         $userID = $_GET['deleteID'];

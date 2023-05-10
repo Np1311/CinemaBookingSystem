@@ -40,13 +40,18 @@ class manager extends user{
     public function viewRoom(){
         global $conn;
         $conn->select_db("CSIT314_Test");
-        $array=[];
+       
 
         $sql = "SELECT * FROM cinemaRoom;";
 
         $result = $conn->query($sql);
+        if (!$result) {
+            echo "Error: " . $conn->error;
+             $array=[];
+        }else{
         while ($row = mysqli_fetch_assoc($result)) {
             $array[] =  $row;
+        }
         }
         return $array;
 
