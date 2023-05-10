@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require('../model/login_model.php');
 
 
