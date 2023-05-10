@@ -1,0 +1,16 @@
+{
+    "name": "nicholaspurnomo/csit314",
+    "type": "library",
+    "require": {
+        "monolog/monolog": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.1"
+    },
+    "authors": [
+        {
+            "name": "Np1311",
+            "email": "130040190+Np1311@users.noreply.github.com"
+        }
+    ]
+}
