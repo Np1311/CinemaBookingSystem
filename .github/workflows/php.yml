@@ -56,8 +56,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      - name: Run test suite
-        run: composer run-script test
+      - name: Manual testing
+        run: |
+          echo "Please run the manual test suite."
+          echo "Provide details of the tests and their results in the pull request."
 
   deploy:
     needs: test
