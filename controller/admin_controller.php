@@ -1,7 +1,7 @@
 <?php
 require('../model/admin_model.php');
 
-$system_admin_session = new admin;
+$system_admin_session = new admin_model;
 
 // $system_admin = $showProfile->getAllProfile('system_admin');
 // $manager = $showProfile->getAllProfile('manager');

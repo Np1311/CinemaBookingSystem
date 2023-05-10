@@ -1,7 +1,7 @@
 <?php
 require('../../model/manager_model.php');
 
-$manager = new manager;
+$manager = new manager_model;
 
 class manager_controller{
 

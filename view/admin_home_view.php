@@ -5,7 +5,7 @@ $admin = new admin_controller;
 
 $admin->displayUser();
 // $admin->displayUser('customer');
-$admin = new admin_controller;
+
 // $admin -> validateProfile('customer');
 if(isset($_GET['deleteID'])){
    if($admin->deleteAccount()){

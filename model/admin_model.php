@@ -2,7 +2,7 @@
 $conn = new mysqli('localhost','root', '');
 require ('user_model.php');
 
-class admin extends user{
+class admin_model extends user_model{
     private $profile;
 
     public function _construct($profile){

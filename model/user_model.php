@@ -1,6 +1,6 @@
 <?php
 require('database_model.php');
-class user {
+class user_model {
     private $phone;
     private $password;
     private $email;

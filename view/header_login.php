@@ -137,6 +137,16 @@ session_start();
                 <?php
                     }
                 ?>
+                <?php
+                    if($_SESSION['profile'] == 'customer'){
+                ?>
+                    <button class="back" onclick="location.href='../customer/customer_home_view.php'">Home</button> &nbsp&nbsp
+                    <button class="logout" onclick="location.href='../../controller/logout.php'">
+                    Log Out
+                    </button>
+                <?php
+                    }
+                ?>
                 
                 
                 

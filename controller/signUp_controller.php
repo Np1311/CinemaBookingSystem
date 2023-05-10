@@ -1,9 +1,9 @@
 <?php
 include_once ('../model/user_model.php');
 
-$model = new user;
+$model = new user_model;
 //require ('../view/header.php');
-class SignUpController{
+class signUp_controller{
 
     public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
         global $model;

@@ -1,7 +1,7 @@
 <?php
 require('user_model.php');
 
-class manager extends user{
+class manager_model extends user_model{
 
     public function createRoom($roomName,$roomType, $roomCapacity, $totalRow, $totalColumn){
         global $conn;

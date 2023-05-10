@@ -133,7 +133,7 @@ $admin_controller = new admin_controller;
 <?php
 if (isset($_POST['submit'])) {
     require('../controller/signUp_controller.php');
-    $controller = new signUpController;
+    $controller = new signUp_controller;
     $profile = $_POST['profile'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];

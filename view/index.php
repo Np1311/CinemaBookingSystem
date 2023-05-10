@@ -400,7 +400,7 @@ session_start();
             </br>
         </div>
         </br></br></br></br></br>
-        <div class="movie-container">
+        <!-- <div class="movie-container">
 		
             <div class="movie-list">
                 <div class="movie">
@@ -440,7 +440,7 @@ session_start();
                     <button>Book Now</button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <script>
             function myFunction(type) {
             var x = document.getElementById(type);
@@ -503,6 +503,7 @@ session_start();
             $pass = $_POST['pass'];
             if(isset($_SESSION['profile'])== null){
                 $_SESSION['profile'] = 'customer';
+                $_SESSION['customerID'] = $phone;
             }
             echo $_SESSION['profile'];
             

@@ -1,5 +1,15 @@
 <?php
-require ('header_customer.html');
+//require ('../header_login.php');
+require('../../controller/customer_controller.php');
+
+if($controller -> getShowingMovie_controller() == false){
+    echo '<script>alert("No Movie listed")</script>';
+}else{
+    $array = $controller -> getShowingMovie_controller();
+}
+
+print_r($array);
+
 ?>
 <html>
     <head>
@@ -105,49 +115,31 @@ require ('header_customer.html');
     <body>        
         
         <div class="movie-container">
-		
-            <div class="movie-list">
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+1" alt="Movie 1">
-                    <h2>Movie 1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
+           
+                <div class="movie-list">
+                    <?php
+                        foreach($array as $key=>$arr){
+
+                    ?>
+                        <div class="movie">
+                            <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
+                            <h2><?php echo $arr['movieName'];?></h2>
+                            <p><b>Genre = </b><?php echo $arr['genre'];?></p>
+                            <p><b>Duration = </b><?php echo $arr['duration'];?></p>
+                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>">
+                                <button>Book Now</button>
+                            </a>
+                            
+                        </div>
+                    <?php
+                        }
+                    ?>
                 </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+2" alt="Movie 2">
-                    <h2>Movie 2</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+3" alt="Movie 3">
-                    <h2>Movie 3</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+4" alt="Movie 4">
-                    <h2>Movie 4 </h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+5" alt="Movie 5">
-                    <h2>Movie 5</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+6" alt="Movie 6">
-                    <h2>Movie 6</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-            </div>
+            
         </div>
         <?php
         
-        require('footer.html');
+        require('../footer.html');
         ?>
         
     </body>

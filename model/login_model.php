@@ -3,9 +3,9 @@ $conn = new mysqli('localhost','root', '');
 
 require('user_model.php');
 
-$user = new user;
+$user = new user_model;
 
-class login{
+class login_model{
     private $profile;
     private $uid;
     private $pass;

@@ -19,14 +19,14 @@ class login_controller{
     public function validateLogin($profile,$loginPhone, $loginPass){
         global $user;
         echo $profile;
-        $login = new login($profile,$loginPhone, $loginPass);
+        $login = new login_model($profile,$loginPhone, $loginPass);
 
         if($login -> checkUser()){
             //$userArr = $user -> getAccount();
             $user -> setAccount($loginPhone);
             // $_SESSION['user'] = $user -> getPhone();
             if($profile == 'customer'){
-            echo" <script>window.location='../view/customer_home_view.php';</script>";}
+                echo" <script>window.location='../view/customer/customer_home_view.php';</script>";}
             else if ($profile == 'system_admin'){
                 echo" <script>window.location='../view/admin_home_view.php';</script>";
             }else if ($profile == 'staff'){

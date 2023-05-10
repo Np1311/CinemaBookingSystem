@@ -1,7 +1,7 @@
 <?php
 $conn = new mysqli('localhost','root', '');
 
-class database {
+class database_model {
     public function createDatabase($dbName){
         global $conn;
 
