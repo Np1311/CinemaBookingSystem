@@ -7,6 +7,9 @@
     "require-dev": {
         "phpunit/phpunit": "^10.1"
     },
+    "scripts": {
+        "test": "phpunit"
+    },
     "authors": [
         {
             "name": "Np1311",
