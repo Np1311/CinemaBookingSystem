@@ -108,7 +108,7 @@ button[type="button"]:hover {
         $profile = $_POST['profile'];
         $searchBy = $_POST['searchBy'];
 
-        if($controller->searchAccount($profile,$searchAccount,$searchBy)){
+        if($controller->searchAccount($profile,$searchAccount,$searchBy)==false){
           echo '<script>alert("'.$searchAccount.' is not found")</script>';  
         }else{
         $accountArray = $controller->searchAccount($profile,$searchAccount,$searchBy);
