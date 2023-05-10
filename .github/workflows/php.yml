@@ -1,45 +1,53 @@
-name: PHP Build, Test, and Deploy
+name: PHP Composer
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Install PHP
-        run: brew install php
+    - name: Install PHP
+      run: |
+        sudo add-apt-repository -y ppa:ondrej/php
+        sudo apt-get update
+        sudo apt-get install -y php8.0-cli php8.0-xml
 
-      - name: Build
-        run: php -f index.php
+    - name: Install Composer
+      run: |
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+        php -r "unlink('composer-setup.php');"
 
-  test:
-    runs-on: macos-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
 
-      - name: Install PHPUnit
-        run: brew install phpunit
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
 
-      - name: Run tests
-        run: phpunit tests/
+    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+    # Docs: https://getcomposer.org/doc/articles/scripts.md
 
-  deploy:
-    runs-on: macos-latest
-    needs: test
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Run test suite
+      run: composer run-script test
 
-      - name: Deploy to server
-        run: ssh user@example.com "cd /path/to/project && git pull origin main && php -f index.php"
+    - name: Deploy to production
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        echo "Deploying to production..."
+        # Your deployment commands here

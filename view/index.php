@@ -39,7 +39,7 @@ session_start();
             .btn-primary{
                 background-color: #bd9a7a; 
                 border: 2px solid white;
-                color: black;
+                color: white;
                 padding: 15px ;
                 text-align: center;
                 text-decoration: none;
