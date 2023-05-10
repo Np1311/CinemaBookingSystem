@@ -68,7 +68,7 @@ button[type="button"] {
     <label for="search">Search:</label>
     <input type="text" id="search" name="search" placeholder="Enter search term...">
     <button type="submit" name = 'submit'>Go</button>
-    <button type="button" onclick="window.history.back()">Back</button>
+    <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
   </form>
   <?php
     if(isset($_POST['submit'])){

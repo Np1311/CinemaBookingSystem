@@ -97,7 +97,9 @@ $controller =  new admin_controller;
                 </select>
                 <input type = 'text' name = 'updateValue' placeholder="Enter New Profile Name" required></input>
                 <input type="submit" name='submit' value="Submit">
-                <button type="button" onclick="window.history.back()">Back</button>
+                <!-- <button type="button" onclick="window.history.back()">Back</button> -->
+                <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
+
             </form>
         </div>
         <?php

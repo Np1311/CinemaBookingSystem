@@ -98,8 +98,7 @@ button[type="button"]:hover {
     <!-- <label for="search">Search:</label>
     <input type="text" id="search" name="searchAccount" placeholder="Enter search term..."> -->
     <button type="submit" name = 'submit'>Go</button>
-    <button type="button" onclick="history.go(-1)">Back</button>
-    
+    <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
   </form>
   <?php
     if(isset($_POST['submit'])){
