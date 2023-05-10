@@ -120,8 +120,8 @@ if(isset($_GET['deleteID'])){
 
         #bodyButton:hover{
             background-color: white;
-                color: #bd9a7a;
-                border: 2px solid;
+            color: #bd9a7a;
+            border: 2px solid;
         }
         button:hover {
             background-color: #FFFFFF; 
