@@ -56,19 +56,19 @@ $controller =  new admin_controller;
             }
 
             button[type="button"] {
-  background-color: #bd9a7a;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  }
+            background-color: #bd9a7a;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            }
 
-  button[type="button"]:hover {
-    background-color: white;
-    color: #bd9a7a;
-    border: 2px solid;
-  }
+            button[type="button"]:hover {
+                background-color: white;
+                color: #bd9a7a;
+                border: 2px solid;
+            }
 
 
             body {

@@ -1,5 +1,6 @@
 <?php
 require('../controller/user_update_controller.php');
+require('header.html');
 $curProfile = $_GET['curProfile'];
 $userID = $_GET['updateID'];
 $userAccount = new user_update_controller;
@@ -68,20 +69,19 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         }
 
         input[type="submit"] {
-            background-color: white;
-            color: #bd9a7a;
-            border: 2px solid;
-            border: none;
+            background-color: #bd9a7a;
+            color: #fff;
             padding: 10px 20px;
-            font-size: 16px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: all 0.2s ease-in-out;
+            transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
-            background-color: #FFFFFF; 
-            color: #0a0805;
+                background-color: #fff;
+                color: #bd9a7a;
+                border: 2px solid;
         }
 
         
