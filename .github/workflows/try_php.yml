@@ -1,4 +1,4 @@
-name: PHP 
+name: PHP Composer
 
 on:
   push:
@@ -9,14 +9,8 @@ on:
 permissions:
   contents: read
 
-stages:
-  - build
-  - test
-  - deploy
-
 jobs:
-  build-job:
-    stages: build
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,83 +21,85 @@ jobs:
           sudo add-apt-repository -y ppa:ondrej/php
           sudo apt-get update
           sudo apt-get install -y php8.0-cli php8.0-xml
+  Install-composer:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Composer
+        run: |
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          php -r "unlink('composer-setup.php');"
+  Cache-Composer-Packages:
+    needs: Install-composer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-Instal-composer:
-  stages: build
-  script: 
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-    - php -r "unlink('composer-setup.php');"
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-Cache-Composer-packages :
-  stages: build
-  id: composer-cache
-  uses: actions/cache@v2
-  with:
-    path: vendor
-    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-    restore-keys: |
-      ${{ runner.os }}-php-
+  test:
+    needs: build
+    runs-on: ubuntu-latest
 
-Install-dependencies:
-  stages: build
-  script: 
-    - composer install --prefer-dist --no-progress
+    steps:
+      - uses: actions/checkout@v2
 
-test:
-  needs: build
-  runs-on: ubuntu-latest
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-  steps:
-    - uses: actions/checkout@v2
+      - name: Manual testing
+        run: |
+          echo "Please run the manual test suite."
+          echo "Provide details of the tests and their results in the pull request."
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
-    - name: Manual testing
-      run: |
-        echo "Please run the manual test suite."
-        echo "Provide details of the tests and their results in the pull request."
+    steps:
+      - uses: actions/checkout@v2
 
-deploy:
-  needs: test
-  runs-on: ubuntu-latest
-  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      - name: Install PHP
+        run: |
+          sudo add-apt-repository -y ppa:ondrej/php
+          sudo apt-get update
+          sudo apt-get install -y php8.0-cli php8.0-xml
 
-  steps:
-    - uses: actions/checkout@v2
+      - name: Install Composer
+        run: |
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          php -r "unlink('composer-setup.php');"
 
-    - name: Install PHP
-      run: |
-        sudo add-apt-repository -y ppa:ondrej/php
-        sudo apt-get update
-        sudo apt-get install -y php8.0-cli php8.0-xml
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-    - name: Install Composer
-      run: |
-        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-        php -r "unlink('composer-setup.php');"
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Deploy to production
-      run: |
-        echo "Deploying to production..."
-        # Your deployment commands here
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production..."
+          # Your deployment commands here
