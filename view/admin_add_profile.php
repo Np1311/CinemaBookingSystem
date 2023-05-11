@@ -50,7 +50,7 @@ $admin = new admin_controller;
             
             button {
                 background-color: #bd9a7a;
-                color: #fff;
+                color: black;
                 padding: 10px 20px;
                 border: none;
                 border-radius: 5px;
