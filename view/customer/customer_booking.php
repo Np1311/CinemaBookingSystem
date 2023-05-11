@@ -17,6 +17,8 @@ foreach ($alphabet as $char) {
 $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
+$selected_row = 'I';
+$selected_column = 4;
 ?>
 
 <html>
@@ -35,16 +37,22 @@ $column = $array['totalColumn'];
     
     <script>
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
-        $(document).ready(function() {
-            for(i=1;i<=<?php echo $row;?>;i++)
-            {
-            let row = alphabet[i-1];
-            for(j=1;j<=<?php echo $column;?>;j++)
-            {
-                $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="'+row+j+'" name="seat_chart[]" class="mr-2  col-md-2 mb-2" onclick="checkboxtotal();" >'+ row + j +'</div>')
-            }
 
+        $(document).ready(function() {
+            let selected_row = '<?php echo $selected_row;?>';
+            let selected_column = <?php echo $selected_column;?>;
+
+            for (let i = 1; i <= <?php echo $row;?>; i++) {
+                let row = alphabet[i - 1];
+
+                for (let j = 1; j <= <?php echo $column;?>; j++) {
+                    let seatValue = row + j;
+                    let checkedAttribute = (row === selected_row && j === selected_column) ? 'checked' : '';
+
+                    $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + '>' + seatValue + '</div>');
+                }
             }
+            checkboxtotal();
         });
 
         function checkboxtotal()
@@ -78,6 +86,7 @@ $column = $array['totalColumn'];
 
         $('#seat_dt').val(seat.join(", "));
         }
+        
         function addTiming() {
             var select = document.getElementById("show_id");
             var timing = document.getElementById("timing");
@@ -150,6 +159,7 @@ $column = $array['totalColumn'];
     </head>
     <body>
 
+        
         <section class="mt-5">
             <h3 class="text-center">Book Your Ticket Now</h3>
 
@@ -174,6 +184,9 @@ $column = $array['totalColumn'];
                     </center>
 
                     <hr>
+
+                    <label for="email"><b>Show Id</b></label>
+
                     <div class="form-group">
                         <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;" onChange="addTiming()">
                             <option>Select Show</option>
@@ -190,7 +203,6 @@ $column = $array['totalColumn'];
                                 
                         </select>
                     </div>
-                    
 
                     <label for="psw"><b>No. of Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="no_ticket" name="no_ticket"  required>
@@ -199,17 +211,24 @@ $column = $array['totalColumn'];
                     <input type="text" style="border-radius:30px;" name="seat_dt" id="seat_dt" required>
 
                     <label for="psw"><b>No. of Child Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="child" name="child" onchange="checkboxtotal();" value='0'>
+                    <input type="number" style="border-radius:30px;" id="child" name="child" value='0' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>No. of Student Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="student" name="student" onchange="checkboxtotal();" value='0'>
+                    <input type="number" style="border-radius:30px;" id="student" name="student" value='0' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>No. of Senior Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="senior" name="senior" onchange="checkboxtotal();"value='0'>
+                    <input type="number" style="border-radius:30px;" id="senior" name="senior" value='0' onchange='checkboxtotal()'>
 
                     <label for="number"><b>Booking Date</b></label>
                     <input type="date" style="border-radius:30px;" name="booking_date"  required>
-                    </br></br>
+
+                    <!-- hide -->
+                    <label for="food" style="display:none;"><b>Pre-order Popcorns</b></label>
+                    <input type="number" style="border-radius:30px; display:none;" id="foods" name="foods" >
+
+                    <!-- hide -->
+                    <label for="food" style="display:none;"><b>Pre-order Coca-Cola</b></label>
+                    <input type="number" style="border-radius:30px; display:none;" id="drinks" name="drinks" >
 
                     <h6 class="mt-3"  style="color:#BD9A7A;">Movie Show</h6>
                     <p class="mt-1" id="MovieName"><?php echo $array['movieName'];?></p>
@@ -225,18 +244,53 @@ $column = $array['totalColumn'];
 
                     <h6 class="mt-3"  style="color:#BD9A7A;">Total Ticket Price</h6>
                     <p class="mt-1" id="price_details"></p>
+
                     <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
                     <hr>
+                    
                 </div>
                 </form>
-
-                
-
-               
                 </div>
             </div>
             </div>
 
         </section>
+        <?php
+            if(isset($_POST['btn_booking'])){
+                $time = $_POST['show_id'];
+                $numOfTiket = $_POST['no_ticket'];
+                $seatArr = $_POST['seat_dt'];
+                $noOfChildTicket = $_POST['child'];
+                $noOfSeniorTicket = $_POST['senior'];
+                $noOfStudentTicket = $_POST['student'];
+                $bookingDate = $_POST['booking_date'];
+                $movieName = $array['movieName'];
+                $total_amnt = (($numOfTiket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
+                $loyaltypoints = $total_amnt;
+                $seatDetail = explode(", ",$seatArr);
+                if($selected_row == null && $selected_column == 0){
+                    $columnSeat = substr($seatDetail[0], 1);
+                    $rowSeat =  substr($seatDetail[0], 0, 1); 
+                }else {
+                    $columnSeat = 0;
+                    $rowSeat =  null; 
+                }
+
+                echo "Show Time: " . $time . "<br>";
+                echo "Number of Tickets: " . $numOfTiket . "<br>";
+                echo "Seat Details: " . $seatArr . "<br>";
+                echo "Number of Child Tickets: " . $noOfChildTicket . "<br>";
+                echo "Number of Senior Tickets: " . $noOfSeniorTicket . "<br>";
+                echo "Number of Student Tickets: " . $noOfStudentTicket . "<br>";
+                echo "Booking Date: " . $bookingDate . "<br>";
+                echo "Movie Name: " . $movieName . "<br>";
+                echo "Total Amount: " . $total_amnt . "<br>";
+                echo "Loyalty Points: " . $loyaltypoints . "<br>";
+                echo "Seat Details Array: ";
+                print_r($seatDetail);
+                echo "Row:".$rowSeat."</br>";
+                echo "Column:".$columnSeat."</br>";
+            }
+        ?>
     </body>
     </html>

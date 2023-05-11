@@ -17,12 +17,13 @@ class admin_model extends user_model{
                 
                 `fname` varchar(255) NOT NULL,
                 `lname` varchar(255) NOT NULL,
-                `seat_row` int NOT NULL DEFAULT 0,
+                `seat_row` CHAR(1) DEFAULT NULL,
                 `seat_column`INT NOT NULL DEFAULT 0,
                 `phone` INT NOT NULL DEFAULT 0,
                 `email` VARCHAR(255) NOT NULL,
                 `password` VARCHAR(255) NOT NULL,
                 `dob` DATE NOT NULL,
+                `loyalty_point` INT NOT NULL DEFAULT 0,
                 `status` VARCHAR(25) DEFAULT 'active',
                 
                 PRIMARY KEY(phone)
