@@ -1,5 +1,5 @@
 <?php
-//require ('../header_login.php');
+require ('header_customer.html');
 require('../../controller/customer_controller.php');
 
 if($controller -> getShowingMovie_controller() == false){
@@ -126,10 +126,27 @@ print_r($array);
                             <h2><?php echo $arr['movieName'];?></h2>
                             <p><b>Genre = </b><?php echo $arr['genre'];?></p>
                             <p><b>Duration = </b><?php echo $arr['duration'];?></p>
-                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>">
-                                <button>Book Now</button>
+                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>">
+                                <button><?php echo $arr['timing1'];?></button>
+                            </a> </br>
+
+                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing2'];?>">
+                                <button><?php echo $arr['timing2'];?></button>
                             </a>
-                            
+                            </br>
+                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing3'];?>">
+                                <button><?php echo $arr['timing3'];?></button>
+                            </a>
+                            </br>
+                            <?php 
+                            if($arr['timing4'] != 0){
+                            ?>
+                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing4'];?>">
+                                <button><?php echo $arr['timing4'];?></button>
+                            </a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     <?php
                         }

@@ -1,10 +1,12 @@
 <?php
 //require ('../header_login.php');
 require('../../controller/customer_controller.php');
+session_start();
+$phone = $_SESSION['customerID'];
+$movie=$_GET['bookingID'];
+$showTiming = $_GET['showTiming'];
 
-$bookingID=$_GET['bookingID'];
-
-$array = $controller -> getMovieDetail_controller($bookingID);
+$array = $controller -> getMovieDetail_controller($movie,$phone);
 
 
 
@@ -17,8 +19,16 @@ foreach ($alphabet as $char) {
 $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
-$selected_row = 'I';
-$selected_column = 4;
+$selected_row = $array['seat_row'];
+$selected_column = $array['seat_column'];
+// $takenRow = 'I';
+// $takenColumn = 4;
+$takenSeat = $controller ->takenSeats_controller($movie,$showTiming);
+var_dump($takenSeat);
+
+if ($selected_row === NULL){
+    $selected_row = '';
+}
 ?>
 
 <html>
@@ -34,26 +44,35 @@ $selected_column = 4;
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    
+
     <script>
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
-
         $(document).ready(function() {
             let selected_row = '<?php echo $selected_row;?>';
             let selected_column = <?php echo $selected_column;?>;
-
+            let takenSeats = <?php echo json_encode($takenSeat);?>;
+        
             for (let i = 1; i <= <?php echo $row;?>; i++) {
                 let row = alphabet[i - 1];
-
+            
                 for (let j = 1; j <= <?php echo $column;?>; j++) {
                     let seatValue = row + j;
                     let checkedAttribute = (row === selected_row && j === selected_column) ? 'checked' : '';
-
-                    $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + '>' + seatValue + '</div>');
+                    let disabledAttribute = '';
+                    for (let seat in takenSeats) {
+                        if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
+                            disabledAttribute = 'disabled';
+                            break;
+                        }
+                    }
+            
+                    $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + ' ' + disabledAttribute + '>' + seatValue + '</div>');
                 }
             }
             checkboxtotal();
         });
+
+
 
         function checkboxtotal()
         {
@@ -74,23 +93,17 @@ $selected_column = 4;
         var sr= document.getElementById('senior').value;
         var senior=(sr*2);
 
-        var fo= document.getElementById('foods').value;
-        var food=(fo*3);
+        // var fo= document.getElementById('foods').value;
+        // var food=(fo*3);
 
-        var dr= document.getElementById('drinks').value;
-        var drink=(dr*2);
+        // var dr= document.getElementById('drinks').value;
+        // var drink=(dr*2);
 
 
-        var total="SGD$"+((st*12) - (child) - (senior) - (student) + (food) + (drink));
+        var total="SGD$"+((st*12) - (child) - (senior) - (student));
         $('#price_details').text(total);
 
         $('#seat_dt').val(seat.join(", "));
-        }
-        
-        function addTiming() {
-            var select = document.getElementById("show_id");
-            var timing = document.getElementById("timing");
-            timing.textContent = select.options[select.selectedIndex].text;
         }
 
         </script>
@@ -153,6 +166,9 @@ $selected_column = 4;
         p,span{
             color:black !important;
         }
+        #seat_chart input[type="checkbox"]:disabled {
+            background-color: red !important;
+        }
         </style>
 
 
@@ -188,17 +204,11 @@ $selected_column = 4;
                     <label for="email"><b>Show Id</b></label>
 
                     <div class="form-group">
-                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;" onChange="addTiming()">
-                            <option>Select Show</option>
+                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;">
+                           
                             
                             <?php
-                                echo '<option value="'.$array["timing1"].'">'.$array["timing1"].'</option>';
-                                                            
-                                echo '<option value="'.$array["timing2"].'">'.$array["timing2"].'</option>';
-                                echo '<option value="'.$array["timing3"].'">'.$array["timing3"].'</option>';
-                                if($array["timing4"] != 0){
-                                echo '<option value="'.$array["timing4"].'">'.$array["timing4"].'</option>';
-                                }
+                                echo '<option value="'.$showTiming.'">'.$array["timing1"].'</option>';
                             ?>
                                 
                         </select>
@@ -222,19 +232,19 @@ $selected_column = 4;
                     <label for="number"><b>Booking Date</b></label>
                     <input type="date" style="border-radius:30px;" name="booking_date"  required>
 
-                    <!-- hide -->
+                    <!-- hide
                     <label for="food" style="display:none;"><b>Pre-order Popcorns</b></label>
                     <input type="number" style="border-radius:30px; display:none;" id="foods" name="foods" >
 
-                    <!-- hide -->
+                    hide 
                     <label for="food" style="display:none;"><b>Pre-order Coca-Cola</b></label>
-                    <input type="number" style="border-radius:30px; display:none;" id="drinks" name="drinks" >
+                    <input type="number" style="border-radius:30px; display:none;" id="drinks" name="drinks" > -->
 
                     <h6 class="mt-3"  style="color:#BD9A7A;">Movie Show</h6>
                     <p class="mt-1" id="MovieName"><?php echo $array['movieName'];?></p>
 
                     <h6 class="mt-5"  style="color:#BD9A7A;">Time:</h6>
-                    <span class="mt-1" id="timing"></span>
+                    <span class="mt-1" id="timing"><?php echo $showTiming;?></span>
 
                     <h6 class="mt-3"  style="color:#BD9A7A;">Ticket Price</h6>
                     <p class="mt-1" id="price">Adult: SGD$12</p>
@@ -257,24 +267,31 @@ $selected_column = 4;
         </section>
         <?php
             if(isset($_POST['btn_booking'])){
+                $movieID = $array['movieID'];
+                $roomID = $array['roomID'];
+                $movieName = $array['movieName'];
                 $time = $_POST['show_id'];
                 $numOfTiket = $_POST['no_ticket'];
-                $seatArr = $_POST['seat_dt'];
+                $seats = $_POST['seat_dt'];
                 $noOfChildTicket = $_POST['child'];
                 $noOfSeniorTicket = $_POST['senior'];
                 $noOfStudentTicket = $_POST['student'];
                 $bookingDate = $_POST['booking_date'];
-                $movieName = $array['movieName'];
+                $roomName = $array['roomName'];
+                
                 $total_amnt = (($numOfTiket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                 $loyaltypoints = $total_amnt;
-                $seatDetail = explode(", ",$seatArr);
+                $seatArr = explode(", ",$seats);
+                
                 if($selected_row == null && $selected_column == 0){
-                    $columnSeat = substr($seatDetail[0], 1);
-                    $rowSeat =  substr($seatDetail[0], 0, 1); 
+                    $columnSeat = substr($seatArr[0], 1);
+                    $rowSeat =  substr($seatArr[0], 0, 1); 
                 }else {
                     $columnSeat = 0;
                     $rowSeat =  null; 
                 }
+
+                $controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat);
 
                 echo "Show Time: " . $time . "<br>";
                 echo "Number of Tickets: " . $numOfTiket . "<br>";

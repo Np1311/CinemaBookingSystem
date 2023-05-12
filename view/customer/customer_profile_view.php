@@ -1,15 +1,17 @@
 <?php
 session_start();
-require('../model/user_model.php');
+require('../../controller/customer_controller.php');
 
-$customer = new user;
-
-$cust =  $_SESSION['user'];
+$phone =  $_SESSION['customerID'];
 
 //echo $customer -> getAccount();
 
-$customer -> getProfile($_SESSION['profile'],$cust);
 
+if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
+  echo '<script>alert("No Movie listed")</script>';
+}else{
+  $array = $controller -> getAccount_controller($_SESSION['profile'],$phone);
+}
 
 ?>
 <!DOCTYPE html>
@@ -76,13 +78,6 @@ $customer -> getProfile($_SESSION['profile'],$cust);
 <body>
 <?php
   // Assume we have fetched the user's profile data from a database
-  $_SESSION['profileInfo'] = array(
-    'first_name' => $customer -> getFname(),
-    'last_name' => $customer -> getLname(),
-    'email' => $customer -> getEmail(),
-    'date_of_birth' => $customer -> getDob(),
-    'phone' => $cust
-  );
 
 
   //require ('header_login.html');
@@ -92,23 +87,23 @@ $customer -> getProfile($_SESSION['profile'],$cust);
     <table>
       <tr>
         <th>First Name</th>
-        <td><?php echo $_SESSION['profileInfo']['first_name']; ?></td>
+        <td><?php echo $array['fname']; ?></td>
       </tr>
       <tr>
         <th>Last Name</th>
-        <td><?php echo $_SESSION['profileInfo']['last_name']; ?></td>
+        <td><?php echo $array['lname']; ?></td>
       </tr>
       <tr>
         <th>Email</th>
-        <td><?php echo $_SESSION['profileInfo']['email']; ?></td>
+        <td><?php echo $array['email']; ?></td>
       </tr>
       <tr>
         <th>Date of Birth</th>
-        <td><?php echo $_SESSION['profileInfo']['date_of_birth']; ?></td>
+        <td><?php echo $array['dob']; ?></td>
       </tr>
       <tr>
         <th>Phone Number</th>
-        <td><?php echo $_SESSION['profileInfo']['phone']; ?></td>
+        <td><?php echo $phone; ?></td>
       </tr>
     </table>
     <button class="button" onclick="location.href='customer_update.php'">Edit Profile</button>
