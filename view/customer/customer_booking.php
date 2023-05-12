@@ -74,36 +74,30 @@ if ($selected_row === NULL){
 
 
 
-        function checkboxtotal()
-        {
-        var seat=[];
-        $('input[name="seat_chart[]"]:checked').each(function(){
-            seat.push($(this).val());
-        });
+        function checkboxtotal() {
+            var seat = [];
+            $('input[name="seat_chart[]"]:checked').each(function() {
+                if (!$(this).is(':disabled')) {
+                    seat.push($(this).val());
+                }
+            });
 
-        var st=seat.length;
-        document.getElementById('no_ticket').value=st;
+            var st = seat.length;
+            document.getElementById('no_ticket').value = st;
 
-        var ch= document.getElementById('child').value;
-        var child=(ch*4);
+            var ch = document.getElementById('child').value;
+            var child = (ch * 4);
 
-        var std= document.getElementById('student').value;
-        var student=(std*3);
+            var std = document.getElementById('student').value;
+            var student = (std * 3);
 
-        var sr= document.getElementById('senior').value;
-        var senior=(sr*2);
+            var sr = document.getElementById('senior').value;
+            var senior = (sr * 2);
 
-        // var fo= document.getElementById('foods').value;
-        // var food=(fo*3);
+            var total = "SGD$" + ((st * 12) - (child) - (senior) - (student));
+            $('#price_details').text(total);
 
-        // var dr= document.getElementById('drinks').value;
-        // var drink=(dr*2);
-
-
-        var total="SGD$"+((st*12) - (child) - (senior) - (student));
-        $('#price_details').text(total);
-
-        $('#seat_dt').val(seat.join(", "));
+            $('#seat_dt').val(seat.join(", "));
         }
 
         </script>
