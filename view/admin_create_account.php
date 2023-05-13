@@ -1,5 +1,5 @@
 <?php
-require('header_login.php');
+require('header.html');
 require('../controller/admin_controller.php');
 session_start();
 $admin_controller = new admin_controller;
@@ -9,82 +9,56 @@ $admin_controller = new admin_controller;
 <head>
     <style>
         .formContainer {
-            margin-top: 100px;
-        }
-        form {
-            margin: 0 auto;
-            width: 400px;
-            font-family: Arial;
-        }
+        margin-top: 100px;
+    }
 
-        label {
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+    form {
+        margin: 0 auto;
+        width: 400px;
+        font-family: Arial;
+    }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="date"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
+    label {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        width: 420px;
+    }
 
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-/* 
-        input[type="submit"] {
-            background-color: #bd9a7a;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    textarea,
+    select {
+        width: 400px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
 
-        input[type="submit"]:hover {
-            background-color: white;
-            color: #bd9a7a;
-            border: 2px solid;
-        }
+    .password-input {
+        position: relative;
+        display: inline-block;
+        width: 400px;
+    }
 
-        input[type="submit"]:focus {
-            outline: none;
-        } */
+    .password-input input[type="password"],
+    .password-input input[type="text"] {
+        width: calc(380px);
+        padding: 10px;
+    }
 
-        .password-input {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .password-input input[type="password"] {
-            width: calc(100% ); 
-            padding: 10px;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
+    .password-toggle {
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        cursor: pointer;
+    }
 
         .btn-primary{
                 background-color: #bd9a7a; 
@@ -97,6 +71,7 @@ $admin_controller = new admin_controller;
                 font-size: 16px;
                 border-radius: 8px;
                 width: 400px;
+                margin-top: 2%;
                 /* margin-left: 100px; */
         }
         .btn-primary:hover {
@@ -104,6 +79,9 @@ $admin_controller = new admin_controller;
                 color: #bd9a7a;
                 border: 2px solid;
         } 
+       
+        
+</style>
 
 
     </style>
