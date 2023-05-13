@@ -129,7 +129,9 @@ if(isset($_GET['deleteID'])){
             background-color: #FFFFFF; 
             color: #0a0805;
         }
-        body {background-color: #e7dbd0 }
+        body {
+            background-color: #e7dbd0;
+         }
 
 
         @media screen and (max-width: 768px) {

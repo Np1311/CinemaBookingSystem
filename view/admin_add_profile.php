@@ -8,62 +8,63 @@ $admin = new admin_controller;
 ?>
 <html>
     <head>
-        <style>
-            body {
-                background-color: #e7dbd0;
-                font-family: Arial;
-            }
-            
-            /* Style for the profile add form */
-            form {
-                max-width: 500px;
-                margin: 0 auto;
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
+    <style>
+    /* General styles */
+    body {
+        background-color: #e7dbd0;
+        font-family: Arial;
+    }
 
-            
-            
-            .signIn {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 20px;
-            }
-            
-            .signIn label {
-                margin-bottom: 5px;
-                font-weight: bold;
-            }
-            
-            .signIn input {
-                padding: 10px;
-                border-radius: 5px;
-                border: none;
-                background-color: #f2f2f2;
-            }
-            
-            button {
-                background-color: #bd9a7a;
-                color: #ffff;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-            
-            button:hover {
-                background-color: #fff;
-                color: #bd9a7a;
-                border: 2px solid;
-            }
-        </style>
+    /* Profile add form */
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Sign-in section */
+    .signIn {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .signIn label {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .signIn input {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #f2f2f2;
+    }
+
+    /* Buttons */
+    button {
+        background-color: #bd9a7a;
+        color: #ffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #fff;
+        color: #bd9a7a;
+        border: 2px solid;
+    }
+</style>
     </head>
     <body>
         <form method='post'>

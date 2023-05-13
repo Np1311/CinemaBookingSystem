@@ -84,7 +84,7 @@ session_start();
 <div class="header">
     <div class='logoAndName'>
         <img src="../cap.png" alt="Your Image" class="header-image">
-        <h2><a href="index.php" id="home">Capybara Cinema</a></h2>
+        <h2><a href="index.php" id="home">CAPYBARA CINEMA</a></h2>
     </div>
     <div class='logoutbtn'>
         <?php
@@ -115,8 +115,8 @@ session_start();
 </div>
 <script>
     function goBack() {
-        window.history.go(-
-1);
+        window.history.go(-1);
     }
 </script>
-</
+</body>
+</html>
