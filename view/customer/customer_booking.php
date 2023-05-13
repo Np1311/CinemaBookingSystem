@@ -5,6 +5,7 @@ session_start();
 $phone = $_SESSION['customerID'];
 $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
+$date = $_GET['date'];
 
 $array = $controller -> getMovieDetail_controller($movie,$phone);
 
@@ -23,7 +24,7 @@ $selected_row = $array['seat_row'];
 $selected_column = $array['seat_column'];
 // $takenRow = 'I';
 // $takenColumn = 4;
-$takenSeat = $controller ->takenSeats_controller($movie,$showTiming);
+$takenSeat = $controller ->takenSeats_controller($movie,$showTiming,$date);
 var_dump($takenSeat);
 
 if ($selected_row === NULL){
@@ -223,9 +224,7 @@ if ($selected_row === NULL){
                     <label for="psw"><b>No. of Senior Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="senior" name="senior" value='0' onchange='checkboxtotal()'>
 
-                    <label for="number"><b>Booking Date</b></label>
-                    <input type="date" style="border-radius:30px;" name="booking_date"  required>
-
+                    
                     <!-- hide
                     <label for="food" style="display:none;"><b>Pre-order Popcorns</b></label>
                     <input type="number" style="border-radius:30px; display:none;" id="foods" name="foods" >
@@ -234,8 +233,11 @@ if ($selected_row === NULL){
                     <label for="food" style="display:none;"><b>Pre-order Coca-Cola</b></label>
                     <input type="number" style="border-radius:30px; display:none;" id="drinks" name="drinks" > -->
 
-                    <h6 class="mt-3"  style="color:#BD9A7A;">Movie Show</h6>
-                    <p class="mt-1" id="MovieName"><?php echo $array['movieName'];?></p>
+                    <h6 class="mt-5"  style="color:#BD9A7A;">Movie Show</h6>
+                    <span class="mt-1" id="MovieName"><?php echo $array['movieName'];?></span>
+
+                    <h6 class="mt-5"  style="color:#BD9A7A;">Booking Date</h6>
+                    <span class="mt-1" id="date"><?php echo $date ?></span>
 
                     <h6 class="mt-5"  style="color:#BD9A7A;">Time:</h6>
                     <span class="mt-1" id="timing"><?php echo $showTiming;?></span>
@@ -250,10 +252,14 @@ if ($selected_row === NULL){
                     <p class="mt-1" id="price_details"></p>
 
                     <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
-                    <hr>
+                    
+                    
                     
                 </div>
                 </form>
+                &nbsp&nbsp<a href="customer_home_view.php" style="text-decoration: none;">
+                    <button name="btn_booking1" class="btn" style="background-color: #BD9A7A;color:white;">Back</button>
+                </a>
                 </div>
             </div>
             </div>
@@ -270,7 +276,7 @@ if ($selected_row === NULL){
                 $noOfChildTicket = $_POST['child'];
                 $noOfSeniorTicket = $_POST['senior'];
                 $noOfStudentTicket = $_POST['student'];
-                $bookingDate = $_POST['booking_date'];
+                $bookingDate = $date;
                 $roomName = $array['roomName'];
                 
                 $total_amnt = (($numOfTiket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
@@ -285,8 +291,10 @@ if ($selected_row === NULL){
                     $rowSeat =  null; 
                 }
 
-                $controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat);
-
+                if($controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
+                    echo" <script>window.location='customer_home_view.php';</script>";
+                }
+                //$controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat);
                 echo "Show Time: " . $time . "<br>";
                 echo "Number of Tickets: " . $numOfTiket . "<br>";
                 echo "Seat Details: " . $seatArr . "<br>";

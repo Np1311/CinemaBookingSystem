@@ -23,7 +23,7 @@ class admin_model extends user_model{
                 `email` VARCHAR(255) NOT NULL,
                 `password` VARCHAR(255) NOT NULL,
                 `dob` DATE NOT NULL,
-                `loyalty_point` INT NOT NULL DEFAULT 0,
+                `loyalty_point` DECIMAL(10,2) NOT NULL DEFAULT 0,
                 `status` VARCHAR(25) DEFAULT 'active',
                 
                 PRIMARY KEY(phone)

@@ -54,26 +54,30 @@ class customer_controller{
             return true;
         }
     }
-    public function takenSeats_controller($movieID,$showTiming){
+    public function takenSeats_controller($movieID,$showTiming,$date){
         global $customer;
 
-        $array = $customer->takenSeats($movieID,$showTiming);
-        $merged_array = array();
-        foreach ($array as $seats) {
-            $seats_array = explode(',', $seats);
-            $seats_array = array_map('trim', $seats_array); // trim each string in $seats_array
-            $merged_array = array_merge($merged_array, $seats_array);
-        }
-    
-        $taken_seats = array();
-        foreach ($merged_array as $seat) {
-            $row = substr($seat, 0, 1);
-            $column = substr($seat, 1);
-            if (strlen($seat) > 2) {
-                $row .= trim(substr($seat, 1, 1));
-                $column = substr($seat, 2);
+        $array = $customer->takenSeats($movieID,$showTiming,$date);
+        if(count($array)>0){ 
+            $merged_array = array();
+            foreach ($array as $seats) {
+                $seats_array = explode(',', $seats);
+                $seats_array = array_map('trim', $seats_array); // trim each string in $seats_array
+                $merged_array = array_merge($merged_array, $seats_array);
             }
-            $taken_seats[] = array('row' => $row, 'column' => $column);
+        
+            $taken_seats = array();
+            foreach ($merged_array as $seat) {
+                $row = substr($seat, 0, 1);
+                $column = substr($seat, 1);
+                if (strlen($seat) > 2) {
+                    $row .= trim(substr($seat, 1, 1));
+                    $column = substr($seat, 2);
+                }
+                $taken_seats[] = array('row' => $row, 'column' => $column);
+            }
+        }else{
+            $taken_seats=[];
         }
 
         return $taken_seats;

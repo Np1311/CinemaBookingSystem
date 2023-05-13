@@ -99,10 +99,13 @@ class customer_model extends user_model{
 
         
 
-        $sql3 = "INSERT INTO booking (phone,movieID, roomID,roomName, movieName, showTiming, numOfTicket, seats, noOfChildTicket, noOfSeniorTicket, noOfStudentTicket, bookingDate, total_amnt, loyaltypoints)
+        $sql2 = "INSERT INTO booking (phone,movieID, roomID,roomName, movieName, showTiming, numOfTicket, seats, noOfChildTicket, noOfSeniorTicket, noOfStudentTicket, bookingDate, total_amnt, loyaltypoints)
         VALUES ('$phone','$movieID', '$roomID', '$roomName', '$movieName', '$time', '$numOfTiket', '$seats', '$noOfChildTicket', '$noOfSeniorTicket', '$noOfStudentTicket', '$bookingDate', '$total_amnt', '$loyaltypoints');";
 
+        $sql3 = "UPDATE `customer` SET loyalty_point = loyalty_point + $loyaltypoints WHERE phone = $phone;";
+        
         try {
+            mysqli_query($conn, $sql2); 
             mysqli_query($conn, $sql3); 
             echo '<script>alert("good to go")</script>'; 
             return true; 
@@ -124,13 +127,14 @@ class customer_model extends user_model{
             echo "Error creating table: " . $conn->error;
         }
     }
-    public function takenSeats($movieID,$showTiming){
+    public function takenSeats($movieID,$showTiming,$date){
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming';";
+        $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
         $result = $conn->query($sql);
         $merged_array = array();
+        $array = array();
         if (!$result) {
         echo "Error: " . $conn->error;
             $array = [];

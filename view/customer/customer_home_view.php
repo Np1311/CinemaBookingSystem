@@ -117,40 +117,64 @@ print_r($array);
         <div class="movie-container">
            
                 <div class="movie-list">
-                    <?php
-                        foreach($array as $key=>$arr){
+                <?php
+                foreach($array as $key=>$arr){
+                ?>
+                    <div class="movie">
+                        <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
+                        <h2><?php echo $arr['movieName'];?></h2>
+                        <p><b>Genre = </b><?php echo $arr['genre'];?></p>
+                        <p><b>Duration = </b><?php echo $arr['duration'];?></p></br>
 
-                    ?>
-                        <div class="movie">
-                            <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
-                            <h2><?php echo $arr['movieName'];?></h2>
-                            <p><b>Genre = </b><?php echo $arr['genre'];?></p>
-                            <p><b>Duration = </b><?php echo $arr['duration'];?></p>
-                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>">
-                                <button><?php echo $arr['timing1'];?></button>
-                            </a> </br>
+                        <label for="number"><b>Booking Date</b></label></br>
+                        <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>
 
-                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing2'];?>">
-                                <button><?php echo $arr['timing2'];?></button>
-                            </a>
-                            </br>
-                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing3'];?>">
-                                <button><?php echo $arr['timing3'];?></button>
-                            </a>
-                            </br>
-                            <?php 
-                            if($arr['timing4'] != 0){
-                            ?>
-                            <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing4'];?>">
-                                <button><?php echo $arr['timing4'];?></button>
-                            </a>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    <?php
+                        <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">
+                            <button><?php echo $arr['timing1'];?></button>
+                        </a></br>
+
+                        <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing2'];?>"  style="text-decoration: none;">
+                            <button><?php echo $arr['timing2'];?></button>
+                        </a></br>
+
+                        <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing3'];?>"  style="text-decoration: none;">
+                            <button><?php echo $arr['timing3'];?></button>
+                        </a></br>
+
+                        <?php 
+                        if($arr['timing4'] != 0){
+                        ?>
+                        <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing4'];?>" style="text-decoration: none;">
+                            <button><?php echo $arr['timing4'];?></button>
+                        </a>
+                        <?php
                         }
-                    ?>
+                        ?>
+
+                        <script>
+                        // add date to booking button URLs when clicked
+                        var bookingButtons = document.querySelectorAll('.movie a');
+                        for (var i = 0; i < bookingButtons.length; i++) {
+                            bookingButtons[i].addEventListener('click', function(e) {
+                                var movie = e.currentTarget.closest('.movie');
+                                var dateInput = movie.querySelector('input[name="booking_date"]');
+                                var dateValue = dateInput.value;
+                                var url = e.currentTarget.href;
+                                if (url.indexOf('&date=') > -1) {
+                                    url = url.replace(/&date=.*?(&|$)/, '&date=' + dateValue + '$1');
+                                } else {
+                                    url += '&date=' + dateValue;
+                                }
+                                e.currentTarget.href = url;
+                            });
+                        }
+                        </script>
+
+                    </div>
+                <?php
+                }
+                ?>
+
                 </div>
             
         </div>
