@@ -118,6 +118,7 @@ require('header.html')
             </div>
                 </br>
                 <button class="btn-primary" type ='submit' name='submit' value='submit'> Log in </button>
+                <button class="btn-primary" type="button" onclick="window.location.href = 'index.php'">Back</button>
             </form>
     </div>
     <script>
