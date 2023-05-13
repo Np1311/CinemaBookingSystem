@@ -47,7 +47,7 @@ $admin_controller = new admin_controller;
             margin-bottom: 20px;
             font-size: 16px;
         }
-
+/* 
         input[type="submit"] {
             background-color: #bd9a7a;
             color: white;
@@ -65,7 +65,7 @@ $admin_controller = new admin_controller;
 
         input[type="submit"]:focus {
             outline: none;
-        }
+        } */
 
         .password-input {
             position: relative;
@@ -85,6 +85,25 @@ $admin_controller = new admin_controller;
             transform: translateY(-50%);
             cursor: pointer;
         }
+
+        .btn-primary{
+                background-color: #bd9a7a; 
+                border: 2px solid white;
+                color: white;
+                padding: 15px ;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 8px;
+                width: 400px;
+                /* margin-left: 100px; */
+        }
+        .btn-primary:hover {
+                background-color: #fff;
+                color: #bd9a7a;
+                border: 2px solid;
+        } 
 
 
     </style>
@@ -127,7 +146,8 @@ $admin_controller = new admin_controller;
             </div><br>
 
 
-            <input type="submit" name="submit" value="Create Account">
+            <button class="btn-primary" type ='submit' name='submit' value='Create Account'>Create Account</button>
+            <button class="btn-primary" type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
         </form>
 </div>
 <?php

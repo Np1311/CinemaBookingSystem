@@ -88,7 +88,7 @@ require('header.html')
                 background-color: #fff;
                 color: #bd9a7a;
                 border: 2px solid;
-            } 
+        } 
         .password-container {
             position: relative;
         }

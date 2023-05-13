@@ -2,50 +2,49 @@
 session_start();
 ?>
 <html>
-    <head>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico"> <!--new thing-->
-        <style>
-            .header {
-                
-                background: #bd9a7a;
-                color: white;
-                font-size: 20px;
-                width:100%;
-                height:50px; 
-                position:fixed;
-                top:0;
-                left:0;
-                font-family : Arial ;
-                display: grid;
-                grid-template-columns: auto auto auto auto !important;
-                gap: 200px;
-                
-                padding: 10px;
+<head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        .header {
+            background: #bd9a7a;
+            color: white;
+            font-size: 20px;
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family: Arial;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 999;
+        }
 
-                z-index: 999;
-                
+        .header-image {
+            height: 50px;
+            margin-right: 10px;
+        }
 
-                
-            }
+        .logoAndName {
+            display: flex;
+            align-items: center;
+            margin-left: 5px;
+        }
 
-            .header-image {
-                height: 50px;
-            }
+        .logoAndName h2 {
+            margin: 0;
+        }
 
-            /* h2{
-                
-                margin-block-start: 0.18em !important; 
-                margin-block-end: 0 !important;
-                margin-inline-start: 0px;
-                margin-inline-end: 0px;
-                
-            } */
-            
+        .logoutbtn {
+            display: flex;
+            align-items: center;
+        }
 
-            
-            .logout {
-            background-color: #0a0805 ;
-            color: #FFFFFF ;
+        .logout {
+            background-color: #0a0805;
+            color: #FFFFFF;
             padding: 10px 20px;
             font-size: 20px;
             border: none;
@@ -53,11 +52,12 @@ session_start();
             font-family: Arial;
             border-radius: 5px;
             cursor: pointer;
-            }
+            margin-right: 10px;
+        }
 
-            .back {
-            background-color: #fff ;
-            color: #0a0805 ;
+        .back {
+            background-color: #fff;
+            color: #0a0805;
             padding: 10px 20px;
             font-size: 20px;
             border: none;
@@ -65,99 +65,58 @@ session_start();
             font-family: Arial;
             border-radius: 5px;
             cursor: pointer;
-            }
+            /* margin-left: 20px; */
+            margin-right: 30px;
+        }
 
-            .logout:hover {
+        .logout:hover {
             background-color: #FFFFFF;
             color: #0a0805;
-            }
-            .back:hover {
+        }
+
+        .back:hover {
             background-color: #0a0805;
             color: #ffff;
-            }
-
-            /* .back {
-            background-color: rgb(238, 238, 238);
-            color: black;
-            padding: 10px 20px;
-            font-size: 20px;
-            border: none;
-            margin-top: 4px;
-            font-family: Arial;
-            border-radius: 5px;
-            cursor: pointer;
-            } */
-
-
-            
-            #home {
-            text-decoration: none;
-            color: inherit;
-            font-size: 30px;
-            align-items: center !important;
-            }
-
-            .logoAndName{
-                display: inline-block !important;  
-            }
-           
-            
-            /* .button:hover {
-            background-color: red;
-            } */
-            
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <div class ='logoAndName'>
-            <img src="../cap.png" alt="Your Image" class="header-image">
-            <a href="index.php" id="home">&nbsp&nbspCapybara Cinema</a>
-            </div><!--new thing -->
-            <div></div> 
-            <div></div>
-            <div class = 'logoutbtn'>
-                <?php
-                    if($_SESSION['profile'] == 'system_admin'){
-                ?>
-                    <button class="back" onclick="location.href='../view/admin_home_view.php'">Home</button> &nbsp&nbsp
-                    <button class="logout" onclick="location.href='../controller/logout.php'">
-                    Log Out
-                    </button>
-                <?php
-                    }
-                ?>
-                <?php
-                    if($_SESSION['profile'] == 'manager'){
-                ?>
-                    <button class="back" onclick="location.href='../manager/manager_home_view.php'">Home</button> &nbsp&nbsp
-                    <button class="logout" onclick="location.href='../../controller/logout.php'">
-                    Log Out
-                    </button>
-                <?php
-                    }
-                ?>
-                <?php
-                    if($_SESSION['profile'] == 'customer'){
-                ?>
-                    <button class="back" onclick="location.href='../customer/customer_home_view.php'">Home</button> &nbsp&nbsp
-                    <button class="logout" onclick="location.href='../../controller/logout.php'">
-                    Log Out
-                    </button>
-                <?php
-                    }
-                ?>
-                
-                
-                
-        </div>
-            
-        </div>
-        <script>
-            function goBack() {
-              window.history.go(-1);
-            }
-          </script>
-    </body>
-
-</html>
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class='logoAndName'>
+        <img src="../cap.png" alt="Your Image" class="header-image">
+        <h2><a href="index.php" id="home">Capybara Cinema</a></h2>
+    </div>
+    <div class='logoutbtn'>
+        <?php
+        if ($_SESSION['profile'] == 'system_admin') {
+            ?>
+            <button class="logout" onclick="location.href='../controller/logout.php'">Log Out</button>
+            <button class="back" onclick="location.href='../view/admin_home_view.php'">Home</button>
+            <?php
+        }
+        ?>
+        <?php
+        if ($_SESSION['profile'] == 'manager') {
+            ?>
+            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
+            <button class="back" onclick="location.href='../manager/manager_home_view.php'">Home</button>
+            <?php
+        }
+        ?>
+        <?php
+        if ($_SESSION['profile'] == 'customer') {
+            ?>
+            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
+            <button class="back" onclick="location.href='../customer/customer_home_view.php'">Home</button>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+<script>
+    function goBack() {
+        window.history.go(-
+1);
+    }
+</script>
+</
