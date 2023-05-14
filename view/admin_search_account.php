@@ -121,13 +121,13 @@ table td {
   <form method="post">
     <label for="profile">Profile:</label>
     <select name="profile">
-        <option value="" disabled selected>Choose a Profile</option>
+        <option value="" disabled selected> --Choose a Profile-- </option>
         <?php
             $controller->showProfile();
         ?>
     </select>
     <select name="searchBy" id="searching">
-        <option value="" disabled selected>Choose a Filter</option>
+        <option value="" disabled selected> --Choose a Filter-- </option>
         <option value="fname">First Name</option>
         <option value="lname">Last Name</option>
         <option value="phone">Phone</option>

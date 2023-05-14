@@ -69,7 +69,7 @@ $controller =  new admin_controller;
             <form method="post">
                 <label for="profile">Profile:</label>
                 <select name="deleteProfile">
-                <option value="" disabled selected>Choose a Profile</option>
+                <option value="" disabled selected>-- Choose a Profile --</option>
                     <?php
                         $controller->showProfile();
                     ?>

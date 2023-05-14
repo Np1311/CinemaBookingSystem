@@ -74,6 +74,7 @@ select {
     <form method="post">
       <label for="profile">Profile:</label>
       <select name="reactivate">
+      <option value="" disabled selected>-- Choose a Profile --</option>
         <?php
         $controller->showProfile();
         ?>
