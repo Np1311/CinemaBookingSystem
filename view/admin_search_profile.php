@@ -66,25 +66,28 @@ $controller = new admin_controller;
     }
 
     table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-    }
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto; /* Add margin to center the table and create spacing between form and table */
+  border-collapse: collapse;
+}
 
-    table th,
-    table td {
-      padding: 8px;
-      border: 2px solid black;
-    }
+table th,
+table td {
+  padding: 8px;
+  border: 2px solid black;
+}
 
-    table th {
-      background-color: #bd9a7a;
-      font-weight: bold;
-    }
+table th {
+  background-color: #bd9a7a;
+  font-weight: bold;
+}
 
-    table td {
-      text-align: center;
-    }
+table td {
+  text-align: center;
+}
+/* You can add this CSS code within the <style> tags in your HTML file. With this code, the table will be centered on the page and have a maximum width of 800px. The spacing between the form and table will create a clear distinction between them. */
+
   </style>
 
   <meta charset="utf-8">
