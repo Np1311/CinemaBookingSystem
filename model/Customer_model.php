@@ -40,7 +40,7 @@ class customer_model extends user_model{
         LEFT JOIN cinemaRoom r ON r.roomID = a.roomID
         WHERE m.movieID = '$bookingID';";
 
-        $sql2 = "SELECT `seat_row`,`seat_column`FROM `customer` WHERE `phone`= $phone;";
+        $sql2 = "SELECT `seat_row`,`seat_column`,`loyalty_point` FROM `customer` WHERE `phone`= $phone;";
  
         $result = $conn->query($sql);
         $result2 = $conn->query($sql2);
@@ -63,6 +63,7 @@ class customer_model extends user_model{
             while ($row2 = mysqli_fetch_assoc($result2) ) {
                 $array['seat_row'] = $row2['seat_row'];
                 $array['seat_column'] = $row2['seat_column'];
+                $array['loyalty_point']= $row2['loyalty_point'];
             }
         }
 
@@ -133,7 +134,7 @@ class customer_model extends user_model{
 
         $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
         $result = $conn->query($sql);
-        $merged_array = array();
+        
         $array = array();
         if (!$result) {
         echo "Error: " . $conn->error;
@@ -145,6 +146,132 @@ class customer_model extends user_model{
             }
         }
         return $array;
+    }
+    public function getBookingDetail($phone){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "SELECT * FROM `booking` WHERE phone = '$phone'AND `bookingDate` < CURDATE();";
+        $result = $conn->query($sql);
+        $array = array();
+        if (!$result) {
+        echo "Error: " . $conn->error;
+            $array = [];
+        }else{
+            // fetch the result row as an associative array
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row ;
+            }
+        }
+        return $array;
+    }
+    public function redeemPoint($newLoyaltyPoints,$phone){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "UPDATE `customer` SET loyalty_point = $newLoyaltyPoints WHERE phone = $phone;";
+        
+        try { 
+            mysqli_query($conn, $sql); 
+            echo '<script>alert("good to go")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+            return false;
+        }
+        
+    }
+    public function getFoodAndDrink(){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        $sql = "SELECT * FROM `cinemaFoodAndDrink` WHERE stock > 0 && status = 'active';";
+        $result = $conn->query($sql);
+        $array = array();
+        if (!$result) {
+        echo "Error: " . $conn->error;
+            $array = [];
+        }else{
+            // fetch the result row as an associative array
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row ;
+            }
+        }
+        return $array;
+    }
+    public function orderFood($phone,$date,$price){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        $sql = "CREATE TABLE IF NOT EXISTS fnbOrder (
+            orderID INT AUTO_INCREMENT PRIMARY KEY,
+            bookingID INT NOT NULL,
+            phone INT NOT NULL,
+            orderDate DATE NOT NULL,
+            totalPrice DECIMAL(10,2) NOT NULL DEFAULT 0,
+            FOREIGN KEY (bookingID) REFERENCES booking(bookingID),
+            FOREIGN KEY (phone) REFERENCES customer(phone)
+            );";
+        if ($conn->query($sql) === TRUE) {
+            echo "Table created successfully";
+        } else {
+            echo "Error creating table: " . $conn->error;
+        }
+        
+        
+
+        $sql2 = "INSERT INTO `fnbOrder` (`bookingID`, `phone`,`orderDate`, `totalPrice`)
+        VALUES ((SELECT MAX(bookingID) FROM booking), '$phone', '$date', '$price');";
+       
+
+        // $sql3 = "UPDATE `customer` SET loyalty_point = loyalty_point + $loyaltypoints WHERE phone = $phone;";
+        
+        try {
+            mysqli_query($conn, $sql2); 
+            //mysqli_query($conn, $sql3); 
+            echo '<script>alert("good to go")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+            return false;
+        }
+    }
+    public function orderItem($foodID,$quantity){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        $sql = "CREATE TABLE IF NOT EXISTS orderItem (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            foodID INT UNSIGNED,
+            orderID INT NOT NULL,
+            quantity INT NOT NULL,
+            FOREIGN KEY (orderID) REFERENCES fnbOrder(orderID),
+            FOREIGN KEY (foodID) REFERENCES cinemaFoodAndDrink(foodID) 
+            );";
+        if ($conn->query($sql) === TRUE) {
+            echo "Table created successfully";
+        } else {
+            echo "Error creating table: " . $conn->error;
+        }
+        $sql2 = "INSERT INTO `orderItem` (`foodID`, `orderID`, `quantity`)
+        VALUES ( '$foodID', (SELECT MAX(orderID) FROM fnbOrder), '$quantity');";
+
+        // $sql3 = "UPDATE `customer` SET loyalty_point = loyalty_point + $loyaltypoints WHERE phone = $phone;";
+        
+        try {
+            mysqli_query($conn, $sql2); 
+            //mysqli_query($conn, $sql3); 
+            echo '<script>alert("good to go")</script>'; 
+            return true; 
+        }
+        catch(mysqli_sql_exception $e) {
+            die("Error creating user: " . mysqli_error($conn)); 
+            echo '<script>alert("error updating user")</script>'; 
+            return false;
+        }
+
     }
 }
 

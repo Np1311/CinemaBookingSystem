@@ -83,6 +83,52 @@ class customer_controller{
         return $taken_seats;
     }
 
+    public function getBookingController($phone){
+        global $customer;
+
+        $array = $customer->getBookingDetail($phone);
+
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
+
+    }
+    public function redeemPointController($newLoyaltyPoints,$phone){
+
+        global $customer;
+
+        if($customer -> redeemPoint($newLoyaltyPoints,$phone)){
+            return true;
+        }
+    }
+    public function getFoodAndDrinkController(){
+        global $customer;
+
+        $array = $customer->getFoodAndDrink();
+
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
+    }
+    public function orderFoodController($phone,$date,$price){
+        global $customer;
+
+        if($customer -> orderFood($phone,$date,$price)){
+            return true;
+        }
+    }
+    public function orderItemController($foodID,$quantity){
+        global $customer;
+
+        if($customer -> orderItem($foodID,$quantity)){
+            return true;
+        }
+    }
+
 
 }
 
