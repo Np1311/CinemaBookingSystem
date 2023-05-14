@@ -5,76 +5,63 @@ $controller =  new admin_controller;
 ?>
 <html>
     <head>
-        <style>
-            .formContainer {
-                margin: auto;
-                width: 30%;
-                padding: 10px;
-                background-color: #f2f2f2;
-                border-radius: 5px;
-            }
+    <style>
+    .formContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-            form {
-                max-width: 1000px; /*New things */
-                margin: 0 auto; /* Set left and right margin to auto */
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-                position: absolute; /* Position the form absolutely */
-                top: 50%; /* Set the top position to 50% of the screen height */
-                left: 50%; /* Set the left position to 50% of the screen width */
-                transform: translate(-50%, -50%); /* Use the transform property to center the form */
-            }
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        width: 300px;
+        max-width: 100%;
+    }
 
-            label {
-                margin-top: 10px;
-                margin-bottom: 5px;
-            }
+    body {
+        background-color: #e7dbd0;
+    }
 
-            select {
-                padding: 5px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
+    label {
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
 
-            input[type="submit"] {
-                padding: 10px;
-                border: none;
-                background-color: #bd9a7a;
-                color: white;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
+    select,
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
 
-            input[type="submit"]:hover {
-                background-color: white;
-                color: #bd9a7a;
-                border: 2px solid;
-            }
+    input[type="submit"],
+    button[type="button"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 49%;
+        background-color: #bd9a7a;
+        color: white;
+        transition: background-color 0.3s;
+    }
 
-            button[type="button"] {
-            background-color: #bd9a7a;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            }
+    input[type="submit"]:hover,
+    button[type="button"]:hover {
+        background-color: white;
+        color: #bd9a7a;
+        border: 2px solid;
+    }
+</style>
 
-            button[type="button"]:hover {
-                background-color: white;
-                color: #bd9a7a;
-                border: 2px solid;
-            }
-
-
-            body {
-                background-color: #e7dbd0;
-            }
-        </style>
     </head>
 
     <body>
@@ -82,6 +69,7 @@ $controller =  new admin_controller;
             <form method="post">
                 <label for="profile">Profile:</label>
                 <select name="deleteProfile">
+                <option value="" disabled selected>Choose a Profile</option>
                     <?php
                         $controller->showProfile();
                     ?>

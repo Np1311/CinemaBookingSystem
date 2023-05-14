@@ -86,6 +86,17 @@ table th {
 table td {
   text-align: center;
 }
+
+#form::after{
+    content: "\a";
+    white-space: pre;
+}
+
+#table::before{
+    content: "\a";
+    white-space: pre;
+}
+
 /* You can add this CSS code within the <style> tags in your HTML file. With this code, the table will be centered on the page and have a maximum width of 800px. The spacing between the form and table will create a clear distinction between them. */
 
   </style>

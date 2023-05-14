@@ -64,7 +64,6 @@ form label {
 }
 
 form select,
-
 form input[type="text"] {
     width: 100%;
     padding: 8px;

@@ -139,7 +139,7 @@ if(isset($_GET['deleteID'])){
         }
     </style>
 
-
+        <title>Admin Home View</title>
     </head>
     <body>
         <div class="adminButton">
