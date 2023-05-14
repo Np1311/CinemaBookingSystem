@@ -40,19 +40,36 @@ class manager_model extends user_model{
     public function viewRoom(){
         global $conn;
         $conn->select_db("CSIT314_Test");
+
+        $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'CSIT314_Tester' AND table_type = 'BASE TABLE';";
        
 
-        $sql = "SELECT * FROM cinemaRoom;";
+        
 
         $result = $conn->query($sql);
         if (!$result) {
             echo "Error: " . $conn->error;
-             $array=[];
+             $array1=[];
         }else{
         while ($row = mysqli_fetch_assoc($result)) {
-            $array[] =  $row;
+            $array1[] =  $row['table_name'];
         }
         }
+        if(in_array('cinemaRoom',$array1)){
+            $sql2 = "SELECT * FROM cinemaRoom;";
+            $result2 = $conn->query($sql2);
+            if (!$result2) {
+                echo "Error: " . $conn->error;
+                $array=[];
+            }else{
+            while ($row = mysqli_fetch_assoc($result2)) {
+                $array[] =  $row;
+            }
+            }
+        }else{
+            $array=[];
+        }
+        
         return $array;
 
     }
