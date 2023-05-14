@@ -41,11 +41,8 @@ class manager_model extends user_model{
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'CSIT314_Tester' AND table_type = 'BASE TABLE';";
+        $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'CSIT314_Test' AND table_type = 'BASE TABLE';";
        
-
-        
-
         $result = $conn->query($sql);
         if (!$result) {
             echo "Error: " . $conn->error;
