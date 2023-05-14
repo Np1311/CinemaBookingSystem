@@ -1,75 +1,99 @@
 <?php
 require('../controller/admin_controller.php');
-$controller =  new admin_controller;
+require('header.html');
+$controller = new admin_controller;
 ?>
 <html>
-    <head>
-        <style>
-            .formContainer {
-                margin: auto;
-                width: 30%;
-                padding: 10px;
-                background-color: #f2f2f2;
-                border-radius: 5px;
-            }
+<head>
+    <style>
+   body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial;
+  background-color: #e7dbd0;
+}
 
-            form {
-                display: flex;
-                flex-direction: column;
-            }
+.formContainer {
+  width: 30%;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
 
-            label {
-                margin-top: 10px;
-                margin-bottom: 5px;
-            }
+form {
+  display: flex;
+  flex-direction: column;
+}
 
-            select {
-                padding: 5px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
+label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
-            input[type="submit"] {
-                padding: 10px;
-                border: none;
-                background-color: #bd9a7a;
-                color: white;
-                border-radius: 5px;
-                cursor: pointer;
-            }
+select {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-            input[type="submit"]:hover {
-                background-color: white;
-                color: #bd9a7a;
-                border: 2px solid;
-            }
-        </style>
-    </head>
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
 
-    <body>
-        <div class = 'formContainer'>
-            <form method="post">
-                <label for="profile">Profile:</label>
-                <select name="reactivate">
-                    <?php
-                        $controller->showProfile();
-                    ?>
-                </select>
-                <input type="submit" name='submit' value="Submit">
-            </form>
-        </div>
+.btn-primary {
+  background-color: #bd9a7a;
+  border: 2px solid white;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  width: 48%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+  color: #bd9a7a;
+  border: 2px solid;
+}
+
+    </style>
+    <title>Admin Reactive Profile</title>
+</head>
+
+<body>
+  <div class='formContainer'>
+    <form method="post">
+      <label for="profile">Profile:</label>
+      <select name="reactivate">
         <?php
-
-            if(isset($_POST['reactivate'])){
-                $reactivateProfile = $_POST['reactivate'];
-                echo $reactivateProfile;
-                if($controller->reactivateProfile($reactivateProfile)){
-                    echo '<script>alert("'.$reactivateProfile.' activated")</script>'; 
-                    echo" <script>window.location='../view/admin_home_view.php';</script>";
-                    // return true;
-                }
-            }
+        $controller->showProfile();
         ?>
-    </body>
+      </select>
+      <div class="btn-container">
+        <button class="btn-primary" type='submit' name='submit' value='Submit'>Submit</button>
+        <button class="btn-primary" type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
+      </div>
+    </form>
+  </div>
+  <?php
+  if (isset($_POST['reactivate'])) {
+    $reactivateProfile = $_POST['reactivate'];
+    echo $reactivateProfile;
+    if ($controller->reactivateProfile($reactivateProfile)) {
+      echo '<script>alert("' . $reactivateProfile . ' activated")</script>';
+      echo " <script>window.location='../view/admin_home_view.php';</script>";
+    }
+  }
+  ?>
+</body>
+
 </html>

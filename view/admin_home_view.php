@@ -53,7 +53,6 @@ if(isset($_GET['deleteID'])){
             margin-right: 8px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.2s ease-in-out;
         }
 
         .btn-primary {
@@ -115,7 +114,10 @@ if(isset($_GET['deleteID'])){
             background-color: #bd9a7a; /*button add, edit, update*/
             color: #fff;
             cursor: pointer;
-            transition: all 0.2s ease-in-out;
+            /* transition: all 0.2s ease-in-out; */
+            text-align: center;
+            text-decoration: none;
+
         }
 
         #bodyButton:hover{
@@ -127,7 +129,9 @@ if(isset($_GET['deleteID'])){
             background-color: #FFFFFF; 
             color: #0a0805;
         }
-        body {background-color: #e7dbd0 }
+        body {
+            background-color: #e7dbd0;
+         }
 
 
         @media screen and (max-width: 768px) {
@@ -135,7 +139,7 @@ if(isset($_GET['deleteID'])){
         }
     </style>
 
-
+        <title>Admin Home View</title>
     </head>
     <body>
         <div class="adminButton">

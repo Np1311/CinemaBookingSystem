@@ -60,7 +60,7 @@ require('header.html')
             margin-bottom: 20px;
             box-sizing: border-box;
         }
-        input[type="submit"] {
+        /* input[type="submit"] {
             background-color: #4CAF50;
             color: #FFFFFF;
             padding: 10px 20px;
@@ -70,7 +70,7 @@ require('header.html')
         }
         input[type="submit"]:hover {
             background-color: #3e8e41;
-        }
+        } */
         .btn-primary{
                 background-color: #bd9a7a; 
                 border: 2px solid white;
@@ -84,6 +84,11 @@ require('header.html')
                 width: 400px;
                 /* margin-left: 100px; */
         }
+        .btn-primary:hover {
+                background-color: #fff;
+                color: #bd9a7a;
+                border: 2px solid;
+        } 
         .password-container {
             position: relative;
         }
@@ -118,6 +123,7 @@ require('header.html')
             </div>
                 </br>
                 <button class="btn-primary" type ='submit' name='submit' value='submit'> Log in </button>
+                <button class="btn-primary" type="button" onclick="window.location.href = 'index.php'">Back</button>
             </form>
     </div>
     <script>
