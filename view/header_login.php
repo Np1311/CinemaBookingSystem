@@ -52,7 +52,7 @@ session_start();
             font-family: Arial;
             border-radius: 5px;
             cursor: pointer;
-            margin-right: 10px;
+            margin-right: 20px;
         }
 
         .back {
@@ -66,7 +66,7 @@ session_start();
             border-radius: 5px;
             cursor: pointer;
             /* margin-left: 20px; */
-            margin-right: 30px;
+            /* margin-right: 20px; */
         }
 
         .logout:hover {
@@ -90,24 +90,24 @@ session_start();
         <?php
         if ($_SESSION['profile'] == 'system_admin') {
             ?>
-            <button class="logout" onclick="location.href='../controller/logout.php'">Log Out</button>
             <button class="back" onclick="location.href='../view/admin_home_view.php'">Home</button>
+            <button class="logout" onclick="location.href='../controller/logout.php'">Log Out</button>
             <?php
         }
         ?>
         <?php
         if ($_SESSION['profile'] == 'manager') {
             ?>
-            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
             <button class="back" onclick="location.href='../manager/manager_home_view.php'">Home</button>
+            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
             <?php
         }
         ?>
         <?php
         if ($_SESSION['profile'] == 'customer') {
             ?>
-            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
             <button class="back" onclick="location.href='../customer/customer_home_view.php'">Home</button>
+            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
             <?php
         }
         ?>
