@@ -1,6 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
-
+// require('../header.html');
 
 
 $arr = $controller -> viewRoomController();
@@ -35,6 +35,12 @@ echo "</table>";
 
 <html>
     <head>
+        <title>Cinema Room</title>
+        <style>
+            body{
+                background-color: #e7dbd0;
+            }
+        </style>
     </head>
     <body>
         <div class="adminButton">
@@ -52,6 +58,7 @@ echo "</table>";
             <a href="admin_reactivate_profile.php">
                 <button id='bodyButton'>Reactivate profile</button>
             </a>  -->
+            <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
         </div>
     </body>
 </html>
