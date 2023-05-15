@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
     $status = $_POST['status'];
     
     if ($controller->updateRoomController($updateID, $roomName, $roomType, $roomCapacity, $totalRow, $totalColumn, $status)) {
-        echo "<script>window.location='../manager/manager_view_cinema.php';</script>";
+        echo "<script>window.location='../manager/manager_view_cinemaRoom.php';</script>";
     }
 }
 ?>

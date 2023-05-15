@@ -37,10 +37,10 @@ class manager_controller{
         return $array;
     }
 
-    public function updateRoomController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
+    public function updateRoomController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status){
         global $manager;
 
-        if($manager -> updateRoom($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4)){
+        if($manager -> updateRoom($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status)){
             return true;
         }
     }
