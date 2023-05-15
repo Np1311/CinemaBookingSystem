@@ -14,27 +14,114 @@ print_r($array);
     <title>Movie Review Form</title>
     <style>
       /* CSS for star rating */
-      /* CSS for star rating */
-        .stars {
+      .stars {
         display: inline-block;
         direction: rtl;
-        }
-        .stars input[type="radio"] {
+      }
+      .stars input[type="radio"] {
         display: none;
-        }
-        .stars label {
+      }
+      .stars label {
         font-size: 30px;
         color: #ccc;
         cursor: pointer;
         display: inline-block;
         transform: rotateY(180deg);
-        }
-        .stars label:hover,
-        .stars label:hover ~ label,
-        .stars input[type="radio"]:checked ~ label {
+      }
+      .stars label:hover,
+      .stars label:hover ~ label,
+      .stars input[type="radio"]:checked ~ label {
         color: #ffcc00;
-        }
+      }
 
+      /* CSS for review form */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 32px;
+        margin-top: 40px;
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+
+      input[type="text"],
+      input[type="submit"],
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 6px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 18px;
+      }
+
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+      }
+
+      textarea {
+        height: 150px;
+        resize: none;
+      }
+
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        font-size: 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      a button {
+        background-color: #008CBA;
+        color: #fff;
+        font-size: 18px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+        padding: 12px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a button:hover {
+        background-color: #006080;
+      }
+      .homeButton{
+          display: block;
+          margin: 0 auto;
+          width: 700px;
+          text-decoration: none;
+          color: black;
+          border: none;
+      }
+
+      .homeButton:hover {
+        background-color: #286090;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -45,9 +132,15 @@ print_r($array);
             <form method="post">
                 <label for="booking_id">Booking ID:</label>
                 <input type="text" id="booking_id" name="booking_id" value="<?php echo $booking['bookingID'];?>"><br><br>
+
+                <label for="room_name"style="display:none;">Room ID:</label>
+                <input type="hidden" id="room_name" name="room_ID" value="<?php echo $booking['roomID'];?>" required><br><br>
         
                 <label for="room_name">Room Name:</label>
                 <input type="text" id="room_name" name="room_name" value="<?php echo $booking['roomName'];?>" required><br><br>
+
+                <label for="room_name" style="display:none;">Movie ID:</label>
+                <input type="hidden" id="room_name" name="movieID" value="<?php echo $booking['movieID'];?>" required><br><br>
         
                 <label for="movie_name">Movie Name:</label>
                 <input type="text" id="movie_name" name="movie_name" value="<?php echo $booking['movieName'];?>" required><br><br>
@@ -75,27 +168,27 @@ print_r($array);
         
                 <input type="submit" name ='submit' value="Submit">
             </form> 
+        </br></br>
         <?php
         }
         ?>
     <?php
         
         if (isset($_POST['submit'])) {
-            $booking_id = $_POST['booking_id'];
-            $room_name = $_POST['room_name'];
-            $movie_name = $_POST['movie_name'];
-            $show_timing = $_POST['show_timing'];
+            $bookingID = $_POST['booking_id'];
+            $roomID = $_POST['room_ID'];
+            $movieID = $_POST['movieID'];
+            $movieName = $_POST['movie_name'];
+            $showTiming = $_POST['show_timing'];
             $rating = $_POST['rating'];
             $review = $_POST['review'];
         
-          // Code to process and save the review goes here
-            echo $rating;
-            echo '</br>';
-            echo $review;
-            echo '</br>';
-          echo "<p>Thank you for your review!</p>";
+            if($controller -> addReviewController($bookingID, $roomID,$movieID,$movieName,$showTiming,$rating,$review)){
+              echo" <script>window.location='customer_review.php';</script>";
+            }
         }
         
     ?>
+    <a href="customer_home_view.php"><button class="homeButton">Home</button></a>
   </body>
 </html>

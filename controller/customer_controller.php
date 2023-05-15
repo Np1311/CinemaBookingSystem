@@ -129,6 +129,14 @@ class customer_controller{
         }
     }
 
+    public function addReviewController($bookingID, $roomID,$movieID,$movieName,$showTiming,$rating,$review){
+        global $customer;
+
+        if($customer -> addReview($bookingID, $roomID,$movieID,$movieName,$showTiming,$rating,$review)){
+            return true;
+        }
+        
+    }
 
 }
 
