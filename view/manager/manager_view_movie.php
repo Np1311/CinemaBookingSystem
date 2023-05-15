@@ -1,7 +1,7 @@
 <?php
 require('../../controller/manager_controller.php');
 
-$arr = array();
+
 
 if($arr = $controller -> viewMovieController()){
     $arr =[];
