@@ -184,24 +184,24 @@ class manager_model extends user_model{
         $conn->select_db("CSIT314_Test");
 
         //$sql = "SELECT * FROM `cinemaMovie` ";
-        $sql =  "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomName, 
-        a.timing1, a.timing2, a.timing3, a.timing4
-        FROM cinemaMovie m
-        LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
-        LEFT JOIN cinemaRoom r ON r.roomID = a.roomID;";
- 
-        $result = $conn->query($sql);
-
-        // check if the query was successful
-        if (!$result) {
-        echo "Error: " . $conn->error;
-            $array = [];
-        }else{
-            // fetch the result row as an associative array
-            while ($row = mysqli_fetch_assoc($result) ) {
+        try {
+            $sql = "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomName, a.timing1, a.timing2, a.timing3, a.timing4
+                    FROM cinemaMovie m
+                    LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
+                    LEFT JOIN cinemaRoom r ON r.roomID = a.roomID;";
+            $result = $conn->query($sql);
+            if (!$result) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+            $array = array();
+            while ($row = mysqli_fetch_assoc($result)) {
                 $array[] = $row;
             }
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
         }
+        
 
         return $array;
     }
