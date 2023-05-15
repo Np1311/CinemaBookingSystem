@@ -21,6 +21,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            background-color: white;
         }
 
         table th,
@@ -42,6 +43,10 @@
         .adminButton {
             text-align: center;
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .adminButton a {
@@ -57,13 +62,33 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-bottom: 10px;
         }
 
         .adminButton button:hover {
-            background-color: #bd9a7a;
-            color: #fff;
-            opacity: 0.8;
+            background-color: white;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
         }
+       
+        .btn-primary {
+            background-color: #bd9a7a;
+            color: white; /*button update */
+        }
+
+        .btn-primary:hover {
+            background-color: #0062cc;
+        }
+
+        .btn-danger {
+            background-color: #bd9a7a;
+            color: white; /*button delete*/
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
     </style>
 </head>
 <body>
@@ -117,7 +142,7 @@
                 <div class="adminButton">
             <a href="manager_create_cinema.php">
                 <button>Create Cinema Room</button>
-            </a> <br>
+            </a> <br> <br>
 
             <!--<a href="manager_view_cinema.php">
                 <button>View Cinema Room</button>

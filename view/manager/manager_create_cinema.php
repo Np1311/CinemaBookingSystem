@@ -80,19 +80,20 @@ require('../header.html');
         }
     </style>
 
-        <script>
-            function addCapacity() {
-                // Get the values of the input fields
-                var totalRow = parseInt(document.getElementById("totalRow").value);
-                var totalColumn = parseInt(document.getElementById("totalColumn").value);
+    <script>
+        function addCapacity() {
+            // Get the values of the input fields
+            var totalRow = parseInt(document.getElementById("totalRow").value);
+            var totalColumn = parseInt(document.getElementById("totalColumn").value);
 
-                // Calculate the room capacity
-                var roomCapacity = totalRow * totalColumn;
+            // Calculate the room capacity
+            var roomCapacity = totalRow * totalColumn;
 
-                // Display the room capacity in the roomCapacity input field
-                document.getElementById("roomCapacity").value = roomCapacity;
-            }
-        </script>
+            // Display the room capacity in the roomCapacity input field
+            document.getElementById("roomCapacity").value = roomCapacity;
+        }
+    </script>
+
     </head>
     <body>
     <div class="container">
@@ -105,7 +106,9 @@ require('../header.html');
             <input type="text" id="roomType" name="roomType" placeholder="Insert Room Type"><br><br>
 
             <label for="roomCapacity">Room Capacity:</label>
-            <input type="hidden" id="roomCapacity" name="roomCapacity" placeholder="Insert Row and Column"><br><br>
+            <input type="number" id="roomCapacity" name="roomCapacity" min="0" max="999" placeholder="Insert Room Capacity"><br><br>
+
+
 
             <label for="totalRow">Total Row:</label>
             <input type="number" id="totalRow" name="totalRow" min="0" max="999" placeholder="Insert Total Row"><br><br>
