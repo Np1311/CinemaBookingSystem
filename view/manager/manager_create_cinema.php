@@ -100,21 +100,21 @@ require('../header.html');
         <form class="form" method="post">
             <!-- Form content -->
             <label for="room-name">Room Name:</label>
-            <input type="text" id="roomName" name="roomName" placeholder="Insert Room Name"><br><br>
+            <input type="text" id="roomName" name="roomName" placeholder="Insert Room Name" required><br><br>
 
             <label for="room-type">Room Type:</label>
-            <input type="text" id="roomType" name="roomType" placeholder="Insert Room Type"><br><br>
+            <input type="text" id="roomType" name="roomType" placeholder="Insert Room Type" required><br><br>
 
             <label for="roomCapacity">Room Capacity:</label>
-            <input type="number" id="roomCapacity" name="roomCapacity" min="0" max="999" placeholder="Insert Room Capacity"><br><br>
+            <input type="number" id="roomCapacity" name="roomCapacity" min="0" max="999" placeholder="Insert Room Capacity" required><br><br>
 
 
 
             <label for="totalRow">Total Row:</label>
-            <input type="number" id="totalRow" name="totalRow" min="0" max="999" placeholder="Insert Total Row"><br><br>
+            <input type="number" id="totalRow" name="totalRow" min="0" max="999" placeholder="Insert Total Row" required><br><br>
 
             <label for="totalColumn">Total Column:</label>
-            <input type="number" id="totalColumn" name="totalColumn" placeholder="Max 10" min="0" max="10" onchange="addCapacity()"><br><br>
+            <input type="number" id="totalColumn" name="totalColumn" placeholder="Max 10" min="0" max="10" onchange="addCapacity()" required><br><br>
 
             <div class="btn-group">
             <input type="submit" name="submit" value="Submit">
