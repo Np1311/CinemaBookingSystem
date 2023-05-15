@@ -52,20 +52,20 @@ class manager_model extends user_model{
             $array1[] =  $row['table_name'];
         }
         }
-        if(in_array('cinemaRoom',$array1)){
-            $sql2 = "SELECT * FROM cinemaRoom;";
-            $result2 = $conn->query($sql2);
-            if (!$result2) {
-                echo "Error: " . $conn->error;
-                $array=[];
-            }else{
-            while ($row = mysqli_fetch_assoc($result2)) {
-                $array[] =  $row;
-            }
-            }
-        }else{
+        
+        $sql2 = "SELECT * FROM cinemaRoom;";
+        $result2 = $conn->query($sql2);
+        if (!$result2) {
+            echo "Error: " . $conn->error;
             $array=[];
+        }else{
+        while ($row = mysqli_fetch_assoc($result2)) {
+            $array[] =  $row;
         }
+        }
+    
+        
+    
         
         return $array;
 
