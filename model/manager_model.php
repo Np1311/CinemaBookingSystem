@@ -198,13 +198,14 @@ class manager_model extends user_model{
             while ($row = mysqli_fetch_assoc($result)) {
                 $array[] = $row;
             }
+            return $array;
         } catch (Exception $e) {
             // Handle the exception here
             echo "Error: " . $e->getMessage();
         }
         
 
-        return $array;
+    
     }
 
     public function updateMovie($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
