@@ -1,0 +1,5 @@
+-- Active: 1684174322896@@127.0.0.1@3306@CSIT314_Test
+SELECT * FROM booking
+WHERE MONTH(bookingDate) = 5;
+SELECT * FROM your_table
+WHERE your_date_column BETWEEN '2023-05-01' AND '2023-05-31';
