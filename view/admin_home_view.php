@@ -144,7 +144,7 @@ if(isset($_GET['deleteID'])){
 
     </style>
 
-        <title>Admin Home View</title>
+        <title>HOME</title>
     </head>
     <body>
         <div class="adminButton">

@@ -65,6 +65,7 @@ $admin = new admin_controller;
         border: 2px solid;
     }
 </style>
+<title>Add Profile</title>
     </head>
     <body>
         <form method='post'>
