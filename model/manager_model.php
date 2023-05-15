@@ -40,34 +40,24 @@ class manager_model extends user_model{
     public function viewRoom(){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
-        $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'CSIT314_Test' AND table_type = 'BASE TABLE';";
-       
-        $result = $conn->query($sql);
-        if (!$result) {
-            echo "Error: " . $conn->error;
-             $array1=[];
-        }else{
-        while ($row = mysqli_fetch_assoc($result)) {
-            $array1[] =  $row['table_name'];
-        }
+        
+        try {
+            $sql2 = "SELECT * FROM cinemaRoom;";
+            $result2 = $conn->query($sql2);
+            if (!$result2) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+            $array = array();
+            while ($row = mysqli_fetch_assoc($result2)) {
+                $array[] = $row;
+            }
+            return $array;
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
+            return array();
         }
         
-        $sql2 = "SELECT * FROM cinemaRoom;";
-        $result2 = $conn->query($sql2);
-        if (!$result2) {
-            echo "Error: " . $conn->error;
-            $array=[];
-        }else{
-        while ($row = mysqli_fetch_assoc($result2)) {
-            $array[] =  $row;
-        }
-        }
-    
-        
-    
-        
-        return $array;
 
     }
 
@@ -331,22 +321,26 @@ class manager_model extends user_model{
         global $conn;
         $conn->select_db("CSIT314_Test");
         
-        $sql = "SELECT * FROM cinemaFoodAndDrink;";
-
-        $result = $conn->query($sql);
-
-        // check if the query was successful
-        if (!$result) {
-        echo "Error: " . $conn->error;
-            $array = [];
-        }else{
-            // fetch the result row as an associative array
-            while ($row = mysqli_fetch_assoc($result) ) {
+        try {
+            $sql = "SELECT * FROM cinemaFoodAndDrink;";
+            $result = $conn->query($sql);
+        
+            if (!$result) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+        
+            $array = array();
+            while ($row = mysqli_fetch_assoc($result)) {
                 $array[] = $row;
             }
+        
+            return $array;
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
+            return array();
         }
-
-        return $array;
+        
 
     }
 
