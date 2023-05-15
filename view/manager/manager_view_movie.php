@@ -3,7 +3,7 @@ require('../../controller/manager_controller.php');
 
 
 
-if($arr = $controller -> viewMovieController()){
+if($arr = $controller -> viewMovieController()==false){
     $arr =[];
 }else{
     $arr = $controller -> viewMovieController();
