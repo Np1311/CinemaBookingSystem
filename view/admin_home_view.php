@@ -137,6 +137,11 @@ if(isset($_GET['deleteID'])){
         @media screen and (max-width: 768px) {
             
         }
+
+        .action-cell {
+            text-align: center;
+        } /*to make button mid connect to controller */
+
     </style>
 
         <title>Admin Home View</title>
