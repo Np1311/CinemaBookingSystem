@@ -192,6 +192,7 @@ class manager_model extends user_model{
             $result = $conn->query($sql);
             if (!$result) {
                 throw new Exception("Failed to execute query: " . $conn->error);
+                $array = [];
             }
             $array = array();
             while ($row = mysqli_fetch_assoc($result)) {
