@@ -15,6 +15,7 @@ $date = $arr['relDate'];
     <style>
         body {
             background-color: #e7dbd0;
+           
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
@@ -28,10 +29,11 @@ $date = $arr['relDate'];
         }
 
         .form {
-            width: 400px;
+            width: 500px;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
+            margin-top: 30%;
         }
 
         .form h1 {
@@ -81,6 +83,14 @@ $date = $arr['relDate'];
             color: #bd9a7a;
             border: 1px solid #bd9a7a;
         }
+
+        select.form-control {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
     </style>
     </head>
     <body>
@@ -118,6 +128,7 @@ $date = $arr['relDate'];
             <label for="timing4">Duration:</label>
             <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>"><br><br>
 
+            <label for="status">Status:</label>
             <?php
              echo '<select class="form-control" name="status">';
              if($arr['status'] == 'active') {

@@ -6,9 +6,9 @@ require('../header.html');
 
 <html>
     <head>
-    <title>Movie Details Form</title>
-    <style>
-        body {
+        <title>Movie Details Form</title>
+        <style>
+             body {
             background-color: #e7dbd0;
             margin: 0;
             padding: 0;
@@ -76,14 +76,13 @@ require('../header.html');
             color: #bd9a7a;
             border: 1px solid #bd9a7a;
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="form">
-            <h2> Create Movie Details Form</h2>
-            <br>
-            <form method="post">
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form">
+                <h2>Create Movie Details Form</h2>
+                <form method="post">
                 <label for="movieName">Movie Name:</label>
                 <input type="text" id="movieName" name="movieName" placeholder="Enter Movie Name">
 
@@ -103,28 +102,22 @@ require('../header.html');
                     <input type="submit" name="submit" value="Submit">
                     <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
                 </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+
         <?php
             if(isset($_POST['submit'])){
                 $movieName = $_POST['movieName'];
-
                 $movieBanner = $_POST['movieBanner'];
-
-                $relDate= $_POST['relDate'];
-                
+                $relDate = $_POST['relDate'];
                 $genre = $_POST['genre'];
-                
                 $duration = $_POST['duration'];
                 
-                // echo $movieName;
-                // echo $movieBanner;
-                // echo $relDate;
-                // echo $genre;
-                // echo $duration;
-                if($controller -> createMovieController($movieName,$movieBanner, $relDate, $genre, $duration)){
-                    echo" <script>window.location='../manager/manager_view_movie.php';</script>";
+                // Process the form data
+                
+                if($controller->createMovieController($movieName, $movieBanner, $relDate, $genre, $duration)){
+                    echo "<script>window.location='../manager/manager_view_movie.php';</script>";
                 }
             }
         ?>
