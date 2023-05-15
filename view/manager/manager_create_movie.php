@@ -101,7 +101,7 @@ require('../header.html');
 
                 <div class="btn-group">
                     <input type="submit" name="submit" value="Submit">
-                    <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+                    <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
                 </div>
             </form>
         </div>
