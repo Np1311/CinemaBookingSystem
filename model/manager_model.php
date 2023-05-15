@@ -408,7 +408,5 @@ class manager_model extends user_model{
 
 }
 
-// $manager_model = new manager;
 
-// $manager_model->createFood('hotdog','this is hotdog',5.5,'snack',100,'hotdog.jpg');
 ?>
