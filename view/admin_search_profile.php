@@ -96,9 +96,6 @@ table td {
     content: "\a";
     white-space: pre;
 }
-
-/* You can add this CSS code within the <style> tags in your HTML file. With this code, the table will be centered on the page and have a maximum width of 800px. The spacing between the form and table will create a clear distinction between them. */
-
   </style>
 
   <meta charset="utf-8">
@@ -106,7 +103,7 @@ table td {
 </head>
 <body>
   <form method="post">
-    <label for="search">Search Profile:</label>
+    <label for="search">Search Profile</label>
     <input type="text" id="search" name="search" placeholder="Enter search term...">
     <div class="button-container">
       <button type="submit" name="submit">Go</button>

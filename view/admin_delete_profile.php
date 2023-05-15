@@ -61,7 +61,7 @@ $controller =  new admin_controller;
         border: 2px solid;
     }
 </style>
-
+    <title>Delete a Profile</title>
     </head>
 
     <body>

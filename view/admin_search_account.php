@@ -114,7 +114,7 @@ table td {
 
 </style>
 <meta charset="utf-8">
-<title>Search Account</title>
+<title>Search an Account</title>
 </head>
 <body>
   <h1>Search Account</h1>
