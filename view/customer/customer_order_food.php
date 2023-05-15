@@ -229,12 +229,7 @@ print_r($array);
                 } 
             }
 
-            //$controller -> ordeFoodController();
-            foreach($orderedFood as $foodID => $quantity){
-                $controller->orderItemController($foodID,$quantity);
-            }  
-            // print_r($orderedFood);  
-            // print_r($price);        
+                  
         }
         
         require('../footer.html');
