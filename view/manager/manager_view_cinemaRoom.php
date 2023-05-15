@@ -1,6 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
-// require('../header.html');
+require('../header.html');
 
 
 $arr = $controller -> viewRoomController();
@@ -34,31 +34,44 @@ echo "</table>";
 ?>
 
 <html>
-    <head>
-        <title>Cinema Room</title>
-        <style>
-            body{
-                background-color: #e7dbd0;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="adminButton">
-            <a href="manager_create_cinema.php">
-                <button id='bodyButton'>Create Cinema Room</button>
-            </a> </br>
+<head>
+    <title>Cinema Room</title>
+    <style>
+        body {
+            background-color: #e7dbd0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-            <!-- <a href="manager_view_cinema.php">
-                <button id='bodyButton'>View Cinema Room</button>
-            </a> </br> -->
+        .adminButton {
+            text-align: center;
+        }
 
-            <!--<a href="admin_delete_profile.php">
-                <button id='bodyButton'>Delete profile</button>
-            </a> 
-            <a href="admin_reactivate_profile.php">
-                <button id='bodyButton'>Reactivate profile</button>
-            </a>  -->
-            <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
-        </div>
-    </body>
+        .adminButton a {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="adminButton">
+        <a href="manager_create_cinema.php">
+            <button id='bodyButton'>Create Cinema Room</button>
+        </a> <br>
+
+        <!--<a href="manager_view_cinema.php">
+            <button id='bodyButton'>View Cinema Room</button>
+        </a> <br> -->
+
+        <!--<a href="admin_delete_profile.php">
+            <button id='bodyButton'>Delete profile</button>
+        </a> 
+        <a href="admin_reactivate_profile.php">
+            <button id='bodyButton'>Reactivate profile</button>
+        </a>  -->
+        <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+    </div>
+</body>
 </html>
+

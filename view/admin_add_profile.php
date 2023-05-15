@@ -72,8 +72,8 @@ $admin = new admin_controller;
                 <label for="addProfile">Profile Name</label>
                 <input type="text" name="addProfile" id="addProfile" required>
             </div>
-            <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
             <button type="submit" name="submit" value="submit">Submit</button>
+            <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
         </form>
         <?php
             if(isset($_POST['submit'])){
