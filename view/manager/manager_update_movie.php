@@ -1,5 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
+require('../header.html');
 
 $updateID = $_GET['updateID'];
 $arr = $controller -> getMovieDetail($updateID);
@@ -11,8 +12,81 @@ $date = $arr['relDate'];
 
 <html>
     <head>
+    <style>
+        body {
+            background-color: #e7dbd0;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form input[type="text"],
+        .form input[type="number"],
+        .form input[type="date"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .form .btn-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .form .btn-group button,
+        .form input[type="submit"] {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+        }
+
+        .form .btn-group button:hover,
+        .form input[type="submit"]:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+    </style>
     </head>
     <body>
+    <div class="container">
+        <div class="form">
+        <h1>Update Movie Details Form</h1>
         <form method = 'post'>
             <label for="movieName">Movie Name:</label>
             <input type="text" id="movieName" name="movieName" value = "<?php echo $arr['movieName']?>"><br><br>
@@ -56,9 +130,13 @@ $date = $arr['relDate'];
                  
             echo'</select><br><br>';
             ?>
-
-            <input type="submit" name='submit' value="Submit">
+        <div class="btn-group">
+            <input type="submit" name="submit" value="Submit">
+            <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
+        </div>
         </form>
+    </div>
+</div>
         <?php
             if(isset($_POST['submit'])){
                 $movieName = $_POST['movieName'];

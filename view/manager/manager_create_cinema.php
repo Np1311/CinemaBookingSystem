@@ -7,78 +7,78 @@ require('../header.html');
 <html>
     <head>
     <style>
-    body {
-        background-color: #e7dbd0;
-    }
+        body {
+            background-color: #e7dbd0;
+        }
 
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    .form {
-        width: 400px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-    }
+        .form {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
 
-    .form label {
-        display: block;
-        margin-bottom: 10px;
-    }
+        .form label {
+            display: block;
+            margin-bottom: 10px;
+        }
 
-    .form input[type="text"],
-    .form input[type="number"] {
-        width: 100%;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-sizing: border-box; /* Add this line */
-    }
+        .form input[type="text"],
+        .form input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; /* Add this line */
+        }
 
-    .form .btn-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .form .btn-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .form .btn-group button {
-        flex: 1;
-        margin: 0 5px;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #bd9a7a;
-        color: white;
-        border: none;
-    }
+        .form .btn-group button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+        }
 
-    .form .btn-group button:hover {
-        background-color: white;
-        color: #bd9a7a;
-        border: 1px solid #bd9a7a;
-    }
+        .form .btn-group button:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
 
-    .form input[type="submit"] {
-        flex: 1;
-        margin: 0 5px;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #bd9a7a;
-        color: white;
-        border: none;
-    }
+        .form input[type="submit"] {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+        }
 
-    .form input[type="submit"]:hover {
-        background-color: white;
-        color: #bd9a7a;
-        border: 1px solid #bd9a7a;
-    }
-</style>
+        .form input[type="submit"]:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+    </style>
 
         <script>
             function addCapacity() {

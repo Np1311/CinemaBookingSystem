@@ -35,6 +35,7 @@ session_start();
 
         .logoAndName h2 {
             margin: 0;
+            color: #FFFFFF;
         }
 
         .logoutbtn {
