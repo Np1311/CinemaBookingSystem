@@ -105,7 +105,7 @@ require('../header.html');
             <input type="text" id="roomType" name="roomType" placeholder="Insert Room Type"><br><br>
 
             <label for="roomCapacity">Room Capacity:</label>
-            <input type="number" id="roomCapacity" name="roomCapacity" placeholder="Insert Row and Column"><br><br>
+            <input type="hidden" id="roomCapacity" name="roomCapacity" placeholder="Insert Row and Column"><br><br>
 
             <label for="totalRow">Total Row:</label>
             <input type="number" id="totalRow" name="totalRow" min="0" max="999" placeholder="Insert Total Row"><br><br>
