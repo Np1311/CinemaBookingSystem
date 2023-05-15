@@ -57,8 +57,13 @@ class manager_controller{
         global $manager;
 
         $array = $manager -> getMovie();
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
 
-        return $array;
+        
     }
     public function updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
         global $manager;

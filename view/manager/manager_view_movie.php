@@ -1,9 +1,13 @@
 <?php
 require('../../controller/manager_controller.php');
 
+$arr = array();
 
-
-$arr = $controller -> viewMovieController();
+if($arr = $controller -> viewMovieController()){
+    $arr =[];
+}else{
+    $arr = $controller -> viewMovieController();
+}
 
 ?>
 
