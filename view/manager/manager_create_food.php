@@ -21,7 +21,8 @@ require('../header.html');
       background-color: #fff;
       padding: 20px;
       border-radius: 5px;
-      margin-top: 5%;
+      margin-top: 6%;
+      margin-bottom: 2%;
     }
 
     label {
@@ -77,19 +78,19 @@ require('../header.html');
     <h1>Food Details Form</h1>
 
     <label for="name">Name:</label>
-    <input type="text" name="foodName" required><br>
+    <input type="text" name="foodName" required><br><br>
 
     <label for="description">Description:</label>
-    <textarea name="description" rows="5"></textarea><br>
+    <textarea name="description" rows="5"></textarea><br><br>
 
     <label for="price">Price:</label>
-    <input type="number" step="0.01" name="price" required><br>
+    <input type="number" step="0.01" name="price" required><br><br>
 
     <label for="category">Category:</label>
-    <input type="text" name="category"><br>
+    <input type="text" name="category"><br><br>
 
     <label for="stock">Stock:</label>
-    <input type="number" name="stock" min="0" max="99999"><br>
+    <input type="number" name="stock" min="0" max="99999"><br><br>
 
     <label for="image">Image:</label>
     <input type="text" name="image"><br>
