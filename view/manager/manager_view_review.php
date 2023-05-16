@@ -9,34 +9,59 @@ $reviewArr = $controller -> viewReviewController();
 <head>
 	<title>Customer Reviews</title>
 	<style>
-    body {
-        background-color: #e7dbd0;
-    }
+        body {
+            background-color: #e7dbd0;
+        }
 
-    h1 {
-        margin-top: 5%;
-        text-align: center;
-    }
+        h1 {
+            margin-top: 5%;
+            text-align: center;
+        }
 
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 0 auto;
-        border: 1px solid;
-    }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid;
+        }
 
-    th, td {
-        padding: 8px;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-		border: 1px solid;
-    }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            border: 1px solid;
+        }
 
-    th {
-        background-color: #bd9a7a;
-        color: white;
-    }
-	</style>
+        th {
+            background-color: #bd9a7a;
+            color: white;
+        }
+
+        th.show-timing, td.show-timing {
+            width: 15%;
+        }
+
+        th.booking-date, td.booking-date {
+            width: 15%;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            background-color: #bd9a7a;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a87d5f;
+        }
+    </style>
+
 
 </head>
 <body>
