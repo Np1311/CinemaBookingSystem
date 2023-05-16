@@ -112,11 +112,12 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         
         
     </style>
+    <title>Account Update</title>
     </head>
     <body>
     <?php
     echo "<div class='profile'>";
-    echo "<h1>Update Profile</h1>";
+    echo "<h1>Account Update</h1>";
     echo "<form method='post'>";
     echo "<label for='first_name'>First Name:</label>";
     echo "<input type='text' name='first_name' id='first_name' value=".$arr['fname']."><br><br>";
