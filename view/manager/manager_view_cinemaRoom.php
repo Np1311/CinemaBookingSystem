@@ -3,6 +3,7 @@
     require('../header.html');
 
     $arr = $controller->viewRoomController();
+    
 ?>
 <html>
 <head>
