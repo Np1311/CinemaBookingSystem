@@ -1,5 +1,6 @@
 <?php
 require ('header_customer.html');
+
 require('../../controller/customer_controller.php');
 
 if($controller -> getShowingMovie_controller() == false){

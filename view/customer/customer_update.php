@@ -105,4 +105,5 @@ require ('../../controller/customer_controller.php');
   require('footer.html');
   ?>
 </body>
+
 </html>

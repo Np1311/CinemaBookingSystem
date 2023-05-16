@@ -1,6 +1,7 @@
 <?php
 require('../controller/admin_controller.php');
 
+
 ?>
 <html>
 <head>

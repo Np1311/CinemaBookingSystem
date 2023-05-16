@@ -1,5 +1,6 @@
 <?php
 $conn = new mysqli('localhost','root', '');
+
 require ('user_model.php');
 
 class admin_model extends user_model{

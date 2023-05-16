@@ -1,6 +1,7 @@
 <?php
 require('../../model/customer_model.php');
 
+
 $customer = new customer_model;
 
 class customer_controller{

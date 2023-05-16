@@ -114,6 +114,7 @@ require('../header.html');
       if($controller->createFoodController($foodName, $description, $price, $category, $stock, $image)){
         echo" <script>window.location='../manager/manager_view_food.php';</script>";
       }
+      
     }
   ?>
 </body>

@@ -63,4 +63,5 @@ $con = new database_model;
 $con -> createDatabase("CSIT314_Test");
 $con -> createFirstProfile();
 $con -> createFirstUser();
+
 ?>

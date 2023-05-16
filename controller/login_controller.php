@@ -5,6 +5,7 @@ require('../model/login_model.php');
 
 
 
+
 class login_controller{
     // private $profile;
     // private $uid;

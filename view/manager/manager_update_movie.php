@@ -1,5 +1,8 @@
 <?php
 require('../../controller/manager_controller.php');
+
+
+
 require('../header.html');
 
 $updateID = $_GET['updateID'];

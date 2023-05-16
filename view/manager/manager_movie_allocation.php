@@ -1,5 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
+
 require('../header.html');
 
 $movieID = $_GET['movieID'];

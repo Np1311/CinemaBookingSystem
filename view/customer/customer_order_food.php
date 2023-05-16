@@ -233,6 +233,7 @@ print_r($array);
         }
         
         require('../footer.html');
+        
         ?>
         
     </body>

@@ -1,5 +1,6 @@
 <?php
 require('database_model.php');
+
 class user_model {
     private $phone;
     private $password;

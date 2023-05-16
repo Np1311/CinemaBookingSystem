@@ -1,6 +1,7 @@
 <?php
 require('user_model.php');
 
+
 class manager_model extends user_model{
 
     public function createRoom($roomName,$roomType, $roomCapacity, $totalRow, $totalColumn){

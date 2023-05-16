@@ -111,4 +111,6 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
   
   <?php require ('footer.html');?>
 </body>
+
+
 </html>

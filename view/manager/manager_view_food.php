@@ -2,6 +2,8 @@
 require('../../controller/manager_controller.php');
 
 
+
+
 $array = $controller -> viewFoodAndDrinkController();
 
 ?>

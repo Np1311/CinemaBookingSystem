@@ -1,5 +1,7 @@
 <?php
 require('../controller/user_update_controller.php');
+
+
 require('header.html');
 $curProfile = $_GET['curProfile'];
 $userID = $_GET['updateID'];

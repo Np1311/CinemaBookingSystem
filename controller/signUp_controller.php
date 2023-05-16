@@ -2,6 +2,7 @@
 include_once ('../model/user_model.php');
 
 $model = new user_model;
+
 //require ('../view/header.php');
 class signUp_controller{
 

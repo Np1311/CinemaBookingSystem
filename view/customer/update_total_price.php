@@ -6,4 +6,7 @@ if(isset($_POST['new_total_price']) && isset($_POST['new_loyalty_point'])) {
     $_SESSION['new_total_price'] = $_POST['new_total_price'];
     $_SESSION['new_loyalty_point'] = $_POST['new_loyalty_point'];
 }
+
+
+
 ?>

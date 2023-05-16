@@ -9,6 +9,7 @@ $user = new user_model;
 // $arr = $admin->getProfile($curProfile,$userID);
 // print_r($arr);
 
+
 class user_update_controller{
     public function showUpdate($curProfile,$userID){
         global $user;

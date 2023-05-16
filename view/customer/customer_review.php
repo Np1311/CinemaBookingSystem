@@ -188,6 +188,7 @@ print_r($array);
             }
         }
         
+        
     ?>
     <a href="customer_home_view.php"><button class="homeButton">Home</button></a>
   </body>

@@ -1,6 +1,9 @@
 <?php
 require('../../controller/manager_controller.php');
 
+
+
+
 $updateID = $_GET['updateID'];
 
 $array = $controller -> getFoodAndDrinkDetail($updateID);
