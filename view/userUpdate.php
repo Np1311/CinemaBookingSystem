@@ -90,6 +90,8 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.3s;
+                margin-right: 10px;
+                margin-left: 10px;
             }
             
             button:hover {

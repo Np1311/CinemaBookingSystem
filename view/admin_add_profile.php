@@ -18,7 +18,8 @@ $admin = new admin_controller;
 
     /* Profile add form */
     form {
-        max-width: 500px;
+        height:200px;
+        width: 500px;
         margin: 0 auto;
         background-color: #fff;
         padding: 20px;
@@ -34,7 +35,7 @@ $admin = new admin_controller;
     .signIn {
         display: flex;
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .signIn label {
@@ -47,10 +48,12 @@ $admin = new admin_controller;
         border-radius: 5px;
         border: none;
         background-color: #f2f2f2;
+        margin-top: 30px;
     }
 
     /* Buttons */
     button {
+        width:247px;
         background-color: #bd9a7a;
         color: #ffff;
         padding: 10px 20px;
@@ -58,6 +61,7 @@ $admin = new admin_controller;
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
+        margin-top: 40px;
     }
 
     button:hover {
