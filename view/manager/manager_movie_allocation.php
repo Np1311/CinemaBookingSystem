@@ -82,7 +82,7 @@ $array = $controller -> viewRoomController();
 </head>
 <body>
   <form method='post'>
-    <h1>Form Update Time</h1></br>
+    <h1>Allocate Movie Form</h1></br>
     <label>Select Room to Allocate:</label>
     <?php
       foreach($array as $key => $value){
