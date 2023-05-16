@@ -137,6 +137,16 @@ class manager_controller{
         $array = $manager -> getYear();
         return $array;
     }
+    public function generateMonthlyReportController($year,$month){
+        global $manager;
+        $array = $manager -> generateMonthlyReport($year,$month);
+        return $array;
+    }
+    public function generateWeeklyReportController($startDate,$endDate){
+        global $manager;
+        $array = $manager -> generateWeeklyReport($startDate,$endDate);
+        return $array;
+    }
 }
 
 $controller = new manager_controller;

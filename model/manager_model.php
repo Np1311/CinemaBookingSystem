@@ -436,9 +436,6 @@ class manager_model extends user_model{
     public function getYear(){
         global $conn;
         $conn -> select_db('CSIT314_Test');
-
-        $sql ="SELECT DISTINCT YEAR(bookingDate) AS bookingYear
-        FROM booking;";
          try {
             $sql ="SELECT DISTINCT YEAR(bookingDate) AS bookingYear
             FROM booking;";
@@ -461,6 +458,71 @@ class manager_model extends user_model{
         }
 
 
+    }
+    public function  generateMonthlyReport($year,$month){
+        global $conn;
+        $conn -> select_db('CSIT314_Test');
+
+        try {
+            $sql = "SELECT movieName, MONTH(bookingDate) AS month, SUM(numOfTicket) AS totalTickets, SUM(total_amnt) AS totalAmount
+                    FROM booking
+                    WHERE YEAR(bookingDate) = $year AND MONTH(bookingDate) = $month
+                    GROUP BY movieName, MONTH(bookingDate);";
+            $result = $conn->query($sql);
+        
+            if (!$result) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+        
+            $array = array();
+            if ($result->num_rows > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row;
+                }
+            }else{
+                $array = [];
+            }
+        
+            return $array;
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
+            return array();
+        }
+        
+
+    }
+    public function generateWeeklyReport($startDate,$endDate){
+        global $conn;
+        $conn -> select_db('CSIT314_Test');
+
+        try {
+            $sql = "SELECT movieName, SUM(numOfTicket) AS totalTickets, SUM(total_amnt) AS totalAmount
+            FROM booking
+            WHERE bookingDate BETWEEN '$startDate' AND '$endDate'
+            GROUP BY movieName;";
+            $result = $conn->query($sql);
+        
+            if (!$result) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+        
+            $array = array();
+            if ($result->num_rows > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row;
+                }
+            }else{
+                $array = [];
+            }
+        
+            return $array;
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
+            return array();
+        }
+        
     }
 
 
