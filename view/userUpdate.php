@@ -31,6 +31,8 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         background-color: #ffffff; /* Set the background color to white */
         border-radius: 5px;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 
         h1 {
@@ -49,7 +51,6 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         label {
             display: block;
             font-weight: bold;
-            margin-bottom: 10px;
         }
 
         input[type="text"], input[type="email"], input[type="date"], select {
