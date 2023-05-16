@@ -38,10 +38,10 @@ class manager_controller{
         return $array;
     }
 
-    public function updateRoomController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4){
+    public function updateRoomController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status){
         global $manager;
 
-        if($manager -> updateRoom($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4)){
+        if($manager -> updateRoom($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status)){
             return true;
         }
     }
@@ -126,6 +126,11 @@ class manager_controller{
         if($manager -> deleteFood($deleteID)){
             return true;
         }
+    }
+    public function viewReviewController(){
+        global $manager;
+        $array = $manager -> viewReview();
+        return $array;
     }
 }
 

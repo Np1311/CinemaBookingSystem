@@ -33,6 +33,7 @@ class customer_controller{
         }
 
         if($customer -> createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints)){
+            $customer -> gainPoints($loyaltypoints,$phone);
             return true;
         }
 
@@ -115,10 +116,11 @@ class customer_controller{
             return false;
         }
     }
-    public function orderFoodController($phone,$date,$price){
+    public function orderFoodController($phone,$date,$price,$loyaltypoints){
         global $customer;
 
         if($customer -> orderFood($phone,$date,$price)){
+            $customer ->gainPoints($loyaltypoints,$phone);
             return true;
         }
     }
@@ -126,10 +128,19 @@ class customer_controller{
         global $customer;
 
         if($customer -> orderItem($foodID,$quantity)){
+            
             return true;
         }
     }
 
+    public function addReviewController($bookingID, $roomID,$movieID,$movieName,$showTiming,$rating,$review){
+        global $customer;
+
+        if($customer -> addReview($bookingID, $roomID,$movieID,$movieName,$showTiming,$rating,$review)){
+            return true;
+        }
+        
+    }
 
 }
 

@@ -58,6 +58,7 @@ class database_model {
    
 }
 
+
 $con = new database_model;
 $con -> createDatabase("CSIT314_Test");
 $con -> createFirstProfile();

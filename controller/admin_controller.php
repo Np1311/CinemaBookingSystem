@@ -10,25 +10,24 @@ $system_admin_session = new admin_model;
 // $customer = $showProfile->getAllProfile('customer');
 
 class admin_controller{
-    public function displayUser(){
+    public function displayUser() {
         global $system_admin_session;
-        
+    
         $profileArr = $system_admin_session->listedProfile();
         $profileArr = array_filter($profileArr, function($profile) {
             return stripos($profile, 'cinema') === false;
         });
-        
+    
         foreach ($profileArr as $profile) {
             $arr = $system_admin_session->getAllAccount($profile);
-            echo "<div class = 'profileTable'>";
+            echo "<div class='profileTable'>";
             echo "<h2>$profile</h2>";
             echo "<table>";
             echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Status</th><th>Action</th></tr>";
-
+    
             // loop through results and display in table rows
-            if(count($arr) > 0 )
-            {
-                foreach($arr as $key => $array){
+            if (count($arr) > 0) {
+                foreach ($arr as $key => $array) {
                     echo "<tr>";
                     echo "<td>" . $array['fname'] . "</td>";
                     echo "<td>" . $array['lname'] . "</td>";
@@ -37,12 +36,12 @@ class admin_controller{
                     echo "<td>" . $array['password'] . "</td>";
                     echo "<td>" . $array['dob'] . "</td>";
                     echo "<td>" . $array['status'] . "</td>";
-                    echo '<td >
-                        <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'"
-                        class="text-light">Update</a></button>
-                        <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></
-                        button> 
-                        </td>' ; 
+                    echo '<td class="action-cell">
+                            <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'"
+                            class="text-light">Update</a></button>
+                            <button class="btn btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></
+                            button> 
+                          </td>';
                     echo "</tr>";
                 }
             }
@@ -51,6 +50,7 @@ class admin_controller{
             echo "</div>";
         }
     }
+    
     public function validateProfile($newProfile){
         global $system_admin_session;
         $profileArr = $system_admin_session -> listedProfile();
