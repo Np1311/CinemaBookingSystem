@@ -18,7 +18,7 @@ $admin = new admin_controller;
 
     /* Profile add form */
     form {
-        height:200px;
+        height:150px;
         width: 500px;
         margin: 0 auto;
         background-color: #fff;
@@ -48,7 +48,7 @@ $admin = new admin_controller;
         border-radius: 5px;
         border: none;
         background-color: #f2f2f2;
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     /* Buttons */
@@ -61,7 +61,7 @@ $admin = new admin_controller;
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
-        margin-top: 40px;
+        margin-top: 20px;
     }
 
     button:hover {

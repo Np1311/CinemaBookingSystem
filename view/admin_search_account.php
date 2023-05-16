@@ -15,6 +15,7 @@ form {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 10%;
 }
 
 body {
@@ -81,16 +82,16 @@ form input[type="text"] {
 form .btn-group {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 form .btn-group button {
     flex-basis: 48%;
 }
 
-h1 {
+/* h1 {
     text-align: center;
-}
+} */
 
 table {
     width: 100%;
@@ -118,9 +119,9 @@ table td {
 <title>Search an Account</title>
 </head>
 <body>
-  <h1>Search Account</h1>
+  <!-- <h1>Search Account</h1> -->
   <form method="post">
-    <label for="profile">Profile:</label>
+    <label for="profile">Search an Account:</label><br>
     <select name="profile">
         <option value="" disabled selected> --Choose a Profile-- </option>
         <?php

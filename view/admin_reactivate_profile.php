@@ -7,7 +7,7 @@ $controller = new admin_controller;
 <html>
 <head>
     <style>
-   body {
+body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ $controller = new admin_controller;
 .formContainer {
   width: 30%;
   padding: 10px;
-  background-color: #f2f2f2;
+  background-color: #fff;
   border-radius: 5px;
 }
 
@@ -47,7 +47,7 @@ select {
 
 .btn-primary {
   background-color: #bd9a7a;
-  border: 2px solid white;
+  border: 2px solid #bd9a7a;
   color: white;
   padding: 15px;
   text-align: center;
