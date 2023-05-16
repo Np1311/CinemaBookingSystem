@@ -1,5 +1,5 @@
 <?php
-require('header.html');
+require('../header.html');
 session_start();
 $_SESSION['profile']='customer';
 
@@ -150,7 +150,6 @@ $_SESSION['profile']='customer';
                 $email = $_POST['email'];
                 $dob = $_POST['dob'];
                 $password = $_POST['password'];
-                require('../controller/signUp_controller.php');
                 $controller = new signUp_controller;
             
                 if ($controller -> createAccount($profile,$fname,$lname,$phone,$email,$password,$dob)){
