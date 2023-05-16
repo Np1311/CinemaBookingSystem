@@ -43,16 +43,32 @@ class database_model {
         global $conn;
         $conn->select_db('CSIT314_Test');
         $mysql_date = '2022-12-13';
-        $sql = "INSERT INTO `system_admin` (fname, lname, phone, email,`password`, dob)
+        $email = 'abc@gmail.com';
+        $phone = 12345678;
 
-        VALUES ('user1','user1',12345678,'abc@gmail.com','asd','$mysql_date');";
         try {
-            mysqli_query($conn, $sql); 
-            return true; }
-        catch(mysqli_sql_exception $e) {
+            // Check if the user already exists in the database
+            $sql = "SELECT COUNT(*) FROM `system_admin` WHERE `phone` = '$phone'";
+            $result = mysqli_query($conn, $sql);
+            $count = mysqli_fetch_array($result)[0];
+
+            if ($count == 0) {
+                // User does not exist, insert new record
+                $sql = "INSERT INTO `system_admin` (fname, lname, phone, email, `password`, dob)
+                        VALUES ('user1', 'user1', $phone, '$email', 'asd', '$mysql_date')";
+                mysqli_query($conn, $sql); 
+                return true;
+            } else {
+                // User already exists, return false
+                echo '<script>alert("User already exists")</script>'; 
+                return false;
+            }
+        } catch (mysqli_sql_exception $e) {
             die("Error creating user: " . mysqli_error($conn)); 
             echo '<script>alert("error creating user")</script>'; 
-        return false;}
+            return false;
+        }
+
     }
 
    
