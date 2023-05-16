@@ -1,6 +1,5 @@
 <?php
 require('../controller/admin_controller.php');
-
 require('header_login.php');
 $admin = new admin_controller;
 

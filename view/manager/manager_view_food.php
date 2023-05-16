@@ -1,8 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
-
-
-
+require('../header.html');
 
 $array = $controller -> viewFoodAndDrinkController();
 
@@ -61,9 +59,10 @@ $array = $controller -> viewFoodAndDrinkController();
                 <button id='bodyButton'>Create Food</button>
             </a> </br>
 
-            <!-- <a href="manager_view_cinema.php">
-                <button id='bodyButton'>View Cinema Room</button>
-            </a> </br> -->
+            <a href="manager_view_cinema.php">
+            <button>View Cinema Room</button>
+            </a><br>
+
 
             <!--<a href="admin_delete_profile.php">
                 <button id='bodyButton'>Delete profile</button>
