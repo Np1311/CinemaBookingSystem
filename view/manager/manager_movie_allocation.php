@@ -14,7 +14,7 @@ $array = $controller -> viewRoomController();
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Radio Button Form</title>
+  <title>Allocate Movie Form</title>
   <style>
   body {
     font-family: Arial, sans-serif;
@@ -94,17 +94,17 @@ $array = $controller -> viewRoomController();
     <?php
       }
     ?>
-    <label for="timing1">Timing 1:</label>
-    <input type="text" id="timing1" name="timing1" value='0'><br><br>
+    <label for="timing1">Timing:</label>
+    <input type="text" id="timing1" name="timing1" value='0' placeholder="Enter Hours E.g 00:00 - 00:00"><br><br>
 
-    <label for="timing2">Timing 2:</label>
-    <input type="text" id="timing2" name="timing2" value='0'><br><br>
+    <label for="timing2">Timing:</label>
+    <input type="text" id="timing2" name="timing2" value='0' placeholder="Enter Hours E.g 00:00 - 00:00"><br><br>
 
-    <label for="timing3">Timing 3:</label>
-    <input type="text" id="timing3" name="timing3" value='0'><br><br>
+    <label for="timing3">Timing:</label>
+    <input type="text" id="timing3" name="timing3" value='0' placeholder="Enter Hours E.g 00:00 - 00:00"><br><br>
 
-    <label for="timing4">Timing 4:</label>
-    <input type="text" id="timing4" name="timing4" value='0'><br><br>
+    <label for="timing4">Timing:</label>
+    <input type="text" id="timing4" name="timing4" value='0'placeholder="Enter Hours E.g 00:00 - 00:00"><br><br>
 
     <div class="btn-group">
       <input type="submit" name='submit' value="Submit">
