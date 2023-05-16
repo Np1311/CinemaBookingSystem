@@ -120,16 +120,16 @@ $date = $arr['relDate'];
             <label for="roomID">Room ID:</label>
             <input type="number" id="roomID" name="roomID" value = "<?php echo $arr['roomID']?>"><br><br>
 
-            <label for="timing1">Duration 1:</label>
+            <label for="timing1">Timing:</label>
             <input type="text" id="timing1" name="timing1"  value = "<?php echo $arr['timing1']?>"><br><br>
 
-            <label for="timing2">Duration 2:</label>
+            <label for="timing2">Timing:</label>
             <input type="text" id="timing2" name="timing2"  value = "<?php echo $arr['timing2']?>"><br><br>
 
-            <label for="timing3">Duration 3:</label>
+            <label for="timing3">Timing:</label>
             <input type="text" id="timing3" name="timing3"  value = "<?php echo $arr['timing3']?>"><br><br>
 
-            <label for="timing4">Duration 4:</label>
+            <label for="timing4">Timing:</label>
             <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>"><br><br>
 
             <label for="status">Status:</label>

@@ -1,5 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
+require('../header.html');
 
 $reviewArr = $controller -> viewReviewController();
 
@@ -8,24 +9,38 @@ $reviewArr = $controller -> viewReviewController();
 <head>
 	<title>Customer Reviews</title>
 	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
+    body {
+        background-color: #e7dbd0;
+    }
+
+    h1 {
+        margin-top: 5%;
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+		border: 1px solid;
+    }
+
+    th {
+        background-color: #bd9a7a;
+        color: white;
+    }
 	</style>
+
 </head>
 <body>
 	<h1>Customer Reviews</h1>
-    
 	<table>
 		<thead>
 			<tr>
@@ -66,5 +81,6 @@ $reviewArr = $controller -> viewReviewController();
         ?>
 		</tbody>
 	</table>
+	<button type="btn-danger" onclick="window.location.href = 'manager_home_view.php'">Back</button>
 </body>
 </html>

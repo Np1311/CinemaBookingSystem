@@ -72,7 +72,7 @@ $admin = new admin_controller;
         <form method='post'>
             <div class="signIn">
                 <label for="addProfile">Profile Name</label>
-                <input type="text" name="addProfile" id="addProfile" required>
+                <input type="text" name="addProfile" id="addProfile" required placeholder="Enter New Profile">
             </div>
             <button type="submit" name="submit" value="submit">Submit</button>
             <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
