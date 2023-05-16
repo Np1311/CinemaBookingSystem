@@ -527,23 +527,83 @@ class manager_model extends user_model{
     public function getRoomDetail($searchInput,$searchBy){
         global $conn;
         $conn -> select_db('CSIT314_Test');
-        $sql = "SELECT * FROM `cinemaRoom` WHERE `$searchBy` = '$searchInput';";
-    
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM `cinemaRoom` WHERE `$searchBy` LIKE '%$searchInput%';";
 
-        if (!$result) {
-            echo "Error: " . $conn->error;
-                $array = [];
-        }else{
-            // fetch the result row as an associative array
-            while ($row = mysqli_fetch_assoc($result) ) {
+        try {
+            $result = $conn->query($sql);
+
+            if (!$result) {
+                throw new Exception("Query execution failed: " . $conn->error);
+            }
+
+            $array = array();
+
+            while ($row = mysqli_fetch_assoc($result)) {
                 $array[] = $row;
             }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = array();
         }
 
         return $array;
+
     }
 
+    public function searchMovie($searchInput){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomName, a.timing1, a.timing2, a.timing3, a.timing4
+                FROM cinemaMovie m
+                LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
+                LEFT JOIN cinemaRoom r ON r.roomID = a.roomID
+                WHERE m.movieName LIKE '%$searchInput%';";
+        
+        try {
+            $result = $conn->query($sql);
+            
+            if (!$result) {
+                throw new Exception("Query execution failed: " . $conn->error);
+            }
+            
+            $array = array();
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                $array[] = $row;
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = array();
+        }
+        
+        return $array;
+        
+    }
+    public function searchFood($searchInput){
+        global $conn;
+        $conn->select_db('CSIT314_Test');
+        $sql = "SELECT * FROM cinemaFoodAndDrink
+                WHERE foodName LIKE '%$searchInput%';";
+        
+        try {
+            $result = $conn->query($sql);
+            
+            if (!$result) {
+                throw new Exception("Query execution failed: " . $conn->error);
+            }
+            
+            $array = array();
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                $array[] = $row;
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = array();
+        }
+        
+        return $array;
+    }
 
 }
 
