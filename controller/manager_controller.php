@@ -132,6 +132,11 @@ class manager_controller{
         $array = $manager -> viewReview();
         return $array;
     }
+    public function getYearController(){
+        global $manager;
+        $array = $manager -> getYear();
+        return $array;
+    }
 }
 
 $controller = new manager_controller;

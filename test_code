@@ -5,3 +5,17 @@ SELECT * FROM your_table
 WHERE your_date_column BETWEEN '2023-05-01' AND '2023-05-31';
 
 --create an input with drop down button as selection to generate report based on yearly, monthly, or start date end date
+
+SELECT movieName, MONTH(bookingDate) AS month, SUM(numOfTicket) AS totalTickets, SUM(total_amnt) AS totalAmount
+FROM booking
+WHERE YEAR(bookingDate) = 2023
+GROUP BY movieName, MONTH(bookingDate);
+
+
+SELECT movieName, SUM(numOfTicket) AS totalTickets, SUM(total_amnt) AS totalAmount
+FROM booking
+WHERE bookingDate BETWEEN '2023-05-12' AND '2023-05-19'
+GROUP BY movieName;
+
+SELECT DISTINCT YEAR(bookingDate) AS bookingYear
+FROM booking;

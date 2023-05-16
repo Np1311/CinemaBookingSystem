@@ -55,6 +55,9 @@
         <a href="manager_view_review.php">
             <button id="bodyButton">Manage review</button>
         </a>
+        <a href="manager_generate_report.php">
+            <button id="bodyButton">Generate report</button>
+        </a>
     </div>
 </body>
 </html>

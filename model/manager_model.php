@@ -433,6 +433,35 @@ class manager_model extends user_model{
         }
 
     }
+    public function getYear(){
+        global $conn;
+        $conn -> select_db('CSIT314_Test');
+
+        $sql ="SELECT DISTINCT YEAR(bookingDate) AS bookingYear
+        FROM booking;";
+         try {
+            $sql ="SELECT DISTINCT YEAR(bookingDate) AS bookingYear
+            FROM booking;";
+            $result = $conn->query($sql);
+        
+            if (!$result) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+        
+            $array = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                $array[] = $row['bookingYear'];
+            }
+        
+            return $array;
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
+            return array();
+        }
+
+
+    }
 
 
 }
