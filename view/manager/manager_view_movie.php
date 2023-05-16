@@ -18,6 +18,34 @@ if($arr = $controller -> viewMovieController()==false){
     </head>
     <body>
         <div class="container">
+        <form  method="post">
+            <input type="text" name="searchInput" placeholder="Search...">
+            <button type="submit" name='submit'>Search</button>
+        </form>
+        <?php 
+        if(isset($_POST['submit'])){
+            $searchInput = $_POST['searchInput'];
+
+            if($controller->searchMovieController($searchInput) == false){
+                echo '<script>alert("'.$searchInput.' is not found")</script>';  
+              }else{
+                $arr = $controller->searchMovieController($searchInput);
+              }
+        }
+        ?>
+        <form method="post">
+            <button type="submit" name="viewAll">View All</button>
+        </form>
+        <?php
+
+            if (isset($_POST['viewAll'])) {
+                if($arr = $controller -> viewMovieController()==false){
+                    $arr =[];
+                }else{
+                    $arr = $controller -> viewMovieController();
+                }                
+            }
+        ?>
             <div class="row">
                 <?php
                 if(count($arr) > 0)
@@ -52,7 +80,7 @@ if($arr = $controller -> viewMovieController()==false){
                                 class="text-light">Update</a></button>
                                 <button class="btn-danger"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="text-light">Delete</a></button> 
                                 <button class="btn-danger"><a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="text-light">Allocate Movie</a></button> 
-                                <button type="btn-danger" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+                                
                             </div>
                         <?php
                     }
@@ -67,9 +95,9 @@ if($arr = $controller -> viewMovieController()==false){
                 <button id='bodyButton'>Create Movie</button>
             </a> </br>
 
-            <!-- <a href="manager_view_cinema.php">
-                <button id='bodyButton'>View Cinema Room</button>
-            </a> </br> -->
+            <a href="manager_home_view.php">
+                <button id='bodyButton'>Back</button>
+            </a> </br>
 
             <!--<a href="admin_delete_profile.php">
                 <button id='bodyButton'>Delete profile</button>
@@ -78,5 +106,7 @@ if($arr = $controller -> viewMovieController()==false){
                 <button id='bodyButton'>Reactivate profile</button>
             </a>  -->
         </div>
+       
+
     </body>
 </html>

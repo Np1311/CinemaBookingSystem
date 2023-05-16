@@ -48,7 +48,7 @@
             text-align: center;
         }
 
-        .adminButton {
+        .managerButton {
             text-align: center;
             margin-top: 20px;
             display: flex;
@@ -57,12 +57,12 @@
             flex-wrap: wrap;
         }
 
-        .adminButton a {
+        .managerButton a {
             margin: 10px;
             text-decoration: none;
         }
 
-        .adminButton button {
+        .managerButton button {
             padding: 10px 20px;
             background-color: #bd9a7a;
             color: white;
@@ -73,7 +73,7 @@
             margin-bottom: 10px;
         }
 
-        .adminButton button:hover {
+        .managerButton button:hover {
             background-color: white;
             color: #bd9a7a;
             border: 1px solid #bd9a7a;
@@ -142,7 +142,7 @@
             }
             ?>
         </table>
-            <div class="adminButton">
+            <div class="managerButton">
             <a href="manager_create_cinema.php">
                 <button>Create Cinema Room</button>
             </a> <br> <br>

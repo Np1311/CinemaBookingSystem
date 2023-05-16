@@ -20,3 +20,15 @@ GROUP BY movieName;
 SELECT DISTINCT YEAR(bookingDate) AS bookingYear
 FROM booking;
 SELECT * FROM `cinemaRoom` WHERE `roomName` = 'Room1';
+
+SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomName, a.timing1, a.timing2, a.timing3, a.timing4
+        FROM cinemaMovie m
+        LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
+        LEFT JOIN cinemaRoom r ON r.roomID = a.roomID
+        WHERE m.movieName = 'avenger';
+
+SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status, r.roomName, a.timing1, a.timing2, a.timing3, a.timing4
+        FROM cinemaMovie m
+        LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
+        LEFT JOIN cinemaRoom r ON r.roomID = a.roomID
+        WHERE m.movieName LIKE '%$searchInput%';

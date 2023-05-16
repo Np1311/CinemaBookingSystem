@@ -2,15 +2,136 @@
 require('../../controller/manager_controller.php');
 require('../header.html');
 
-$array = $controller -> viewFoodAndDrinkController();
-
+if($array = $controller -> viewFoodAndDrinkController()==false){
+    $array =[];
+}else{
+    $array = $controller -> viewFoodAndDrinkController();
+}        
 ?>
 
 <html>
     <head>
+    <style>
+        body {
+            background-color: #e7dbd0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin-top: 100px;
+            
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        table th {
+            background-color: #bd9a7a;
+            color: white;
+            font-weight: bold;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        .managerButton {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .managerButton a {
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .managerButton button {
+            padding: 10px 20px;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .managerButton button:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+       
+        .btn-primary {
+            background-color: #bd9a7a;
+            color: white; /*button update */
+        }
+
+        .btn-primary:hover {
+            background-color: #0062cc;
+        }
+
+        .btn-danger {
+            background-color: #bd9a7a;
+            color: white; /*button delete*/
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    </style>
     </head>
     <body>
         <div class="container">
+            <form  method="post">
+                <input type="text" name="searchInput" placeholder="Search...">
+                <button type="submit" name='submit'>Search</button>
+            </form>
+            <?php 
+            if(isset($_POST['submit'])){
+                $searchInput = $_POST['searchInput'];
+
+                if($controller->searchFoodController($searchInput) == false){
+                    echo '<script>alert("'.$searchInput.' is not found")</script>';  
+                }else{
+                    $array = $controller->searchFoodController($searchInput);
+                }
+            }
+            ?>
+            <form method="post">
+                <button type="submit" name="viewAll">View All</button>
+            </form>
+            <?php
+
+                if (isset($_POST['viewAll'])) {
+                    if($array = $controller -> viewFoodAndDrinkController()==false){
+                        $array =[];
+                    }else{
+                        $array = $controller -> viewFoodAndDrinkController();
+                    }                
+                }
+            ?>
             <div class="row">
             <table>
                 <thead>
@@ -53,24 +174,20 @@ $array = $controller -> viewFoodAndDrinkController();
 
 
             </div>
-        </div>
-        <div class="managerButton">
+            <div class="managerButton">
             <a href="manager_create_food.php">
                 <button id='bodyButton'>Create Food</button>
             </a> </br>
 
-            <a href="manager_view_cinema.php">
-            <button>View Cinema Room</button>
-            </a><br>
-
-
-            <!--<a href="admin_delete_profile.php">
-                <button id='bodyButton'>Delete profile</button>
+            <a href="manager_home_view.php">
+                <button id='bodyButton'>Back</button>
             </a> 
-            <a href="admin_reactivate_profile.php">
+            <!--<a href="admin_reactivate_profile.php">
                 <button id='bodyButton'>Reactivate profile</button>
             </a>  -->
-            <button type="btn-danger" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+            
         </div>
+        </div>
+        
     </body>
 </html>
