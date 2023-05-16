@@ -51,9 +51,9 @@
         <a href="manager_view_food.php">
             <button id="bodyButton">Manage Food</button>
         </a>
-        <!-- <a href="admin_reactivate_profile.php">
-            <button id="bodyButton">Reactivate profile</button>
-        </a> -->
+        <a href="manager_view_review.php">
+            <button id="bodyButton">Manage review</button>
+        </a>
     </div>
 </body>
 </html>

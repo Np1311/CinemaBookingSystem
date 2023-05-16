@@ -126,6 +126,11 @@ class manager_controller{
             return true;
         }
     }
+    public function viewReviewController(){
+        global $manager;
+        $array = $manager -> viewReview();
+        return $array;
+    }
 }
 
 $controller = new manager_controller;
