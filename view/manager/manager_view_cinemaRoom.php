@@ -146,9 +146,9 @@
                 <button>Create Cinema Room</button>
             </a> <br> <br>
 
-            <!--<a href="manager_view_cinema.php">
-                <button>View Cinema Room</button>
-            </a> <br> -->
+            <a href="manager_search_room.php">
+                <button>Search Room</button>
+            </a> <br>
 
             <!--<a href="admin_delete_profile.php">
                 <button>Delete profile</button>

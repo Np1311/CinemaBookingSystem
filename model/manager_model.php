@@ -524,6 +524,25 @@ class manager_model extends user_model{
         }
         
     }
+    public function getRoomDetail($searchInput,$searchBy){
+        global $conn;
+        $conn -> select_db('CSIT314_Test');
+        $sql = "SELECT * FROM `cinemaRoom` WHERE `$searchBy` = '$searchInput';";
+    
+        $result = $conn->query($sql);
+
+        if (!$result) {
+            echo "Error: " . $conn->error;
+                $array = [];
+        }else{
+            // fetch the result row as an associative array
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row;
+            }
+        }
+
+        return $array;
+    }
 
 
 }

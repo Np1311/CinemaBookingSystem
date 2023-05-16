@@ -147,6 +147,17 @@ class manager_controller{
         $array = $manager -> generateWeeklyReport($startDate,$endDate);
         return $array;
     }
+    public function getRoomDetailController($searchInput,$searchBy){
+        global $manager;
+        $array = $manager->getRoomDetail($searchInput,$searchBy);
+
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
 $controller = new manager_controller;

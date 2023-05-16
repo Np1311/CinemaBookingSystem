@@ -1,8 +1,7 @@
 <?php
-require('../controller/admin_controller.php');
-require('header.html');
+require('../../controller/manager_controller.php');
+//require('header.html');
 
-$controller = new admin_controller;
 ?>
 
 <html>
@@ -121,56 +120,61 @@ table td {
 <body>
   <!-- <h1>Search Account</h1> -->
   <form method="post">
-    <label for="profile">Search an Account:</label><br>
-    <select name="profile">
-        <option value="" disabled selected> --Choose a Profile-- </option>
-        <?php
-            $controller->showProfile();
-        ?>
-    </select>
+    <label for="searchRoom">Search a Room:</label><br>
+    
     <select name="searchBy" id="searching">
         <option value="" disabled selected> --Choose a Filter-- </option>
-        <option value="fname">First Name</option>
-        <option value="lname">Last Name</option>
-        <option value="phone">Phone</option>
-        <option value="email">Email</option>
-    </select>
-    <input type="text" name="searchAccount" placeholder="Enter Data" required>
+        <option value="roomName">Room Name</option>
+        <option value="roomType">Room Type</option>
+    </select></br></br>
+    <input type="text" name="searchInput" placeholder="Enter Data" required>
     </br></br>
     <div class="btn-group">
         <button type="submit" name="submit">Go</button>
-        <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
+        <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
 </div>
 
   </form>
   <?php
     if(isset($_POST['submit'])){
-        $searchAccount = $_POST['searchAccount'];
-        $profile = $_POST['profile'];
+        $searchInput = $_POST['searchInput'];
+        
         $searchBy = $_POST['searchBy'];
-        if($controller->searchAccount($profile,$searchAccount,$searchBy) == false){
-          echo '<script>alert("'.$searchAccount.' is not found")</script>';  
+        if($controller->getRoomDetailController($searchInput,$searchBy) == false){
+          echo '<script>alert("'.$searchInput.' is not found")</script>';  
         }else{
-        $accountArray = $controller->searchAccount($profile,$searchAccount,$searchBy);
+        $roomArray = $controller->getRoomDetailController($searchInput,$searchBy);
         echo '<div>';
-        echo "<h2>$profile</h2>";
         echo "<table>";
-        echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Status</th><th>Action</th></tr>";
+        echo "<tr>
+            <th>ID</th>
+            <th>Room Name</th>
+            <th>Room Type</th>
+            <th>Room Capacity</th>
+            <th>Total Row</th>
+            <th>Total Column</th>
+            <th>Status</th>
+            <th>Action</th>
+            </tr>";
     
         // loop through results and display in table rows
-        foreach($accountArray as $key => $array){
+        foreach($roomArray as $key => $array){
             echo "<tr>";
-            echo "<td>" . $array['fname'] . "</td>";
-            echo "<td>" . $array['lname'] . "</td>";
-            echo "<td>" . $array['phone'] . "</td>";
-            echo "<td>" . $array['email'] . "</td>";
-            echo "<td>" . $array['password'] . "</td>";
-            echo "<td>" . $array['dob'] . "</td>";
-            echo "<td>" . $array['status'] . "</td>";
-            echo '<td>
-                <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Update</a></button>
-                <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></button>
-                </td>';
+                echo "<td>" . $array['roomID'] . "</td>";
+                echo "<td>" . $array['roomName'] . "</td>";
+                echo "<td>" . $array['roomType'] . "</td>";
+                echo "<td>" . $array['roomCapacity'] . "</td>";
+                echo "<td>" . $array['totalRow'] . "</td>";
+                echo "<td>" . $array['totalColumn'] . "</td>";
+                echo "<td>" . $array['status'] . "</td>";
+                echo '<td>
+                        <button class="btn btn-primary">
+                            <a href="../manager/manager_update_cinema.php?updateID=' . $array['roomID'] . '" class="text-light">Update</a>
+                        </button>
+                        <button class="btn-danger">
+                            <a href="../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '" class="text-light">Delete</a>
+                        </button>
+                    </td>';
             echo "</tr>";
         }
         
