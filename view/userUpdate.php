@@ -106,7 +106,7 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
             }
 
             .button-container button {
-                flex-basis: 48%; /* Adjust the width as needed */
+                flex-basis: 100%; /* Adjust the width as needed */
             }
         
         

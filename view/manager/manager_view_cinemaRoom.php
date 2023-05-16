@@ -1,3 +1,9 @@
+<?php
+    require('../../controller/manager_controller.php');
+    require('../header.html');
+
+    $arr = $controller->viewRoomController();
+?>
 <html>
 <head>
     <title>Cinema Room</title>
@@ -10,10 +16,12 @@
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            /* justify-content: center; */
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            margin-top: 100px;
+            
         }
 
         table {
@@ -92,12 +100,7 @@
 </head>
 <body>
     <div class="container">
-        <?php
-            require('../../controller/manager_controller.php');
-            require('../header.html');
-
-            $arr = $controller->viewRoomController();
-        ?>
+       
 
         <table>
             <tr>
@@ -153,8 +156,8 @@
             <a href="admin_reactivate_profile.php">
                 <button>Reactivate profile</button>
             </a>  -->
-            <a href="manager_view_cinema.php">
-            <button>View Cinema Room</button>
+            <a href="manager_home_view.php">
+            <button>Back</button>
             </a><br>
 
         </div>
