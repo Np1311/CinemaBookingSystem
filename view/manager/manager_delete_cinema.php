@@ -8,7 +8,7 @@ if(isset($_GET['deleteID'])){
 
     if($controller -> deleteRoomController($deleteID)){
         
-        echo" <script>window.location='../manager/manager_view_cinema.php';</script>";
+        echo" <script>window.location='../manager/manager_view_cinemaRoom.php';</script>";
     }
 }
 

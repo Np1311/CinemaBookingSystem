@@ -1,10 +1,7 @@
 <?php
 require('../../controller/manager_controller.php');
-<<<<<<< HEAD
 
 require('../header.html');
-=======
->>>>>>> 99d0b55f42947c7c77a5bc02afca772d5e9bbe74
 
 $movieID = $_GET['movieID'];
 $array = $controller -> viewRoomController();
@@ -15,56 +12,117 @@ $array = $controller -> viewRoomController();
 ?>
 
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Radio Button Form</title>
-  </head>
-  <body>
-    <form method='post'>
-        <label>Select Room to Allocate:</label></br>&nbsp&nbsp
-      
-        <?php
-            foreach($array as $key => $value){
+<head>
+  <meta charset="UTF-8">
+  <title>Radio Button Form</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e7dbd0;
+  }
 
-        ?>
-            <label>
-            <input type="radio" name="roomID" value="<?php echo $value['roomID']; ?>">
-            <?php echo $value['roomName'];?>&nbsp|&nbsp<?php echo $value['roomType'];?>&nbsp|&nbsp<?php echo $value['roomCapacity'];?>
-            </label></br>&nbsp&nbsp
-        <?php
-            }
-        ?>
-        </br></br>
-        <label for="timing1">Timing 1:</label>
-        <input type="text" id="timing1" name="timing1" value='0'><br><br>
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 5%;
+  }
 
-        <label for="timing2">Timing 2:</label>
-        <input type="text" id="timing2" name="timing2" value='0'><br><br>
+  h1 {
+    text-align: center;
+    margin: auto;
+  }
 
-        <label for="timing3">Timing 3:</label>
-        <input type="text" id="timing3" name="timing3" value='0'><br><br>
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
 
-        <label for="timing4">Timing 4:</label>
-        <input type="text" id="timing4" name="timing4" value='0'><br><br>
-      <br><br>
-      <input type="submit" name='submit' value="Submit">
-    </form>
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .btn-group button,
+  input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #bd9a7a;
+    color: white;
+    border: none;
+    font-size: 14px;
+    margin: 0; /* Add this line to remove the margin */
+  }
+
+  .btn-group button:hover,
+  input[type="submit"]:hover {
+    background-color: white;
+    color: #bd9a7a;
+    border: 1px solid #bd9a7a;
+  }
+</style>
+</head>
+<body>
+  <form method='post'>
+    <h1>Form Update Time</h1></br>
+    <label>Select Room to Allocate:</label>
     <?php
-        if(isset($_POST['submit'])){
-            $roomID = $_POST['roomID'];
-
-            $timing1 = $_POST['timing1'];
-
-            $timing2 = $_POST['timing2'];
-
-            $timing3 = $_POST['timing3'];
-
-            $timing4 = $_POST['timing4'];
-
-            if($controller -> allocateMovieController($movieID,$roomID,$timing1,$timing2,$timing3,$timing4)){
-                echo" <script>window.location='../manager/manager_view_movie.php';</script>";
-            }
-        }
+      foreach($array as $key => $value){
     ?>
-  </body>
+      <label>
+        <input type="radio" name="roomID" value="<?php echo $value['roomID']; ?>">
+        <?php echo $value['roomName'];?> | <?php echo $value['roomType'];?> | <?php echo $value['roomCapacity'];?>
+      </label><br><br>
+    <?php
+      }
+    ?>
+    <label for="timing1">Timing 1:</label>
+    <input type="text" id="timing1" name="timing1" value='0'><br><br>
+
+    <label for="timing2">Timing 2:</label>
+    <input type="text" id="timing2" name="timing2" value='0'><br><br>
+
+    <label for="timing3">Timing 3:</label>
+    <input type="text" id="timing3" name="timing3" value='0'><br><br>
+
+    <label for="timing4">Timing 4:</label>
+    <input type="text" id="timing4" name="timing4" value='0'><br><br>
+
+    <div class="btn-group">
+      <input type="submit" name='submit' value="Submit">
+      <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
+    </div>
+  </form>
+  <?php
+    if(isset($_POST['submit'])){
+      $roomID = $_POST['roomID'];
+      $timing1 = $_POST['timing1'];
+      $timing2 = $_POST['timing2'];
+      $timing3 = $_POST['timing3'];
+      $timing4 = $_POST['timing4'];
+
+      if($controller->allocateMovieController($movieID,$roomID,$timing1,$timing2,$timing3,$timing4)){
+        echo" <script>window.location='../manager/manager_view_movie.php';</script>";
+      }
+    }
+  ?>
+</body>
 </html>

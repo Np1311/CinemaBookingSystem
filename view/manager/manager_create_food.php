@@ -1,49 +1,85 @@
 <?php
 require('../../controller/manager_controller.php');
+require('../header.html');
 ?>
 
+<!DOCTYPE html>
 <html>
-    <head>
-    <title>Food Details Form</title>
-    </head>
-    <body>
-        <h1>Food Details Form</h1>
-            <form method = 'post'>
-                <label for="name">Name:</label>
-                <input type="text" name="foodName" required><br>
+<head>
+  <title>Food Details Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e7dbd0;
+      margin: 0;
+      padding: 0;
+    }
 
-                <label for="description">Description:</label>
-                <textarea name="description" rows="5"></textarea><br>
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 6%;
+      margin-bottom: 2%;
+    }
 
-                <label for="price">Price:</label>
-                <input type="number" step="0.01" name="price" required><br>
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
 
-                <label for="category">Category:</label>
-                <input type="text" name="category"><br>
+    input[type="text"],
+    textarea,
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
 
-                <label for="stock">Stock:</label>
-                <input type="number" name="stock" min='0' max='99999' ><br>
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-                <label for="image">Image:</label>
-                <input type="text" name="image"><br>
+    .btn-group button,
+    input[type="submit"] {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #bd9a7a;
+      color: white;
+      border: none;
+      font-size: 14px;
+    }
 
-                
+    .btn-group button:hover,
+    input[type="submit"]:hover {
+      background-color: white;
+      color: #bd9a7a;
+      border: 1px solid #bd9a7a;
+    }
 
-                <input type="submit" name='submit' value="Add Item">
-            </form>
-        <?php
-            if(isset($_POST['submit'])){
-                $foodName = $_POST['foodName'];
+    form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
 
-                $description = $_POST['description'];
+</head>
+<body>
+  <form method="post">
+    <h1>Food Details Form</h1>
 
-                $price= $_POST['price'];
-                
-                $category = $_POST['category'];
-                
-                $stock = $_POST['stock'];
+    <label for="name">Name:</label>
+    <input type="text" name="foodName" placeholder="Enter Name of Product" required><br><br>
 
-<<<<<<< HEAD
     <label for="description">Description:</label>
     <textarea name="description" rows="5" placeholder="Enter Description"></textarea><br><br>
 
@@ -82,20 +118,4 @@ require('../../controller/manager_controller.php');
     }
   ?>
 </body>
-=======
-                $image = $_POST['image'];
-                
-                // echo $foodName;
-                // echo $description;
-                // echo $price;
-                // echo $category;
-                // echo $stock;
-                // echo $image;
-                if($controller -> createFoodController($foodName,$description, $price, $category, $stock, $image)){
-                    echo" <script>window.location='../manager/manager_view_food.php';</script>";
-                }
-            }
-        ?>
-    </body>
->>>>>>> 99d0b55f42947c7c77a5bc02afca772d5e9bbe74
 </html>

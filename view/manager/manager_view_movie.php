@@ -1,12 +1,8 @@
 <?php
 require('../../controller/manager_controller.php');
-<<<<<<< HEAD
 
 
 // require('../header.html');
-=======
-//require('../header.html');
->>>>>>> 99d0b55f42947c7c77a5bc02afca772d5e9bbe74
 
 
 if($arr = $controller -> viewMovieController()==false){
@@ -56,6 +52,7 @@ if($arr = $controller -> viewMovieController()==false){
                                 class="text-light">Update</a></button>
                                 <button class="btn-danger"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="text-light">Delete</a></button> 
                                 <button class="btn-danger"><a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="text-light">Allocate Movie</a></button> 
+                                <button type="btn-danger" onclick="window.location.href = 'manager_home_view.php'">Back</button>
                             </div>
                         <?php
                     }
