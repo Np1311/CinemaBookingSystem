@@ -60,7 +60,7 @@ class database_model {
                 return true;
             } else {
                 // User already exists, return false
-                echo '<script>alert("User already exists")</script>'; 
+                //echo '<script>alert("User already exists")</script>'; 
                 return false;
             }
         } catch (mysqli_sql_exception $e) {
