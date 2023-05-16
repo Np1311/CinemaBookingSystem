@@ -1,5 +1,5 @@
 <?php
-require('../header.html');
+require('header.html');
 session_start();
 $_SESSION['profile']='customer';
 
