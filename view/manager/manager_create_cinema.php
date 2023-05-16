@@ -94,7 +94,7 @@ require('../header.html');
             document.getElementById("roomCapacity").value = roomCapacity;
         }
     </script>
-
+    <title>Create a Cinema</title>
     </head>
     <body>
     <div class="container">

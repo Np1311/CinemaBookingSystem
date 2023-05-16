@@ -38,6 +38,7 @@
             border: 2px solid;
         }
     </style>
+    <title>Home</title>
 </head>
 <body>
     <div class="managerButton">
