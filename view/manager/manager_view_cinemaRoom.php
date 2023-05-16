@@ -1,4 +1,3 @@
-
 <html>
 <head>
     <title>Cinema Room</title>
@@ -139,7 +138,7 @@
             }
             ?>
         </table>
-                <div class="adminButton">
+            <div class="adminButton">
             <a href="manager_create_cinema.php">
                 <button>Create Cinema Room</button>
             </a> <br> <br>
@@ -154,7 +153,10 @@
             <a href="admin_reactivate_profile.php">
                 <button>Reactivate profile</button>
             </a>  -->
-            <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+            <a href="manager_view_cinema.php">
+            <button>View Cinema Room</button>
+            </a><br>
+
         </div>
     </div>
 </body>
