@@ -59,9 +59,16 @@ class database_model {
 }
 
 
+<<<<<<< HEAD
 $con = new database_model;
 $con -> createDatabase("CSIT314_Test");
 $con -> createFirstProfile();
 $con -> createFirstUser();
 
+=======
+// $con = new database_model;
+// $con -> createDatabase("CSIT314_Test");
+// $con -> createFirstProfile();
+// $con -> createFirstUser();
+>>>>>>> 99d0b55f42947c7c77a5bc02afca772d5e9bbe74
 ?>

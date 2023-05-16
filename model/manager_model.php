@@ -402,38 +402,6 @@ class manager_model extends user_model{
         }
     }
 
-    public function viewReview(){
-        global $conn;
-        $conn->select_db("CSIT314_Test");
-
-        try {
-            $sql = "SELECT c.fname, c.lname, c.phone, b.total_amnt, b.numOfTicket, cr.movieName, cr.showTiming, cr.rating, cr.review, b.bookingDate
-            FROM customer c
-            JOIN booking b ON c.phone = b.phone
-            JOIN (
-              SELECT cr.bookingID, cr.movieName, cr.showTiming, cr.rating, cr.review
-              FROM customerReview cr
-            ) cr ON cr.bookingID = b.bookingID;";
-            $result = $conn->query($sql);
-        
-            if (!$result) {
-                throw new Exception("Failed to execute query: " . $conn->error);
-            }
-        
-            $array = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                $array[] = $row;
-            }
-        
-            return $array;
-        } catch (Exception $e) {
-            // Handle the exception here
-            echo "Error: " . $e->getMessage();
-            return array();
-        }
-
-    }
-
 
 }
 

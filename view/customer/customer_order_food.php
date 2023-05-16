@@ -219,9 +219,9 @@ print_r($array);
                     $price += $quantity1 * $priceArr[$id];
                 }
             }
-            $loyaltypoints = $price;
+            
 
-            if($controller->orderFoodController($phone,$date,$price,$loyaltypoints)){
+            if($controller->orderFoodController($phone,$date,$price)){
                 foreach($orderedFood as $foodID => $quantity){
                     if($controller->orderItemController($foodID,$quantity)){
                         echo" <script>window.location='customer_home_view.php';</script>";

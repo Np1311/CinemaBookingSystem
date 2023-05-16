@@ -3,7 +3,10 @@ require('../../controller/manager_controller.php');
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99d0b55f42947c7c77a5bc02afca772d5e9bbe74
 $array = $controller -> viewFoodAndDrinkController();
 
 ?>
@@ -71,7 +74,6 @@ $array = $controller -> viewFoodAndDrinkController();
             <a href="admin_reactivate_profile.php">
                 <button id='bodyButton'>Reactivate profile</button>
             </a>  -->
-            <button type="btn-danger" onclick="window.location.href = 'manager_home_view.php'">Back</button>
         </div>
     </body>
 </html>
