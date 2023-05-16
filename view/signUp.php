@@ -150,7 +150,8 @@ $_SESSION['profile']='customer';
                 $email = $_POST['email'];
                 $dob = $_POST['dob'];
                 $password = $_POST['password'];
-                $controller = new signUpController;
+                require('../controller/signUp_controller.php');
+                $controller = new signUp_controller;
             
                 if ($controller -> createAccount($profile,$fname,$lname,$phone,$email,$password,$dob)){
                     echo '<script>alert("Sign up succesful")</script>'; 
