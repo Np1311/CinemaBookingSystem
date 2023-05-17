@@ -140,12 +140,17 @@ class customer_model extends user_model{
         try {
             $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
             $result = $conn->query($sql);
-            
-            $array = array();
-            // fetch the result row as an associative array
-            while ($row = mysqli_fetch_assoc($result)) {
-                $array[] = $row['seats'];
+            if($result == false){
+                $array = [];
+            }else{
+                $array = array();
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row['seats'];
+                }
             }
+            
+            
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
             $array = [];
