@@ -122,6 +122,17 @@ class booking_controller{
         }
     }
 
+    public function searchMovieController($searchInput){
+        global $booking;
+        $array = $booking->searchMovie($searchInput);
+
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
 $booking_controller = new booking_controller;

@@ -115,7 +115,35 @@ print_r($array);
     <body>        
         
         <div class="movie-container">
-           
+            <form  method="post">
+                <input type="text" name="searchInput" placeholder="Search...">
+                <button type="submit" name='submit'>Search</button>
+            </form>
+            <?php 
+            if(isset($_POST['submit'])){
+                $searchInput = $_POST['searchInput'];
+
+                if($booking_controller->searchMovieController($searchInput) == false){
+                    echo '<script>alert("'.$searchInput.' is not found")</script>';  
+                }else{
+                    $array = $booking_controller->searchMovieController($searchInput);
+                }
+            }
+            ?>
+            <form method="post">
+                <button type="submit" name="viewAll">View All</button>
+            </form>
+            <?php
+
+                if (isset($_POST['viewAll'])) {
+                    if($booking_controller -> getShowingMovie_controller() == false){
+                        echo '<script>alert("No Movie listed")</script>';
+                    }else{
+                        $array = $booking_controller -> getShowingMovie_controller();
+                    }
+                           
+                }
+            ?>
                 <div class="movie-list">
                 <?php
                 foreach($array as $key=>$arr){
