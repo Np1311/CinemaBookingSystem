@@ -100,8 +100,17 @@ class manager_controller{
     public function viewFoodAndDrinkController(){
         global $manager;
 
+        global $manager;
         $array = $manager -> viewFoodAndDrink();
 
+
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
+        
         return $array;
     }
 
@@ -146,6 +155,39 @@ class manager_controller{
         global $manager;
         $array = $manager -> generateWeeklyReport($startDate,$endDate);
         return $array;
+    }
+    public function getRoomDetailController($searchInput,$searchBy){
+        global $manager;
+        $array = $manager->getRoomDetail($searchInput,$searchBy);
+
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
+    }
+    public function searchMovieController($searchInput){
+        global $manager;
+        $array = $manager->searchMovie($searchInput);
+
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
+    }
+    public function searchFoodController($searchInput){
+        global $manager;
+        $array = $manager->searchFood($searchInput);
+
+        if(count($array)>0){
+            return $array;
+        }
+        else {
+            return false;
+        }
     }
 }
 

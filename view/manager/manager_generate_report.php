@@ -96,7 +96,7 @@ print_r($array);
   <form method='post' onsubmit="return validateForm()">
     <label for="selection">Select Option:</label>
     <select id="selection" onchange="handleOptionChange()" name="reportType">
-      <option value="">Select Report</option>
+      <option value="" disabled selected>Select Report</option>
       <option value="monthly">Monthly</option>
       <option value="weekly">Weekly</option>
     </select>
