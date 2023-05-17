@@ -53,11 +53,17 @@ $admin_controller = new admin_controller;
             width: calc(400px);
             padding: 10px;
             box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 16px;
         }
 
         .password-toggle {
             position: absolute;
+<<<<<<< Updated upstream
             right: 10px;
+=======
+            right: 20px;
+>>>>>>> Stashed changes
             top: 10px;
             cursor: pointer;
         }

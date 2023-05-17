@@ -32,7 +32,7 @@ require('../header.html');
 
         .form h2 {
             text-align: center;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
         }
 
         .form label {
