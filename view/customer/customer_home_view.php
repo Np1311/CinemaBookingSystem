@@ -1,12 +1,12 @@
 <?php
 require ('header_customer.html');
 
-require('../../controller/customer_controller.php');
+require('../../controller/booking_controller.php');
 
-if($controller -> getShowingMovie_controller() == false){
+if($booking_controller -> getShowingMovie_controller() == false){
     echo '<script>alert("No Movie listed")</script>';
 }else{
-    $array = $controller -> getShowingMovie_controller();
+    $array = $booking_controller -> getShowingMovie_controller();
 }
 
 print_r($array);

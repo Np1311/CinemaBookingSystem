@@ -3,12 +3,28 @@
 
 require('../../controller/booking_controller.php');
 session_start();
-$phone = $_SESSION['customerID'];
+$phone = 0;
 $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
 $date = $_GET['date'];
 
-$array = $booking_controller -> getMovieDetail_controller($movie,$phone);
+echo '<form method="post">';
+echo '<input type="text" name="phone" placeholder="Search phone...">';
+echo '<button type="submit" name="submit">Search</button>';
+echo '</form>';
+
+
+if(isset($_POST['submit'])){
+    $phone = intval($_POST['phone']);
+}
+
+if($booking_controller -> getMovieDetail_controller($movie,$phone) == false){
+echo '<script>alert("data is not found")</script>';  
+}else{
+    $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
+}
+
+
 
 
 
@@ -28,6 +44,10 @@ $loyalty_point = $array['loyalty_point'];
 // $takenColumn = 4;
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date);
 var_dump($takenSeat);
+echo "</br>";
+var_dump($array);
+echo "</br>";
+echo $phone;
 
 if ($selected_row === NULL){
     $selected_row = '';
@@ -110,33 +130,6 @@ if ($selected_row === NULL){
 
             $('#seat_dt').val(seat.join(", "));
         }
-
-
-        // function checkboxtotal() {
-        //     var seat = [];
-        //     $('input[name="seat_chart[]"]:checked').each(function() {
-        //         if (!$(this).is(':disabled')) {
-        //             seat.push($(this).val());
-        //         }
-        //     });
-
-        //     var st = seat.length;
-        //     document.getElementById('no_ticket').value = st;
-
-        //     var ch = document.getElementById('child').value;
-        //     var child = (ch * 4);
-
-        //     var std = document.getElementById('student').value;
-        //     var student = (std * 3);
-
-        //     var sr = document.getElementById('senior').value;
-        //     var senior = (sr * 2);
-
-        //     total_price = ((st * 12) - (child) - (senior) - (student));
-        //     $('#price_details').text("SGD$" + total_price);
-
-        //     $('#seat_dt').val(seat.join(", "));
-        // }
 
         </script>
         <style>
@@ -298,11 +291,16 @@ if ($selected_row === NULL){
                     <h6 class="mt-3" style="color:#BD9A7A;">Total Ticket Price</h6>
                     <p class="mt-1" id="price_details"></p>
 
+                    <?php if($loyalty_point != 0){?>
                     <h6 class="mt-3" style="color:#BD9A7A;">Your Loyalty Point</h6>
                     <p class="mt-1" id="loyalty_point"><?php echo $loyalty_point;?></p>
-
-                    
                     <input type="checkbox" name ='redeemPoint' value='yes'onclick="redeemPoints()" > Redeem Loyalty Points</input></br>
+
+                    <?php
+                    }
+                    ?>
+                    
+                    
                     
 
                     <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
@@ -410,31 +408,20 @@ if ($selected_row === NULL){
                     $columnSeat = 0;
                     $rowSeat =  null; 
                 }
+                
+
                 if($_POST['preOrderFood']== 'yes'){
                     if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
-                        echo" <script>window.location='customer_order_food.php?date=$date';</script>";
+                        echo" <script>window.location='staff_order_food.php?date=$date&phone=$phone';</script>";
                     }
                     
                 }else{
                     if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
-                        echo" <script>window.location='customer_home_view.php';</script>";
+                        echo" <script>window.location='staff_home_view.php';</script>";
                     }
                 }
 
-                // echo "Show Time: " . $time . "<br>";
-                // echo "Number of Tickets: " . $numOfTiket . "<br>";
-                // echo "Seat Details: " . $seatArr . "<br>";
-                // echo "Number of Child Tickets: " . $noOfChildTicket . "<br>";
-                // echo "Number of Senior Tickets: " . $noOfSeniorTicket . "<br>";
-                // echo "Number of Student Tickets: " . $noOfStudentTicket . "<br>";
-                // echo "Booking Date: " . $bookingDate . "<br>";
-                // echo "Movie Name: " . $movieName . "<br>";
-                // echo "Total Amount: " .$total_amnt . "<br>";
-                // echo "Loyalty Points: " . $loyaltypoints . "<br>";
-                // echo "Seat Details Array: ";
-                // print_r($seatDetail);
-                // echo "Row:".$rowSeat."</br>";
-                // echo "Column:".$columnSeat."</br>";
+               
             }
         ?>
     </body>

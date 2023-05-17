@@ -1,12 +1,13 @@
 <?php
-require('../../controller/customer_controller.php');
+require('../../controller/booking_controller.php');
+require_once('../../controller/customer_controller.php');
 session_start();
 $phone = $_SESSION['customerID'];
 
-if($array = $controller->getBookingController($phone)== false){
+if($array = $booking_controller->getBookingController($phone)== false){
   $array = [];
 }else{
-  $array = $controller->getBookingController($phone);
+  $array = $booking_controller->getBookingController($phone);
 }
 
 print_r($array);
