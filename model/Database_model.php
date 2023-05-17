@@ -8,7 +8,8 @@ class database_model {
         $sql = "CREATE DATABASE IF NOT EXISTS $dbName";
         try {
             mysqli_query($conn, $sql); 
-            echo "Database created successfully"; }
+            //echo "Database created successfully"; 
+        }
         catch(mysqli_sql_exception $e) {
             die("Error creating database: " . mysqli_error($conn)); }
     }
@@ -32,7 +33,7 @@ class database_model {
     
 
       if ($conn->query($sql) === TRUE) {
-          echo "Table customer created successfully";
+          //echo "Table customer created successfully";
           return true;
       } else {
           echo "Error creating table: " . $conn->error;

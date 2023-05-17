@@ -24,9 +24,6 @@ $controller = new admin_controller;
             min-height: 100vh;
             padding: 20px;
             margin-top: 200px;
-            margin-right: 100px;
-
-            
         }
 
     body {
@@ -72,7 +69,7 @@ $controller = new admin_controller;
       width: 100%;
       max-width: 500px;
       margin-top:20px;
-      margin-right:450px;
+      margin-right:350px;
     }
 
     .button-container {
@@ -81,7 +78,7 @@ $controller = new admin_controller;
     }
 
     table {
-  width: 1380px;
+  width: 1300px;
   height:100px;
   max-width: 800px;
   border-collapse: collapse;
