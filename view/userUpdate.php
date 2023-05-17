@@ -70,7 +70,7 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
          input[type="submit"] {
             background-color: #bd9a7a;
             color: #fff;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -103,7 +103,7 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
             .button-container {
                 display: flex;
                 justify-content: space-between;
-                width: 100%;
+                width: 105%;
             }
 
             .button-container button {

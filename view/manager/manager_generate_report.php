@@ -7,6 +7,7 @@ print_r($array);
 <html>
 <head>
   <title>Date Selection Form</title>
+<<<<<<< Updated upstream
   <style>
     body {
         background-color: #e7dbd0;
@@ -97,6 +98,14 @@ print_r($array);
     <label for="selection">Select Option:</label>
     <select id="selection" onchange="handleOptionChange()" name="reportType">
       <option value="" disabled selected>Select Report</option>
+=======
+</head>
+<body>
+  <form>
+    <label for="selection">Select Option:</label>
+    <select id="selection" onchange="handleOptionChange()">
+      <option value="">Select Report</option>
+>>>>>>> Stashed changes
       <option value="monthly">Monthly</option>
       <option value="weekly">Weekly</option>
     </select>
@@ -140,6 +149,7 @@ print_r($array);
       <input type="date" id="endDate" name="endDate">
     </div>
 
+<<<<<<< Updated upstream
     <input type="submit" name = "submit" value="Submit">
   </form>
   <div class="button-container">
@@ -149,6 +159,10 @@ print_r($array);
   </div>
   <br>
        
+=======
+    <input type="submit" value="Submit">
+  </form>
+>>>>>>> Stashed changes
 
   <script>
     function handleOptionChange() {
@@ -164,6 +178,7 @@ print_r($array);
         weeklyFields.style.display = "block";
       }
     }
+<<<<<<< Updated upstream
     function validateForm() {
         var startDate = document.getElementById('startDate').value;
         var endDate = document.getElementById('endDate').value;
@@ -234,5 +249,8 @@ print_r($array);
     echo '</div>';
     ?>
    
+=======
+  </script>
+>>>>>>> Stashed changes
 </body>
 </html>

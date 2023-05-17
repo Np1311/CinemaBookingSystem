@@ -10,12 +10,24 @@ $controller = new admin_controller;
   <style>
     form {
       max-width: 600px;
-      margin: 0 auto;
       background-color: #fff;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      margin: 0 auto; /* Center the form horizontally */
+      margin-bottom: 20px;
     }
+    .container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            min-height: 100vh;
+            padding: 20px;
+            margin-top: 200px;
+            margin-right: 100px;
+
+            
+        }
 
     body {
       background-color: #e7dbd0;
@@ -59,6 +71,8 @@ $controller = new admin_controller;
     form {
       width: 100%;
       max-width: 500px;
+      margin-top:20px;
+      margin-right:450px;
     }
 
     .button-container {
@@ -67,16 +81,20 @@ $controller = new admin_controller;
     }
 
     table {
-  width: 100%;
+  width: 1380px;
+  height:100px;
   max-width: 800px;
-  margin: 20px auto; /* Add margin to center the table and create spacing between form and table */
   border-collapse: collapse;
+  margin: 0 auto; /* Center the table horizontally */
+  margin-top: 20px; /* Add margin at the top for spacing between form and table */
+  margin-bottom: 20px;
 }
 
 table th,
 table td {
   padding: 8px;
   border: 2px solid black;
+  background-color:white;
 }
 
 table th {
@@ -87,22 +105,13 @@ table th {
 table td {
   text-align: center;
 }
-
-#form::after{
-    content: "\a";
-    white-space: pre;
-}
-
-#table::before{
-    content: "\a";
-    white-space: pre;
-}
   </style>
 
   <meta charset="utf-8">
   <title>Search Profile</title>
 </head>
 <body>
+  <div class="container">
   <form method="post">
     <label for="search">Search Profile</label>
     <input type="text" id="search" name="search" placeholder="Enter search term...">
@@ -153,5 +162,6 @@ table td {
                   }
               }
               ?>
+              </div>
             </body>
             </html>            

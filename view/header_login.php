@@ -39,9 +39,14 @@ session_start();
             color: #FFFFFF;
         }
 
+        .logoAndName h2 a{
+            color: white;
+        }
+
         .logoutbtn {
             display: flex;
             align-items: center;
+            gap:10px;
         }
 
         .logout {

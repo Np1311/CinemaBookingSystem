@@ -30,6 +30,7 @@
             transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease;
             width: 100%;
             border-radius: 5px; /* Added border-radius */
+            margin-right:10px;
         }
         
         #bodyButton:hover {

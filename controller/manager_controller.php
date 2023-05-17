@@ -146,6 +146,7 @@ class manager_controller{
         $array = $manager -> getYear();
         return $array;
     }
+<<<<<<< Updated upstream
     public function generateMonthlyReportController($year,$month){
         global $manager;
         $array = $manager -> generateMonthlyReport($year,$month);
@@ -189,6 +190,8 @@ class manager_controller{
             return false;
         }
     }
+=======
+>>>>>>> Stashed changes
 }
 
 $controller = new manager_controller;

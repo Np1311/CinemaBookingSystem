@@ -94,6 +94,7 @@ $array = $controller -> viewRoomController();
     <?php
       }
     ?>
+<<<<<<< Updated upstream
     <label for="timing1">Timing:</label>
     <input type="text" id="timing1" name="timing1" value='0' placeholder="Enter Hours E.g 00:00 - 00:00"><br><br>
 
@@ -105,6 +106,19 @@ $array = $controller -> viewRoomController();
 
     <label for="timing4">Timing:</label>
     <input type="text" id="timing4" name="timing4" value='0'placeholder="Enter Hours E.g 00:00 - 00:00"><br><br>
+=======
+    <label for="timing1">Timing 1:</label>
+    <input type="text" id="timing1" name="timing1" placeholder="Insert Total Row" value='0'><br><br>
+
+    <label for="timing2">Timing 2:</label>
+    <input type="text" id="timing2" name="timing2" placeholder="Insert Total Row" value='0'><br><br>
+
+    <label for="timing3">Timing 3:</label>
+    <input type="text" id="timing3" name="timing3" placeholder="Insert Total Row" value='0'><br><br>
+
+    <label for="timing4">Timing 4:</label>
+    <input type="text" id="timing4" name="timing4" placeholder="Insert Total Row" value='0'><br><br>
+>>>>>>> Stashed changes
 
     <div class="btn-group">
       <input type="submit" name='submit' value="Submit">

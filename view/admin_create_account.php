@@ -50,13 +50,14 @@ $admin_controller = new admin_controller;
 
         .password-input input[type="password"],
         .password-input input[type="text"] {
-            width: calc(380px);
+            width: calc(400px);
             padding: 10px;
+            box-sizing: border-box;
         }
 
         .password-toggle {
             position: absolute;
-            right: 5px;
+            right: 30px;
             top: 10px;
             cursor: pointer;
         }

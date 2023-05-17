@@ -3,7 +3,10 @@
     require('../header.html');
 
     $arr = $controller->viewRoomController();
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
 ?>
 <html>
 <head>

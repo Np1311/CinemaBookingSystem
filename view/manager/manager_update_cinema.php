@@ -40,7 +40,8 @@ $arr = $controller -> getRoomDetail($updateID);
 
   .button-container {
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    gap:10px;
   }
 
   input[type="submit"],
@@ -51,6 +52,7 @@ $arr = $controller -> getRoomDetail($updateID);
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    width:2000px;
   }
 
   </style>

@@ -37,7 +37,7 @@ require('../header.html');
 
         .form label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: bold;
         }
 
@@ -45,10 +45,11 @@ require('../header.html');
         .form input[type="number"],
         .form input[type="date"] {
             width: 100%;
-            padding: 5px;
+            padding: 8px;
             border: 1px solid #ccc;
             border-radius: 3px;
             box-sizing: border-box;
+            margin-bottom: 6px;
         }
 
         .form .btn-group {

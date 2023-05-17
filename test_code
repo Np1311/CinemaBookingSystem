@@ -18,6 +18,7 @@ WHERE bookingDate BETWEEN '2023-05-12' AND '2023-05-19'
 GROUP BY movieName;
 
 SELECT DISTINCT YEAR(bookingDate) AS bookingYear
+<<<<<<< Updated upstream
 FROM booking;
 SELECT * FROM `cinemaRoom` WHERE `roomName` = 'Room1';
 
@@ -32,3 +33,6 @@ SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.
         LEFT JOIN cinemaAllocation a ON a.movieID = m.movieID
         LEFT JOIN cinemaRoom r ON r.roomID = a.roomID
         WHERE m.movieName LIKE '%$searchInput%';
+=======
+FROM booking;
+>>>>>>> Stashed changes
