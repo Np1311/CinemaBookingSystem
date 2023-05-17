@@ -127,6 +127,7 @@ print_r($array);
   <body>
     <h1>Movie Review Form</h1>
     <?php
+    if(count($array)>0){
         foreach ($array as $booking) {
         ?>
             <form method="post">
@@ -171,6 +172,9 @@ print_r($array);
         </br></br>
         <?php
         }
+      }else{
+        echo "No Booking at The moments";
+      }
         ?>
     <?php
         

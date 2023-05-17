@@ -179,6 +179,7 @@ class customer_model extends user_model{
             $array = array();
             if (!$result) {
                 throw new Exception("Query failed: " . $conn->error);
+                $array = [];
             } else {
                 // fetch the result row as an associative array
                 while ($row = mysqli_fetch_assoc($result)) {
