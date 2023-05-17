@@ -343,6 +343,32 @@ class booking_model{
             return false;
         }
     }
+    public function searchMovie($searchInput){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        try {
+            $sql =  "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status,
+                        a.timing1, a.timing2, a.timing3, a.timing4
+                        FROM cinemaMovie m
+                        JOIN cinemaAllocation a ON m.movieID = a.movieID
+                        WHERE m.relDate < CURDATE() AND m.status = 'active' AND m.movieName LIKE '%$searchInput%' ;";
+         
+            $result = $conn->query($sql);
+        
+            // fetch the result row as an associative array
+            $array = [];
+            while ($row = mysqli_fetch_assoc($result) ) {
+                $array[] = $row;
+            }
+        } catch (Exception $e) {
+            // if the table doesn't exist or there's another error, return an empty array
+            echo "Error: " . $e->getMessage();
+            $array = [];
+        }
+        
+        return $array;
+    }
 }
 
 //$con = new customer;
