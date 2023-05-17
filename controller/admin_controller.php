@@ -39,7 +39,7 @@ class admin_controller{
                     echo '<td class="action-cell">
                             <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'"
                             class="text-light">Update</a></button>
-                            <button class="btn btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></
+                            <button class="btn btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Suspend</a></
                             button> 
                           </td>';
                     echo "</tr>";
