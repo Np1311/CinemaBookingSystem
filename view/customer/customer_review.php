@@ -2,7 +2,12 @@
 require('../../controller/customer_controller.php');
 session_start();
 $phone = $_SESSION['customerID'];
-$array = $controller->getBookingController($phone);
+
+if($array = $controller->getBookingController($phone)== false){
+  $array = [];
+}else{
+  $array = $controller->getBookingController($phone);
+}
 
 print_r($array);
 
@@ -127,6 +132,7 @@ print_r($array);
   <body>
     <h1>Movie Review Form</h1>
     <?php
+    if(count($array)>0){
         foreach ($array as $booking) {
         ?>
             <form method="post">
@@ -171,6 +177,9 @@ print_r($array);
         </br></br>
         <?php
         }
+      }else{
+        echo "No Booking at The moments";
+      }
         ?>
     <?php
         

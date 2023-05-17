@@ -140,18 +140,28 @@ class customer_model extends user_model{
         try {
             $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
             $result = $conn->query($sql);
-            
-            $array = array();
-            // fetch the result row as an associative array
-            while ($row = mysqli_fetch_assoc($result) ) {
-                $array[] = $row ['seats'];
+            if($result == false){
+                $array = [];
+            }else{
+                $array = array();
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row['seats'];
+                }
             }
+            
+            
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
             $array = [];
         }
         
+        if (!isset($result) || !$result) {
+            $array = [];
+        }
+        
         return $array;
+        
         
     }
     public function getBookingDetail($phone){
@@ -169,6 +179,7 @@ class customer_model extends user_model{
             $array = array();
             if (!$result) {
                 throw new Exception("Query failed: " . $conn->error);
+                $array = [];
             } else {
                 // fetch the result row as an associative array
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -181,17 +192,18 @@ class customer_model extends user_model{
             // fallback to a simple SELECT query if customerReview table doesn't exist
             $sql = "SELECT * FROM booking WHERE phone = '$phone' AND `bookingDate` < CURDATE();";
             $result = $conn->query($sql);
-            $array = array();
             if (!$result) {
                 echo "Error: " . $conn->error;
+                return array(); // Return an empty array
             } else {
+                $array = array();
                 // fetch the result row as an associative array
                 while ($row = mysqli_fetch_assoc($result)) {
                     $array[] = $row;
                 }
+                return $array;
             }
-            return $array;
-        }
+        }        
         
     }
     public function redeemPoint($newLoyaltyPoints,$phone){
