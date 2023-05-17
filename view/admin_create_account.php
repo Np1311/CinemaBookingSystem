@@ -57,7 +57,7 @@ $admin_controller = new admin_controller;
 
         .password-toggle {
             position: absolute;
-            right: 30px;
+            right: 10px;
             top: 10px;
             cursor: pointer;
         }
