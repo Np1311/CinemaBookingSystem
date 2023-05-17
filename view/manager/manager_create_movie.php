@@ -98,7 +98,7 @@ require('../header.html');
                 <input type="text" id="genre" name="genre" placeholder="Enter Genre">
 
                 <label for="duration">Duration:</label>
-                <input type="number" id="duration" name="duration" min="0" max="9999" placeholder="Enter Duration in Hours">
+                <input type="number" id="duration" name="duration" min="0" max="9999" placeholder="Enter Duration in Minutes">
 
                 <div class="btn-group">
                     <input type="submit" name="submit" value="Submit">
