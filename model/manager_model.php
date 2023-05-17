@@ -436,12 +436,9 @@ class manager_model extends user_model{
     public function getYear(){
         global $conn;
         $conn -> select_db('CSIT314_Test');
-<<<<<<< Updated upstream
-=======
 
         $sql ="SELECT DISTINCT YEAR(bookingDate) AS bookingYear
         FROM booking;";
->>>>>>> Stashed changes
          try {
             $sql ="SELECT DISTINCT YEAR(bookingDate) AS bookingYear
             FROM booking;";
@@ -462,12 +459,6 @@ class manager_model extends user_model{
             echo "Error: " . $e->getMessage();
             return array();
         }
-<<<<<<< Updated upstream
-=======
-
-
-    }
->>>>>>> Stashed changes
 
 
     }
