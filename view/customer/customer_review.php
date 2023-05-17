@@ -2,7 +2,12 @@
 require('../../controller/customer_controller.php');
 session_start();
 $phone = $_SESSION['customerID'];
-$array = $controller->getBookingController($phone);
+
+if($array = $controller->getBookingController($phone)== false){
+  $array = [];
+}else{
+  $array = $controller->getBookingController($phone);
+}
 
 print_r($array);
 
