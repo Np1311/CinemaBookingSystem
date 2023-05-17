@@ -113,7 +113,7 @@ $_SESSION['profile']='customer';
             </form>
         </div>
         <?php
-        require ('../../controller/signUp_controller.php');
+        require ('../controller/signUp_controller.php');
         ?>
         <script>
             function togglePasswordVisibility(id) {
@@ -154,7 +154,7 @@ $_SESSION['profile']='customer';
             
                 if ($controller -> createAccount($profile,$fname,$lname,$phone,$email,$password,$dob)){
                     echo '<script>alert("Sign up succesful")</script>'; 
-                    echo" <script>window.location='../view/index.php';</script>";
+                    echo" <script>window.location='index.php';</script>";
                 }
             }
         ?>

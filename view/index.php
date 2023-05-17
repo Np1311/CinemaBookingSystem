@@ -396,52 +396,12 @@ session_start();
             </div>
                 </br>
                 <button class="btn-primary" type ='submit' name='submit' value='submit'> Log in </button>
-                <h3></br>Don't have account ? <a href="../view/customer/signUp.php">Sign up</a></h3>
+                <h3></br>Don't have account ? <a href="../view/signUp.php">Sign up</a></h3>
             </form>
             </br>
         </div>
         </br></br></br></br></br>
-        <!-- <div class="movie-container">
-		
-            <div class="movie-list">
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+1" alt="Movie 1">
-                    <h2>Movie 1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+2" alt="Movie 2">
-                    <h2>Movie 2</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+3" alt="Movie 3">
-                    <h2>Movie 3</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+4" alt="Movie 4">
-                    <h2>Movie 4 </h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+5" alt="Movie 5">
-                    <h2>Movie 5</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-                <div class="movie">
-                    <img src="https://via.placeholder.com/300x400.png?text=Movie+6" alt="Movie 6">
-                    <h2>Movie 6</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae magna eget augue placerat elementum.</p>
-                    <button>Book Now</button>
-                </div>
-            </div>
-        </div> -->
+        
         <script>
             function myFunction(type) {
             var x = document.getElementById(type);
