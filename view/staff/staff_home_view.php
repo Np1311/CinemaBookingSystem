@@ -116,6 +116,16 @@ print_r($array);
         
         <div class="movie-container">
             <form  method="post">
+                    <input type="text" name="bookedID" placeholder="Booking ID...">
+                    <button type="submit" name='bookedIDSubmit'>Search</button>
+                </form>
+                <?php 
+                if(isset($_POST['bookedIDSubmit'])){
+                    $bookedID = $_POST['bookedID'];
+                    echo" <script>window.location='staff_view_booking.php?bookedID=$bookedID';</script>";
+                }
+                ?>
+            <form  method="post">
                 <input type="text" name="searchInput" placeholder="Search...">
                 <button type="submit" name='submit'>Search</button>
             </form>
