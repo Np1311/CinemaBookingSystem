@@ -27,7 +27,7 @@ class booking_controller{
             return false;
         }
     }
-    public function createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat){
+    public function createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat){
         global $booking;
         global $customer;
 
@@ -35,7 +35,7 @@ class booking_controller{
             $customer -> updateSeat($phone,$columnSeat,$rowSeat);
         }
 
-        if($booking -> createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints)){
+        if($booking -> createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints)){
             if($phone != 0){
                 $booking -> gainPoints($loyaltypoints,$phone);
             }
@@ -45,10 +45,10 @@ class booking_controller{
 
     }
     
-    public function takenSeats_controller($movieID,$showTiming,$date){
+    public function takenSeats_controller($movieID,$showTiming,$date,$bookedID){
         global $booking;
 
-        $array = $booking->takenSeats($movieID,$showTiming,$date);
+        $array = $booking->takenSeats($movieID,$showTiming,$date,$bookedID);
         if(count($array)>0){ 
             $merged_array = array();
             foreach ($array as $seats) {
@@ -130,6 +130,30 @@ class booking_controller{
             return $array;
         }
         else {
+            return false;
+        }
+    }
+
+    public function getBookingByID_controller($bookedID){
+        global $booking;
+        $array = $booking -> getBookingByID($bookedID);
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
+    }
+    public function getSelectedSeatByID_controller($bookedID){
+        global $booking;
+        $array = $booking -> getSelectedSeatByID($bookedID);
+        return $array;
+    }
+    public function updateBookingController($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints){
+        global $booking;
+
+        if($booking->updateBooking($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints)){
+            return true;
+        }else{
             return false;
         }
     }

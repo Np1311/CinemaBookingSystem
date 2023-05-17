@@ -1,33 +1,17 @@
 <?php
-//require ('../header_login.php');
-
 require('../../controller/booking_controller.php');
 
-$phone = 0;
-$movie=$_GET['bookingID'];
-$showTiming = $_GET['showTiming'];
-$date = $_GET['date'];
-$bookedID = 0;
-echo '<form method="post">';
-echo '<input type="text" name="phone" placeholder="Search phone...">';
-echo '<button type="submit" name="submit">Search</button>';
-echo '</form>';
+$bookedID = $_GET['bookedID'];
 
-
-if(isset($_POST['submit'])){
-    $phone = intval($_POST['phone']);
-}
-
-if($booking_controller -> getMovieDetail_controller($movie,$phone) == false){
-echo '<script>alert("data is not found")</script>';  
+if($booking_controller -> getBookingByID_controller($bookedID) == false){
+    echo '<script>alert("data is not found")</script>';  
 }else{
-    $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
+    $array = $booking_controller -> getBookingByID_controller($bookedID);
 }
 
-
-
-
-
+$movie = $array['movieID'];
+$showTiming = $array['showTiming'];
+$date = $array['bookingDate'];
 $alphabet = range('A', 'Z');
 $letters = array();
 foreach ($alphabet as $char) {
@@ -37,23 +21,16 @@ foreach ($alphabet as $char) {
 $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
-$selected_row = $array['seat_row'];
-$selected_column = $array['seat_column'];
-$loyalty_point = $array['loyalty_point'];
-// $takenRow = 'I';
-// $takenColumn = 4;
-$takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
-var_dump($takenSeat);
-echo "</br>";
+
+$selectedSeat = $booking_controller -> getSelectedSeatByID_controller($bookedID);
+
+
 var_dump($array);
-echo "</br>";
-echo $phone;
 
-if ($selected_row === NULL){
-    $selected_row = '';
-}
+var_dump($selectedSeat);
+
+$takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 ?>
-
 <html>
   <head>
     <title>Capybara Cinema</title>
@@ -72,8 +49,7 @@ if ($selected_row === NULL){
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
         var total_price = 0;
         $(document).ready(function() {
-            let selected_row = '<?php echo $selected_row;?>';
-            let selected_column = <?php echo $selected_column;?>;
+            let selectedSeat = <?php echo json_encode($selectedSeat);?>;
             let takenSeats = <?php echo json_encode($takenSeat);?>;
         
             for (let i = 1; i <= <?php echo $row;?>; i++) {
@@ -81,7 +57,13 @@ if ($selected_row === NULL){
             
                 for (let j = 1; j <= <?php echo $column;?>; j++) {
                     let seatValue = row + j;
-                    let checkedAttribute = (row === selected_row && j === selected_column) ? 'checked' : '';
+                    let checkedAttribute = '';
+                    for (let seat in selectedSeat) {
+                        if (selectedSeat[seat].row === row && selectedSeat[seat].column === String(j)) {
+                            checkedAttribute = 'checked';
+                            break;
+                        }
+                    }
                     let disabledAttribute = '';
                     for (let seat in takenSeats) {
                         if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
@@ -233,7 +215,7 @@ if ($selected_row === NULL){
                            
                             
                             <?php
-                                echo '<option value="'.$showTiming.'">'.$array["timing1"].'</option>';
+                                echo '<option value="'.$showTiming.'">'.$array["showTiming"].'</option>';
                             ?>
                                 
                         </select>
@@ -246,24 +228,16 @@ if ($selected_row === NULL){
                     <input type="text" style="border-radius:30px;" name="seat_dt" id="seat_dt" required>
 
                     <label for="psw"><b>No. of Adult Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="adult" name="adult" value='0' onchange='checkboxtotal()'>
+                    <input type="number" style="border-radius:30px;" id="adult" name="adult" value='<?php echo $array['noOfAdultTicket']; ?>' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>No. of Child Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="child" name="child" value='0' onchange='checkboxtotal()'>
+                    <input type="number" style="border-radius:30px;" id="child" name="child" value='<?php echo $array['noOfChildTicket']; ?>' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>No. of Student Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="student" name="student" value='0' onchange='checkboxtotal()'>
+                    <input type="number" style="border-radius:30px;" id="student" name="student" value='<?php echo $array['noOfStudentTicket']; ?>' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>No. of Senior Tickets</b></label>
-                    <input type="number" style="border-radius:30px;" id="senior" name="senior" value='0' onchange='checkboxtotal()'>
-
-                    <label for="psw"><b>Pre-order Food & Drink:</b></label>
-                    <select class="form-control"  name="preOrderFood"  id="preOrderFood" style="border-radius:30px;">
-                        
-                        <option value='no'> No </option>  
-                        <option value='yes'> Yes </option>
-
-                    </select>
+                    <input type="number" style="border-radius:30px;" id="senior" name="senior" value='<?php echo $array['noOfSeniorTicket']; ?>' onchange='checkboxtotal()'>
 
                     <h6 class="mt-5"  style="color:#BD9A7A;">Movie Show</h6>
                     <span class="mt-1" id="MovieName"><?php echo $array['movieName'];?></span>
@@ -283,14 +257,6 @@ if ($selected_row === NULL){
                     <h6 class="mt-3" style="color:#BD9A7A;">Total Ticket Price</h6>
                     <p class="mt-1" id="price_details"></p>
 
-                    <?php if($loyalty_point != 0){?>
-                    <h6 class="mt-3" style="color:#BD9A7A;">Your Loyalty Point</h6>
-                    <p class="mt-1" id="loyalty_point"><?php echo $loyalty_point;?></p>
-                    <input type="checkbox" name ='redeemPoint' value='yes'onclick="redeemPoints()" > Redeem Loyalty Points</input></br>
-
-                    <?php
-                    }
-                    ?>
                     <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
 
                 </div>
@@ -303,50 +269,6 @@ if ($selected_row === NULL){
             </div>
 
         </section>
-        <script>
-            function redeemPoints() {
-            // Get the total ticket price
-            
-            
-            // Get the user's loyalty point balance
-            var loyalty_point = parseInt(document.getElementById("loyalty_point").textContent);
-            
-            // Calculate the maximum amount of points that can be redeemed
-            //var max_points = Math.floor(total_price / 10);
-            
-            // Prompt the user to enter the number of points to redeem
-            var points_to_redeem = parseInt(prompt("Enter the number of points to redeem (max " + total_price + " points):"));
-            
-            // Validate the user's input
-            if (isNaN(points_to_redeem) || points_to_redeem < 0 || points_to_redeem > total_price) {
-                alert("Invalid input!");
-                return;
-            }
-            // Calculate the new total price after the discount
-            var new_total_price = total_price - points_to_redeem;
-            
-            // Update the price details on the page
-            document.getElementById("price_details").textContent = "SGD$" + new_total_price.toFixed(2);
-            
-            // Deduct the redeemed loyalty points from the user's balance
-            var new_loyalty_point = loyalty_point - points_to_redeem;
-            document.getElementById("loyalty_point").textContent = new_loyalty_point;
-            $.ajax({
-                url: 'update_total_price.php',
-                method: 'POST',
-                data: {
-                    new_total_price: new_total_price,
-                    new_loyalty_point: new_loyalty_point
-                },
-                success: function(response) {
-                    // Handle the server response if needed
-                },
-                error: function(xhr, status, error) {
-                    // Handle the AJAX error if needed
-                }
-            });
-            }
-        </script>
         <?php
             if(isset($_POST['btn_booking'])){
                 $movieID = $array['movieID'];
@@ -363,46 +285,21 @@ if ($selected_row === NULL){
                 $roomName = $array['roomName'];
 
                 
-                if(isset($_POST['redeemPoint'])){
-                    if($_POST['redeemPoint']=='yes'){
-                        $total_amnt = $_SESSION['new_total_price'];
-                        $loyaltypoints=$total_amnt;
-                        $newLoyaltyPoints= $_SESSION['new_loyalty_point'];
-                        $booking_controller->redeemPointController($newLoyaltyPoints,$phone);
-
-                    } else {
-                        $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
-                        $loyaltypoints = $total_amnt;
-                    }
-                }else {
-                    $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
-                    $loyaltypoints = $total_amnt;
-                }
                 
-                $seatArr = explode(", ",$seats);
-
-                
-                
-                if($selected_row == null && $selected_column == 0){
-                    $columnSeat = substr($seatArr[0], 1);
-                    $rowSeat =  substr($seatArr[0], 0, 1); 
-                }else {
-                    $columnSeat = 0;
-                    $rowSeat =  null; 
-                }
+                $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
+                $loyaltypoints = $total_amnt;
                 
 
-                if($_POST['preOrderFood']== 'yes'){
-                    if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
-                        echo" <script>window.location='staff_order_food.php?date=$date&phone=$phone';</script>";
-                    }
-                    
+                
+                
+                
+
+                if($booking_controller->updateBookingController($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints)){
+                    echo" <script>window.location='staff_home_view.php';</script>";
                 }else{
-                    if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
-                        echo" <script>window.location='staff_home_view.php';</script>";
-                    }
+                    echo '<script>alert("error while updating data")</script>';  
                 }
-
+                
                
             }
         ?>
