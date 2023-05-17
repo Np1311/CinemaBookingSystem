@@ -1,5 +1,5 @@
 <?php
-require('database_model.php');
+$conn = new mysqli('localhost','root', '');
 
 class user_model {
     private $phone;

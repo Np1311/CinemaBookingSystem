@@ -2,7 +2,7 @@
 //require ('header_customer.html');
 require('../../controller/booking_controller.php');
 session_start();
-$phone = $_SESSION['customerID'];
+$phone = $_GET['phone'];
 
 $date = $_GET['date'];
 
@@ -225,7 +225,7 @@ print_r($array);
                 foreach($orderedFood as $foodID => $quantity){
                     if($quantity > 0){
                         if($booking_controller->orderItemController($foodID,$quantity)){
-                            echo" <script>window.location='customer_home_view.php';</script>";
+                            echo" <script>window.location='staff_home_view.php';</script>";
                         }
                     }
                 } 
