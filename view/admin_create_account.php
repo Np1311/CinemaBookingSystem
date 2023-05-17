@@ -59,11 +59,7 @@ $admin_controller = new admin_controller;
 
         .password-toggle {
             position: absolute;
-<<<<<<< Updated upstream
-            right: 10px;
-=======
             right: 20px;
->>>>>>> Stashed changes
             top: 10px;
             cursor: pointer;
         }
