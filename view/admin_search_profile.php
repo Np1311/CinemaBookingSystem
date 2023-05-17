@@ -25,6 +25,7 @@ $controller = new admin_controller;
             padding: 20px;
             margin-top: 200px;
             margin-left: 70px;
+            font-weight: bold;
         }
 
     body {
@@ -111,7 +112,7 @@ table td {
 <body>
   <div class="container">
   <form method="post">
-    <label for="search">Search Profile</label>
+    <label for="search">Search Profile:</label></br></br>
     <input type="text" id="search" name="search" placeholder="Enter search term...">
     <div class="button-container">
       <button type="submit" name="submit">Go</button>

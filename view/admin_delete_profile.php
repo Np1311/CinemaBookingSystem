@@ -68,7 +68,7 @@ $controller =  new admin_controller;
     <body>
         <div class = 'formContainer'>
             <form method="post">
-                <label for="profile">Profile:</label>
+                <label for="profile">Profile:</label></br></br>
                 <select name="deleteProfile">
                 <option value="" disabled selected>-- Choose a Profile --</option>
                     <?php

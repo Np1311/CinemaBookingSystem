@@ -31,6 +31,7 @@ form {
 label {
   margin-top: 10px;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 select {
@@ -73,7 +74,7 @@ select {
 <body>
   <div class='formContainer'>
     <form method="post">
-      <label for="profile">Profile:</label>
+      <label for="profile">Profile:</label></br>
       <select name="reactivate">
       <option value="" disabled selected>-- Choose a Profile --</option>
         <?php
