@@ -9,6 +9,7 @@ $showTiming = $_GET['showTiming'];
 $date = $_GET['date'];
 
 $array = $controller -> getMovieDetail_controller($movie,$phone);
+print_r($array);
 
 
 
