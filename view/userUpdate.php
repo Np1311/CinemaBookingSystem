@@ -31,7 +31,7 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         background-color: #ffffff; /* Set the background color to white */
         border-radius: 5px;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-        margin-top: 50px;
+        margin-top: 100px;
         /* margin-bottom: 50px; */
     }
 
@@ -130,6 +130,8 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
     echo "<input type='date' name='date_of_birth' id='date_of_birth' value=".$arr['dob']."><br><br>";
     echo '<label for="phone">Phone Number:</label>';
     echo "<input type='text' name='phone' id='phone' value=".$arr['phone']."><br><br>";
+    echo '<label for="pass">Password:</label>';
+    echo "<input type='text' name='pass' id='pass' value=".$arr['password']."><br><br>";
     echo '<label for="status">Status:</label>';
     echo '<select class="form-control" name="status">';
     if ($arr['status'] == 'active') {
@@ -156,7 +158,8 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         $phone = $_POST['phone'];
         $dob = $_POST['date_of_birth'];
         $status = $_POST['status'];
-        if ($userAccount->validateUser($curProfile, $fname, $lname, $phone, $email, $dob, $status, $userID)) {
+        $password = $_POST['pass'];
+        if ($userAccount->validateUser($curProfile, $fname, $lname, $phone, $email,$password,$dob, $status, $userID)) {
             echo " <script>window.location='../view/admin_home_view.php';</script>";
         }
     }
