@@ -98,26 +98,26 @@
         }
 
         .custom-button {
-  flex: 1;
-  margin: 0 5px;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #bd9a7a;
-  color: black;
-  border: none;
-  font-size: 14px;
-}
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: black;
+            border: none;
+            font-size: 14px;
+        }
 
-.custom-button:hover {
-  background-color:#bd9a7a;
-  color: #bd9a7a;
-  border: 1px solid #bd9a7a;
-}
-.custom-button a {
-  text-decoration: none;
-  color: white;
-}
+        .custom-button:hover {
+            background-color:#bd9a7a;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+        .custom-button a {
+            text-decoration: none;
+            color: white;
+        }
 
     </style>
 </head>
