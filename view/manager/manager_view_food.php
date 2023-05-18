@@ -106,7 +106,7 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
         <div class="container">
             <form  method="post">
                 <input type="text" name="searchInput" placeholder="Search...">
-                <button type="submit" name='submit'>Search</button>
+                <button type="submit" name='submit' >Search</button>
             </form>
             <?php 
             if(isset($_POST['submit'])){
@@ -163,7 +163,7 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
                         echo '<td >
                             <button class="btn btn-primary"><a href="../manager/manager_update_food.php?updateID='.$arr['foodID'].'"
                             class="text-light">Update</a></button>
-                            <button class="btn-danger"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Delete</a></
+                            <button class="btn-danger"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Suspend</a></
                             button> 
                             </td>' ; 
                         echo "</tr>";
