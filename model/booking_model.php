@@ -76,7 +76,7 @@ class booking_model{
         }
         
     }
-    public function createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints){
+    public function createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints){
         global $conn;
         $conn->select_db("CSIT314_Test");
         $sql = "CREATE TABLE IF NOT EXISTS booking (
@@ -108,10 +108,10 @@ class booking_model{
 
         if($phone == 0){
             $sql2 = "INSERT INTO booking (movieID, roomID,roomName, movieName, showTiming, numOfTicket, seats, noOfAdultTicket,noOfChildTicket, noOfSeniorTicket, noOfStudentTicket, bookingDate, total_amnt, loyaltypoints)
-            VALUES ('$movieID', '$roomID', '$roomName', '$movieName', '$time', '$numOfTiket', '$seats', '$noOfAdultTicket','$noOfChildTicket', '$noOfSeniorTicket', '$noOfStudentTicket', '$bookingDate', '$total_amnt', '$loyaltypoints');";
+            VALUES ('$movieID', '$roomID', '$roomName', '$movieName', '$time', '$numOfTicket', '$seats', '$noOfAdultTicket','$noOfChildTicket', '$noOfSeniorTicket', '$noOfStudentTicket', '$bookingDate', '$total_amnt', '$loyaltypoints');";
         }else{
             $sql2 = "INSERT INTO booking (phone,movieID, roomID,roomName, movieName, showTiming, numOfTicket, seats, noOfAdultTicket,noOfChildTicket, noOfSeniorTicket, noOfStudentTicket, bookingDate, total_amnt, loyaltypoints)
-            VALUES ('$phone','$movieID', '$roomID', '$roomName', '$movieName', '$time', '$numOfTiket', '$seats', '$noOfAdultTicket','$noOfChildTicket', '$noOfSeniorTicket', '$noOfStudentTicket', '$bookingDate', '$total_amnt', '$loyaltypoints');";
+            VALUES ('$phone','$movieID', '$roomID', '$roomName', '$movieName', '$time', '$numOfTicket', '$seats', '$noOfAdultTicket','$noOfChildTicket', '$noOfSeniorTicket', '$noOfStudentTicket', '$bookingDate', '$total_amnt', '$loyaltypoints');";
     
         }
         
@@ -133,12 +133,17 @@ class booking_model{
         
     }
     
-    public function takenSeats($movieID,$showTiming,$date){
+    public function takenSeats($movieID,$showTiming,$date,$bookedID){
         global $conn;
         $conn->select_db("CSIT314_Test");
 
         try {
-            $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
+            if($bookedID == 0){
+                $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
+            }else{
+                $sql = "SELECT bookingID,seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date' && bookingID != $bookedID;";
+            }
+            
             $result = $conn->query($sql);
             if($result == false){
                 $array = [];
@@ -368,6 +373,116 @@ class booking_model{
         }
         
         return $array;
+    }
+    public function getBookingByID($bookedID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        try {
+            $sql = "SELECT b.*, cr.totalRow, cr.totalColumn
+            FROM booking AS b
+            JOIN cinemaRoom AS cr ON b.roomID = cr.roomID            
+            WHERE b.bookingID = '$bookedID';";
+            
+            $result = $conn->query($sql);
+            $array = array();
+            if (!$result) {
+                throw new Exception("Query failed: " . $conn->error);
+                $array = [];
+            } else {
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array = $row;
+                }
+            }
+            
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = [];
+        }
+        return $array;
+    }
+    public function getSelectedSeatByID($bookedID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        try {
+    
+            $sql = "SELECT seats FROM `booking` WHERE `bookingID` = $bookedID;";
+
+            $result = $conn->query($sql);
+            if($result == false){
+                $array = [];
+            }else{
+                $array = array();
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row['seats'];
+                }
+            }
+            if(count($array)>0){ 
+                $merged_array = array();
+                foreach ($array as $seats) {
+                    $seats_array = explode(',', $seats);
+                    $seats_array = array_map('trim', $seats_array); // trim each string in $seats_array
+                    $merged_array = array_merge($merged_array, $seats_array);
+                }
+            
+                $selectedSeat = array();
+                foreach ($merged_array as $seat) {
+                    $row = substr($seat, 0, 1);
+                    $column = substr($seat, 1);
+                    if (strlen($seat) > 2) {
+                        $row .= trim(substr($seat, 1, 1));
+                        $column = substr($seat, 2);
+                    }
+                    $selectedSeat[] = array('row' => $row, 'column' => $column);
+                }
+            }else{
+                $selectedSeat=[];
+            }
+            
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $selectedSeat = [];
+        }
+        
+        if (!isset($result) || !$result) {
+            $selectedSeat = [];
+        }
+        
+        return $selectedSeat;
+    }
+    public function updateBooking($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        try {
+            // Your database connection code
+            
+            $sql = "UPDATE booking SET 
+                        numOfTicket = $numOfTicket,
+                        seats = '$seats',
+                        noOfAdultTicket = $noOfAdultTicket,
+                        noOfChildTicket = $noOfChildTicket,
+                        noOfSeniorTicket = $noOfSeniorTicket,
+                        noOfStudentTicket = $noOfStudentTicket,
+                        total_amnt = $total_amnt,
+                        loyaltypoints = $loyaltypoints
+                    WHERE bookingID = $bookedID";
+            
+            $result = $conn->query($sql);
+        
+            if ($result) {
+                // Update successful
+                return true;
+            } else {
+                // Update failed
+                return false;
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+        
     }
 }
 

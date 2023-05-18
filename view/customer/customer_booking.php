@@ -2,7 +2,8 @@
 //require ('../header_login.php');
 
 require('../../controller/booking_controller.php');
-session_start();
+
+$bookedID = 0;
 $phone = $_SESSION['customerID'];
 $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
@@ -26,7 +27,7 @@ $selected_column = $array['seat_column'];
 $loyalty_point = $array['loyalty_point'];
 // $takenRow = 'I';
 // $takenColumn = 4;
-$takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date);
+$takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 var_dump($takenSeat);
 
 if ($selected_row === NULL){
@@ -373,7 +374,7 @@ if ($selected_row === NULL){
                 $roomID = $array['roomID'];
                 $movieName = $array['movieName'];
                 $time = $_POST['show_id'];
-                $numOfTiket = $_POST['no_ticket'];
+                $numOfTicket = $_POST['no_ticket'];
                 $seats = $_POST['seat_dt'];
                 $noOfAdultTicket = $_POST['adult'];
                 $noOfChildTicket = $_POST['child'];
@@ -391,11 +392,11 @@ if ($selected_row === NULL){
                         $booking_controller->redeemPointController($newLoyaltyPoints,$phone);
 
                     } else {
-                        $total_amnt = (($numOfTiket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
+                        $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                         $loyaltypoints = $total_amnt;
                     }
                 }else {
-                    $total_amnt = (($numOfTiket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
+                    $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                     $loyaltypoints = $total_amnt;
                 }
                 
@@ -411,12 +412,12 @@ if ($selected_row === NULL){
                     $rowSeat =  null; 
                 }
                 if($_POST['preOrderFood']== 'yes'){
-                    if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
+                    if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
                         echo" <script>window.location='customer_order_food.php?date=$date';</script>";
                     }
                     
                 }else{
-                    if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTiket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
+                    if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
                         echo" <script>window.location='customer_home_view.php';</script>";
                     }
                 }
