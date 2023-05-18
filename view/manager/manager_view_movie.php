@@ -1,8 +1,6 @@
 <?php
 require('../../controller/manager_controller.php');
-
-
-// require('../header.html');
+require('../header.html');
 
 
 if($arr = $controller -> viewMovieController()==false){
@@ -15,12 +13,180 @@ if($arr = $controller -> viewMovieController()==false){
 
 <html>
     <head>
+    <style>
+        form {
+            max-width: 410px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto; /* Center the form horizontally */
+            margin-bottom: 30px;
+            width: 100%;
+            margin-top:20px;
+            margin-left:1;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            min-height: 100vh;
+            padding: 20px;
+            margin-top: 200px;
+            margin-left:0;
+        }
+        form input[type="text"] {
+            width: 400px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        form button[type="submit"],
+        form button[type="button"] {
+            background-color: #bd9a7a;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 48%;
+            margin-top: 10px;
+        }
+
+        form button[type="submit"]:hover,
+        form button[type="button"]:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 2px solid;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        body {
+            background-color: #e7dbd0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin-top: 100px;
+            
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        table th {
+            background-color: #bd9a7a;
+            color: white;
+            font-weight: bold;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        .managerButton {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .managerButton a {
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .managerButton button {
+            padding: 10px 20px;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .managerButton button:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+       
+        .btn-primary {
+            background-color: #bd9a7a;
+            color: white; /*button update */
+        }
+
+        .btn-primary:hover {
+            background-color: #0062cc;
+        }
+
+        .btn-danger {
+            background-color: #bd9a7a;
+            color: white; /*button delete*/
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: black;
+            border: none;
+            font-size: 14px;
+        }
+
+        .custom-button:hover {
+            background-color:#bd9a7a;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+        .custom-button a {
+            text-decoration: none;
+            color: white;
+        }
+
+    </style>
     </head>
     <body>
         <div class="container">
         <form  method="post">
             <input type="text" name="searchInput" placeholder="Search...">
             <button type="submit" name='submit'>Search</button>
+            <button type="submit" name="viewAll">View All</button>
         </form>
         <?php 
         if(isset($_POST['submit'])){
@@ -33,9 +199,10 @@ if($arr = $controller -> viewMovieController()==false){
               }
         }
         ?>
-        <form method="post">
+        
+        <!--<form method="post">
             <button type="submit" name="viewAll">View All</button>
-        </form>
+        </form>-->
         <?php
 
             if (isset($_POST['viewAll'])) {
@@ -47,6 +214,24 @@ if($arr = $controller -> viewMovieController()==false){
             }
         ?>
             <div class="row">
+            <table>
+                <thead>
+                    <tr>
+                    <th>Movie Banner</th>
+                    <th>Movie Name</th>
+                    <th>Release Date</th>
+                    <th>Duration</th>
+                    <th>Genre</th>
+                    <th>Status</th>
+                    <th>Room</th>
+                    <th>Timing 1</th>
+                    <th>Timing 2</th>
+                    <th>Timing 3</th>
+                    <th>Timing 4</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php
                 if(count($arr) > 0)
                 {
@@ -64,33 +249,36 @@ if($arr = $controller -> viewMovieController()==false){
 
                         ?>
                             <div class="col-md-3">
-                                <img src="<?php echo $array["movieBanner"];?>" style="width:100%; height:250px;" alt="Movie <?php echo $array["movieID"];?>"/> 
-                                <h2 class="text-center mt-2" style="height:40px;"><?php echo $array["movieName"];?></h2>
-                                <p><b>Release Date: </b> <?php echo $array['relDate']?></p>
+                                <tr>
+                                <td><img src="<?php echo $array["movieBanner"];?>" style="width:100%; height:250px;" alt="Movie <?php echo $array["movieID"];?>"/> </td>
+                                <td><h2 class="text-center mt-2" style="height:40px;"><?php echo $array["movieName"];?></h2></td>
+                                <td><p><b>Release Date: </b> <?php echo $array['relDate']?></p></td>
                                 
-                                <p><b>Duration: </b> <?php echo $array["duration"];?> minutes</p>
-                                <p><b>Genre: </b> <?php echo $array["genre"];?></p>
-                                <p><b>Status: </b> <?php echo $array["status"];?></p>
-                                <p><b>Room: </b> <?php echo $array["roomName"];?></p>
-                                <p><b>Timing 1: </b> <?php echo $array["timing1"];?></p>
-                                <p><b>Timing 2: </b> <?php echo $array["timing2"];?></p>
-                                <p><b>Timing 3: </b> <?php echo $array["timing3"];?></p>
-                                <p><b>Timing 4: </b> <?php echo $array["timing4"];?></p>
-                                <button class="btn btn-primary"><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["movieID"];?>"
+                                <td><p><b>Duration: </b> <?php echo $array["duration"];?> minutes</p></td>
+                                <td><p><b>Genre: </b> <?php echo $array["genre"];?></p></td>
+                                <td><p><b>Status: </b> <?php echo $array["status"];?></p></td>
+                                <td><p><b>Room: </b> <?php echo $array["roomName"];?></p></td>
+                                <td><p><b>Timing 1: </b> <?php echo $array["timing1"];?></p></td>
+                                <td><p><b>Timing 2: </b> <?php echo $array["timing2"];?></p></td>
+                                <td><p><b>Timing 3: </b> <?php echo $array["timing3"];?></p></td>
+                                <td><p><b>Timing 4: </b> <?php echo $array["timing4"];?></p></td>
+                                <td><button class="custom-button"><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["movieID"];?>"
                                 class="text-light">Update</a></button>
-                                <button class="btn-danger"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="text-light">Delete</a></button> 
-                                <button class="btn-danger"><a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="text-light">Allocate Movie</a></button> 
-                                
+                                <button class="custom-button"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="text-light">Delete</a></button> 
+                                <button class="custom-button"><a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="text-light">Allocate Movie</a></button> </td>
+                                </tr>
                             </div>
                         <?php
                     }
                 }
                 
                 ?>
+                </tbody>
+            </table>
 
-            </div>
+
         </div>
-        <div class="adminButton">
+        <div class="managerButton">
             <a href="manager_create_movie.php">
                 <button id='bodyButton'>Create Movie</button>
             </a> </br>
@@ -107,6 +295,6 @@ if($arr = $controller -> viewMovieController()==false){
             </a>  -->
         </div>
        
-
+        </div>
     </body>
 </html>

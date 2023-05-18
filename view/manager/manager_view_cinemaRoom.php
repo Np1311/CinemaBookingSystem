@@ -97,6 +97,28 @@
             background-color: #c82333;
         }
 
+        .custom-button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #bd9a7a;
+  color: black;
+  border: none;
+  font-size: 14px;
+}
+
+.custom-button:hover {
+  background-color:#bd9a7a;
+  color: #bd9a7a;
+  border: 1px solid #bd9a7a;
+}
+.custom-button a {
+  text-decoration: none;
+  color: white;
+}
+
     </style>
 </head>
 <body>
@@ -128,10 +150,10 @@
                     echo "<td>" . $array['totalColumn'] . "</td>";
                     echo "<td>" . $array['status'] . "</td>";
                     echo '<td>
-                            <button class="btn btn-primary">
+                            <button class="custom-button">
                                 <a href="../manager/manager_update_cinema.php?updateID=' . $array['roomID'] . '" class="text-light">Update</a>
                             </button>
-                            <button class="btn-danger">
+                            <button class="custom-button">
                                 <a href="../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '" class="text-light">Delete</a>
                             </button>
                         </td>';

@@ -36,6 +36,7 @@ $arr = $controller -> getRoomDetail($updateID);
 
   label {
     font-weight: bold;
+    font-size: 18px;
   }
 
   .button-container {

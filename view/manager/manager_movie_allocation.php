@@ -53,14 +53,17 @@ $array = $controller -> viewRoomController();
   }
 
   .btn-group {
+    width:400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+    margin-right:200px;
   }
 
   .btn-group button,
   input[type="submit"] {
+    width:48%;
     display: inline-block;
     padding: 10px 20px;
     border-radius: 5px;
@@ -68,8 +71,8 @@ $array = $controller -> viewRoomController();
     background-color: #bd9a7a;
     color: white;
     border: none;
-    font-size: 14px;
-    margin: 0; /* Add this line to remove the margin */
+    font-size: 16px;
+    margin: 0 5px;
   }
 
   .btn-group button:hover,

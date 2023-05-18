@@ -36,7 +36,7 @@ $date = $arr['relDate'];
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
-            margin-top: 30%;
+            margin-top: 15%;
         }
 
         .form h1 {

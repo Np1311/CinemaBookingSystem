@@ -12,6 +12,18 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
 <html>
     <head>
     <style>
+        form {
+            max-width: 410px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto; /* Center the form horizontally */
+            margin-bottom: 30px;
+            width: 100%;
+            margin-top:20px;
+            margin-left:1;
+        }
         body {
             background-color: #e7dbd0;
             font-family: Arial, sans-serif;
@@ -26,6 +38,33 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
             padding: 20px;
             margin-top: 100px;
             
+        }
+        form input[type="text"] {
+            width: 400px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        form button[type="submit"],
+        form button[type="button"] {
+            background-color: #bd9a7a;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 48%;
+            margin-top: 10px;
+        }
+
+        form button[type="submit"]:hover,
+        form button[type="button"]:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 2px solid;
         }
 
         table {
@@ -99,6 +138,27 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
         .btn-danger:hover {
             background-color: #c82333;
         }
+        .custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: black;
+            border: none;
+            font-size: 14px;
+        }
+
+        .custom-button:hover {
+            background-color:#bd9a7a;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+        .custom-button a {
+            text-decoration: none;
+            color: white;
+        }
 
     </style>
     </head>
@@ -106,7 +166,12 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
         <div class="container">
             <form  method="post">
                 <input type="text" name="searchInput" placeholder="Search...">
+<<<<<<< Updated upstream
                 <button type="submit" name='submit' >Search</button>
+=======
+                <button type="submit" name='submit'>Search</button>
+                <button type="submit" name="viewAll">View All</button>
+>>>>>>> Stashed changes
             </form>
             <?php 
             if(isset($_POST['submit'])){
@@ -119,9 +184,10 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
                 }
             }
             ?>
+            <!--
             <form method="post">
                 <button type="submit" name="viewAll">View All</button>
-            </form>
+            </form> -->
             <?php
 
                 if (isset($_POST['viewAll'])) {
@@ -161,9 +227,13 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
                         echo "<td><img src='" . $arr["image"] . "' width='100' alt = 'food1'></td>";
                         echo "<td>" . $arr["status"] . "</td>";
                         echo '<td >
-                            <button class="btn btn-primary"><a href="../manager/manager_update_food.php?updateID='.$arr['foodID'].'"
+                            <button class="custom-button"><a href="../manager/manager_update_food.php?updateID='.$arr['foodID'].'"
                             class="text-light">Update</a></button>
+<<<<<<< Updated upstream
                             <button class="btn-danger"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Suspend</a></
+=======
+                            <button class="custom-button"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Delete</a></
+>>>>>>> Stashed changes
                             button> 
                             </td>' ; 
                         echo "</tr>";

@@ -9,13 +9,16 @@ $controller = new admin_controller;
 <head>
   <style>
     form {
-      max-width: 600px;
+      max-width: 400px;
       background-color: #fff;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
       margin: 0 auto; /* Center the form horizontally */
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      width: 100%;
+      margin-top:20px;
+      margin-left:1;
     }
     .container {
             display: flex;
@@ -24,8 +27,12 @@ $controller = new admin_controller;
             min-height: 100vh;
             padding: 20px;
             margin-top: 200px;
+<<<<<<< Updated upstream
             margin-left: 70px;
             font-weight: bold;
+=======
+            margin-left:0;
+>>>>>>> Stashed changes
         }
 
     body {
@@ -33,7 +40,7 @@ $controller = new admin_controller;
     }
 
     form input[type="text"] {
-      width: 100%;
+      width: 400px;
       padding: 8px;
       border-radius: 4px;
       border: 1px solid #ccc;
@@ -67,43 +74,69 @@ $controller = new admin_controller;
       height: 100vh;
     }
 
+    /*
     form {
       width: 100%;
       max-width: 500px;
       margin-top:20px;
       margin-right:350px;
     }
-
+*/
     .button-container {
       display: flex;
       justify-content: space-between;
     }
 
     table {
-  width: 90vw;
   height:100px;
-  max-width: 800px;
+  width: 1300px;
   border-collapse: collapse;
   margin: 0 auto; /* Center the table horizontally */
-  margin-top: 20px; /* Add margin at the top for spacing between form and table */
+  margin-top: 10px; /* Add margin at the top for spacing between form and table */
   margin-bottom: 20px;
+  margin-right:20px;
 }
 
 table th,
 table td {
-  padding: 8px;
-  border: 2px solid black;
+  width:350px;
+  padding: 10px;
+  border: 2px solid #ddd;
   background-color:white;
 }
 
 table th {
   background-color: #bd9a7a;
   font-weight: bold;
+  color:white;
 }
 
 table td {
   text-align: center;
 }
+
+.custom-button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #bd9a7a;
+  color: black;
+  border: none;
+  font-size: 14px;
+}
+
+.custom-button:hover {
+  background-color:#bd9a7a;
+  color: #bd9a7a;
+  border: 1px solid #bd9a7a;
+}
+.custom-button a {
+  text-decoration: none;
+  color: white;
+}
+
   </style>
 
   <meta charset="utf-8">
@@ -145,9 +178,9 @@ table td {
                               echo "<td>" . $array['dob'] . "</td>";
                               echo "<td>" . $array['status'] . "</td>";
                               echo '<td >
-                                  <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$searchProfile.'"
+                                  <button class="custom-button"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$searchProfile.'"
                                   class="text-light">Update</a></button>
-                                  <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$searchProfile.'" class="text-light">Delete</a></
+                                  <button class="custom-button"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$searchProfile.'" class="text-light">Delete</a></
                                   button> 
                                   </td>' ; 
                               echo "</tr>";
