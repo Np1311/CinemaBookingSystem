@@ -157,6 +157,24 @@ class booking_controller{
             return false;
         }
     }
+    public function getBookingsController($phone){
+        global $booking;
+        $array = $booking -> getBookings($phone);
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
+    }
+    public function getFoodOrderController($phone){
+        global $booking;
+        $array = $booking -> getFoodOrder($phone);
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
+    }
 }
 
 $booking_controller = new booking_controller;
