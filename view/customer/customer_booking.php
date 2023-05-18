@@ -2,7 +2,7 @@
 //require ('../header_login.php');
 
 require('../../controller/booking_controller.php');
-
+session_start();
 $bookedID = 0;
 $phone = $_SESSION['customerID'];
 $movie=$_GET['bookingID'];
