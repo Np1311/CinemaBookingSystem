@@ -542,6 +542,83 @@ class booking_model{
         }
         return $array;
     }
+    public function getFoodAndDrinkByID($orderID){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        try {
+            
+            $sql = "SELECT * FROM `orderItem` WHERE orderID = $orderID;";
+            
+            
+            $result = $conn->query($sql);
+            $array = array();
+            if (!$result) {
+                throw new Exception("Query failed: " . $conn->error);
+                $array = [];
+            } else {
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row;
+                }
+            }
+            
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = [];
+        }
+        return $array;
+    }
+    public function updateOrderFood($orderID,$price){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        try {
+            // Your database connection code
+            
+            $sql = "UPDATE fnbOrder SET 
+                        totalPrice = $price
+                    WHERE orderID = $orderID;";
+            
+            $result = $conn->query($sql);
+        
+            if ($result) {
+                // Update successful
+                return true;
+            } else {
+                // Update failed
+                return false;
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+        
+
+    }
+    public function updateOrderItem($orderID,$foodID,$quantity){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        try {
+            // Your database connection code
+            
+            $sql = "UPDATE orderItem SET 
+                        quantity = $quantity
+                    WHERE orderID = $orderID && foodID = $foodID;";
+            
+            $result = $conn->query($sql);
+        
+            if ($result) {
+                // Update successful
+                return true;
+            } else {
+                // Update failed
+                return false;
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 
 //$con = new customer;

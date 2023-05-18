@@ -1,19 +1,23 @@
 <?php
-//require ('header_customer.html');
 require('../../controller/booking_controller.php');
-session_start();
-$phone = $_GET['phone'];
 
-$date = $_GET['date'];
+$orderID = $_GET['orderID'];
 
 if($booking_controller -> getFoodAndDrinkController() == false){
-    echo '<script>alert("No food listed")</script>';
+    echo '<script>alert("No Food listed")</script>';
 }else{
     $array = $booking_controller -> getFoodAndDrinkController();
 }
 
-print_r($array);
+if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
+    echo '<script>alert("Order id not found")</script>';
+}else{
+    $orderedFoodArray = $booking_controller -> getFoodAndDrinkByIDController($orderID);
+}
 
+var_dump($array);
+echo '</br>';
+var_dump($orderedFoodArray);
 ?>
 <html>
     <head>
@@ -158,30 +162,38 @@ print_r($array);
             <div class="food-container">
                 <div class="food-list">
                 <?php
-                foreach($array as $key=>$arr){
-                ?>
+                foreach($array as $key => $arr) {
+                    ?>
                     <div class="food">
-                    <img src="<?php echo $arr['image'];?>" alt="Movie 1">
-                    <h2><?php echo $arr['foodName'];?></h2>
-                    <p><b>Description = </b><?php echo $arr['foodDescription'];?></p>
-                    <label>Price:</label>
-                    <input type="number" name="price[<?php echo $arr['foodID']?>]" value="<?php echo $arr['price'];?>" ></br>
+                        <img src="<?php echo $arr['image']; ?>" alt="Movie 1">
+                        <h2><?php echo $arr['foodName']; ?></h2>
+                        <p><b>Description = </b><?php echo $arr['foodDescription']; ?></p>
+                        <label>Price:</label>
+                        <input type="number" name="price[<?php echo $arr['foodID']; ?>]" value="<?php echo $arr['price']; ?>" /><br />
 
-
-                    <label for="number"><b>Quantity:</b></label><br>
-                    <div class="quantity">
-                        <button type='button' class="minus-btn">-</button>
-                        <input type="number" name="quantity[<?php echo $arr['foodID']?>]" value="0">
-                        <button type='button' class="plus-btn">+</button>
+                        <label for="number"><b>Quantity:</b></label><br />
+                        <div class="quantity">
+                            <button type="button" class="minus-btn">-</button>
+                            <input type="number" name="quantity[<?php echo $arr['foodID']; ?>]" value="<?php echo getQuantityFromOrderID($arr['foodID'], $orderedFoodArray); ?>">
+                            <button type="button" class="plus-btn">+</button>
+                        </div>
                     </div>
-                    </div>
-                <?php
+                
+                    <?php
                 }
                 ?>
-                </div>
-            </div>
-            <input type="submit" name="submit" value="Order">
-            </form>
+
+                <?php
+                // Function to get quantity from the order items array based on the foodID
+                function getQuantityFromOrderID($foodID, $orderedFoodArray) {
+                    foreach ($orderedFoodArray as $orderItem) {
+                        if ($orderItem['foodID'] == $foodID) {
+                            return $orderItem['quantity'];
+                        }
+                    }
+                    return 0; // Default quantity if no match found
+                }
+                ?>
             <script>
                 const plusBtns = document.querySelectorAll('.plus-btn');
                 const minusBtns = document.querySelectorAll('.minus-btn');
@@ -206,7 +218,10 @@ print_r($array);
             </script>
 
 
-
+        </div>
+        <input type="submit" name="submit" value="Order">
+        </form>
+    </div>
         <?php
         if(isset($_POST['submit'])){
             $orderedFood = $_POST['quantity'];
@@ -221,17 +236,16 @@ print_r($array);
             }
             $loyaltypoints = $price;
 
-            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints)){
+            if($booking_controller->updateOrderFoodController($orderID,$price,$loyaltypoints)){
                 foreach($orderedFood as $foodID => $quantity){
                     if($quantity > 0){
-                        if($booking_controller->orderItemController($foodID,$quantity)==false){
+                        if($booking_controller->updateOrderItemController($orderID,$foodID,$quantity)==false){
                             echo '<script>alert("Error updating data")</script>';
                         }
                     }
                 } 
                 echo" <script>window.location='staff_home_view.php';</script>";
             }
-
 
                   
         }
