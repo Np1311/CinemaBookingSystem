@@ -29,7 +29,7 @@ print_r($array);
             
             }
             .btn-primary{
-                background-color: blue; 
+                background-color: white; 
                 border: 2px solid white;
                 color: white;
                 padding: 15px ;
@@ -97,17 +97,19 @@ print_r($array);
                 padding: 10px;
                 border: none;
                 border-radius: 5px;
-                background-color: #0077ff;
+                background-color: #bd9a7a;
                 color: #fff;
                 font-size: 16px;
                 cursor: pointer;
             }
             .movie button:hover {
-                background-color: #0055cc;
+                background-color:white;
+                color: #bd9a7a;
+            border: 1px solid #bd9a7a;
             }
-            body {background-color: gray}
+            body {background-color: #e7dbd0}
             
-            body {font-family: Verdana, sans-serif; margin:0}
+            /*body {font-family: Verdana, sans-serif; margin:0}*/
             
             img {vertical-align: middle;}
             
@@ -123,11 +125,11 @@ print_r($array);
                 ?>
                     <div class="movie">
                         <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
-                        <h2><?php echo $arr['movieName'];?></h2>
+                        <h1 style="text-align: center;"><?php echo $arr['movieName'];?></h1>
                         <p><b>Genre = </b><?php echo $arr['genre'];?></p>
-                        <p><b>Duration = </b><?php echo $arr['duration'];?></p></br>
+                        <p><b>Duration = </b><?php echo $arr['duration'];?>&nbspminutes</p></br>
 
-                        <label for="number"><b>Booking Date</b></label></br>
+                        <label for="number"><b>Booking Date:</b></label></br>
                         <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>
 
                         <a href="customer_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">
