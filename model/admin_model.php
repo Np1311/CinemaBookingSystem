@@ -108,10 +108,11 @@ class admin_model extends user_model{
     public function getAccountDetail($profile,$searchAccount,$searchBy){
         global $conn;
         $conn->select_db('CSIT314_Test');
-        $sql = "SELECT * FROM $profile WHERE `$searchBy` = '$searchAccount';";
+        $sql = "SELECT * FROM $profile WHERE $searchBy LIKE '%$searchAccount%';";
     
         $result = $conn->query($sql);
 
+        $array = array();
         if (!$result) {
             echo "Error: " . $conn->error;
                 $array = [];

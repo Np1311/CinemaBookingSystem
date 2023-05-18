@@ -22,9 +22,9 @@ class user_update_controller{
         return $arr;
         
     }
-    public function validateUser($curProfile,$fname,$lname,$phone,$email,$dob,$status,$oldPhone){
+    public function validateUser($curProfile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone){
         global $user;
-        if($user -> updateUser($curProfile,$fname,$lname,$phone,$email,$dob,$status,$oldPhone)){
+        if($user -> updateUser($curProfile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone)){
             
             return true;
         }
