@@ -96,9 +96,9 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             }
             
             .food button:hover {
-                background-color: #0055cc;
+                background-color: white;
             }
-            body {background-color: gray}
+            body {background-color: #e7dbd0}
             
             body {font-family: Verdana, sans-serif; margin:0}
             
@@ -129,7 +129,6 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             .minus-btn, .plus-btn {
                 font-size: 18px;
                 font-weight: bold;
-                color: #222;
                 cursor: pointer;
                 border: none;
                 background: transparent;
@@ -137,7 +136,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             }
 
             .minus-btn:hover, .plus-btn:hover {
-                color: #000;
+                color: #white;
             }
 
             .plus-btn:focus, .minus-btn:focus {
@@ -148,6 +147,26 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                 opacity: .5;
                 pointer-events: none;
             }
+            input[type="submit"] {
+            flex: 1;
+            margin: 0 5px;
+            padding-top:10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            margin-left:150px;
+            width:1600px;
+    }
+    
+    input[type="submit"]:hover {
+      background-color:#e7dbd0;
+            color: #bd9a7a;
+            border: 1px solid white;
+    }
 
             
         </style>
@@ -162,13 +181,16 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                 ?>
                     <div class="food">
                     <img src="<?php echo $arr['image'];?>" alt="Movie 1">
-                    <h2><?php echo $arr['foodName'];?></h2>
-                    <p><b>Description = </b><?php echo $arr['foodDescription'];?></p>
+                    <h1><?php echo $arr['foodName'];?></h1>
+                    <p>Description: <?php echo $arr['foodDescription'];?></p>
+
+                    <p>Price: <?php echo $arr['price'];?></p>
+
                     <label>Price:</label>
                     <input type="number" name="price[<?php echo $arr['foodID']?>]" value="<?php echo $arr['price'];?>" ></br>
 
-
-                    <label for="number"><b>Quantity:</b></label><br>
+                    <br>
+                    <label for="number">Quantity:</label><br>
                     <div class="quantity">
                         <button type='button' class="minus-btn">-</button>
                         <input type="number" name="quantity[<?php echo $arr['foodID']?>]" value="0">

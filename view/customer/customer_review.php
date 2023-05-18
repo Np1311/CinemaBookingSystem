@@ -41,7 +41,7 @@ if($array = $booking_controller->getBookingController($phone)== false){
       /* CSS for review form */
       body {
         font-family: Arial, sans-serif;
-        background-color: #f1f1f1;
+        background-color: #e7dbd0;
       }
 
       h1 {
@@ -57,24 +57,26 @@ if($array = $booking_controller->getBookingController($phone)== false){
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        margin-bottom: 10px;
       }
 
       input[type="text"],
       input[type="submit"],
       textarea {
         width: 100%;
-        padding: 12px;
-        margin: 6px 0;
+        padding: 10px;
+        margin: 5px 0;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
         font-size: 18px;
+        margin-top: 2px;
       }
 
       label {
         font-size: 18px;
         font-weight: bold;
-        margin-top: 10px;
+        margin-top: 5px;
         display: block;
       }
 
@@ -84,18 +86,25 @@ if($array = $booking_controller->getBookingController($phone)== false){
       }
 
       input[type="submit"] {
-        background-color: #4CAF50;
-        color: #fff;
-        font-size: 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-
-      input[type="submit"]:hover {
-        background-color: #45a049;
-      }
+      flex: 1;
+            margin: 0 5px;
+            padding-top:10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            margin-left:100px;
+            width:400px;
+    }
+    
+    input[type="submit"]:hover {
+      background-color:#e7dbd0;
+            color: #bd9a7a;
+            border: 1px solid white;
+    }
 
       a button {
         background-color: #008CBA;
@@ -118,13 +127,21 @@ if($array = $booking_controller->getBookingController($phone)== false){
           margin: 0 auto;
           width: 700px;
           text-decoration: none;
-          color: black;
+          color: white;
           border: none;
+          background-color: #bd9a7a;
       }
 
       .homeButton:hover {
-        background-color: #286090;
+        background-color: white;
+        color: #bd9a7a;
         cursor: pointer;
+        border: 1px solid #bd9a7a;
+      }
+
+      .homeButton a {
+        text-decoration: none;
+        color: white;
       }
     </style>
   </head>
@@ -135,14 +152,15 @@ if($array = $booking_controller->getBookingController($phone)== false){
         foreach ($array as $booking) {
         ?>
             <form method="post">
+                <br>
                 <label for="booking_id">Booking ID:</label>
-                <input type="text" id="booking_id" name="booking_id" value="<?php echo $booking['bookingID'];?>"><br><br>
+                <input type="text" id="booking_id" name="booking_id" value="<?php echo $booking['bookingID'];?>">
 
                 <label for="room_name"style="display:none;">Room ID:</label>
                 <input type="hidden" id="room_name" name="room_ID" value="<?php echo $booking['roomID'];?>" required><br><br>
         
                 <label for="room_name">Room Name:</label>
-                <input type="text" id="room_name" name="room_name" value="<?php echo $booking['roomName'];?>" required><br><br>
+                <input type="text" id="room_name" name="room_name" value="<?php echo $booking['roomName'];?>" required>
 
                 <label for="room_name" style="display:none;">Movie ID:</label>
                 <input type="hidden" id="room_name" name="movieID" value="<?php echo $booking['movieID'];?>" required><br><br>
@@ -198,6 +216,6 @@ if($array = $booking_controller->getBookingController($phone)== false){
         
         
     ?>
-    <a href="customer_home_view.php"><button class="homeButton">Home</button></a>
+    <a href="customer_home_view.php"><button class="homebutton">Home</button></a>
   </body>
 </html>
