@@ -21,6 +21,13 @@ class manager_controller{
         print_r($arr);
         return $arr;
     }
+    public function viewActiveRoomController(){
+        global $manager;
+
+        $arr = $manager -> viewActiveRoom();
+        print_r($arr);
+        return $arr;
+    }
 
     public function deleteRoomController($deleteID){
         global $manager;

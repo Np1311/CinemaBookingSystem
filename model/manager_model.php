@@ -19,7 +19,7 @@ class manager_model extends user_model{
                 )";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Table created successfully";
+            // echo "Table created successfully";
         } else {
             echo "Error creating table: " . $conn->error;
         }
@@ -28,7 +28,7 @@ class manager_model extends user_model{
 
         try {
             mysqli_query($conn, $sql2); 
-            echo '<script>alert("good to go")</script>'; 
+            echo '<script>alert("Room : '.$roomName.' created Successfully")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -44,6 +44,29 @@ class manager_model extends user_model{
         
         try {
             $sql2 = "SELECT * FROM cinemaRoom;";
+            $result2 = $conn->query($sql2);
+            if (!$result2) {
+                throw new Exception("Failed to execute query: " . $conn->error);
+            }
+            $array = array();
+            while ($row = mysqli_fetch_assoc($result2)) {
+                $array[] = $row;
+            }
+            return $array;
+        } catch (Exception $e) {
+            // Handle the exception here
+            echo "Error: " . $e->getMessage();
+            return array();
+        }
+        
+
+    }
+    public function viewActiveRoom(){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        
+        try {
+            $sql2 = "SELECT * FROM cinemaRoom WHERE status = 'active';";
             $result2 = $conn->query($sql2);
             if (!$result2) {
                 throw new Exception("Failed to execute query: " . $conn->error);
@@ -161,7 +184,7 @@ class manager_model extends user_model{
 
             try {
                 mysqli_query($conn, $sql3); 
-                echo '<script>alert("good to go")</script>'; 
+                echo '<script>alert("Movie '.$movieName.' created successfully")</script>'; 
                 return true; 
             }
             catch(mysqli_sql_exception $e) {
@@ -192,7 +215,8 @@ class manager_model extends user_model{
             return $array;
         } catch (Exception $e) {
             // Handle the exception here
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
+            return array();
         }
         
 
@@ -308,7 +332,7 @@ class manager_model extends user_model{
 
         try {
             mysqli_query($conn, $sql2); 
-            echo '<script>alert("good to go")</script>'; 
+            echo '<script>alert("Food/Drink created successfully")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -489,7 +513,7 @@ class manager_model extends user_model{
             return $array;
         } catch (Exception $e) {
             // Handle the exception here
-            echo "Error: " . $e->getMessage();
+            //echo "Error: " . $e->getMessage();
             return array();
         }
         
@@ -522,7 +546,7 @@ class manager_model extends user_model{
             return $array;
         } catch (Exception $e) {
             // Handle the exception here
-            echo "Error: " . $e->getMessage();
+            //echo "Error: " . $e->getMessage();
             return array();
         }
         
