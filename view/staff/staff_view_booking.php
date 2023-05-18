@@ -1,6 +1,6 @@
 <?php
 require('../../controller/booking_controller.php');
-require('../../header_login.php'); //unappear
+require_once('../header_login.php'); //unappear
 
 $bookedID = $_GET['bookedID'];
 
@@ -296,7 +296,7 @@ span {
 
                 </div>
                 </form>
-                &nbsp&nbsp<a href="customer_home_view.php" style="text-decoration: none;">
+                &nbsp&nbsp<a href="staff_home_view.php" style="text-decoration: none;">
                     <button name="btn_booking1" class="btn" style="background-color: #BD9A7A;color:white;">Back</button>
                 </a>
                 </div>
