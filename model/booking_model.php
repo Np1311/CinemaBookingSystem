@@ -484,6 +484,64 @@ class booking_model{
         }
         
     }
+    public function getBookings($phone){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        try {
+            $sql = "SELECT *
+            FROM booking
+            WHERE booking.phone = $phone;";
+            
+            $result = $conn->query($sql);
+            $array = array();
+            if (!$result) {
+                throw new Exception("Query failed: " . $conn->error);
+                $array = [];
+            } else {
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row;
+                }
+            }
+            
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = [];
+        }
+        return $array;
+    }
+    public function getFoodOrder($phone){
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+
+        try {
+            $sql = "SELECT fnbOrder.orderID, fnbOrder.bookingID, fnbOrder.phone, fnbOrder.orderDate, fnbOrder.totalPrice,
+            orderItem.id, orderItem.foodID, orderItem.quantity,
+            cinemaFoodAndDrink.foodName
+            FROM fnbOrder
+            JOIN orderItem ON fnbOrder.orderID = orderItem.orderID
+            JOIN cinemaFoodAndDrink ON orderItem.foodID = cinemaFoodAndDrink.foodID
+            WHERE fnbOrder.phone = $phone;";
+            
+            $result = $conn->query($sql);
+            $array = array();
+            if (!$result) {
+                throw new Exception("Query failed: " . $conn->error);
+                $array = [];
+            } else {
+                // fetch the result row as an associative array
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $array[] = $row;
+                }
+            }
+            
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            $array = [];
+        }
+        return $array;
+    }
 }
 
 //$con = new customer;

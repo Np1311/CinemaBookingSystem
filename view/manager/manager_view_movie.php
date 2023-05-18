@@ -224,10 +224,7 @@ if($arr = $controller -> viewMovieController()==false){
                     <th>Genre</th>
                     <th>Status</th>
                     <th>Room</th>
-                    <th>Timing 1</th>
-                    <th>Timing 2</th>
-                    <th>Timing 3</th>
-                    <th>Timing 4</th>
+                    <th>Timings</th>
                     <th>Action</th>
                     </tr>
                 </thead>
@@ -250,18 +247,20 @@ if($arr = $controller -> viewMovieController()==false){
                         ?>
                             <div class="col-md-3">
                                 <tr>
-                                <td><img src="<?php echo $array["movieBanner"];?>" style="width:100%; height:250px;" alt="Movie <?php echo $array["movieID"];?>"/> </td>
-                                <td><h2 class="text-center mt-2" style="height:40px;"><?php echo $array["movieName"];?></h2></td>
-                                <td><p><b>Release Date: </b> <?php echo $array['relDate']?></p></td>
+                                <td><img src="<?php echo $array["movieBanner"];?>" style="width:200px; height:250px;" alt="Movie <?php echo $array["movieID"];?>"/> </td>
+                                <td><p> <?php echo $array["movieName"];?></p></td>
+                                <td><p> <?php echo $array['relDate']?></p></td>
                                 
-                                <td><p><b>Duration: </b> <?php echo $array["duration"];?> minutes</p></td>
-                                <td><p><b>Genre: </b> <?php echo $array["genre"];?></p></td>
-                                <td><p><b>Status: </b> <?php echo $array["status"];?></p></td>
-                                <td><p><b>Room: </b> <?php echo $array["roomName"];?></p></td>
-                                <td><p><b>Timing 1: </b> <?php echo $array["timing1"];?></p></td>
-                                <td><p><b>Timing 2: </b> <?php echo $array["timing2"];?></p></td>
-                                <td><p><b>Timing 3: </b> <?php echo $array["timing3"];?></p></td>
-                                <td><p><b>Timing 4: </b> <?php echo $array["timing4"];?></p></td>
+                                <td><p> <?php echo $array["duration"];?> minutes</p></td>
+                                <td><p> <?php echo $array["genre"];?></p></td>
+                                <td><p> <?php echo $array["status"];?></p></td>
+                                <td><p> <?php echo $array["roomName"];?></p></td>
+                                <td>
+                                    <p> <?php echo $array["timing1"];?></p>
+                                    <p> <?php echo $array["timing2"];?></p>
+                                    <p> <?php echo $array["timing3"];?></p>
+                                    <p> <?php echo $array["timing4"];?></p>
+                                </td>
                                 <td><button class="custom-button"><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["movieID"];?>"
                                 class="text-light">Update</a></button>
                                 <button class="custom-button"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="text-light">Delete</a></button> 
