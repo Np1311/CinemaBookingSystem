@@ -1,6 +1,6 @@
 <?php
-
 require('../../controller/booking_controller.php');
+require('../header_login.php');
 
 if($booking_controller -> getShowingMovie_controller() == false){
     echo '<script>alert("No Movie listed")</script>';
@@ -15,120 +15,235 @@ print_r($array);
     <head>
         <title>Capybara Cinema</title>
         <style>
-            .formContainer{
-                
-                background: black;
-                color: white;
-                margin: auto;
-                width: 30%;
-                border: 3px solid white;
-                padding: 10px;
-                font-family : Arial ;
-                margin-top: 80px;
-            
+            body {
+            background-color: #e7dbd0;
+            margin: 0;
             }
-            .btn-primary{
-                background-color: blue; 
-                border: 2px solid white;
-                color: white;
-                padding: 15px ;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                border-radius: 8px;
-                width: 400px;
-                /* margin-left: 100px; */
-            }
-            .form-control{
-                white-space: nowrap;
-                overflow: hidden;
-                width: 100%;
-                text-overflow: ellipsis;
-            }
-            .input-group-text{
-                font-size: 20px;
-            }
-            
 
-            
+            .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+            flex-direction: column-reverse; /* Add this line */
+            }
+
+            .form-container form {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            margin-bottom: 10px; /* Add this line */
+            }
+
+            .view-all-form {
+            display: inline-block;
+            background-color: #bd9a7a;
+            border: 2px solid #bd9a7a;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            }
+
+            .view-all-form:hover{
+            background-color: white;
+            color: #bd9a7a;
+            border: 2px solid #bd9a7a;
+            }
+
+            /* .view-all-form button {
+            margin-right: 5px;
+            } */
+
+            a {
+            display: inline-block;
+            background-color: #bd9a7a;
+            border: 2px solid #bd9a7a;
+            color: white;
+            padding: 10px 15px; /* Adjust the padding values */
+            text-decoration: none;
+            border-radius: 5px;
+            }
+
+            a:hover {
+            background-color: white;
+            color: #bd9a7a;
+            border: 2px solid #bd9a7a;
+            }
+
+
+
+            .form-container input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+            }
+
+            .form-container button[type="submit"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #bd9a7a;
+            color: white;
+            cursor: pointer;
+            }
+
+            .form-container button[type="submit"]:hover {
+            background-color: #0055cc;
+            }
+
+            .view-all-form button[type="submit"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #bd9a7a; /* Update the background color */
+            color: white;
+            cursor: pointer;
+            }
+
+            .btn-primary {
+            background-color: #bd9a7a;
+            border: 2px solid white;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 8px;
+            width: 400px;
+            }
+
+            .form-control {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            text-overflow: ellipsis;
+            }
+
+            .input-group-text {
+            font-size: 20px;
+            }
+
             .movie-container {
-                margin-top : 100px;
-                max-width: 1200px;
-                margin-left: 150px ;
-                padding: 20px;
+            /* margin-top: 100px; */
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
             }
-            
+
             .movie-list {
-                display: flex;
-                flex-wrap: wrap;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             }
+
             .movie {
-                
-                width: 300px;
-                margin: 20px;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                position: relative;
-                transition: background-color 0.3s ease-in-out;
-                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+            width: 300px;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: relative;
+            transition: background-color 0.3s ease-in-out;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
             }
+
             .movie img {
-                width: 100%;
-                height: 400px;
-                object-fit: cover;
-                border-radius: 5px;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 5px;
             }
+
             .movie h2 {
-                font-size: 24px;
-                margin-top: 10px;
-                margin-bottom: 5px;
+            font-size: 24px;
+            margin-top: 10px;
+            margin-bottom: 5px;
             }
+
             .movie p {
-                font-size: 16px;
-                margin-top: 5px;
-                margin-bottom: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             }
+
             .movie button {
-                display: block;
-                width: 100%;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                background-color: #0077ff;
-                color: #fff;
-                font-size: 16px;
-                cursor: pointer;
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: #0077ff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
             }
+
             .movie button:hover {
-                background-color: #0055cc;
+            background-color: #0055cc;
             }
-            body {background-color: gray}
+
+            .movie input[type="date"] {
+            border-radius: 10px;
+            width: 300px;
+            height: 50px;
+            }
+
+            .movie-button button {
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: #bd9a7a;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 15px; /* Add this line to set the padding */
+            margin-bottom: 5px; /* Add this line to set the margin */
+            }
+
+            .movie-button button:hover {
+            background-color: #0055cc;
+            }
+
+
+            .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap:10px;
+            }
+
+            .button-container form {
+            margin-right: 10px;
+            display: inline; /* Add this line to align the button horizontally */
             
-            body {font-family: Verdana, sans-serif; margin:0}
-            
-            img {vertical-align: middle;}
-            
+            }
+
         </style>
     </head>
     <body>        
         
         <div class="movie-container">
-            <form  method="post">
-                    <input type="text" name="bookedID" placeholder="Booking ID...">
-                    <button type="submit" name='bookedIDSubmit'>Search</button>
-                </form>
-                <?php 
-                if(isset($_POST['bookedIDSubmit'])){
-                    $bookedID = $_POST['bookedID'];
-                    echo" <script>window.location='staff_view_booking.php?bookedID=$bookedID';</script>";
-                }
-                ?>
-            <form  method="post">
-                <input type="text" name="searchInput" placeholder="Search...">
-                <button type="submit" name='submit'>Search</button>
-            </form>
+
+        <div class="form-container">
+        <form method="post">
+            <input type="text" name="bookedID" placeholder="Booking ID...">
+            <button type="submit" name="bookedIDSubmit">Search</button>
+        </form>
+        <?php 
+        if(isset($_POST['bookedIDSubmit'])){
+            $bookedID = $_POST['bookedID'];
+            echo" <script>window.location='staff_view_booking.php?bookedID=$bookedID';</script>";
+        }
+        ?>
+        <form method="post">
+            <input type="text" name="searchInput" placeholder="Search Movie...">
+            <button type="submit" name="submit">Search</button>
+        </form>
+        </div>
             <?php 
             if(isset($_POST['submit'])){
                 $searchInput = $_POST['searchInput'];
@@ -140,9 +255,12 @@ print_r($array);
                 }
             }
             ?>
-            <form method="post">
-                <button type="submit" name="viewAll">View All</button>
-            </form>
+            <div class="button-container">
+  <button type="submit" class="view-all-form" name="viewAll">View All</button>
+  <a href="../index.php">Log out</a>
+</div>
+
+
             <?php
 
                 if (isset($_POST['viewAll'])) {
@@ -161,33 +279,36 @@ print_r($array);
                     <div class="movie">
                         <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
                         <h2><?php echo $arr['movieName'];?></h2>
-                        <p><b>Genre = </b><?php echo $arr['genre'];?></p>
-                        <p><b>Duration = </b><?php echo $arr['duration'];?></p></br>
+                        </br>
+                        <p><b>Genre: </b><?php echo $arr['genre'];?></p>
+                        </br>
+                        <p><b>Duration: </b><?php echo $arr['duration'];?></p></br>
+                        <div class="movie-button">
+                            <label for="number"><b>Booking Date</b></label></br>
+                            <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>
 
-                        <label for="number"><b>Booking Date</b></label></br>
-                        <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>
+                            <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">
+                                <button><?php echo $arr['timing1'];?></button>
+                            </a></br>
 
-                        <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">
-                            <button><?php echo $arr['timing1'];?></button>
-                        </a></br>
+                            <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing2'];?>"  style="text-decoration: none;">
+                                <button><?php echo $arr['timing2'];?></button>
+                            </a></br>
 
-                        <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing2'];?>"  style="text-decoration: none;">
-                            <button><?php echo $arr['timing2'];?></button>
-                        </a></br>
+                            <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing3'];?>"  style="text-decoration: none;">
+                                <button><?php echo $arr['timing3'];?></button>
+                            </a></br>
 
-                        <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing3'];?>"  style="text-decoration: none;">
-                            <button><?php echo $arr['timing3'];?></button>
-                        </a></br>
-
-                        <?php 
-                        if($arr['timing4'] != 0){
-                        ?>
-                        <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing4'];?>" style="text-decoration: none;">
-                            <button><?php echo $arr['timing4'];?></button>
-                        </a>
-                        <?php
-                        }
-                        ?>
+                            <?php 
+                            if($arr['timing4'] != 0){
+                            ?>
+                            <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing4'];?>" style="text-decoration: none;">
+                                <button><?php echo $arr['timing4'];?></button>
+                            </a>
+                            <?php
+                            }
+                            ?>
+                        </div>
 
                         <script>
                         // add date to booking button URLs when clicked

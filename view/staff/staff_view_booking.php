@@ -1,5 +1,6 @@
 <?php
 require('../../controller/booking_controller.php');
+require('../../header_login.php'); //unappear
 
 $bookedID = $_GET['bookedID'];
 
@@ -115,67 +116,101 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
 
         </script>
         <style>
-        * {box-sizing:border-box}
+        * {
+  box-sizing: border-box;
+}
 
-        /* Add padding to containers */
-        .container {
-        padding: 16px;
-        }
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
 
-        /* Full-width input fields */
-        textarea,input[type=text],  input[type=password], input[type=tel], input[type=number] , input[type=date]{
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-        }
+/* Full-width input fields */
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="date"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
 
-        textarea,input[type=text]:focus, input[type=password]:focus {
-        background-color: #ddd;
-        outline: none;
-        }
+textarea,
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
 
-        /* Overwrite default styles of hr */
-        hr {
-        border: 1px solid #f1f1f1;
-        margin-bottom: 25px;
-        }
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
 
-        /* Set a style for the submit/register button */
-        .registerbtn {
-        background-color: #BD9A7A;
-        color: white;
-        padding: 16px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 50%;
-        opacity: 0.9;
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #bd9a7a;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
 
-        }
+.registerbtn:hover {
+  opacity: 1;
+}
 
-        .registerbtn:hover {
-        opacity:1;
-        }
+body {
+  background-color: #e7dbd0;
+}
 
-        /* Add a blue text color to links */
-        a {
-            color: dodgerblue;
-        }
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
 
-        /* Set a grey background color and center the text of the "sign in" section */
-        .signin {
-        background-color: #f1f1f1;
-        text-align: center;
-        }
-        p,span{
-            color:black !important;
-        }
-        #seat_chart input[type="checkbox"]:disabled {
-            background-color: red !important;
-        }
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+p,
+span {
+  color: black !important;
+}
+
+#seat_chart input[type="checkbox"]:disabled {
+  background-color: red !important;
+}
+
+/* Adjust seat chart layout */
+#seat_chart .col-md-1 {
+  background-color: grey;
+  color: white;
+  text-align: center;
+  margin: 5px;
+  padding: 0;
+}
+
+#seat_chart .col-md-1 input[type="checkbox"] {
+  margin: 2px;
+}
+
+#seat_chart .col-md-1 span {
+  display: block;
+  margin-top: 2px;
+}
+
         </style>
 
 

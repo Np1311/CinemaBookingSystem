@@ -158,7 +158,7 @@ table td {
       $searchProfile=$_POST['search'];
 
       if($controller->searchProfile($searchProfile) === false){
-          echo '<script>alert("'.$searchProfile.' is not found")</script>';  
+          echo '<script>alert("'.$searchProfile.' is not found");</script>';  
       } else {
           $profileArray = $controller->searchProfile($searchProfile);
 
