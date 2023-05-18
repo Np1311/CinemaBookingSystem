@@ -45,6 +45,7 @@ $arr = $userAccount -> showUpdate($curProfile,$userID);
         body {
         background-color: #e7dbd0 !important;
         height: 100%;
+        font-family: arial;
         }
 
         

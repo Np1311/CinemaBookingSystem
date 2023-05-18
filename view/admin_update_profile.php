@@ -20,6 +20,7 @@ $controller =  new admin_controller;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        font-family: arial;
     }
 
     label {

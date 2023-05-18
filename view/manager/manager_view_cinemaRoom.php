@@ -11,7 +11,7 @@
     <style>
         body {
             background-color: #e7dbd0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
         }
 
         .container {

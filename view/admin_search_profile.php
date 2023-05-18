@@ -37,6 +37,7 @@ $controller = new admin_controller;
 
     body {
       background-color: #e7dbd0;
+      font-family: arial;
     }
 
     form input[type="text"] {

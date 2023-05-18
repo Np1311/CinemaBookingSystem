@@ -131,6 +131,7 @@ if(isset($_GET['deleteID'])){
         }
         body {
             background-color: #e7dbd0;
+            font-family: arial;
          }
 
 

@@ -21,6 +21,7 @@ form {
 
 body {
     background-color: #e7dbd0;
+    font-family: arial;
 }
 
 form button {

@@ -68,13 +68,13 @@ select {
 }
 
     </style>
-    <title>Admin Reactive Profile</title>
+    <title>Admin Reactivate Profile</title>
 </head>
 
 <body>
   <div class='formContainer'>
     <form method="post">
-      <label for="profile">Profile:</label></br>
+      <label for="profile">Reactivate a Profile:</label></br>
       <select name="reactivate">
       <option value="" disabled selected>-- Choose a Profile --</option>
         <?php

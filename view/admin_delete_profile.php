@@ -25,6 +25,7 @@ $controller =  new admin_controller;
 
     body {
         background-color: #e7dbd0;
+        font-family: arial;
     }
 
     label {
@@ -62,13 +63,13 @@ $controller =  new admin_controller;
         border: 2px solid;
     }
 </style>
-    <title>Delete a Profile</title>
+    <title>Suspend a Profile</title>
     </head>
 
     <body>
         <div class = 'formContainer'>
             <form method="post">
-                <label for="profile">Profile:</label></br></br>
+                <label for="profile">Suspend a Profile Name:</label></br></br>
                 <select name="deleteProfile">
                 <option value="" disabled selected>-- Choose a Profile --</option>
                     <?php
