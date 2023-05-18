@@ -77,7 +77,7 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
         table th,
         table td {
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
         }
 
         table th {

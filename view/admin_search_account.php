@@ -16,6 +16,7 @@ form {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     margin-top: 10%;
+    font-weight: bold;
 }
 
 body {
@@ -54,7 +55,7 @@ button[type="button"] {
     cursor: pointer;
 }
 
-button[type="button"]:hover {
+ button[type="button"]:hover {
     background-color: white;
     color: #bd9a7a;
     border: 2px solid;
@@ -97,12 +98,13 @@ table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
+    background-color: white;
 }
 
 table th,
 table td {
     padding: 8px;
-    border: 2px solid black;
+    border: 2px solid #ddd;
 }
 
 table th {
@@ -112,6 +114,23 @@ table th {
 
 table td {
     text-align: center;
+}
+
+.custom-button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #bd9a7a;
+  color: white;
+  border: none;
+  font-size: 14px;
+}
+
+.custom-button a {
+  text-decoration: none;
+  color: white;
 }
 
 </style>
@@ -168,8 +187,8 @@ table td {
             echo "<td>" . $array['dob'] . "</td>";
             echo "<td>" . $array['status'] . "</td>";
             echo '<td>
-                <button class="btn btn-primary"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Update</a></button>
-                <button class="btn-danger"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></button>
+                <button class="custom-button"><a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Update</a></button>
+                <button class="custom-button"><a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Delete</a></button>
                 </td>';
             echo "</tr>";
         }

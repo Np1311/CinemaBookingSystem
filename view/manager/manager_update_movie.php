@@ -118,19 +118,19 @@ $date = $arr['relDate'];
             <input type="number" id="duration" name="duration" min = '0' max = '9999' value = "<?php echo $arr['duration']?>"><br><br>
             
             <label for="roomID">Room ID:</label>
-            <input type="number" id="roomID" name="roomID" value = "<?php echo $arr['roomID']?>"><br><br>
+            <input type="number" id="roomID" name="roomID" value = "<?php echo $arr['roomID']?>" placeholder="Enter Room ID" required><br><br>
 
             <label for="timing1">Timing:</label>
-            <input type="text" id="timing1" name="timing1"  value = "<?php echo $arr['timing1']?>"><br><br>
+            <input type="text" id="timing1" name="timing1" value="<?php echo $arr['timing1'] ?>" placeholder="Enter Time E.g 10:00 - 20:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
             <label for="timing2">Timing:</label>
-            <input type="text" id="timing2" name="timing2"  value = "<?php echo $arr['timing2']?>"><br><br>
+            <input type="text" id="timing2" name="timing2"  value = "<?php echo $arr['timing2']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
 
             <label for="timing3">Timing:</label>
-            <input type="text" id="timing3" name="timing3"  value = "<?php echo $arr['timing3']?>"><br><br>
+            <input type="text" id="timing3" name="timing3"  value = "<?php echo $arr['timing3']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
 
             <label for="timing4">Timing:</label>
-            <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>"><br><br>
+            <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
 
             <label for="status">Status:</label>
             <?php

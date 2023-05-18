@@ -15,6 +15,7 @@ form {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     margin-top: 10%;
+    font-weight: bold;
 }
 
 body {
@@ -96,12 +97,13 @@ table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
+    background-color: white;
 }
 
 table th,
 table td {
     padding: 8px;
-    border: 2px solid black;
+    border: 2px solid #ddd;
 }
 
 table th {
@@ -113,9 +115,28 @@ table td {
     text-align: center;
 }
 
+.custom-button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #bd9a7a;
+  color: white;
+  border: none;
+  font-size: 14px;
+}
+
+.custom-button:hover {
+  background-color: white;
+  color: #bd9a7a;
+  border: 2px solid #bd9a7a ;
+}
+
+
 </style>
 <meta charset="utf-8">
-<title>Search an Account</title>
+<title>Search an Room</title>
 </head>
 <body>
   <!-- <h1>Search Account</h1> -->
@@ -132,7 +153,7 @@ table td {
     <div class="btn-group">
         <button type="submit" name="submit">Go</button>
         <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
-</div>
+    </div>
 
   </form>
   <?php
@@ -168,10 +189,10 @@ table td {
                 echo "<td>" . $array['totalColumn'] . "</td>";
                 echo "<td>" . $array['status'] . "</td>";
                 echo '<td>
-                        <button class="btn btn-primary">
+                        <button class="custom-button">
                             <a href="../manager/manager_update_cinema.php?updateID=' . $array['roomID'] . '" class="text-light">Update</a>
                         </button>
-                        <button class="btn-danger">
+                        <button class="custom-button">
                             <a href="../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '" class="text-light">Delete</a>
                         </button>
                     </td>';
