@@ -85,7 +85,7 @@ require('../header.html');
     <input type="text" name="foodName" placeholder="Enter Name of Product" required><br><br>
 
     <label for="description">Description:</label>
-    <textarea name="description" rows="5" placeholder="Enter Description"></textarea><br><br>
+    <textarea name="description" rows="5" placeholder="Enter Description" required></textarea><br><br>
 
     <label for="price">Price:</label>
     <input type="number" step="0.01" name="price" placeholder="Enter Price " required min="0"><br><br>

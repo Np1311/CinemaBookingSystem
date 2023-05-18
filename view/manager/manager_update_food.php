@@ -98,19 +98,19 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
         <h1>Food Details Form</h1>
             <form method = 'post'>
                 <label for="name">Name:</label>
-                <input type="text" name="foodName" value='<?php echo $array['foodName'];?>'><br>
+                <input type="text" name="foodName" value='<?php echo $array['foodName'];?>' required><br>
 
                 <label for="description">Description:</label>
-                <textarea name="description"  id='description' rows="10" cols="65"></textarea><br>
+                <textarea name="description"  id='description' rows="10" cols="65" required></textarea><br>
 
                 <label for="price">Price:</label>
-                <input type="number" step="0.01" name="price" value='<?php echo $array['price'];?>'><br>
+                <input type="number" step="0.01" name="price" value='<?php echo $array['price'];?>' required><br>
 
                 <label for="category">Category:</label>
-                <input type="text" name="category" value='<?php echo $array['category'];?>'><br>
+                <input type="text" name="category" value='<?php echo $array['category'];?>' required><br>
 
                 <label for="stock">Stock:</label>
-                <input type="number" name="stock" min='0' max='99999' value='<?php echo $array['stock'];?>'><br>
+                <input type="number" name="stock" min='0' max='99999' value='<?php echo $array['stock'];?>' required><br>
 
                 <label for="image">Image:</label>
                 <input type="text" name="image" value='<?php echo $array['image'];?>'><br>
