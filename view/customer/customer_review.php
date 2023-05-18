@@ -10,8 +10,6 @@ if($array = $booking_controller->getBookingController($phone)== false){
   $array = $booking_controller->getBookingController($phone);
 }
 
-print_r($array);
-
 
 ?>
 

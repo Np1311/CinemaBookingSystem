@@ -8,7 +8,7 @@ $phone =  $_SESSION['customerID'];
 
 
 if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
-  echo '<script>alert("No Movie listed")</script>';
+  echo '<script>alert("No customer listed")</script>';
 }else{
   $array = $controller -> getAccount_controller($_SESSION['profile'],$phone);
 }
@@ -109,7 +109,7 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
     <button class="button" onclick="location.href='customer_update.php'">Edit Profile</button>
   </div>
   
-  <?php require ('footer.html');?>
+  <?php require ('../footer.html');?>
 </body>
 
 

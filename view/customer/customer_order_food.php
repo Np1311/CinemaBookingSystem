@@ -12,7 +12,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
     $array = $booking_controller -> getFoodAndDrinkController();
 }
 
-print_r($array);
+
 
 ?>
 <html>

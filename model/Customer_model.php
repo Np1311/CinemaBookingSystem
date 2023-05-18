@@ -44,7 +44,7 @@ class customer_model extends user_model{
         try {
             mysqli_query($conn, $sql2); 
             //mysqli_query($conn, $sql3); 
-            echo '<script>alert("good to go")</script>'; 
+            echo '<script>alert("Review submited, Thank You for Your Review")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {

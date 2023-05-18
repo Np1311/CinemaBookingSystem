@@ -6,10 +6,10 @@ $customer = new customer_model;
 
 class customer_controller{
     
-    public function updateUserController($profile,$fname,$lname,$phone,$email,$dob,$status,$oldPhone){
+    public function updateUserController($profile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone){
         global $customer;
 
-        if($customer -> updateUser($profile,$fname,$lname,$phone,$email,$dob,$status,$oldPhone)){
+        if($customer -> updateUser($profile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone)){
             return true;
         }
     }

@@ -143,6 +143,7 @@ require('header.html')
         $pass = $_POST['pass'];
         if(isset($_SESSION['profile'])== null){
             $_SESSION['profile'] = 'customer';
+            $_SESSION['customerID']= $phone;
         }
         echo $_SESSION['profile'];
         

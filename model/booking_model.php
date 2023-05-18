@@ -122,7 +122,7 @@ class booking_model{
         try {
             mysqli_query($conn, $sql2); 
              
-            echo '<script>alert("good to go")</script>'; 
+            echo '<script>alert("Booking succes")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -193,7 +193,7 @@ class booking_model{
             }
             return $array;
         } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+            // echo 'Caught exception: ',  $e->getMessage(), "\n";
             // fallback to a simple SELECT query if customerReview table doesn't exist
             $sql = "SELECT * FROM booking WHERE phone = '$phone' AND `bookingDate` < CURDATE();";
             $result = $conn->query($sql);
@@ -219,7 +219,7 @@ class booking_model{
         
         try { 
             mysqli_query($conn, $sql); 
-            echo '<script>alert("good to go")</script>'; 
+            // echo '<script>alert("good to go")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -288,7 +288,7 @@ class booking_model{
         try {
             mysqli_query($conn, $sql2); 
             //mysqli_query($conn, $sql3); 
-            echo '<script>alert("good to go")</script>'; 
+            echo '<script>alert("Order successful")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -321,7 +321,7 @@ class booking_model{
         try {
             mysqli_query($conn, $sql2); 
             //mysqli_query($conn, $sql3); 
-            echo '<script>alert("good to go")</script>'; 
+             
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -339,7 +339,7 @@ class booking_model{
         try {
             mysqli_query($conn, $sql); 
             //mysqli_query($conn, $sql3); 
-            echo '<script>alert("good to go")</script>'; 
+            // echo '<script>alert("good to go")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
