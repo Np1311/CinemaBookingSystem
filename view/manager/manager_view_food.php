@@ -166,12 +166,8 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
         <div class="container">
             <form  method="post">
                 <input type="text" name="searchInput" placeholder="Search...">
-<<<<<<< Updated upstream
                 <button type="submit" name='submit' >Search</button>
-=======
-                <button type="submit" name='submit'>Search</button>
                 <button type="submit" name="viewAll">View All</button>
->>>>>>> Stashed changes
             </form>
             <?php 
             if(isset($_POST['submit'])){
@@ -229,12 +225,7 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
                         echo '<td >
                             <button class="custom-button"><a href="../manager/manager_update_food.php?updateID='.$arr['foodID'].'"
                             class="text-light">Update</a></button>
-<<<<<<< Updated upstream
-                            <button class="btn-danger"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Suspend</a></
-=======
-                            <button class="custom-button"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Delete</a></
->>>>>>> Stashed changes
-                            button> 
+                            <button class="custom-button"><a href="../manager/manager_delete_food.php?deleteID='.$arr['foodID'].'" class="text-light">Suspend</a></button> 
                             </td>' ; 
                         echo "</tr>";
                     }
