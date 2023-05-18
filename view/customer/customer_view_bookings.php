@@ -67,7 +67,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
             }
 
             .customerButton a {
-                margin: 10px;
+                margin: 30px;
                 text-decoration: none;
             }
 
@@ -79,7 +79,8 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                 border-radius: 4px;
                 cursor: pointer;
                 font-size: 16px;
-                margin-bottom: 10px;
+                margin-bottom: 50px;
+                width:400px;
             }
 
             .customerButton button:hover {
