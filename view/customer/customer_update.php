@@ -83,6 +83,8 @@ require ('../../controller/customer_controller.php');
       <input type="date" name="date_of_birth" id="date_of_birth" value="<?php echo $user['dob']; ?>"><br><br>
       <label for="phone">Phone Number:</label>
       <input type="text" name="phone" id="phone" value="<?php echo $user['phone']; ?>"><br><br>
+      <label for="pass">Password:</label>
+      <input type="text" name="pass" id="pass" value="<?php echo $user['password']; ?>"><br><br>
       <input type="submit" name="submit" value="Save Changes">
     </form>
   </div>
@@ -95,14 +97,15 @@ require ('../../controller/customer_controller.php');
       $phone = $_POST['phone'];
       $dob = $_POST['date_of_birth'];
       $status = 'active';
+      $password = $_POST['pass'];
       $oldPhone = $_SESSION['customerID'];
       
-      if($controller -> updateUserController($profile,$fname,$lname,$phone,$email,$dob,$status,$oldPhone)){
+      if($controller -> updateUserController($profile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone)){
           echo" <script>window.location='customer_home_view.php';</script>";
           //echo "try";
       }
   }
-  require('footer.html');
+  require('../footer.html');
   ?>
 </body>
 

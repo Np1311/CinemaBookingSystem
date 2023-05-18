@@ -11,6 +11,8 @@ $date = $_GET['date'];
 
 $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
 
+var_dump($array);
+
 
 
 $alphabet = range('A', 'Z');
@@ -25,10 +27,10 @@ $column = $array['totalColumn'];
 $selected_row = $array['seat_row'];
 $selected_column = $array['seat_column'];
 $loyalty_point = $array['loyalty_point'];
-// $takenRow = 'I';
-// $takenColumn = 4;
+
+
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
-var_dump($takenSeat);
+
 
 if ($selected_row === NULL){
     $selected_row = '';
@@ -113,31 +115,7 @@ if ($selected_row === NULL){
         }
 
 
-        // function checkboxtotal() {
-        //     var seat = [];
-        //     $('input[name="seat_chart[]"]:checked').each(function() {
-        //         if (!$(this).is(':disabled')) {
-        //             seat.push($(this).val());
-        //         }
-        //     });
-
-        //     var st = seat.length;
-        //     document.getElementById('no_ticket').value = st;
-
-        //     var ch = document.getElementById('child').value;
-        //     var child = (ch * 4);
-
-        //     var std = document.getElementById('student').value;
-        //     var student = (std * 3);
-
-        //     var sr = document.getElementById('senior').value;
-        //     var senior = (sr * 2);
-
-        //     total_price = ((st * 12) - (child) - (senior) - (student));
-        //     $('#price_details').text("SGD$" + total_price);
-
-        //     $('#seat_dt').val(seat.join(", "));
-        // }
+       
 
         </script>
         <style>
