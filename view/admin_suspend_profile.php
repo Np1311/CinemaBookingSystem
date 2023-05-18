@@ -83,10 +83,10 @@ $controller =  new admin_controller;
         <?php
 
             if(isset($_POST['deleteProfile'])){
-                $deleteProfile = $_POST['deleteProfile'];
-                echo $deleteProfile;
-                if($controller->susProfile($deleteProfile)){
-                    echo '<script>alert("good to go")</script>'; 
+                $suspendProfile = $_POST['deleteProfile'];
+                echo $suspendProfile;
+                if($controller->susProfile($suspendProfile)){
+                    echo '<script>alert("'.$suspendProfile.' is suspend")</script>'; 
                     echo" <script>window.location='admin_home_view.php';</script>";
                     // return true;
                 }

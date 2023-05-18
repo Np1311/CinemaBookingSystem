@@ -27,12 +27,7 @@ $controller = new admin_controller;
             min-height: 100vh;
             padding: 20px;
             margin-top: 200px;
-<<<<<<< Updated upstream
-            margin-left: 70px;
-            font-weight: bold;
-=======
             margin-left:0;
->>>>>>> Stashed changes
         }
 
     body {

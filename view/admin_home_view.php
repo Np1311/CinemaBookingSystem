@@ -8,7 +8,7 @@ $admin->displayUser();
 
 // $admin -> validateProfile('customer');
 if(isset($_GET['deleteID'])){
-   if($admin->deleteAccount()){
+   if($admin->suspendAccountController()){
         echo" <script>window.location='admin_home_view.php';</script>";
    }
 
@@ -157,7 +157,7 @@ if(isset($_GET['deleteID'])){
                 <button id='bodyButton'>Create Account</button>
             </a> </br>
 
-            <a href="admin_delete_profile.php">
+            <a href="admin_suspend_profile.php">
                 <button id='bodyButton'>Suspend Profile</button>
             </a> 
             <a href="admin_reactivate_profile.php">

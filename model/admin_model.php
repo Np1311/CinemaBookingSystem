@@ -77,10 +77,10 @@ class admin_model extends user_model{
             echo '<script>alert("error updating user")</script>'; 
         return false;}
     }
-    public function deleteProfile($profile){
+    public function suspendProfile($suspendProfile){
         global $conn;
         $conn->select_db('CSIT314_Test');
-        $sql = "UPDATE $profile SET `status` = 'suspend';";
+        $sql = "UPDATE $suspendProfile SET `status` = 'suspend';";
         try {
             mysqli_query($conn, $sql); 
             

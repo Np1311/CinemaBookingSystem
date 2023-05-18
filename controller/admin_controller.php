@@ -75,7 +75,7 @@ class admin_controller{
     //     }
 
     // }
-    public function deleteAccount(){
+    public function suspendAccountController(){
         global $system_admin_session;
         $userID = $_GET['deleteID'];
         $curProfile = $_GET['curProfile'];
@@ -95,9 +95,9 @@ class admin_controller{
             echo "<option value='" . $element . "'>" . $element . "</option>";
         }
     }
-    public function susProfile($deleteProfile){
+    public function susProfile($suspendProfile){
         global $system_admin_session;
-        if($system_admin_session->deleteProfile($deleteProfile)){
+        if($system_admin_session->suspendProfile($suspendProfile)){
             
             return true;
         }

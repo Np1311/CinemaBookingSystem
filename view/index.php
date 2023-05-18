@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once('../controller/database_controller.php');
+
+$database = new database_controller;
+
+$database->setupDatabase();
 
 
 
