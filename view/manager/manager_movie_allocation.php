@@ -4,7 +4,7 @@ require('../../controller/manager_controller.php');
 require('../header.html');
 
 $movieID = $_GET['movieID'];
-$array = $controller -> viewRoomController();
+$array = $controller -> viewActiveRoomController();
 
 
 
@@ -91,8 +91,8 @@ $array = $controller -> viewRoomController();
       foreach($array as $key => $value){
     ?>
       <label>
-        <input type="radio" name="roomID" value="<?php echo $value['roomID']; ?>">
-        <?php echo $value['roomName'];?> | <?php echo $value['roomType'];?> | <?php echo $value['roomCapacity'];?> required
+        <input type="radio" name="roomID" value="<?php echo $value['roomID']; ?>" required>
+        <?php echo $value['roomName'];?> | <?php echo $value['roomType'];?> | <?php echo $value['roomCapacity'];?> </input>
       </label><br><br>
     <?php
       }

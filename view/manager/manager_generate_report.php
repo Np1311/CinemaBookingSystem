@@ -94,6 +94,7 @@ print_r($array);
 
 </head>
 <body>
+  <div class="container">
   <form method='post' onsubmit="return validateForm()">
     <label for="selection">Select Option:</label>
     <select id="selection" onchange="handleOptionChange()" name="reportType">
@@ -143,12 +144,14 @@ print_r($array);
 
     <input type="submit" name = "submit" value="Submit">
   </form>
+  </br>
   <div class="button-container">
+      
     <a href="manager_home_view.php">
         <button>Back</button>
     </a>
   </div>
-  <br>
+  
        
 
   <script>
@@ -234,6 +237,6 @@ print_r($array);
     }
     echo '</div>';
     ?>
-   
+  </div>
 </body>
 </html>
