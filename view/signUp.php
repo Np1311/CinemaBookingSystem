@@ -70,11 +70,47 @@ $_SESSION['profile']='customer';
             outline: none;
             }
 
-            .password-toggle {
-			display: inline-block;
-			margin-left: 10px;
-			cursor: pointer;
-		    }
+            .password-input {
+            position: relative;
+            display: inline-block;
+            width: 400px;
+        }
+
+        .password-input input[type="password"],
+        .password-input input[type="text"] {
+            width: calc(400px);
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #bd9a7a;
+            border: 2px solid white;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 8px;
+            width: 400px;
+            margin-top: 2%;
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            color: #bd9a7a;
+            border: 2px solid;
+        }
         </style>
         
     </head>
@@ -97,19 +133,23 @@ $_SESSION['profile']='customer';
                 <input type="date" id="dob" name="dob" ><br>
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <span class="password-toggle" onclick="togglePasswordVisibility('password')">Show</span><br><br>
+                <div class="password-input">
+                    <input type="password" id="password" name="password" required>
+                    <span class="password-toggle" onclick="togglePasswordVisibility('password')">Show</span><br><br>
+                </div>
                 
                 <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-                <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')">Show</span><br>
-                <span id="password-error" style="color: red;"></span><br>
+                <div class="password-input">
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')">Show</span><br>
+                    <span id="password-error" style="color: red;"></span><br>
+                </div>
                 
                
 
                 
 
-                <input type="submit" name='submit' value="submit">
+                <button class="btn-primary" type="submit" name='submit' value="submit">Submit</button>
             </form>
         </div>
         <?php
