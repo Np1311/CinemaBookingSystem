@@ -175,6 +175,31 @@ class booking_controller{
             return false;
         }
     }
+    public function getFoodAndDrinkByIDController($orderID){
+        global $booking;
+        $array = $booking -> getFoodAndDrinkByID($orderID);
+        if(count($array)>0){
+            return $array;
+        }else{
+            return false;
+        }
+    }
+    public function updateOrderFoodController($orderID,$price){
+        global $booking;
+        if($booking->updateOrderFood($orderID,$price)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function updateOrderItemController($orderID,$foodID,$quantity){
+        global $booking;
+        if($booking->updateOrderItem($orderID,$foodID,$quantity)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 $booking_controller = new booking_controller;

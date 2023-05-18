@@ -240,6 +240,16 @@ print_r($array);
         }
         ?>
         <form method="post">
+            <input type="text" name="orderID" placeholder="Order ID...">
+            <button type="submit" name="orderIDSubmit">Search</button>
+        </form>
+        <?php 
+        if(isset($_POST['orderIDSubmit'])){
+            $orderID = $_POST['orderID'];
+            echo" <script>window.location='staff_view_foodOrder.php?orderID=$orderID';</script>";
+        }
+        ?>
+        <form method="post">
             <input type="text" name="searchInput" placeholder="Search Movie...">
             <button type="submit" name="submit">Search</button>
         </form>
@@ -289,15 +299,15 @@ print_r($array);
 
                             <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">
                                 <button><?php echo $arr['timing1'];?></button>
-                            </a></br>
+                            </a></br></br>
 
                             <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing2'];?>"  style="text-decoration: none;">
                                 <button><?php echo $arr['timing2'];?></button>
-                            </a></br>
+                            </a></br></br>
 
                             <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing3'];?>"  style="text-decoration: none;">
                                 <button><?php echo $arr['timing3'];?></button>
-                            </a></br>
+                            </a></br></br>
 
                             <?php 
                             if($arr['timing4'] != 0){
