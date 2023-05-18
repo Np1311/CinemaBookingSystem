@@ -25,6 +25,7 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
       padding: 0;
       font-family: Arial;
       font-size: 16px;
+      background-color: #e7dbd0;
     }
   
     /* Profile styles */
@@ -34,7 +35,7 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
       margin-top : 100px !important;
       margin-bottom : 350px !important;
       padding: 20px;
-      background-color: #f2f2f2;
+      background-color: #f5f5f5;
       border: 1px solid #ccc;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
@@ -42,6 +43,8 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
     table {
       border-collapse: collapse;
       width: 100%;
+      height:300px;
+      margin-bottom:20px;
     }
     
     th, td {
@@ -49,30 +52,45 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
       padding: 8px;
       text-align: left;
       vertical-align: top;
+      background-color: #e7dbd0;
+      color:white;
     }
     
     th {
-      background-color: #eee;
+      background-color: #bd9a7a;
       font-weight: bold;
     }
-    
-    /* Button styles */
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
+
+    td {
+      color:black;
     }
     
-    .button:hover {
-      background-color: #3e8e41;
-    }
+
+    .custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding-top:10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            width:200px;
+            margin-left:60px;
+            
+        }
+
+        .custom-button:hover {
+            background-color:#e7dbd0;
+            color: #bd9a7a;
+            border: 1px solid white;
+        }
+        .custom-button a {
+            text-decoration: none;
+            color: white;
+        }
   </style>
 </head>
 <body>
@@ -84,6 +102,7 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
   ?>
   
   <div class="profile">
+    <h1 style="text-align: center;">Profile View</h1>
     <table>
       <tr>
         <th>First Name</th>
@@ -106,7 +125,8 @@ if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
         <td><?php echo $phone; ?></td>
       </tr>
     </table>
-    <button class="button" onclick="location.href='customer_update.php'">Edit Profile</button>
+    <button class="custom-button" onclick="location.href='customer_update.php'">Edit Profile</button>
+    <a href="customer_home_view.php"><button class="custom-button">Back</button></a>
   </div>
   
   <?php require ('../footer.html');?>

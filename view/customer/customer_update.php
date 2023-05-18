@@ -9,6 +9,13 @@ require ('../../controller/customer_controller.php');
 <head>
   <title>Update Profile</title>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial;
+      font-size: 16px;
+      background-color: #e7dbd0;
+    }
     /* Styles for the profile form */
     .profile {
       max-width: 500px;
@@ -43,18 +50,24 @@ require ('../../controller/customer_controller.php');
     }
     
     input[type="submit"] {
-      display: block;
-      margin: 0 auto;
-      padding: 10px 20px;
-      background-color: #428bca;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
+      flex: 1;
+            margin: 0 5px;
+            padding-top:10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            margin-left:150px;
+            width:200px;
     }
     
     input[type="submit"]:hover {
-      background-color: #3071a9;
+      background-color:#e7dbd0;
+            color: #bd9a7a;
+            border: 1px solid white;
     }
   </style>
 </head>
