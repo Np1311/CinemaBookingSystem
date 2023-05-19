@@ -31,18 +31,13 @@ class login_model{
         while ($row = mysqli_fetch_assoc($result)) {
           $array[$row['phone']] = $row['password'];
         }
-       print_r ($array);
-       echo $profile;
-  
-  
+       
         return $array;
     }
     public function checkUser(){
         global $user;
         $found = 'not found';
-        echo $this->profile;
-        echo $this->uid;
-        echo $this->pass;
+
         $arr = $this->getPhoneandPass($this->profile);
         foreach ($arr as $x => $x_value){
             if ($this->uid== $x){
@@ -52,9 +47,10 @@ class login_model{
                    $user->setAccount($this->uid);
                    echo "<script>alert('Password Correct');</script>";
                    return true;
-                }else  
+                }else{
                     echo "<script>alert('Inccorect password');</script>";
                     return false;
+                }
             }
         }
         if ($found == 'not found'){

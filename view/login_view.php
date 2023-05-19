@@ -139,15 +139,17 @@ require('header.html')
         $profile = $_SESSION['profile'];
         $controller = new login_controller();
         
-        if($controller->validateLogin($profile,$loginPhone,$loginPass)==true){
-            if($profile == 'customer'){
-                echo" <script>window.location='customer/customer_home_view.php';</script>";}
-            else if ($profile == 'system_admin'){
+        if($controller->validateLogin($profile,$loginPhone,$loginPass)){
+            
+                
+            if ($profile == 'system_admin'){
                 echo" <script>window.location='admin_home_view.php';</script>";
             }else if ($profile == 'staff'){
-                echo" <script>window.location='staff/staff_home_view.php';</script>";
+                echo" <script>window.location='./staff/staff_home_view.php';</script>";
             }else if ($profile == 'manager'){
-                echo" <script>window.location='manager/manager_home_view.php';</script>";
+                echo" <script>window.location='./manager/manager_home_view.php';</script>";
+            }else{
+                echo" <script>window.location='./customer/customer_home_view.php';</script>";
             }
         }
             

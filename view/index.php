@@ -465,19 +465,30 @@ $database->setupDatabase();
         <?php
         require('../controller/login_controller.php');
         if (isset($_POST['submit'])){
-            $phone = $_POST['phone'];
-            $pass = $_POST['pass'];
+            $loginPhone = $_POST['phone'];
+            $loginPass = $_POST['pass'];
             if(isset($_SESSION['profile'])== null){
                 $_SESSION['profile'] = 'customer';
                 $_SESSION['customerID'] = $phone;
             }
             echo $_SESSION['profile'];
             
+            $profile = $_SESSION['profile'];
             $controller = new login_controller();
             
-            $controller->validateLogin($_SESSION['profile'],$phone,$pass);
+            if($controller->validateLogin($profile,$loginPhone,$loginPass)){
                 
-            
+                    
+                if ($profile == 'system_admin'){
+                    echo" <script>window.location='admin_home_view.php';</script>";
+                }else if ($profile == 'staff'){
+                    echo" <script>window.location='./staff/staff_home_view.php';</script>";
+                }else if ($profile == 'manager'){
+                    echo" <script>window.location='./manager/manager_home_view.php';</script>";
+                }else{
+                    echo" <script>window.location='./customer/customer_home_view.php';</script>";
+                }
+            }
         }
         
         require('footer.html');
