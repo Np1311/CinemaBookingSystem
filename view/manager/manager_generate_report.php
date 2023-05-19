@@ -20,7 +20,7 @@ print_r($array);
         align-items: center;
         min-height: 100vh;
         padding: 20px;
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
     table {
@@ -65,7 +65,7 @@ print_r($array);
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 14px;
-        width:600px;
+        width:500px;
     }
 
     input[type="submit"],
@@ -84,6 +84,18 @@ print_r($array);
     .button-container {
         display: flex;
         justify-content: center;
+        background-color: #bd9a7a;
+        color: white;
+        cursor: pointer;
+        border: none; 
+        border-radius: 5px;
+        font-size: 18px;
+        margin-top: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        width:487px;
     }
 
     .button-container a {
@@ -103,6 +115,8 @@ print_r($array);
       <option value="monthly">Monthly</option>
       <option value="weekly">Weekly</option>
     </select>
+
+    <br>
 
     <div id="monthlyFields" style="display: none;">
       <label for="year">Year:</label>
@@ -143,14 +157,13 @@ print_r($array);
       <input type="date" id="endDate" name="endDate">
     </div>
 
+    <br>
+
     <input type="submit" name = "submit" value="Submit">
   </form>
   </br>
   <div class="button-container">
-      
-    <a href="manager_home_view.php">
-        <button>Back</button>
-    </a>
+      <a href="manager_home_view.php"><button>Back</button></a>
   </div>
   
        
