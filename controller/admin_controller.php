@@ -92,10 +92,9 @@ class admin_controller{
     //     }
 
     // }
-    public function suspendAccountController(){
+    public function suspendAccountController($curProfile,$userID){
         global $system_admin_session;
-        $userID = $_GET['deleteID'];
-        $curProfile = $_GET['curProfile'];
+        
         if($system_admin_session->suspendAccount($curProfile,$userID)){
             // echo" <script>window.location='../view/admin_home_view.php';</script>";
             return true;
