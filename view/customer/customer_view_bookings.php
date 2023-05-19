@@ -67,7 +67,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
             }
 
             .customerButton a {
-                margin: 10px;
+                margin: 30px;
                 text-decoration: none;
             }
 
@@ -79,7 +79,8 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                 border-radius: 4px;
                 cursor: pointer;
                 font-size: 16px;
-                margin-bottom: 10px;
+                margin-bottom: 50px;
+                width:400px;
             }
 
             .customerButton button:hover {
@@ -102,10 +103,12 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                 <th>Show Timing</th>
                 <th>Number of Tickets</th>
                 <th>Seats</th>
+                <th>Tickets</th>
+                <!--
                 <th>Number of Adult Tickets</th>
                 <th>Number of Child Tickets</th>
                 <th>Number of Senior Tickets</th>
-                <th>Number of Student Tickets</th>
+                <th>Number of Student Tickets</th> -->
                 <th>Booking Date</th>
                 <th>Total Amount</th>
                 <th>Loyalty Points</th>
@@ -123,10 +126,12 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                     <td><?= $arr["showTiming"] ?></td>
                     <td><?= $arr["numOfTicket"] ?></td>
                     <td><?= $arr["seats"] ?></td>
-                    <td><?= $arr["noOfAdultTicket"] ?></td>
-                    <td><?= $arr["noOfChildTicket"] ?></td>
-                    <td><?= $arr["noOfSeniorTicket"] ?></td>
-                    <td><?= $arr["noOfStudentTicket"] ?></td>
+                    <td>
+                        <p>Adult Ticket: <?= $arr["noOfAdultTicket"] ?></p>
+                        <p>Child Ticket: <?= $arr["noOfChildTicket"] ?></p>
+                        <p>Senior Ticket: <?= $arr["noOfSeniorTicket"] ?></p>
+                        <p>Student Ticket: <?= $arr["noOfStudentTicket"] ?></p>
+                    </td>
                     <td><?= $arr["bookingDate"] ?></td>
                     <td><?= $arr["total_amnt"] ?></td>
                     <td><?= $arr["loyaltypoints"] ?></td>

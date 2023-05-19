@@ -9,7 +9,7 @@ if($booking_controller -> getShowingMovie_controller() == false){
     $array = $booking_controller -> getShowingMovie_controller();
 }
 
-print_r($array);
+
 
 ?>
 <html>
