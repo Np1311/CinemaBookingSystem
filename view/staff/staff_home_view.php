@@ -243,8 +243,10 @@ print_r($array);
             }
             ?>
             <div class="button-container">
+            <form method="post">
                 <button type="submit" class="view-all-form" name="viewAll">View All</button>
-                <button type="button" class= "view-all-form" onclick="window.location.href = '../index.php'">Log out</button>
+            </form>
+                
             </div>
 
 
