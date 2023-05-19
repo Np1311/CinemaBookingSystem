@@ -141,13 +141,13 @@ require('header.html')
         
         if($controller->validateLogin($profile,$phone,$pass)){
             if($profile == 'customer'){
-                echo" <script>window.location='../view/customer/customer_home_view.php';</script>";}
+                echo" <script>window.location='../customer/customer_home_view.php';</script>";}
             else if ($profile == 'system_admin'){
                 echo" <script>window.location='../view/admin_home_view.php';</script>";
             }else if ($profile == 'staff'){
-                echo" <script>window.location='../view/staff/staff_home_view.php';</script>";
+                echo" <script>window.location='../staff/staff_home_view.php';</script>";
             }else if ($profile == 'manager'){
-                echo" <script>window.location='../view/manager/manager_home_view.php';</script>";
+                echo" <script>window.location='../manager/manager_home_view.php';</script>";
             }
         }
             
