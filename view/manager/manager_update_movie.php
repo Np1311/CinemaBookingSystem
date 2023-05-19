@@ -97,25 +97,25 @@ $date = $arr['relDate'];
 
     </style>
     <script>
-            function previewImage() {
-                const fileInput = document.getElementById('movieBanner');
-                const previewContainer = document.getElementById('imagePreview');
-                const previewImage = previewContainer.querySelector('.preview-image');
+    function previewImage() {
+        const fileInput = document.getElementById('movieBanner');
+        const previewContainer = document.getElementById('imagePreview');
+        const previewImage = previewContainer.querySelector('.preview-image');
 
-                if (fileInput.files && fileInput.files[0]) {
-                    const reader = new FileReader();
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
 
-                    reader.onload = function (e) {
-                        previewImage.src = e.target.result;
-                    };
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+            };
 
-                    reader.readAsDataURL(fileInput.files[0]);
-                    previewContainer.style.display = 'block';
-                } else {
-                    previewImage.src = '';
-                    previewContainer.style.display = 'none';
-                }
-            }
+            reader.readAsDataURL(fileInput.files[0]);
+            previewContainer.style.display = 'block';
+        } else {
+            previewImage.src = '<?php echo $arr["movieBanner"]; ?>'; // Set the src attribute to the previous picture URL
+            previewContainer.style.display = 'block';
+        }
+    }
     </script>
     <title>Update Movie Details Form</title>
     </head>
@@ -128,12 +128,11 @@ $date = $arr['relDate'];
             <input type="text" id="movieName" name="movieName" value = "<?php echo $arr['movieName']?>"><br><br>
 
             <label for="movieBanner">Movie Banner:</label>
-            <input type="file" id="movieBanner" name="movieBanner" value = "<?php echo $arr['movieBanner']?>" onchange="previewImage()"><br><br>
-
+            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()"><br><br>
+            
             <div id="imagePreview" style="display: none;">
-                <img class="preview-image" src="" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
+                <img class="preview-image" src="<?php echo $arr['movieBanner']; ?>" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
             </div>
-
             <label for="relDate">Release Date:</label>
             <input type="date" id="relDate" name="relDate" value = "<?php echo $date?>"><br><br>
 
