@@ -1,4 +1,5 @@
 <?php
+require ('header_customer.html');
 require('../../controller/booking_controller.php');
 require_once('../../controller/customer_controller.php');
 session_start();
@@ -47,7 +48,7 @@ if($array = $booking_controller->getBookingController($phone)== false){
       h1 {
         text-align: center;
         font-size: 32px;
-        margin-top: 40px;
+        margin-top: 100px;
       }
 
       form {

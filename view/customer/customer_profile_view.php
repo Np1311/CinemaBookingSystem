@@ -1,5 +1,6 @@
 <?php
 session_start();
+require ('header_customer.html');
 require('../../controller/customer_controller.php');
 
 $phone =  $_SESSION['customerID'];
@@ -64,6 +65,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
 
     td {
       color:black;
+      width:70%;
     }
     
 
