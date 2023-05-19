@@ -75,7 +75,7 @@ $admin = new admin_controller;
     <body>
         <form method='post'>
             <div class="signIn">
-                <label for="addProfile">Add Profile Name:</label>
+                <label for="addProfile">Create Profile Form:</label>
                 <input type="text" name="addProfile" id="addProfile" required placeholder="Enter New Profile">
             </div>
             <button type="submit" name="submit" value="submit">Submit</button>
