@@ -35,7 +35,7 @@
         table th,
         table td {
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 2px solid #ddd;
         }
 
         table th {
@@ -76,25 +76,7 @@
         .managerButton button:hover {
             background-color: white;
             color: #bd9a7a;
-            border: 1px solid #bd9a7a;
-        }
-       
-        .btn-primary {
-            background-color: #bd9a7a;
-            color: white; /*button update */
-        }
-
-        .btn-primary:hover {
-            background-color: #0062cc;
-        }
-
-        .btn-danger {
-            background-color: #bd9a7a;
-            color: white; /*button delete*/
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
+            border: 2px solid #bd9a7a;
         }
 
         .custom-button {
@@ -104,19 +86,16 @@
             border-radius: 5px;
             cursor: pointer;
             background-color: #bd9a7a;
-            color: black;
+            color: white;
             border: none;
             font-size: 14px;
+            text-decoration: none;
         }
 
         .custom-button:hover {
-            background-color:#bd9a7a;
+            background-color:white;
             color: #bd9a7a;
-            border: 1px solid #bd9a7a;
-        }
-        .custom-button a {
-            text-decoration: none;
-            color: white;
+            border: 2px solid #bd9a7a;
         }
 
     </style>
@@ -149,14 +128,12 @@
                     echo "<td>" . $array['totalRow'] . "</td>";
                     echo "<td>" . $array['totalColumn'] . "</td>";
                     echo "<td>" . $array['status'] . "</td>";
-                    echo '<td>
-                            <button class="custom-button">
-                                <a href="../manager/manager_update_cinema.php?updateID=' . $array['roomID'] . '" class="text-light">Update</a>
-                            </button>
-                            <button class="custom-button">
-                                <a href="../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '" class="text-light">Delete</a>
-                            </button>
-                        </td>';
+                    echo '<td>';
+                    echo '<button class="custom-button" onclick="location.href=\'../manager/manager_update_cinema.php?updateID=' . $array['roomID'] . '\'">Update</button>';
+                    echo '<button class="custom-button" onclick="location.href=\'../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '\'">Delete</button>';
+                    echo '</td>';
+
+                  
                     echo "</tr>";
                 }
             } else {

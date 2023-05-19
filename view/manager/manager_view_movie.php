@@ -71,7 +71,8 @@ if($arr = $controller -> viewMovieController()==false){
         }
         body {
             background-color: #e7dbd0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
+            margin-top: 11%;
         }
 
         .container {
@@ -138,24 +139,6 @@ if($arr = $controller -> viewMovieController()==false){
             color: #bd9a7a;
             border: 1px solid #bd9a7a;
         }
-       
-        .btn-primary {
-            background-color: #bd9a7a;
-            color: white; /*button update */
-        }
-
-        .btn-primary:hover {
-            background-color: #0062cc;
-        }
-
-        .btn-danger {
-            background-color: #bd9a7a;
-            color: white; /*button delete*/
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
 
         .custom-button {
             flex: 1;
@@ -164,19 +147,16 @@ if($arr = $controller -> viewMovieController()==false){
             border-radius: 5px;
             cursor: pointer;
             background-color: #bd9a7a;
-            color: black;
+            color: white;
             border: none;
             font-size: 14px;
+            text-decoration: none;
         }
 
         .custom-button:hover {
-            background-color:#bd9a7a;
+            background-color:white;
             color: #bd9a7a;
-            border: 1px solid #bd9a7a;
-        }
-        .custom-button a {
-            text-decoration: none;
-            color: white;
+            border: 2px solid #bd9a7a;
         }
 
     </style>
@@ -261,10 +241,9 @@ if($arr = $controller -> viewMovieController()==false){
                                     <p> <?php echo $array["timing3"];?></p>
                                     <p> <?php echo $array["timing4"];?></p>
                                 </td>
-                                <td><button class="custom-button"><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["movieID"];?>"
-                                class="text-light">Update</a></button>
-                                <button class="custom-button"><a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="text-light">Delete</a></button> 
-                                <button class="custom-button"><a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="text-light">Allocate Movie</a></button> </td>
+                                <td><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["movieID"];?>" class="custom-button">Update</a>
+                                <a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="custom-button">Delete</a>
+                                <a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="custom-button">Allocate Movie</a>
                                 </tr>
                             </div>
                         <?php

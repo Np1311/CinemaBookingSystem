@@ -91,6 +91,29 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
             box-sizing: border-box;
         }
     </style>
+    <script>
+    function previewImage() {
+        const fileInput = document.getElementById('image');
+        const previewContainer = document.getElementById('imagePreview');
+        const previewImage = previewContainer.querySelector('.preview-image');
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+            previewContainer.style.display = 'block';
+        } else {
+            previewImage.src = '<?php echo $array["image"]; ?>'; // Set the src attribute to the previous picture URL
+            previewContainer.style.display = 'block';
+        }
+    }
+    </script>
+
+    <title>Manager Update Food</title>
     </head>
     <body>
     <div class="container">
@@ -113,7 +136,14 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
                 <input type="number" name="stock" min='0' max='99999' value='<?php echo $array['stock'];?>' required><br>
 
                 <label for="image">Image:</label>
-                <input type="text" name="image" value='<?php echo $array['image'];?>'><br>
+                <input type="file" id="image" name="image" value='<?php echo $array['image'];?>' onchange="previewImage()"><br>
+
+                <div id="imagePreview" style="display: none;">
+                    <img class="preview-image" src="" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
+                </div>
+
+                <!-- <label for="image">Image:</label>
+                <input type="text" name="image" value='<?php echo $array['image'];?>'><br> -->
 
                 <label for="status">Status:</label>
                 <?php
@@ -130,7 +160,7 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
                 ?>
                 <div class="btn-group">
                     <button type="submit" name="submit">Update Item</button>
-                    <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+                    <button type="button" onclick="window.location.href = 'manager_view_food.php'">Back</button>
                 </div>
             </form>
     </div>

@@ -143,7 +143,7 @@ $date = $arr['relDate'];
             <input type="number" id="duration" name="duration" min = '0' max = '9999' value = "<?php echo $arr['duration']?>"><br><br>
             
             <label for="roomID">Room ID:</label>
-            <input type="number" id="roomID" name="roomID" value = "<?php echo $arr['roomID']?>" placeholder="Enter Room ID" required><br><br>
+            <input type="number" id="roomID" min = '0' name="roomID" value = "<?php echo $arr['roomID']?>" placeholder="Enter Room ID" required><br><br>
 
             <label for="timing1">Timing:</label>
             <input type="text" id="timing1" name="timing1" value="<?php echo $arr['timing1'] ?>" placeholder="Enter Time E.g 10:00 - 20:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>

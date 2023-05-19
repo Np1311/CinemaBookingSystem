@@ -75,6 +75,27 @@ require('../header.html');
         margin-bottom: 20px;
     }
 </style>
+<script>
+ function previewImage() {
+    const fileInput = document.getElementById('image');
+    const previewContainer = document.getElementById('imagePreview');
+    const previewImage = previewContainer.querySelector('.preview-image');
+
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+       previewImage.src = e.target.result;
+      };
+
+      reader.readAsDataURL(fileInput.files[0]);
+        previewContainer.style.display = 'block';
+      } else {
+        previewImage.src = '';
+        previewContainer.style.display = 'none';
+      }
+        }
+</script>
 
 </head>
 <body>
@@ -97,7 +118,11 @@ require('../header.html');
     <input type="number" name="stock" min="0" max="99999" placeholder="Enter Stock" required><br><br>
 
     <label for="image">Image:</label>
-    <input type="text" name="image"><br>
+    <input type="file" id="image" name="image" onchange="previewImage()"><br>
+
+    <div id="imagePreview" style="display: none;">
+      <img class="preview-image" src="" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
+    </div>
 
     <div class="btn-group">
       <input type="submit" name="submit" value="Add Item">
