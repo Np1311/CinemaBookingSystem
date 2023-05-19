@@ -128,8 +128,8 @@ require('header.html')
     <?php
     require('../controller/login_controller.php');
     if (isset($_POST['submit'])){
-        $phone = $_POST['phone'];
-        $pass = $_POST['pass'];
+        $loginPhone = $_POST['phone'];
+        $loginPass = $_POST['pass'];
         if(isset($_SESSION['profile'])== null){
             $_SESSION['profile'] = 'customer';
             $_SESSION['customerID']= $phone;
@@ -139,15 +139,15 @@ require('header.html')
         $profile = $_SESSION['profile'];
         $controller = new login_controller();
         
-        if($controller->validateLogin($profile,$phone,$pass)){
+        if($controller->validateLogin($profile,$loginPhone,$loginPass)==true){
             if($profile == 'customer'){
-                echo" <script>window.location='../customer/customer_home_view.php';</script>";}
+                echo" <script>window.location='customer/customer_home_view.php';</script>";}
             else if ($profile == 'system_admin'){
-                echo" <script>window.location='../view/admin_home_view.php';</script>";
+                echo" <script>window.location='admin_home_view.php';</script>";
             }else if ($profile == 'staff'){
-                echo" <script>window.location='../staff/staff_home_view.php';</script>";
+                echo" <script>window.location='staff/staff_home_view.php';</script>";
             }else if ($profile == 'manager'){
-                echo" <script>window.location='../manager/manager_home_view.php';</script>";
+                echo" <script>window.location='manager/manager_home_view.php';</script>";
             }
         }
             

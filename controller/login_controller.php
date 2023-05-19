@@ -24,4 +24,5 @@ class login_controller{
         
     }
 }
+
 ?>
