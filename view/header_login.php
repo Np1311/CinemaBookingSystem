@@ -98,7 +98,7 @@ session_start();
         if ($_SESSION['profile'] == 'system_admin') {
             ?>
             <button class="back" onclick="location.href='../view/admin_home_view.php'">Home</button>
-            <button class="logout" onclick="location.href='../controller/logout.php'">Log Out</button>
+            <button class="logout" onclick="location.href='logout.php'">Log Out</button>
             <?php
         }
         ?>
@@ -106,7 +106,7 @@ session_start();
         if ($_SESSION['profile'] == 'manager') {
             ?>
             <button class="back" onclick="location.href='../manager/manager_home_view.php'">Home</button>
-            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
+            <button class="logout" onclick="location.href='../logout.php'">Log Out</button>
             <?php
         }
         ?>
@@ -114,7 +114,7 @@ session_start();
         if ($_SESSION['profile'] == 'customer') {
             ?>
             <button class="back" onclick="location.href='../customer/customer_home_view.php'">Home</button>
-            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
+            <button class="logout" onclick="location.href='../logout.php'">Log Out</button>
             <?php
         }
         ?>
@@ -122,16 +122,11 @@ session_start();
         if ($_SESSION['profile'] == 'staff') {
             ?>
             <button class="back" onclick="location.href='../staff/staff_home_view.php'">Home</button>
-            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
+            <button class="logout" onclick="location.href='../logout.php'">Log Out</button>
             <?php
         }
         ?>
     </div>
 </div>
-<script>
-    function goBack() {
-        window.history.go(-1);
-    }
-</script>
 </body>
 </html>
