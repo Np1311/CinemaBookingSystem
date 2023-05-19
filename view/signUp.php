@@ -143,6 +143,7 @@ $_SESSION['profile']='customer';
                 </div>
                 
                 <button class="btn-primary" type="submit" name='submit' value="submit">Submit</button>
+                <button class="btn-primary" onclick="window.history.back();">Back</button>
             </form>
         </div>
         <?php
