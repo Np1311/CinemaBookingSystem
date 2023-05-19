@@ -14,12 +14,25 @@ class admin_controller{
         global $system_admin_session;
     
         $profileArr = $system_admin_session->listedProfile();
-        $profileArr = array_filter($profileArr, function($profile) {
-            return stripos($profile, 'cinema') === false;
-        });
+        $excluded = array(
+            "booking",
+            "customerReview",
+            "fnbOrder",
+            "orderItem",
+            'cinemaAllocation',
+            'cinemaFoodAndDrink',
+            'cinemaMovie',
+            'cinemaRoom'
+          );
+          
+          $profileArr = array_filter($profileArr, function ($value) use ($excluded) {
+            return !in_array($value, $excluded);
+          });
+       
     
         foreach ($profileArr as $profile) {
             $arr = $system_admin_session->getAllAccount($profile);
+            
             echo "<div class='profileTable'>";
             echo "<h2 style='text-align: 0 auto;'>" . ucfirst($profile) . "</h2>";
             echo "<table>";
@@ -153,7 +166,7 @@ class admin_controller{
 
 }
 // $admin = new admin_controller;
-// // $admin -> validateProfile('customer');
+// $admin -> displayUser();
 // if(isset($_GET['deleteID'])){
 //    $admin->deleteAccount(); 
 
