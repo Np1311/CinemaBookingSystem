@@ -22,7 +22,7 @@ class booking_model{
             }
         } catch (Exception $e) {
             // if the table doesn't exist or there's another error, return an empty array
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
@@ -157,7 +157,7 @@ class booking_model{
             
             
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
@@ -198,7 +198,7 @@ class booking_model{
             $sql = "SELECT * FROM booking WHERE phone = '$phone' AND `bookingDate` < CURDATE();";
             $result = $conn->query($sql);
             if (!$result) {
-                echo "Error: " . $conn->error;
+                // echo "Error: " . $conn->error;
                 return array(); // Return an empty array
             } else {
                 $array = array();
@@ -246,7 +246,7 @@ class booking_model{
                 $array = [];
             }
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
@@ -368,7 +368,7 @@ class booking_model{
             }
         } catch (Exception $e) {
             // if the table doesn't exist or there's another error, return an empty array
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
@@ -397,7 +397,7 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         return $array;
@@ -442,7 +442,7 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $selectedSeat = [];
         }
         
@@ -479,7 +479,7 @@ class booking_model{
                 return false;
             }
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             return false;
         }
         
@@ -506,7 +506,7 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         return $array;
@@ -537,7 +537,7 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         return $array;
@@ -564,7 +564,7 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         return $array;
@@ -589,7 +589,7 @@ class booking_model{
                 return false;
             }
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             return false;
         }
         
@@ -615,7 +615,7 @@ class booking_model{
                 return false;
             }
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "Error: " . $e->getMessage();
             return false;
         }
     }
