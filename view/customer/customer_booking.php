@@ -11,7 +11,6 @@ $date = $_GET['date'];
 
 $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
 
-var_dump($array);
 
 
 
@@ -366,8 +365,8 @@ if ($selected_row === NULL){
                     if($_POST['redeemPoint']=='yes'){
                         $total_amnt = $_SESSION['new_total_price'];
                         $loyaltypoints=$total_amnt;
-                        $newLoyaltyPoints= $_SESSION['new_loyalty_point'];
-                        $booking_controller->redeemPointController($newLoyaltyPoints,$phone);
+                        $points= $_SESSION['new_loyalty_point'];
+                        $booking_controller->redeemPointController($points,$phone);
 
                     } else {
                         $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
@@ -399,21 +398,6 @@ if ($selected_row === NULL){
                         echo" <script>window.location='customer_home_view.php';</script>";
                     }
                 }
-
-                // echo "Show Time: " . $time . "<br>";
-                // echo "Number of Tickets: " . $numOfTiket . "<br>";
-                // echo "Seat Details: " . $seatArr . "<br>";
-                // echo "Number of Child Tickets: " . $noOfChildTicket . "<br>";
-                // echo "Number of Senior Tickets: " . $noOfSeniorTicket . "<br>";
-                // echo "Number of Student Tickets: " . $noOfStudentTicket . "<br>";
-                // echo "Booking Date: " . $bookingDate . "<br>";
-                // echo "Movie Name: " . $movieName . "<br>";
-                // echo "Total Amount: " .$total_amnt . "<br>";
-                // echo "Loyalty Points: " . $loyaltypoints . "<br>";
-                // echo "Seat Details Array: ";
-                // print_r($seatDetail);
-                // echo "Row:".$rowSeat."</br>";
-                // echo "Column:".$columnSeat."</br>";
             }
         ?>
     </body>

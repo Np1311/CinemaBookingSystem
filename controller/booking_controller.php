@@ -45,33 +45,12 @@ class booking_controller{
 
     }
     
-    public function takenSeats_controller($movieID,$showTiming,$date,$bookedID){
+    public function takenSeats_controller($movie,$showTiming,$date,$bookedID){
         global $booking;
 
-        $array = $booking->takenSeats($movieID,$showTiming,$date,$bookedID);
-        if(count($array)>0){ 
-            $merged_array = array();
-            foreach ($array as $seats) {
-                $seats_array = explode(',', $seats);
-                $seats_array = array_map('trim', $seats_array); // trim each string in $seats_array
-                $merged_array = array_merge($merged_array, $seats_array);
-            }
+        $array = $booking->takenSeats($movie,$showTiming,$date,$bookedID);
         
-            $taken_seats = array();
-            foreach ($merged_array as $seat) {
-                $row = substr($seat, 0, 1);
-                $column = substr($seat, 1);
-                if (strlen($seat) > 2) {
-                    $row .= trim(substr($seat, 1, 1));
-                    $column = substr($seat, 2);
-                }
-                $taken_seats[] = array('row' => $row, 'column' => $column);
-            }
-        }else{
-            $taken_seats=[];
-        }
-
-        return $taken_seats;
+        return $array;
     }
 
     public function getBookingController($phone){
@@ -86,11 +65,11 @@ class booking_controller{
         }
 
     }
-    public function redeemPointController($newLoyaltyPoints,$phone){
+    public function redeemPointController($points,$phone){
 
         global $booking;
 
-        if($booking -> redeemPoint($newLoyaltyPoints,$phone)){
+        if($booking -> redeemPoint($points,$phone)){
             return true;
         }
     }
@@ -105,10 +84,10 @@ class booking_controller{
             return false;
         }
     }
-    public function orderFoodController($phone,$date,$price,$loyaltypoints){
+    public function orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood){
         global $booking;
 
-        if($booking -> orderFood($phone,$date,$price)){
+        if($booking -> orderFood($phone,$date,$price,$orderedFood)){
             $booking ->gainPoints($loyaltypoints,$phone);
             return true;
         }

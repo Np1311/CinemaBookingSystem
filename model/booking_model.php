@@ -136,40 +136,63 @@ class booking_model{
         
     }
     
-    public function takenSeats($movieID,$showTiming,$date,$bookedID){
+    public function takenSeats($movie,$showTiming,$date,$bookedID){
         global $conn;
         $conn->select_db("CSIT314_Test");
 
         try {
-            if($bookedID == 0){
-                $sql = "SELECT seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date';";
-            }else{
-                $sql = "SELECT bookingID,seats FROM `booking` WHERE movieID = '$movieID' && showTiming = '$showTiming' && bookingDate = '$date' && bookingID != $bookedID;";
+            if ($bookedID == 0) {
+                $sql = "SELECT seats FROM `booking` WHERE movieID = '$movie' && showTiming = '$showTiming' && bookingDate = '$date';";
+            } else {
+                $sql = "SELECT bookingID,seats FROM `booking` WHERE movieID = '$movie' && showTiming = '$showTiming' && bookingDate = '$date' && bookingID != $bookedID;";
             }
-            
+
             $result = $conn->query($sql);
-            if($result == false){
+            if ($result == false) {
                 $array = [];
-            }else{
+            } else {
                 $array = array();
                 // fetch the result row as an associative array
                 while ($row = mysqli_fetch_assoc($result)) {
                     $array[] = $row['seats'];
                 }
             }
-            
-            
         } catch (Exception $e) {
             // echo "Error: " . $e->getMessage();
             $array = [];
         }
-        
+
         if (!isset($result) || !$result) {
             $array = [];
         }
-        
-        return $array;
-        
+
+        if (count($array) > 0) {
+            $merged_array = array();
+            foreach ($array as $seats) {
+                $seats_array = explode(',', $seats);
+                
+                $seats_array = array_map('trim', $seats_array); // trim each string in $seats_array
+               
+                $merged_array = array_merge($merged_array, $seats_array);
+               
+            }
+
+            $taken_seats = array();
+            foreach ($merged_array as $seat) {
+                $row = substr($seat, 0, 1);
+                $column = substr($seat, 1);
+                if (strlen($seat) > 2) {
+                    $row .= trim(substr($seat, 1, 1));
+                    $column = substr($seat, 2);
+                }
+                $taken_seats[] = array('row' => $row, 'column' => $column);
+            }
+        } else {
+            $taken_seats = [];
+        }
+
+        return $taken_seats;
+
         
     }
     public function getBookingDetail($phone){
@@ -214,11 +237,11 @@ class booking_model{
         }        
         
     }
-    public function redeemPoint($newLoyaltyPoints,$phone){
+    public function redeemPoint($points,$phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
 
-        $sql = "UPDATE `customer` SET loyalty_point = $newLoyaltyPoints WHERE phone = $phone;";
+        $sql = "UPDATE `customer` SET loyalty_point = $points WHERE phone = $phone;";
         
         try { 
             mysqli_query($conn, $sql); 
@@ -256,7 +279,7 @@ class booking_model{
         return $array;
         
     }
-    public function orderFood($phone,$date,$price){
+    public function orderFood($phone,$date,$price,$orderedFood){
         global $conn;
         $conn->select_db("CSIT314_Test");
         $sql = "CREATE TABLE IF NOT EXISTS fnbOrder (
@@ -290,7 +313,11 @@ class booking_model{
         
         try {
             mysqli_query($conn, $sql2); 
-            //mysqli_query($conn, $sql3); 
+            foreach($orderedFood as $foodID => $quantity){
+                if($quantity > 0){
+                    $this->orderItem($foodID,$quantity);
+                }
+            } 
             echo '<script>alert("Order successful")</script>'; 
             return true; 
         }

@@ -241,14 +241,8 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             }
             $loyaltypoints = $price;
 
-            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints)){
-                foreach($orderedFood as $foodID => $quantity){
-                    if($quantity > 0){
-                        if($booking_controller->orderItemController($foodID,$quantity)){
-                            echo" <script>window.location='customer_home_view.php';</script>";
-                        }
-                    }
-                } 
+            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
+                echo" <script>window.location='customer_home_view.php';</script>";
             }
 
                   
