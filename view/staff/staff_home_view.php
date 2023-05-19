@@ -24,15 +24,16 @@ print_r($array);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 80px;
-            flex-direction: column-reverse; /* Add this line */
+            /* margin-top: 5px; */
+            flex-direction: column-reverse; 
             }
+
 
             .form-container form {
             display: flex;
             align-items: center;
             margin-right: 10px;
-            margin-bottom: 10px; /* Add this line */
+            margin-bottom: 10px; 
             }
 
             .view-all-form {
@@ -50,11 +51,6 @@ print_r($array);
             color: #bd9a7a;
             border: 2px solid #bd9a7a;
             }
-
-            /* .view-all-form button {
-            margin-right: 5px;
-            } */
-
 
             .form-container input[type="text"] {
             padding: 10px;
@@ -110,63 +106,60 @@ print_r($array);
             }
 
             .movie-container {
-            /* margin-top: 100px; */
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px;
+                margin-top : 100px;
+                max-width: 1200px;
+                margin-left: 150px ;
+                padding: 20px;
             }
-
+            
             .movie-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+                display: flex;
+                flex-wrap: wrap;
             }
-
             .movie {
-            width: 300px;
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            position: relative;
-            transition: background-color 0.3s ease-in-out;
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+                
+                width: 300px;
+                margin: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                position: relative;
+                transition: background-color 0.3s ease-in-out;
+                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
             }
-
             .movie img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 5px;
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                border-radius: 5px;
             }
-
             .movie h2 {
-            font-size: 24px;
-            margin-top: 10px;
-            margin-bottom: 5px;
+                font-size: 24px;
+                margin-top: 10px;
+                margin-bottom: 5px;
             }
-
             .movie p {
-            font-size: 16px;
-            margin-top: 5px;
-            margin-bottom: 10px;
+                font-size: 16px;
+                margin-top: 5px;
+                margin-bottom: 10px;
             }
-
             .movie button {
-            display: block;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            background-color: #0077ff;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
+                display: block;
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #bd9a7a;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
             }
-
             .movie button:hover {
-            background-color: #0055cc;
+                background-color:white;
+                color: #bd9a7a;
+                border: 2px solid #bd9a7a;
             }
+            body {background-color: #e7dbd0}
 
             .movie input[type="date"] {
             border-radius: 10px;
@@ -272,7 +265,7 @@ print_r($array);
                 ?>
                     <div class="movie">
                         <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
-                        <h2><?php echo $arr['movieName'];?></h2>
+                        <h2 style="text-align: center;"><?php echo $arr['movieName'];?></h2>
                         </br>
                         <p><b>Genre: </b><?php echo $arr['genre'];?></p>
                         </br>

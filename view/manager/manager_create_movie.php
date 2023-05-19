@@ -79,34 +79,59 @@ require('../header.html');
             border: 1px solid #bd9a7a;
         }
         </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="form">
-                <h2>Create Movie Details Form</h2>
-                <form method="post">
-                <label for="movieName">Movie Name:</label>
-                <input type="text" id="movieName" name="movieName" placeholder="Enter Movie Name">
+        <script>
+            function previewImage() {
+                const fileInput = document.getElementById('movieBanner');
+                const previewContainer = document.getElementById('imagePreview');
+                const previewImage = previewContainer.querySelector('.preview-image');
 
-                <label for="movieBanner">Movie Banner:</label>
-                <input type="text" id="movieBanner" name="movieBanner" placeholder="Enter picture with jpeg/ jpg">
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
 
-                <label for="relDate">Release Date:</label>
-                <input type="date" id="relDate" name="relDate" >
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                    };
 
-                <label for="genre">Genre:</label>
-                <input type="text" id="genre" name="genre" placeholder="Enter Genre">
+                    reader.readAsDataURL(fileInput.files[0]);
+                    previewContainer.style.display = 'block';
+                } else {
+                    previewImage.src = '';
+                    previewContainer.style.display = 'none';
+                }
+            }
+        </script>
 
-                <label for="duration">Duration:</label>
-                <input type="number" id="duration" name="duration" min="0" max="9999" placeholder="Enter Duration in Minutes">
+<div class="container">
+    <div class="form">
+        <h2>Create Movie Details Form</h2>
+        <form method="post">
+            <label for="movieName">Movie Name:</label>
+            <input type="text" id="movieName" name="movieName" placeholder="Enter Movie Name">
 
-                <div class="btn-group">
-                    <input type="submit" name="submit" value="Submit">
-                    <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
-                </div>
-                </form>
+            <label for="movieBanner">Movie Banner:</label>
+            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()">
+
+            <div id="imagePreview" style="display: none;">
+                <img class="preview-image" src="" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
             </div>
-        </div>
+
+            <label for="relDate">Release Date:</label>
+            <input type="date" id="relDate" name="relDate">
+
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" placeholder="Enter Genre">
+
+            <label for="duration">Duration:</label>
+            <input type="number" id="duration" name="duration" min="0" max="9999" placeholder="Enter Duration in Minutes">
+
+            <div class="btn-group">
+                <input type="submit" name="submit" value="Submit">
+                <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
         <?php
             if(isset($_POST['submit'])){
