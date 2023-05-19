@@ -55,23 +55,6 @@ print_r($array);
             margin-right: 5px;
             } */
 
-            a {
-            display: inline-block;
-            background-color: #bd9a7a;
-            border: 2px solid #bd9a7a;
-            color: white;
-            padding: 10px 15px; /* Adjust the padding values */
-            text-decoration: none;
-            border-radius: 5px;
-            }
-
-            a:hover {
-            background-color: white;
-            color: #bd9a7a;
-            border: 2px solid #bd9a7a;
-            }
-
-
 
             .form-container input[type="text"] {
             padding: 10px;
@@ -205,7 +188,8 @@ print_r($array);
             }
 
             .movie-button button:hover {
-            background-color: #0055cc;
+            background-color: white;
+            color: #bd9a7a;
             }
 
 
@@ -266,9 +250,9 @@ print_r($array);
             }
             ?>
             <div class="button-container">
-  <button type="submit" class="view-all-form" name="viewAll">View All</button>
-  <a href="../index.php">Log out</a>
-</div>
+                <button type="submit" class="view-all-form" name="viewAll">View All</button>
+                <button type="button" class= "view-all-form" onclick="window.location.href = '../index.php'">Log out</button>
+            </div>
 
 
             <?php

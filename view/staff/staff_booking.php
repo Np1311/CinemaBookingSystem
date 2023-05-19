@@ -1,6 +1,5 @@
 <?php
 //require ('../header_login.php');
-
 require('../../controller/booking_controller.php');
 
 $phone = 0;
@@ -10,7 +9,9 @@ $date = $_GET['date'];
 $bookedID = 0;
 echo '<form method="post">';
 echo '<input type="text" name="phone" placeholder="Search phone...">';
-echo '<button type="submit" name="submit">Search</button>';
+echo '<div style="text-align: center;">';
+echo '<button type="submit" name="submit" class="btn">Search</button>';
+echo '</div>';
 echo '</form>';
 
 
@@ -194,6 +195,22 @@ if ($selected_row === NULL){
         #seat_chart input[type="checkbox"]:disabled {
             background-color: red !important;
         }
+
+        .btn{
+            background-color: #BD9A7A;
+            color:white;
+            margin: 0 auto;
+        }
+
+        .btn:hover{
+            background-color: white;
+            color:#BD9A7A;
+            border: 2px solid #BD9A7A;
+        }
+
+        body{
+            background-color: #e7dbd0;
+        }
         </style>
 
 
@@ -291,13 +308,12 @@ if ($selected_row === NULL){
                     <?php
                     }
                     ?>
-                    <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
-
+                    <div style="text-align: center;">
+                        <button type="submit" name="btn_booking" class="btn" >Confirm Booking</button>
+                        <button type="button" class= "btn" onclick="window.location.href = '../../staff_home_view.php'">Back</button> <!--Check-->
+                    </div>
                 </div>
                 </form>
-                &nbsp&nbsp<a href="customer_home_view.php" style="text-decoration: none;">
-                    <button name="btn_booking1" class="btn" style="background-color: #BD9A7A;color:white;">Back</button>
-                </a>
                 </div>
             </div>
             </div>
