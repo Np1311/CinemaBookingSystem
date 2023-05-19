@@ -118,6 +118,14 @@ session_start();
             <?php
         }
         ?>
+         <?php
+        if ($_SESSION['profile'] == 'staff') {
+            ?>
+            <button class="back" onclick="location.href='../staff/staff_home_view.php'">Home</button>
+            <button class="logout" onclick="location.href='../../controller/logout.php'">Log Out</button>
+            <?php
+        }
+        ?>
     </div>
 </div>
 <script>

@@ -15,9 +15,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
     $orderedFoodArray = $booking_controller -> getFoodAndDrinkByIDController($orderID);
 }
 
-var_dump($array);
-echo '</br>';
-var_dump($orderedFoodArray);
+
 ?>
 <html>
     <head>
