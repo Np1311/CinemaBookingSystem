@@ -469,7 +469,7 @@ $database->setupDatabase();
             $loginPass = $_POST['pass'];
             if(isset($_SESSION['profile'])== null){
                 $_SESSION['profile'] = 'customer';
-                $_SESSION['customerID'] = $phone;
+                $_SESSION['customerID'] = $loginPhone;
             }
             echo $_SESSION['profile'];
             
@@ -486,6 +486,7 @@ $database->setupDatabase();
                 }else if ($profile == 'manager'){
                     echo" <script>window.location='./manager/manager_home_view.php';</script>";
                 }else{
+                    
                     echo" <script>window.location='./customer/customer_home_view.php';</script>";
                 }
             }
