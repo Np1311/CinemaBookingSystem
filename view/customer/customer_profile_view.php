@@ -3,14 +3,15 @@ session_start();
 require('../../controller/customer_controller.php');
 
 $phone =  $_SESSION['customerID'];
+$profile = 'customer';
 
 //echo $customer -> getAccount();
 
 
-if($controller -> getAccount_controller($_SESSION['profile'],$phone) == false){
+if($controller -> getAccount_controller($profile,$phone) == false){
   echo '<script>alert("No customer listed")</script>';
 }else{
-  $array = $controller -> getAccount_controller($_SESSION['profile'],$phone);
+  $array = $controller -> getAccount_controller($profile,$phone);
 }
 
 ?>

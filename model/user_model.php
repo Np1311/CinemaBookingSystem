@@ -110,9 +110,7 @@ class user_model {
             echo '<script>alert("error creating user")</script>'; 
         return false;}
     }
-    public function echoUser(){
-        echo 'try';
-    }
+    
     public function getAllAccount($profile){
         global $conn;
         $conn -> select_db("CSIT314_Test");
