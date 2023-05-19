@@ -136,7 +136,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             }
 
             .minus-btn:hover, .plus-btn:hover {
-                color: #white;
+                color: white;
             }
 
             .plus-btn:focus, .minus-btn:focus {
@@ -183,8 +183,6 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                     <img src="<?php echo $arr['image'];?>" alt="Movie 1">
                     <h1><?php echo $arr['foodName'];?></h1>
                     <p>Description: <?php echo $arr['foodDescription'];?></p>
-
-                    <p>Price: <?php echo $arr['price'];?></p>
 
                     <label>Price:</label>
                     <input type="number" name="price[<?php echo $arr['foodID']?>]" value="<?php echo $arr['price'];?>" ></br>
