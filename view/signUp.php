@@ -109,16 +109,10 @@ $_SESSION['profile']='customer';
                 border: 2px solid;
             }
         </style>
-<<<<<<< Updated upstream
-
-        <div class="formContainer">
-            <h1 style=" text-align: center;">Sign Up Form</h1>
-=======
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
         <div class = 'formContainer'>
->>>>>>> Stashed changes
             <form method="post">
                 <label for="fname">First Name:</label>
                 <input type="text" id="fname" name="fname" placeholder="Enter First Name"><br>
@@ -137,33 +131,18 @@ $_SESSION['profile']='customer';
 
                 <label for="password">Password:</label>
                 <div class="password-input">
-<<<<<<< Updated upstream
-                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                    <span class="password-toggle" onclick="togglePasswordVisibility('password')">Show</span><br><br>
-=======
                     <input type="password" id="password" name="password" required>
                     <span class="password-toggle" onclick="togglePasswordVisibility('password')"><i class="fas fa-eye"></i></span><br><br>
->>>>>>> Stashed changes
                 </div>
 
                 <label for="confirm-password">Confirm Password:</label>
                 <div class="password-input">
-<<<<<<< Updated upstream
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter Confirm Password" required>
-                    <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')">Show</span><br>
-                    <span id="password-error" style="color: red;"></span><br>
-                </div>
-
-                <button class="btn-primary" type="submit" name="submit" value="submit">Submit</button>
-                <button type="button" class="btn-primary" onclick="window.location.href = 'index.php'">Back</button>
-=======
                     <input type="password" id="confirm-password" name="confirm-password" required>
                     <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')"><i class="fas fa-eye"></i></span><br>
                     <span id="password-error" style="color: red;"></span><br>
                 </div>
                 
                 <button class="btn-primary" type="submit" name='submit' value="submit">Submit</button>
->>>>>>> Stashed changes
             </form>
         </div>
         <?php
