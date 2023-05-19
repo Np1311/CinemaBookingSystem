@@ -165,8 +165,8 @@ class admin_controller{
     }
 
 }
-$admin = new admin_controller;
-$admin -> displayUser();
+// $admin = new admin_controller;
+// $admin -> displayUser();
 // if(isset($_GET['deleteID'])){
 //    $admin->deleteAccount(); 
 
