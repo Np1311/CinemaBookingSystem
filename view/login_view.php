@@ -26,7 +26,7 @@ require('header.html')
         }
     }
     </script>
-    <title>Admin Login</title>
+    <title>Log In</title>
     <style>
         .login-form{
             margin-top : 100px;

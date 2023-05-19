@@ -9,109 +9,129 @@ print_r($array);
 <head>
   <title>Date Selection Form</title>
   <style>
-    body {
-        background-color: #e7dbd0;
-        font-family: Arial, sans-serif;
-    }
+   body {
+    background-color: #e7dbd0;
+    font-family: Arial, sans-serif;
+}
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        padding: 20px;
-        margin-top: 50px;
-    }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: 50px;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        background-color: white;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+}
 
-    table th,
-    table td {
-        padding: 10px;
-        border: 1px solid #ccc;
-    }
+table th,
+table td {
+    padding: 10px;
+    border: 2px solid #ddd;
+}
 
-    table th {
-        background-color: #bd9a7a;
-        color: white;
-        font-weight: bold;
-    }
+table th {
+    background-color: #bd9a7a;
+    color: white;
+    font-weight: bold;
+}
 
-    table td {
-        text-align: center;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-    }
+table td {
+    text-align: center;
+}
 
-    label {
-        margin-top: 10px;
-        font-weight: bold;
-    }
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
 
-    select,
-    input[type="date"],
-    input[type="submit"] {
-        margin-top: 5px;
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-        width:500px;
-    }
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
 
-    input[type="submit"],
-    button {
-        background-color: #bd9a7a;
-        color: white;
-        cursor: pointer;
-        border: none; 
-        border-radius: 5px;
-        font-size: 18px;
-    }
+select,
+input[type="date"]{
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 500px;
+}
 
-    input[type="submit"]:hover {
-        background-color: #a37c5f;
-    }
-    .button-container {
-        display: flex;
-        justify-content: center;
-        background-color: #bd9a7a;
-        color: white;
-        cursor: pointer;
-        border: none; 
-        border-radius: 5px;
-        font-size: 18px;
-        margin-top: 5px;
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-        width:487px;
-    }
+input[type="submit"],
+button {
+    background-color: #bd9a7a;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
 
-    .button-container a {
-        display: inline-block;
-    }
+input[type="submit"]:hover {
+    background-color: white;
+    color: #bd9a7a;
+    border: 2px solid #bd9a7a;
+}
 
-</style>
+button:hover{
+  background-color: white;
+  color: #bd9a7a;
+  border: 2px solid #bd9a7a;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    background-color: #bd9a7a;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    gap: 10px;
+}
+
+.new-container {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-top: 5px;
+  gap: 10px;
+}
+
+.submit-button input[type="submit"] {
+  width: 100px;
+}
+
+.back-button button {
+  width: 100px;
+}
+
+
 </style>
 
 </head>
 <body>
   <div class="container">
   <form method='post' onsubmit="return validateForm()">
-    <label for="selection">Select Option:</label>
+    <label for="selection" >Select Option:</label>
     <select id="selection" onchange="handleOptionChange()" name="reportType">
-      <option value="" disabled selected>Select Report</option>
+    <option value="" disabled selected style="text-align: center;">-- Select Report --</option>
+
       <option value="monthly">Monthly</option>
       <option value="weekly">Weekly</option>
     </select>
@@ -121,6 +141,7 @@ print_r($array);
     <div id="monthlyFields" style="display: none;">
       <label for="year">Year:</label>
       <select id="year" name="year">
+      <option value="" disabled selected style="text-align: center;">-- Select Year --</option>
         <?php 
         foreach($array as $key => $value){
 
@@ -134,6 +155,7 @@ print_r($array);
 
       <label for="month">Month:</label>
       <select id="month" name="month">
+        <option value="" disabled selected style="text-align: center;">-- Select Month --</option>
         <option value="1">January</option>
         <option value="2">February</option>
         <option value="3">March</option>
@@ -158,13 +180,19 @@ print_r($array);
     </div>
 
     <br>
+    <div class="new-container">
+    <div class="submit-button">
+      <input type="submit" name="submit" value="Submit">
+    </div>
+    <div class="back-button">
+      <button type="button" onclick="window.location.href = 'manager_home_view.php'">Back</button>
+    </div>
+  </div>
 
-    <input type="submit" name = "submit" value="Submit">
+
   </form>
   </br>
-  <div class="button-container">
-      <a href="manager_home_view.php"><button>Back</button></a>
-  </div>
+  
   
        
 
@@ -203,7 +231,7 @@ print_r($array);
             $year = $_POST['year'];
             $month = $_POST['month'];
             echo '<table>';
-            echo '<thead><tr><th>#</th><th>Movie Name</th><th>Month</th><th>Total Tickets</th><th>Total Amount</th></tr></thead>';
+            echo '<thead><tr><th>No</th><th>Movie Name</th><th>Month</th><th>Total Tickets</th><th>Total Amount</th></tr></thead>';
             echo '<tbody>';
             if ($controller->generateMonthlyReportController($year, $month) != false) {
                 $array = $controller->generateMonthlyReportController($year, $month);
@@ -222,10 +250,10 @@ print_r($array);
             }
             echo '</tbody>';
             echo '</table>';
-            echo "Monthly Report Selected: Year = $year, Month = $month";
+            echo '<p style="font-weight: bold; margin-top: 20px;">Monthly Report Selected: Year ' . $year . ', Month ' . $month . '</p>';
         } elseif ($reportType === 'weekly') {
             echo '<table>';
-            echo '<thead><tr><th>#</th><th>Movie Name</th><th>Total Tickets</th><th>Total Amount</th></tr></thead>';
+            echo '<thead><tr><th>No</th><th>Movie Name</th><th>Total Tickets</th><th>Total Amount</th></tr></thead>';
             echo '<tbody>';
             $startDate = $_POST['startDate'];
             $endDate = $_POST['endDate'];
@@ -245,7 +273,7 @@ print_r($array);
             }
             echo '</tbody>';
             echo '</table>';
-            echo "Weekly Report Selected: Start Date = $startDate, End Date = $endDate";
+            echo '<p style="font-weight: bold; margin-top: 20px;">Weekly Report From  ' . $startDate . ' Until  ' . $endDate . '</p>';
         }
         
     }
