@@ -150,7 +150,7 @@ if(isset($_GET['deleteID'])){
     <body>
         <div class="adminButton">
             <a href="admin_add_profile.php">
-                <button id='bodyButton'>Add Profile</button>
+                <button id='bodyButton'>Create Profile</button>
             </a> </br>
 
             <a href="admin_create_account.php">
