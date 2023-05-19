@@ -22,7 +22,11 @@ class admin_controller{
             'cinemaAllocation',
             'cinemaFoodAndDrink',
             'cinemaMovie',
-            'cinemaRoom'
+            'cinemaRoom',
+            'cinemaallocation',
+            'cinemafoodanddrink',
+            'cinemamovie',
+            'cinemaroom'
           );
           
           $profileArr = array_filter($profileArr, function ($value) use ($excluded) {

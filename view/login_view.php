@@ -60,17 +60,6 @@ require('header.html')
             margin-bottom: 20px;
             box-sizing: border-box;
         }
-        /* input[type="submit"] {
-            background-color: #4CAF50;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            border-radius: 3px;
-            border: none;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #3e8e41;
-        } */
         .btn-primary{
                 background-color: #bd9a7a; 
                 border: 2px solid white;
@@ -145,11 +134,22 @@ require('header.html')
             $_SESSION['profile'] = 'customer';
             $_SESSION['customerID']= $phone;
         }
-        echo $_SESSION['profile'];
+   
         
+        $profile = $_SESSION['profile'];
         $controller = new login_controller();
         
-        $controller->validateLogin($_SESSION['profile'],$phone,$pass);
+        if($controller->validateLogin($profile,$phone,$pass)){
+            if($profile == 'customer'){
+                echo" <script>window.location='../view/customer/customer_home_view.php';</script>";}
+            else if ($profile == 'system_admin'){
+                echo" <script>window.location='../view/admin_home_view.php';</script>";
+            }else if ($profile == 'staff'){
+                echo" <script>window.location='../view/staff/staff_home_view.php';</script>";
+            }else if ($profile == 'manager'){
+                echo" <script>window.location='../view/manager/manager_home_view.php';</script>";
+            }
+        }
             
         
     }
