@@ -65,6 +65,7 @@ print_r($array);
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 14px;
+        width:600px;
     }
 
     input[type="submit"],
