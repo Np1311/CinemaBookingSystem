@@ -1,6 +1,5 @@
 <?php
 require ('header_customer.html');
-
 require('../../controller/booking_controller.php');
 
 if($booking_controller -> getShowingMovie_controller() == false){
@@ -126,8 +125,8 @@ if($booking_controller -> getShowingMovie_controller() == false){
                     <div class="movie">
                         <img src="<?php echo $arr['movieBanner'];?>" alt="Movie 1">
                         <h1 style="text-align: center;"><?php echo $arr['movieName'];?></h1>
-                        <p><b>Genre = </b><?php echo $arr['genre'];?></p>
-                        <p><b>Duration = </b><?php echo $arr['duration'];?>&nbspminutes</p></br>
+                        <p><b>Genre: </b><?php echo $arr['genre'];?></p>
+                        <p><b>Duration: </b><?php echo $arr['duration'];?>&nbspminutes</p></br>
 
                         <label for="number"><b>Booking Date:</b></label></br>
                         <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>

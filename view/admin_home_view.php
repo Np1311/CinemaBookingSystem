@@ -8,7 +8,9 @@ $admin->displayUser();
 
 // $admin -> validateProfile('customer');
 if(isset($_GET['deleteID'])){
-   if($admin->suspendAccountController()){
+    $userID = $_GET['deleteID'];
+    $curProfile = $_GET['curProfile'];
+   if($admin->suspendAccountController($curProfile,$userID)){
         echo" <script>window.location='admin_home_view.php';</script>";
    }
 
@@ -149,7 +151,7 @@ if(isset($_GET['deleteID'])){
     </head>
     <body>
         <div class="adminButton">
-            <a href="admin_add_profile.php">
+            <a href="admin_create_profile.php">
                 <button id='bodyButton'>Create Profile</button>
             </a> </br>
 

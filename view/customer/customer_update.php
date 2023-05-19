@@ -2,6 +2,7 @@
 session_start();
 $profile = $_SESSION['profile'];
 //require ('header_customer.html');
+require ('header_customer.html');
 require ('../../controller/customer_controller.php');
 ?>
 <!DOCTYPE html>
