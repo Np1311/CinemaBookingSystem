@@ -469,7 +469,6 @@ $database->setupDatabase();
             $loginPass = $_POST['pass'];
             if(isset($_SESSION['profile'])== null){
                 $_SESSION['profile'] = 'customer';
-                $_SESSION['customerID'] = $loginPhone;
             }
             echo $_SESSION['profile'];
             
@@ -477,7 +476,7 @@ $database->setupDatabase();
             $controller = new login_controller();
             
             if($controller->validateLogin($profile,$loginPhone,$loginPass)){
-                
+                $_SESSION['customerID'] = $loginPhone;
                     
                 if ($profile == 'system_admin'){
                     echo" <script>window.location='admin_home_view.php';</script>";
