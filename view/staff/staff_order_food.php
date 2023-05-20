@@ -19,6 +19,11 @@ print_r($array);
 <html>
     <head>
         <title>Capybara Cinema</title>
+        <script>
+        function goBack() {
+            window.history.go(-1);
+        }
+        </script>
         <style>
             .formContainer{
                 
@@ -163,8 +168,8 @@ print_r($array);
                 color: white;
                 border: none;
                 font-size: 14px;
-                margin-left:150px;
-                width:80%;
+                margin-left:30%;
+                width:20%;
             }
             
             input[type="submit"]:hover {
@@ -172,6 +177,26 @@ print_r($array);
                 color: #bd9a7a;
                 border: 2px solid #bd9a7a;
             }
+
+            .custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            text-decoration: none;
+            width:20%;
+        }
+
+        .custom-button:hover {
+            background-color:white;
+            color: #bd9a7a;
+            border: 2px solid #bd9a7a;
+        }
 
             
         </style>
@@ -205,6 +230,8 @@ print_r($array);
                 </div>
             </div>
             <input type="submit" name="submit" value="Order">
+            <button type="button" class= "custom-button" onclick="goBack()">Back</button>
+
             </form>
             <script>
                 const plusBtns = document.querySelectorAll('.plus-btn');
