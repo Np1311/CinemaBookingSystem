@@ -242,14 +242,8 @@ print_r($array);
             }
             $loyaltypoints = $price;
 
-            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints)){
-                foreach($orderedFood as $foodID => $quantity){
-                    if($quantity > 0){
-                        if($booking_controller->orderItemController($foodID,$quantity)==false){
-                            echo '<script>alert("Error updating data")</script>';
-                        }
-                    }
-                } 
+            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
+                
                 echo" <script>window.location='staff_home_view.php';</script>";
             }
 
