@@ -24,7 +24,7 @@ class login_model{
         $conn -> select_db("CSIT314_Test");
         $array = array();
         
-        $sql = "SELECT `phone`, `password` FROM $profile;";
+        $sql = "SELECT `phone`, `password` FROM $profile WHERE status = 'active';";
         
         $result = $conn->query($sql);
         

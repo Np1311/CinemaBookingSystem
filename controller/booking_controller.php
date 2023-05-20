@@ -2,11 +2,11 @@
 require('../../model/customer_model.php');
 require('../../model/booking_model.php');
 
-
 $customer = new customer_model;
 $booking = new booking_model;
 
 class booking_controller{
+    // Retrieves the list of movies currently being shown
     public function getShowingMovie_controller(){
         global $booking;
         $array = $booking -> getShowingMovie();
@@ -16,6 +16,8 @@ class booking_controller{
             return false;
         }
     }
+    
+    // Retrieves the details of a specific movie for a given booking ID and phone number
     public function getMovieDetail_controller($bookingID,$phone){
         global $booking;
 
@@ -27,24 +29,29 @@ class booking_controller{
             return false;
         }
     }
+    
+    // Creates a new booking
     public function createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat){
         global $booking;
         global $customer;
 
+        // Update the seat information for the customer
         if($columnSeat != 0 && $rowSeat != NULL && $phone != 0){
             $customer -> updateSeat($phone,$columnSeat,$rowSeat);
         }
 
+        // Create the booking
         if($booking -> createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints)){
+            // Gain loyalty points for the customer
             if($phone != 0){
                 $booking -> gainPoints($loyaltypoints,$phone);
             }
             
             return true;
         }
-
     }
     
+    // Retrieves the taken seats for a specific movie, show timing, and date
     public function takenSeats_controller($movie,$showTiming,$date,$bookedID){
         global $booking;
 
@@ -53,6 +60,7 @@ class booking_controller{
         return $array;
     }
 
+    // Retrieves the booking details for a specific phone number
     public function getBookingController($phone){
         global $booking;
 
@@ -65,6 +73,8 @@ class booking_controller{
         }
 
     }
+    
+    // Redeems loyalty points for a customer
     public function redeemPointController($points,$phone){
 
         global $booking;
@@ -73,6 +83,8 @@ class booking_controller{
             return true;
         }
     }
+    
+    // Retrieves the list of available food and drink items
     public function getFoodAndDrinkController(){
         global $booking;
 
@@ -84,23 +96,28 @@ class booking_controller{
             return false;
         }
     }
+    
+    // Places an order for food and drink items
     public function orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood){
         global $booking;
 
         if($booking -> orderFood($phone,$date,$price,$orderedFood)){
+            // Gain loyalty points for the customer
             $booking ->gainPoints($loyaltypoints,$phone);
             return true;
         }
     }
+    
+    // Adds an item to the food order
     public function orderItemController($foodID,$quantity){
         global $booking;
 
         if($booking -> orderItem($foodID,$quantity)){
-            
             return true;
         }
     }
 
+    // Searches for movies based on the given input
     public function searchMovieController($searchInput){
         global $booking;
         $array = $booking->searchMovie($searchInput);
@@ -113,6 +130,7 @@ class booking_controller{
         }
     }
 
+    // Retrieves the booking details for a specific booking ID
     public function getBookingByID_controller($bookedID){
         global $booking;
         $array = $booking -> getBookingByID($bookedID);
@@ -122,11 +140,15 @@ class booking_controller{
             return false;
         }
     }
+
+    // Retrieves the selected seats for a specific booking ID
     public function getSelectedSeatByID_controller($bookedID){
         global $booking;
         $array = $booking -> getSelectedSeatByID($bookedID);
         return $array;
     }
+
+    // Updates the details of a booking
     public function updateBookingController($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints){
         global $booking;
 
@@ -136,6 +158,8 @@ class booking_controller{
             return false;
         }
     }
+
+    // Retrieves the list of bookings for a specific phone number
     public function getBookingsController($phone){
         global $booking;
         $array = $booking -> getBookings($phone);
@@ -145,6 +169,8 @@ class booking_controller{
             return false;
         }
     }
+
+    // Retrieves the food order for a specific phone number
     public function getFoodOrderController($phone){
         global $booking;
         $array = $booking -> getFoodOrder($phone);
@@ -154,6 +180,8 @@ class booking_controller{
             return false;
         }
     }
+
+    // Retrieves the details of a food and drink order for a specific order ID
     public function getFoodAndDrinkByIDController($orderID){
         global $booking;
         $array = $booking -> getFoodAndDrinkByID($orderID);
@@ -163,6 +191,8 @@ class booking_controller{
             return false;
         }
     }
+
+    // Updates the price of a food order
     public function updateOrderFoodController($orderID,$price){
         global $booking;
         if($booking->updateOrderFood($orderID,$price)){
@@ -171,6 +201,8 @@ class booking_controller{
             return false;
         }
     }
+
+    // Updates the item quantity in a food order
     public function updateOrderItemController($orderID,$foodID,$quantity){
         global $booking;
         if($booking->updateOrderItem($orderID,$foodID,$quantity)){
@@ -183,8 +215,9 @@ class booking_controller{
 
 $booking_controller = new booking_controller;
 
-// $array = $controller -> takenSeats_controller(2,'12:00 - 14:30');
+// Uncomment the code below if you want to test a specific function
 
+// $array = $booking_controller -> takenSeats_controller(2,'12:00 - 14:30');
 // var_dump($array);
 
 ?>
