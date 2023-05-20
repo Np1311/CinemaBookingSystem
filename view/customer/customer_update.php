@@ -50,7 +50,8 @@ require ('../../controller/customer_controller.php');
       border-radius: 3px;
     }
     
-    input[type="submit"] {
+    input[type="submit"],
+    button {
       flex: 1;
             margin: 0 5px;
             padding-top:10px;
@@ -88,18 +89,19 @@ require ('../../controller/customer_controller.php');
     <form  method="post">
       
       <label for="first_name">First Name:</label>
-      <input type="text" name="first_name" id="first_name" value="<?php echo $user['fname']; ?>"><br><br>
+      <input type="text" name="first_name" id="first_name" value="<?php echo $user['fname']; ?>" required><br><br>
       <label for="last_name">Last Name:</label>
-      <input type="text" name="last_name" id="last_name" value="<?php echo $user['lname']; ?>"><br><br>
+      <input type="text" name="last_name" id="last_name" value="<?php echo $user['lname']; ?>" required><br><br>
       <label for="email">Email:</label>
-      <input type="email" name="email" id="email" value="<?php echo $user['email']; ?>"><br><br>
+      <input type="email" name="email" id="email" value="<?php echo $user['email']; ?>" required><br><br>
       <label for="date_of_birth">Date of Birth:</label>
-      <input type="date" name="date_of_birth" id="date_of_birth" value="<?php echo $user['dob']; ?>"><br><br>
+      <input type="date" name="date_of_birth" id="date_of_birth" value="<?php echo $user['dob']; ?>" required><br><br>
       <label for="phone">Phone Number:</label>
-      <input type="text" name="phone" id="phone" value="<?php echo $user['phone']; ?>"><br><br>
+      <input type="text" name="phone" id="phone" value="<?php echo $user['phone']; ?>" required><br><br>
       <label for="pass">Password:</label>
-      <input type="text" name="pass" id="pass" value="<?php echo $user['password']; ?>"><br><br>
+      <input type="text" name="pass" id="pass" value="<?php echo $user['password']; ?>" required><br><br>
       <input type="submit" name="submit" value="Save Changes">
+      <input type="button" value="Back">
     </form>
   </div>
   <?php
