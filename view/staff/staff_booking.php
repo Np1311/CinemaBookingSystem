@@ -7,12 +7,14 @@ $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
 $date = $_GET['date'];
 $bookedID = 0;
+/*
 echo '<form method="post">';
 echo '<input type="text" name="phone" placeholder="Search phone...">';
 echo '<div style="text-align: center;">';
 echo '<button type="submit" name="submit" class="btn">Search</button>';
 echo '</div>';
 echo '</form>';
+*/
 
 
 if(isset($_POST['submit'])){
@@ -133,8 +135,8 @@ if ($selected_row === NULL){
         }
 
         function goBack() {
-  window.history.go(-1);
-}
+            window.history.go(-1);
+        }
 
         </script>
         <style>
@@ -223,13 +225,13 @@ if ($selected_row === NULL){
 
         
         <section class="mt-5">
+            <h3 class="mt-5"  style="color:#BD9A7A;">&nbsp</h3>
             <h3 class="text-center">Book Your Ticket Now</h3>
-
             <div class="container">
             <div class="row">
-                <div class="">
+                <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class="text-center mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3 class="mt-5"  style="color:#BD9A7A;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -246,6 +248,12 @@ if ($selected_row === NULL){
                     </center>
 
                     <hr>
+                    <form method="post">
+                    <input type="text" name="phone" placeholder="Search phone...">
+                    <div style="text-align: center;">
+                    <button type="submit" name="submit" class="btn">Search</button>
+                    </div>
+                    </form>
 
                     <label for="Show"><b>Show Time</b></label>
 
