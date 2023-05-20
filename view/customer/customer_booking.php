@@ -1,5 +1,5 @@
 <?php
-require ('header_customer.html');
+require('../header.html');
 
 require('../../controller/booking_controller.php');
 session_start();
@@ -112,6 +112,9 @@ if ($selected_row === NULL){
 
             $('#seat_dt').val(seat.join(", "));
         }
+        function goBack() {
+            window.history.go(-1);
+        }
 
 
        
@@ -121,8 +124,13 @@ if ($selected_row === NULL){
         * {box-sizing:border-box}
 
         /* Add padding to containers */
-        .container {
+        .mycontainer {
         padding: 16px;
+        }
+        
+        .container{
+            margin-left:400px;
+            
         }
 
         /* Full-width input fields */
@@ -179,6 +187,17 @@ if ($selected_row === NULL){
         #seat_chart input[type="checkbox"]:disabled {
             background-color: red !important;
         }
+        .btn{
+            background-color: #BD9A7A;
+            color:white;
+            margin: 0 auto;
+        }
+
+        .btn:hover{
+            background-color: white;
+            color:#BD9A7A;
+            border: 2px solid #BD9A7A;
+        }
         </style>
 
 
@@ -187,13 +206,14 @@ if ($selected_row === NULL){
 
         
         <section class="mt-5">
+            <h3 class="mt-5"  style="color:#BD9A7A;">&nbsp</h3>
             <h3 class="text-center">Book Your Ticket Now</h3>
 
-            <div class="container">
+            <div class="mycontainer">
             <div class="row">
-                <div class="">
+                <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class="text-center mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3 class=" mt-5"  style="color:#BD9A7A;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -204,7 +224,7 @@ if ($selected_row === NULL){
 
                 </div>
                 <form method="post" class="mt-1">
-                    <div class="container" style="color:#BD9A7A;">
+                    <div class="mycontainer" style="color:#BD9A7A;">
                     <center>
                         <p>Please fill in this form to book your ticket.</p>
                     </center>
@@ -282,16 +302,14 @@ if ($selected_row === NULL){
                     
                     <input type="checkbox" name ='redeemPoint' value='yes'onclick="redeemPoints()" > Redeem Loyalty Points</input></br>
                     
-
-                    <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
-                    
+                    <div style="text-align: center;">
+                        <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
+                        <button type="button" class= "btn" onclick="goBack()">Back</button> <!--Check-->
+                    </div>
                     
                     
                 </div>
                 </form>
-                &nbsp&nbsp<a href="customer_home_view.php" style="text-decoration: none;">
-                    <button name="btn_booking1" class="btn" style="background-color: #BD9A7A;color:white;">Back</button>
-                </a>
                 </div>
             </div>
             </div>
