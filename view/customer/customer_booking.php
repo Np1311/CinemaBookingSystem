@@ -1,5 +1,5 @@
 <?php
-//require ('../header_login.php');
+require ('header_customer.html');
 
 require('../../controller/booking_controller.php');
 session_start();
