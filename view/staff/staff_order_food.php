@@ -1,6 +1,6 @@
 <?php
 //require('../header.html');
-//require('../header.html');
+require('../header.html');
 require('../../controller/booking_controller.php');
 session_start();
 $phone = $_GET['phone'];
@@ -19,11 +19,6 @@ print_r($array);
 <html>
     <head>
         <title>Capybara Cinema</title>
-        <script>
-        function goBack() {
-            window.history.go(-1);
-        }
-        </script>
         <style>
             .formContainer{
                 
@@ -168,8 +163,8 @@ print_r($array);
                 color: white;
                 border: none;
                 font-size: 14px;
-                margin-left:30%;
-                width:20%;
+                margin-left:26%;
+                width:25%;
             }
             
             input[type="submit"]:hover {
@@ -189,7 +184,7 @@ print_r($array);
             border: none;
             font-size: 14px;
             text-decoration: none;
-            width:20%;
+            width:25%;
         }
 
         .custom-button:hover {
@@ -254,6 +249,9 @@ print_r($array);
                     }
                 });
                 }
+                function goBack() {
+            window.history.go(-1);
+        }
             </script>
 
 

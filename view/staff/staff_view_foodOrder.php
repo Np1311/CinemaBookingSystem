@@ -1,5 +1,6 @@
 <?php
 //require('../header.html');
+require('../header.html');
 require('../../controller/booking_controller.php');
 
 $orderID = $_GET['orderID'];
