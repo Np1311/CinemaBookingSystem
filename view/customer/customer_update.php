@@ -9,6 +9,13 @@ require ('../../controller/customer_controller.php');
 <html>
 <head>
   <title>Update Profile</title>
+  <script>
+
+  function goBack() {
+    window.history.go(-1);
+  }
+  
+  </script>
   <style>
     body {
       margin: 0;
@@ -62,7 +69,7 @@ require ('../../controller/customer_controller.php');
             color: white;
             border: none;
             font-size: 14px;
-            margin-left:150px;
+            margin-left:40px;
             width:200px;
     }
     
@@ -71,6 +78,28 @@ require ('../../controller/customer_controller.php');
             color: #bd9a7a;
             border: 1px solid white;
     }
+    .custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            width:200px;
+        }
+
+        .custom-button:hover {
+            background-color:#e7dbd0;
+            color: #bd9a7a;
+            border: 1px solid white;
+        }
+        .custom-button a {
+            text-decoration: none;
+            color: white;
+        }
   </style>
 </head>
 <body>
@@ -101,7 +130,7 @@ require ('../../controller/customer_controller.php');
       <label for="pass">Password:</label>
       <input type="text" name="pass" id="pass" value="<?php echo $user['password']; ?>" required><br><br>
       <input type="submit" name="submit" value="Save Changes">
-      <button onclick="window.location.href = 'customer_home_view.php';">Back</button> 
+      <button type="button" class= "custom-button" onclick="goBack()">Back</button> <!--Check-->
     </form>
   </div>
   <?php
