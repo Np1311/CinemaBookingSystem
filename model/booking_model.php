@@ -614,7 +614,7 @@ class booking_model{
         return $array;
     }
     
-    public function updateOrderFood($orderID,$price){
+    public function updateOrderFood($orderID,$price,$orderedFood){
         global $conn;
         $conn->select_db("CSIT314_Test");
         try {
@@ -626,7 +626,13 @@ class booking_model{
             $result = $conn->query($sql);
         
             if ($result) {
-                // Update successful
+                foreach($orderedFood as $foodID => $quantity){
+                    if($quantity > 0){
+                        if($this->updateOrderItem($orderID,$foodID,$quantity)==false){
+                            continue;
+                        }
+                    }
+                } 
                 return true;
             } else {
                 // Update failed
