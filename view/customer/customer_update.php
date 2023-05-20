@@ -101,7 +101,7 @@ require ('../../controller/customer_controller.php');
       <label for="pass">Password:</label>
       <input type="text" name="pass" id="pass" value="<?php echo $user['password']; ?>" required><br><br>
       <input type="submit" name="submit" value="Save Changes">
-      <input type="button" value="Back">
+      <button onclick="window.location.href = 'customer_home_view.php';">Back</button> 
     </form>
   </div>
   <?php
