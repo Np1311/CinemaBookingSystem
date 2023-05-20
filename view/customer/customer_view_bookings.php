@@ -1,4 +1,5 @@
 <?php
+require ('header_customer.html');
 require('../../controller/booking_controller.php');
 session_start();
 
@@ -24,14 +25,14 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
             font-family: Arial, sans-serif;
             }
 
-            .container {
+            .mycontainer {
                 display: flex;
                 flex-direction: column;
                 /* justify-content: center; */
                 align-items: center;
                 min-height: 100vh;
                 padding: 20px;
-                margin-top: 100px;
+                margin-top: 4%;
                 
             }
 
@@ -40,6 +41,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                 border-collapse: collapse;
                 margin-bottom: 20px;
                 background-color: white;
+                margin-top: 20px;
             }
 
             table th,
@@ -92,7 +94,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
 
     </head>
     <body>
-        <div class="contianer">
+        <div class="mycontainer">
             <h2> Your Bookings</h2>
         <table>
         <thead>
