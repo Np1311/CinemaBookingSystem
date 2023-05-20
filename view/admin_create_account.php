@@ -1,9 +1,9 @@
 <?php
 require('header.html');
-require('../controller/admin_controller.php');
+// require('../controller/admin_controller.php');
 
 session_start();
-$admin_controller = new admin_controller;
+// $admin_controller = new admin_controller;
 ?>
 
 <html>
