@@ -210,6 +210,28 @@ span {
   display: block;
   margin-top: 2px;
 }
+.custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: black;
+            border: none;
+            font-size: 14px;
+            width:150px;
+        }
+
+        .custom-button:hover {
+            background-color:#bd9a7a;
+            color: #bd9a7a;
+            border: 1px solid #bd9a7a;
+        }
+        .custom-button a {
+            text-decoration: none;
+            color: white;
+        }
 
         </style>
 
@@ -259,7 +281,7 @@ span {
                     <label for="psw"><b>No. of Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="no_ticket" name="no_ticket"  required>
 
-                    <label for="psw-repeat"><b>Seat Deatils</b></label>
+                    <label for="psw-repeat"><b>Seat Details</b></label>
                     <input type="text" style="border-radius:30px;" name="seat_dt" id="seat_dt" required>
 
                     <label for="psw"><b>No. of Adult Tickets</b></label>
@@ -274,31 +296,39 @@ span {
                     <label for="psw"><b>No. of Senior Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="senior" name="senior" value='<?php echo $array['noOfSeniorTicket']; ?>' onchange='checkboxtotal()'>
 
+                    <br>
+                    <h2>&nbsp</h2>
+
+                    <h2 class="mt-1"  style="color:black;">Summary</h2>
                     <h6 class="mt-5"  style="color:#BD9A7A;">Movie Show</h6>
-                    <span class="mt-1" id="MovieName"><?php echo $array['movieName'];?></span>
+                    <span class="mt-3" id="MovieName"><?php echo $array['movieName'];?></span>
 
                     <h6 class="mt-5"  style="color:#BD9A7A;">Booking Date</h6>
-                    <span class="mt-1" id="date"><?php echo $date ?></span>
+                    <span class="mt-3" id="date"><?php echo $date ?></span>
 
                     <h6 class="mt-5"  style="color:#BD9A7A;">Time:</h6>
-                    <span class="mt-1" id="timing"><?php echo $showTiming;?></span>
+                    <span class="mt-3" id="timing"><?php echo $showTiming;?></span>
 
-                    <h6 class="mt-3"  style="color:#BD9A7A;">Ticket Price</h6>
+                    <h6 class="mt-5"  style="color:#BD9A7A;">Ticket Price:</h6>
                     <p class="mt-1" id="price">Adult: SGD$12</p>
                     <p class="mt-1" id="price">Child: SGD$8</p>
                     <p class="mt-1" id="price">Student: SGD$9</p>
                     <p class="mt-1" id="price">Senior: SGD$10</p>
+                    <br>
 
                     <h6 class="mt-3" style="color:#BD9A7A;">Total Ticket Price</h6>
                     <p class="mt-1" id="price_details"></p>
+                    <br>
 
-                    <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
-
+                    <button type="submit" name="btn_booking" class="custom-button" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
+                    &nbsp&nbsp<a href="staff_home_view.php" style="text-decoration: none;">
+                    <button name="btn_booking1" class="custom-button" style="background-color: #BD9A7A;color:white;">Back</button>
+                </a>
                 </div>
                 </form>
-                &nbsp&nbsp<a href="staff_home_view.php" style="text-decoration: none;">
-                    <button name="btn_booking1" class="btn" style="background-color: #BD9A7A;color:white;">Back</button>
-                </a>
+                <!--&nbsp&nbsp<a href="staff_home_view.php" style="text-decoration: none;">
+                    <button name="btn_booking1" class="custom-button" style="background-color: #BD9A7A;color:white;">Back</button>
+                </a>-->
                 </div>
             </div>
             </div>

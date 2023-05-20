@@ -1,4 +1,5 @@
 <?php
+//require('../header.html');
 require('../../controller/booking_controller.php');
 
 $orderID = $_GET['orderID'];
@@ -98,9 +99,9 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             }
             
             .food button:hover {
-                background-color: #0055cc;
+                background-color: white;
             }
-            body {background-color: gray}
+            body {background-color:  #e7dbd0}
             
             body {font-family: Verdana, sans-serif; margin:0}
             
@@ -139,7 +140,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             }
 
             .minus-btn:hover, .plus-btn:hover {
-                color: #000;
+                color: white;
             }
 
             .plus-btn:focus, .minus-btn:focus {
@@ -149,6 +150,26 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             .disabled {
                 opacity: .5;
                 pointer-events: none;
+            }
+            input[type="submit"] {
+                flex: 1;
+                margin: 0 5px;
+                padding-top:10px;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #bd9a7a;
+                color: white;
+                border: none;
+                font-size: 14px;
+                margin-left:150px;
+                width:80%;
+            }
+            
+            input[type="submit"]:hover {
+            background-color:#e7dbd0;
+                    color: #bd9a7a;
+                    border: 1px solid white;
             }
 
             

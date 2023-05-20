@@ -1,6 +1,6 @@
 <?php
 
-require('../model/login_model.php');
+require_once('../model/login_model.php');
 
 
 
@@ -9,7 +9,7 @@ require('../model/login_model.php');
 class login_controller{
 
     public function validateLogin($profile,$loginPhone, $loginPass){
-        global $user;
+        
         $login = new login_model($profile,$loginPhone, $loginPass);
 
         if($login -> checkUser()){
@@ -19,6 +19,16 @@ class login_controller{
         }
         
     }
+    public function logoutController(){
+        
+        $login = new login_model(null,null,null);
+
+        if($login -> logout()){
+            return true;
+        }
+        
+    }
 }
 
+$controller = new login_controller();
 ?>

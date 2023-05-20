@@ -132,6 +132,10 @@ if ($selected_row === NULL){
             $('#seat_dt').val(seat.join(", "));
         }
 
+        function goBack() {
+  window.history.go(-1);
+}
+
         </script>
         <style>
         * {box-sizing:border-box}
@@ -310,7 +314,7 @@ if ($selected_row === NULL){
                     ?>
                     <div style="text-align: center;">
                         <button type="submit" name="btn_booking" class="btn" >Confirm Booking</button>
-                        <button type="button" class= "btn" onclick="window.location.href = '../../staff_home_view.php'">Back</button> <!--Check-->
+                        <button type="button" class= "btn" onclick="goBack()">Back</button> <!--Check-->
                     </div>
                 </div>
                 </form>

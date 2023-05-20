@@ -137,7 +137,7 @@ require('header.html')
    
         
         $profile = $_SESSION['profile'];
-        $controller = new login_controller();
+        echo $profile;
         
         if($controller->validateLogin($profile,$loginPhone,$loginPass)){
             

@@ -1,5 +1,5 @@
 <?php
-//require ('header_customer.html');
+//require('../header.html');
 require('../../controller/booking_controller.php');
 session_start();
 $phone = $_GET['phone'];
@@ -96,9 +96,9 @@ print_r($array);
             }
             
             .food button:hover {
-                background-color: #0055cc;
+                background-color: white;
             }
-            body {background-color: gray}
+            body {background-color: #e7dbd0}
             
             body {font-family: Verdana, sans-serif; margin:0}
             
@@ -137,7 +137,7 @@ print_r($array);
             }
 
             .minus-btn:hover, .plus-btn:hover {
-                color: #000;
+                color: white;
             }
 
             .plus-btn:focus, .minus-btn:focus {
@@ -147,6 +147,27 @@ print_r($array);
             .disabled {
                 opacity: .5;
                 pointer-events: none;
+            }
+
+            input[type="submit"] {
+                flex: 1;
+                margin: 0 5px;
+                padding-top:10px;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #bd9a7a;
+                color: white;
+                border: none;
+                font-size: 14px;
+                margin-left:150px;
+                width:80%;
+            }
+            
+            input[type="submit"]:hover {
+            background-color:#e7dbd0;
+                color: #bd9a7a;
+                border: 1px solid white;
             }
 
             
@@ -162,10 +183,10 @@ print_r($array);
                 ?>
                     <div class="food">
                     <img src="<?php echo $arr['image'];?>" alt="Movie 1">
-                    <h2><?php echo $arr['foodName'];?></h2>
+                    <h2><?php echo $arr['foodName'];?></h2><br>
                     <p><b>Description = </b><?php echo $arr['foodDescription'];?></p>
                     <label>Price:</label>
-                    <input type="number" name="price[<?php echo $arr['foodID']?>]" value="<?php echo $arr['price'];?>" ></br>
+                    <input type="number" name="price[<?php echo $arr['foodID']?>]" value="<?php echo $arr['price'];?>" ></br><br>
 
 
                     <label for="number"><b>Quantity:</b></label><br>
@@ -221,14 +242,8 @@ print_r($array);
             }
             $loyaltypoints = $price;
 
-            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints)){
-                foreach($orderedFood as $foodID => $quantity){
-                    if($quantity > 0){
-                        if($booking_controller->orderItemController($foodID,$quantity)==false){
-                            echo '<script>alert("Error updating data")</script>';
-                        }
-                    }
-                } 
+            if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
+                
                 echo" <script>window.location='staff_home_view.php';</script>";
             }
 
