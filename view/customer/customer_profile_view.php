@@ -69,32 +69,33 @@ if($controller -> getAccount_controller($profile,$phone) == false){
     }
     
 
-    .custom-button {
-            flex: 1;
-            margin: 0 5px;
-            padding-top:10px;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #bd9a7a;
-            color: white;
-            border: none;
-            font-size: 14px;
-            width:200px;
-            margin-left:60px;
-            
-        }
+  .custom-button {
+    flex: 1;
+    margin: 0 5px;
+    padding-top:10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #bd9a7a;
+    color: white;
+    border: none;
+    font-size: 14px;
+    width: 200px;
+    margin-left: 60px;
+  }
 
-        .custom-button:hover {
-            background-color:#bd9a7a;
-            color: white;
-            border: 2px solid #bd9a7a;
-        }
-        .custom-button a {
-            text-decoration: none;
-            color: white;
-        }
-  </style>
+  .custom-button:hover {
+    border: 2px solid #bd9a7a;
+    background-color: white;
+    color: #bd9a7a;
+  }
+
+  .custom-button a {
+    text-decoration: none;
+    color: white;
+  }
+
+</style>
 </head>
 <body>
 <?php
@@ -129,7 +130,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
       </tr>
     </table>
     <button class="custom-button" onclick="location.href='customer_update.php'">Edit Profile</button>
-    <a href="customer_home_view.php"><button class="custom-button">Back</button></a>
+    <button class="custom-button" onclick="location.href='customer_home_view.php'">Back</button>
   </div>
   
   <?php require ('../footer.html');?>

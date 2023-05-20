@@ -118,10 +118,13 @@ if($array = $booking_controller->getBookingController($phone)== false){
         padding: 12px;
         text-decoration: none;
         display: inline-block;
+        text-decoration: none;
       }
 
       a button:hover {
-        background-color: #006080;
+        background-color: #bd9a7a;
+        color: white;
+        border: 2px solid #bd9a7a;
       }
       .homeButton{
           display: block;
