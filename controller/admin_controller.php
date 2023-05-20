@@ -3,12 +3,6 @@ require('../model/admin_model.php');
 
 
 $system_admin_session = new admin_model;
-
-// $system_admin = $showProfile->getAllProfile('system_admin');
-// $manager = $showProfile->getAllProfile('manager');
-// $staff = $showProfile->getAllProfile('staff');
-// $customer = $showProfile->getAllProfile('customer');
-
 class admin_controller{
     public function displayUser() {
         global $system_admin_session;
@@ -85,18 +79,11 @@ class admin_controller{
         }
     }
 
-    // public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
-    //     global $system_admin_session;
-    //     if($system_admin_session->createUser($profile,$fname,$lname,$phone,$email,$password,$dob)){
-    //         return true;
-    //     }
-
-    // }
     public function suspendAccountController($curProfile,$userID){
         global $system_admin_session;
         
         if($system_admin_session->suspendAccount($curProfile,$userID)){
-            // echo" <script>window.location='../view/admin_home_view.php';</script>";
+            
             return true;
         }
     }
@@ -141,10 +128,6 @@ class admin_controller{
     public function searchAccount($profile,$searchAccount,$searchBy){
         global $system_admin_session;
 
-        // if($searchBy == 'dob'){
-        //     $searchAccount = 
-        // }
-
         $array = $system_admin_session->getAccountDetail($profile,$searchAccount,$searchBy);
 
         if(count($array)>0){
@@ -153,9 +136,6 @@ class admin_controller{
         else {
             return false;
         }
-
-
-
     }
     
     public function updateProfileController($updateProfile,$updateValue){
@@ -168,18 +148,5 @@ class admin_controller{
     }
 
 }
-// $admin = new admin_controller;
-// $admin -> displayUser();
-// if(isset($_GET['deleteID'])){
-//    $admin->deleteAccount(); 
 
-// }
-
-// if(isset($_POST['deleteProfile'])){
-//     $deleteProfile = $_POST['deleteProfile'];
-//     if($system_admin_session->deleteProfile($deleteProfile)){
-//         echo" <script>window.location='../view/admin_home_view.php';</script>";
-//         return true;
-//     }
-// }
 ?>
