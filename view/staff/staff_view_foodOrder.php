@@ -139,10 +139,6 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 outline: none;
             }
 
-            .minus-btn:hover, .plus-btn:hover {
-                color: white;
-            }
-
             .plus-btn:focus, .minus-btn:focus {
                 outline: none;
             }
@@ -151,6 +147,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 opacity: .5;
                 pointer-events: none;
             }
+
             input[type="submit"] {
                 flex: 1;
                 margin: 0 5px;
@@ -167,9 +164,44 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             }
             
             input[type="submit"]:hover {
-            background-color:#e7dbd0;
-                    color: #bd9a7a;
-                    border: 1px solid white;
+                background-color:white;
+                color: #bd9a7a;
+                border: 2px solid #bd9a7a;
+            }
+
+            .custom-button {
+                flex: 1;
+                margin: 0 5px;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #bd9a7a;
+                color: white;
+                border: none;
+                font-size: 14px;
+                text-decoration: none;
+                width:20%;
+            }
+
+            .custom-button:hover {
+                background-color:white;
+                color: #bd9a7a;
+                border: 2px solid #bd9a7a;
+            }
+            .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            }
+
+            input[type="submit"] {
+            flex: 1;
+            margin-right: 5px;
+            }
+
+            .custom-button {
+            flex: 1;
+            margin-left: 5px;
             }
 
             
@@ -238,7 +270,11 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
 
 
         </div>
-        <input type="submit" name="submit" value="Order">
+        <div class="button-container">
+  <input type="submit" name="submit" value="Order">
+  <button type="button" class="custom-button" onclick="window.location.href='staff_home_view.php'">Back</button>
+</div>
+
         </form>
     </div>
         <?php
