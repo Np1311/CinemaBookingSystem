@@ -277,10 +277,9 @@ print_r($array);
                         <h2 style="text-align: center;"><?php echo $arr['movieName'];?></h2>
                         </br>
                         <p><b>Genre: </b><?php echo $arr['genre'];?></p>
-                        </br>
-                        <p><b>Duration: </b><?php echo $arr['duration'];?></p></br>
+                        <p><b>Duration: </b><?php echo $arr['duration'];?>&nbspminutes</p></br>
                         <div class="movie-button">
-                            <label for="number"><b>Booking Date</b></label></br>
+                            <label for="number"><b>Booking Date:</b></label></br>
                             <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>
 
                             <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">

@@ -160,8 +160,8 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 color: white;
                 border: none;
                 font-size: 14px;
-                margin-left:150px;
-                width:80%;
+                margin-left:17%;
+                width:30%;
             }
             
             input[type="submit"]:hover {
@@ -181,7 +181,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 border: none;
                 font-size: 14px;
                 text-decoration: none;
-                width:20%;
+                width:30%;
             }
 
             .custom-button:hover {
@@ -202,8 +202,26 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
 
             .custom-button {
             flex: 1;
-            margin-left: 5px;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
             }
+
+            .custom-button:hover {
+                background-color:white;
+                color: #bd9a7a;
+                border: 1px solid #bd9a7a;
+            }
+            .custom-button a {
+                text-decoration: none;
+                color: white;
+            }
+
 
             
         </style>
@@ -271,10 +289,9 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
 
 
         </div>
-        <div class="button-container">
   <input type="submit" name="submit" value="Order">
   <button type="button" class="custom-button" onclick="window.location.href='staff_home_view.php'">Back</button>
-</div>
+
 
         </form>
     </div>

@@ -114,6 +114,10 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
             $('#seat_dt').val(seat.join(", "));
         }
 
+        function goBack() {
+            window.history.go(-1);
+        }
+
         </script>
         <style>
         * {
@@ -217,10 +221,11 @@ span {
             border-radius: 5px;
             cursor: pointer;
             background-color: #bd9a7a;
-            color: black;
+            color: white;
             border: none;
             font-size: 14px;
-            width:150px;
+            width:30%;
+            margin-left:10%;
         }
 
         .custom-button:hover {
@@ -245,9 +250,9 @@ span {
 
             <div class="container">
             <div class="row">
-                <div class="">
+                <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class="text-center mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3 class="mt-5"  style="color:#BD9A7A;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -265,7 +270,7 @@ span {
 
                     <hr>
 
-                    <label for="Show"><b>Show Id</b></label>
+                    <label for="Show"><b>Show Time</b></label>
 
                     <div class="form-group">
                         <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;">
@@ -321,8 +326,8 @@ span {
                     <br>
 
                     <button type="submit" name="btn_booking" class="custom-button" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
-                    &nbsp&nbsp<a href="staff_home_view.php" style="text-decoration: none;">
-                    <button name="btn_booking1" class="custom-button" style="background-color: #BD9A7A;color:white;">Back</button>
+                    <a href="staff_home_view.php" style="text-decoration: none;">
+                    <button type="button" class= "custom-button" onclick="goBack()" style="background-color: #BD9A7A;color:white;">Back</button>
                 </a>
                 </div>
                 </form>
