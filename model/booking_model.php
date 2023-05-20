@@ -2,11 +2,13 @@
 $conn = new mysqli('localhost','root', '');
 
 class booking_model{
+    // Function to get showing movies from the database
     public function getShowingMovie(){
         global $conn;
         $conn->select_db("CSIT314_Test");
 
         try {
+            // SQL query to retrieve showing movies
             $sql =  "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status,
                         a.timing1, a.timing2, a.timing3, a.timing4
                         FROM cinemaMovie m
@@ -15,9 +17,13 @@ class booking_model{
          
             $result = $conn->query($sql);
         
-            if(!$result){// fetch the result row as an associative array
             $array = [];
+        
+            // check if the query was successful
+            if(!$result){
+                $array = [];
             }else{
+                // fetch the result row as an associative array
                 while ($row = mysqli_fetch_assoc($result) ) {
                     $array[] = $row;
                 }
@@ -25,13 +31,13 @@ class booking_model{
           
         } catch (Exception $e) {
             // if the table doesn't exist or there's another error, return an empty array
-            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
         return $array;
-        
     }
+    
+    // Function to get movie details for a specific booking ID and phone
     public function getMovieDetail($bookingID,$phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -79,9 +85,13 @@ class booking_model{
         }
         
     }
+    
+    // Function to create a booking
     public function createBooking($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints){
         global $conn;
         $conn->select_db("CSIT314_Test");
+        
+        // SQL query to create the booking table if it doesn't exist
         $sql = "CREATE TABLE IF NOT EXISTS booking (
             bookingID INT PRIMARY KEY AUTO_INCREMENT,
             phone INT,
@@ -103,12 +113,13 @@ class booking_model{
             FOREIGN KEY (movieID) REFERENCES cinemaMovie(movieID),
             FOREIGN KEY (roomID) REFERENCES cinemaRoom(roomID)
         );";
+        
         if ($conn->query($sql) === TRUE) {
             echo "Table created successfully";
         } else {
             echo "Error creating table: " . $conn->error;
         }
-
+        
         if($phone == 0){
             $sql2 = "INSERT INTO booking (movieID, roomID,roomName, movieName, showTiming, numOfTicket, seats, noOfAdultTicket,noOfChildTicket, noOfSeniorTicket, noOfStudentTicket, bookingDate, total_amnt, loyaltypoints)
             VALUES ('$movieID', '$roomID', '$roomName', '$movieName', '$time', '$numOfTicket', '$seats', '$noOfAdultTicket','$noOfChildTicket', '$noOfSeniorTicket', '$noOfStudentTicket', '$bookingDate', '$total_amnt', '$loyaltypoints');";
@@ -118,14 +129,10 @@ class booking_model{
     
         }
         
-
-        
-        
-        
         try {
             mysqli_query($conn, $sql2); 
              
-            echo '<script>alert("Booking succes")</script>'; 
+            echo '<script>alert("Booking success")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -136,6 +143,7 @@ class booking_model{
         
     }
     
+    // Function to get taken seats for a movie, show timing, and date
     public function takenSeats($movie,$showTiming,$date,$bookedID){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -192,14 +200,14 @@ class booking_model{
         }
 
         return $taken_seats;
-
-        
     }
+
     public function getBookingDetail($phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
+            // Query to retrieve booking details for a specific phone number
             $sql = "SELECT b.* 
                     FROM `booking` AS b 
                     LEFT JOIN `customerReview` AS cr 
@@ -219,12 +227,10 @@ class booking_model{
             }
             return $array;
         } catch (Exception $e) {
-            // echo 'Caught exception: ',  $e->getMessage(), "\n";
-            // fallback to a simple SELECT query if customerReview table doesn't exist
+            // If the customerReview table doesn't exist, fallback to a simple SELECT query
             $sql = "SELECT * FROM booking WHERE phone = '$phone' AND `bookingDate` < CURDATE();";
             $result = $conn->query($sql);
             if (!$result) {
-                // echo "Error: " . $conn->error;
                 return array(); // Return an empty array
             } else {
                 $array = array();
@@ -235,31 +241,32 @@ class booking_model{
                 return $array;
             }
         }        
-        
     }
+    
     public function redeemPoint($points,$phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
+        // Update the loyalty points for a specific customer
         $sql = "UPDATE `customer` SET loyalty_point = $points WHERE phone = $phone;";
         
         try { 
             mysqli_query($conn, $sql); 
-            // echo '<script>alert("good to go")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
             die("Error creating user: " . mysqli_error($conn)); 
             echo '<script>alert("error updating user")</script>'; 
             return false;
-        }
-        
+        }    
     }
+    
     public function getFoodAndDrink(){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
+            // Retrieve active food and drink items with stock available
             $sql = "SELECT * FROM `cinemaFoodAndDrink` WHERE stock > 0 && status = 'active';";
             $result = $conn->query($sql);
             $array = array();
@@ -272,16 +279,17 @@ class booking_model{
                 $array = [];
             }
         } catch (Exception $e) {
-            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
         return $array;
-        
     }
+    
     public function orderFood($phone,$date,$price,$orderedFood){
         global $conn;
         $conn->select_db("CSIT314_Test");
+        
+        // Create the fnbOrder table if it doesn't exist
         $sql = "CREATE TABLE IF NOT EXISTS fnbOrder (
             orderID INT AUTO_INCREMENT PRIMARY KEY,
             bookingID INT NOT NULL,
@@ -290,7 +298,8 @@ class booking_model{
             totalPrice DECIMAL(10,2) NOT NULL DEFAULT 0,
             FOREIGN KEY (bookingID) REFERENCES booking(bookingID),
             FOREIGN KEY (phone) REFERENCES customer(phone)
-            );";
+        );";
+        
         if ($conn->query($sql) === TRUE) {
             echo "Table created successfully";
         } else {
@@ -298,18 +307,15 @@ class booking_model{
         }
         
         if($phone == 0){
+            // Insert the food order details without a phone number
             $sql2 = "INSERT INTO `fnbOrder` (`bookingID`,`orderDate`, `totalPrice`)
             VALUES ((SELECT MAX(bookingID) FROM booking), '$date', '$price');";
     
         }else{
+            // Insert the food order details with a phone number
             $sql2 = "INSERT INTO `fnbOrder` (`bookingID`, `phone`,`orderDate`, `totalPrice`)
             VALUES ((SELECT MAX(bookingID) FROM booking), '$phone', '$date', '$price');";
-       
-
         }
-
-        
-        // $sql3 = "UPDATE `customer` SET loyalty_point = loyalty_point + $loyaltypoints WHERE phone = $phone;";
         
         try {
             mysqli_query($conn, $sql2); 
@@ -327,9 +333,12 @@ class booking_model{
             return false;
         }
     }
+    
     public function orderItem($foodID,$quantity){
         global $conn;
         $conn->select_db("CSIT314_Test");
+        
+        // Create the orderItem table if it doesn't exist
         $sql = "CREATE TABLE IF NOT EXISTS orderItem (
             id INT AUTO_INCREMENT PRIMARY KEY,
             foodID INT UNSIGNED,
@@ -337,21 +346,19 @@ class booking_model{
             quantity INT NOT NULL,
             FOREIGN KEY (orderID) REFERENCES fnbOrder(orderID),
             FOREIGN KEY (foodID) REFERENCES cinemaFoodAndDrink(foodID) 
-            );";
+        );";
+        
         if ($conn->query($sql) === TRUE) {
             echo "Table created successfully";
         } else {
             echo "Error creating table: " . $conn->error;
         }
+        
         $sql2 = "INSERT INTO `orderItem` (`foodID`, `orderID`, `quantity`)
         VALUES ( '$foodID', (SELECT MAX(orderID) FROM fnbOrder), '$quantity');";
-
-        // $sql3 = "UPDATE `customer` SET loyalty_point = loyalty_point + $loyaltypoints WHERE phone = $phone;";
         
         try {
             mysqli_query($conn, $sql2); 
-            //mysqli_query($conn, $sql3); 
-             
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -359,17 +366,16 @@ class booking_model{
             echo '<script>alert("error updating user")</script>'; 
             return false;
         }
-
     }
+    
     public function gainPoints($loyaltypoints,$phone){
         global $conn;
         $conn->select_db('CSIT314_Test');
-
+    
+        // Update the loyalty points for a specific customer
         $sql = "UPDATE `customer` SET loyalty_point = loyalty_point + $loyaltypoints WHERE phone = $phone;";
         try {
             mysqli_query($conn, $sql); 
-            //mysqli_query($conn, $sql3); 
-            // echo '<script>alert("good to go")</script>'; 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
@@ -378,11 +384,13 @@ class booking_model{
             return false;
         }
     }
+    
     public function searchMovie($searchInput){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
+            // Search for movies based on input keyword
             $sql =  "SELECT m.movieID, m.movieName, m.movieBanner, m.relDate, m.genre, m.duration, m.status,
                         a.timing1, a.timing2, a.timing3, a.timing4
                         FROM cinemaMovie m
@@ -391,24 +399,25 @@ class booking_model{
          
             $result = $conn->query($sql);
         
-            // fetch the result row as an associative array
             $array = [];
+            // fetch the result row as an associative array
             while ($row = mysqli_fetch_assoc($result) ) {
                 $array[] = $row;
             }
         } catch (Exception $e) {
             // if the table doesn't exist or there's another error, return an empty array
-            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         
         return $array;
     }
+    
     public function getBookingByID($bookedID){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
+            // Retrieve booking details based on the booking ID
             $sql = "SELECT b.*, cr.totalRow, cr.totalColumn
             FROM booking AS b
             JOIN cinemaRoom AS cr ON b.roomID = cr.roomID            
@@ -427,7 +436,6 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            // echo "Error: " . $e->getMessage();
             $array = [];
         }
         return $array;
@@ -437,8 +445,9 @@ class booking_model{
         $conn->select_db("CSIT314_Test");
         try {
     
+            // Retrieve selected seats based on the booking ID
             $sql = "SELECT seats FROM `booking` WHERE `bookingID` = $bookedID;";
-
+    
             $result = $conn->query($sql);
             if($result == false){
                 $array = [];
@@ -472,7 +481,6 @@ class booking_model{
             }
             
         } catch (Exception $e) {
-            // echo "Error: " . $e->getMessage();
             $selectedSeat = [];
         }
         
@@ -482,12 +490,12 @@ class booking_model{
         
         return $selectedSeat;
     }
+    
     public function updateBooking($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints){
         global $conn;
         $conn->select_db("CSIT314_Test");
         try {
-            // Your database connection code
-            
+            // Update booking details based on the booking ID
             $sql = "UPDATE booking SET 
                         numOfTicket = $numOfTicket,
                         seats = '$seats',
@@ -514,11 +522,13 @@ class booking_model{
         }
         
     }
+    
     public function getBookings($phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
+            // Retrieve bookings based on the phone number
             $sql = "SELECT *
             FROM booking
             WHERE booking.phone = $phone;";
@@ -541,11 +551,13 @@ class booking_model{
         }
         return $array;
     }
+    
     public function getFoodOrder($phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
+            // Retrieve food orders based on the phone number
             $sql = "SELECT fnbOrder.orderID, fnbOrder.bookingID, fnbOrder.phone, fnbOrder.orderDate, fnbOrder.totalPrice,
             orderItem.id, orderItem.foodID, orderItem.quantity,
             cinemaFoodAndDrink.foodName
@@ -572,12 +584,14 @@ class booking_model{
         }
         return $array;
     }
+    
     public function getFoodAndDrinkByID($orderID){
         global $conn;
         $conn->select_db("CSIT314_Test");
-
+    
         try {
             
+            // Retrieve food and drink items based on the order ID
             $sql = "SELECT * FROM `orderItem` WHERE orderID = $orderID;";
             
             
@@ -599,12 +613,12 @@ class booking_model{
         }
         return $array;
     }
+    
     public function updateOrderFood($orderID,$price){
         global $conn;
         $conn->select_db("CSIT314_Test");
         try {
-            // Your database connection code
-            
+            // Update total price of the food order based on the order ID
             $sql = "UPDATE fnbOrder SET 
                         totalPrice = $price
                     WHERE orderID = $orderID;";
@@ -622,15 +636,13 @@ class booking_model{
             // echo "Error: " . $e->getMessage();
             return false;
         }
-        
-
     }
+    
     public function updateOrderItem($orderID,$foodID,$quantity){
         global $conn;
         $conn->select_db("CSIT314_Test");
         try {
-            // Your database connection code
-            
+            // Update quantity of a food item in the order based on the order ID and food ID
             $sql = "UPDATE orderItem SET 
                         quantity = $quantity
                     WHERE orderID = $orderID && foodID = $foodID;";
@@ -648,7 +660,7 @@ class booking_model{
             // echo "Error: " . $e->getMessage();
             return false;
         }
-    }
+    }    
 }
 
 //$con = new customer;
