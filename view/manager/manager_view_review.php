@@ -22,14 +22,15 @@ $reviewArr = $controller -> viewReviewController();
             border-collapse: collapse;
             width: 100%;
             margin: 0 auto;
-            border: 1px solid;
+            border: 2px solid #ddd;
         }
 
         th, td {
             padding: 8px;
             text-align: center;
             border-bottom: 1px solid #ddd;
-            border: 1px solid;
+            border: 2px solid #ddd;
+            background-color: white;
         }
 
         th {

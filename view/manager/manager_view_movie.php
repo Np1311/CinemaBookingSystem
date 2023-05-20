@@ -242,7 +242,7 @@ if($arr = $controller -> viewMovieController()==false){
                                     <p> <?php echo $array["timing4"];?></p>
                                 </td>
                                 <td><a href="../manager/manager_update_movie.php?updateID=<?php echo $array["movieID"];?>" class="custom-button">Update</a>
-                                <a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="custom-button">Delete</a>
+                                <a href="../manager/manager_delete_movie.php?deleteID=<?php echo $array["movieID"];?>" class="custom-button">Suspend</a>
                                 <a href="../manager/manager_movie_allocation.php?movieID=<?php echo $array["movieID"];?>" class="custom-button">Allocate Movie</a>
                                 </tr>
                             </div>

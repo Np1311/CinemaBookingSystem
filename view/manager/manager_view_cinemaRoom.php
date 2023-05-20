@@ -130,7 +130,7 @@
                     echo "<td>" . $array['status'] . "</td>";
                     echo '<td>';
                     echo '<button class="custom-button" onclick="location.href=\'../manager/manager_update_cinema.php?updateID=' . $array['roomID'] . '\'">Update</button>';
-                    echo '<button class="custom-button" onclick="location.href=\'../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '\'">Delete</button>';
+                    echo '<button class="custom-button" onclick="location.href=\'../manager/manager_delete_cinema.php?deleteID=' . $array['roomID'] . '\'">Suspend</button>';
                     echo '</td>';
 
                   

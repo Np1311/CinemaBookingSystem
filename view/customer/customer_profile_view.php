@@ -86,9 +86,9 @@ if($controller -> getAccount_controller($profile,$phone) == false){
         }
 
         .custom-button:hover {
-            background-color:#e7dbd0;
-            color: #bd9a7a;
-            border: 1px solid white;
+            background-color:#bd9a7a;
+            color: white;
+            border: 2px solid #bd9a7a;
         }
         .custom-button a {
             text-decoration: none;
