@@ -1,6 +1,6 @@
 <?php
 //require('../header.html');
-require('../header.html');
+//require('../header.html');
 require('../../controller/booking_controller.php');
 session_start();
 $phone = $_GET['phone'];
@@ -96,9 +96,11 @@ print_r($array);
                 margin-bottom: 10px;
             }
             
-            .food button:hover {
+            /* .food button:hover {
                 background-color: white;
-            }
+                color: #bd9a7a;
+                border: 2px solid #bd9a7a;
+            } */
             body {background-color: #e7dbd0}
             
             body {font-family: Verdana, sans-serif; margin:0}
@@ -166,9 +168,9 @@ print_r($array);
             }
             
             input[type="submit"]:hover {
-            background-color:#e7dbd0;
+            background-color:white;
                 color: #bd9a7a;
-                border: 1px solid white;
+                border: 2px solid #bd9a7a;
             }
 
             
@@ -184,7 +186,7 @@ print_r($array);
                 ?>
                     <div class="food">
                     <img src="<?php echo $arr['image'];?>" alt="Movie 1">
-                    <h2><?php echo $arr['foodName'];?></h2><br>
+                    <h2 style="text-align: center;"><?php echo $arr['foodName'];?></h2><br>
                     <p><b>Description = </b><?php echo $arr['foodDescription'];?></p>
                     <label>Price:</label>
                     <input type="number" name="price[<?php echo $arr['foodID']?>]" value="<?php echo $arr['price'];?>" ></br><br>
