@@ -19,7 +19,7 @@ class user_model {
         VALUES ('$fname','$lname','$phone','$email','$password','$mysql_date');";
         try {
             mysqli_query($conn, $sql); 
-            $this->setProfile($fname,$lname,$phone,$email,$mysql_date,$password);
+            // $this->setProfile($fname,$lname,$phone,$email,$mysql_date,$password);
             return true; }
         catch(mysqli_sql_exception $e) {
             //die("Error creating user: " . mysqli_error($conn)); 
@@ -29,42 +29,6 @@ class user_model {
     
     public function setAccount($user){
         $this->phone = $user;
-    }
-    public function setProfile($fname, $lname, $phone,$email, $dob, $password){
-        // sanitize input data
-        $fname = filter_var($fname, FILTER_SANITIZE_STRING);
-        $lname = filter_var($lname, FILTER_SANITIZE_STRING);
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-        $dob = filter_var($dob, FILTER_SANITIZE_STRING);
-    
-        // set the values
-        $this->fname = $fname;
-        $this->lname = $lname;
-        $this->email = $email;
-        $this->dob = $dob;
-        $this->password = $password;
-      }
-    public function getPhone() {
-        return $this->phone;
-    }
-    public function getFname(){
-        return $this->fname;
-    }
-    
-    public function getLname(){
-        return $this->lname;
-    }
-
-    public function getEmail(){
-        return $this->email;
-    }
-
-    public function getDob(){
-        return $this->dob;
-    }
-
-    public function getPassword(){
-        return $this->password;
     }
     
     public function getAccount($profile,$phone){

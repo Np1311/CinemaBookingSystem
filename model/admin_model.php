@@ -4,11 +4,6 @@ $conn = new mysqli('localhost','root', '');
 require ('user_model.php');
 
 class admin_model extends user_model{
-    private $profile;
-
-    public function _construct($profile){
-        $this->profile = $profile;
-    }
 
     // Function to create a table based on the profile
     public function createTable($profile){

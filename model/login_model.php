@@ -4,9 +4,9 @@ $conn = new mysqli('localhost','root', '');
 require('user_model.php');
 
 
-$user = new user_model;
 
-class login_model{
+
+class login_model extends user_model{
     private $profile;
     private $uid;
     private $pass;
@@ -35,7 +35,7 @@ class login_model{
         return $array;
     }
     public function checkUser(){
-        global $user;
+      
         $found = 'not found';
 
         $arr = $this->getPhoneandPass($this->profile);
@@ -44,7 +44,7 @@ class login_model{
                  
                 $found = 'found';
                 if ($this->pass == $x_value){
-                   $user->setAccount($this->uid);
+                   $this->setAccount($this->uid);
                    echo "<script>alert('Password Correct');</script>";
                    return true;
                 }else{
