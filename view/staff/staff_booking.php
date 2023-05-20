@@ -202,6 +202,7 @@ if ($selected_row === NULL){
         #seat_chart input[type="checkbox"]:disabled {
             background-color: red !important;
         }
+        
 
         .btn{
             background-color: #BD9A7A;

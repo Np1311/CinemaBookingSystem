@@ -55,10 +55,10 @@
             <button id="bodyButton">Manage Food</button>
         </a>
         <a href="manager_view_review.php">
-            <button id="bodyButton">Manage review</button>
+            <button id="bodyButton">Manage Review</button>
         </a>
         <a href="manager_generate_report.php">
-            <button id="bodyButton">Generate report</button>
+            <button id="bodyButton">Generate Report</button>
         </a>
     </div>
 </body>
