@@ -26,6 +26,7 @@ print_r($array);
             align-items: center;
             /* margin-top: 5px; */
             flex-direction: column-reverse; 
+            margin-right:10px;
             }
 
 
@@ -44,6 +45,8 @@ print_r($array);
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
+            width:300px;
+            margin-right:50px;
             }
 
             .view-all-form:hover{
@@ -57,6 +60,7 @@ print_r($array);
             border-radius: 5px;
             border: 1px solid #ccc;
             margin-right: 5px;
+            width:400px;
             }
 
             .form-container button[type="submit"] {
@@ -66,10 +70,12 @@ print_r($array);
             background-color: #bd9a7a;
             color: white;
             cursor: pointer;
+            width:100px;
             }
 
             .form-container button[type="submit"]:hover {
-            background-color: #0055cc;
+            background-color: white;
+            color:#bd9a7a;
             }
 
             .view-all-form button[type="submit"] {
@@ -126,6 +132,7 @@ print_r($array);
                 position: relative;
                 transition: background-color 0.3s ease-in-out;
                 box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+                margin-right:50px;
             }
             .movie img {
                 width: 100%;
