@@ -159,7 +159,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             border: none;
             font-size: 14px;
             margin-left:150px;
-            width:1600px;
+            width:80%;
     }
     
     input[type="submit"]:hover {

@@ -1,5 +1,6 @@
 <?php
 //require ('../header_login.php');
+require('../header.html');
 require('../../controller/booking_controller.php');
 
 $phone = 0;
