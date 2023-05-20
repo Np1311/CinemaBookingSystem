@@ -247,7 +247,7 @@ if ($selected_row === NULL){
 
                     <hr>
 
-                    <label for="Show"><b>Show Id</b></label>
+                    <label for="Show"><b>Show Time</b></label>
 
                     <div class="form-group">
                         <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;">
@@ -263,7 +263,7 @@ if ($selected_row === NULL){
                     <label for="psw"><b>No. of Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="no_ticket" name="no_ticket"  required>
 
-                    <label for="psw-repeat"><b>Seat Deatils</b></label>
+                    <label for="psw-repeat"><b>Seat Details</b></label>
                     <input type="text" style="border-radius:30px;" name="seat_dt" id="seat_dt" required>
 
                     <label for="psw"><b>No. of Adult Tickets</b></label>
