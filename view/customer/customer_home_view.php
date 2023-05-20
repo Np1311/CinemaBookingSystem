@@ -102,9 +102,9 @@ if($booking_controller -> getShowingMovie_controller() == false){
                 cursor: pointer;
             }
             .movie button:hover {
-                background-color:white;
-                color: #bd9a7a;
-            border: 1px solid #bd9a7a;
+            background-color:white;
+            color: #bd9a7a;
+            border: 2px solid #bd9a7a;
             }
             body {background-color: #e7dbd0}
             
