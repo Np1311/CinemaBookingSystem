@@ -51,10 +51,10 @@ class manager_controller{
     }
 
     // Updates room information
-    public function updateRoomController($updateID, $movieName, $movieBanner, $relDate, $genre, $duration, $status){
+    public function updateRoomController($updateID,$roomName,$roomType,$roomCapacity,$totalRow,$totalColumn,$status){
         global $manager;
 
-        if($manager -> updateRoom($updateID, $movieName, $movieBanner, $relDate, $genre, $duration, $status)){
+        if($manager -> updateRoom($updateID,$roomName,$roomType,$roomCapacity,$totalRow,$totalColumn,$status)){
             return true;
         }
     }
