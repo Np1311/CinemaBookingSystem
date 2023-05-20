@@ -242,7 +242,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             $loyaltypoints = $price;
 
             if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
-                echo" <script>window.location='customer_home_view.php';</script>";
+                echo" <script>window.location='customer_view_bookings.php';</script>";
             }
 
                   
