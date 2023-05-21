@@ -108,14 +108,14 @@ class booking_controller{
         }
     }
     
-    // Adds an item to the food order
-    public function orderItemController($foodID,$quantity){
-        global $booking;
+    // // Adds an item to the food order
+    // public function orderItemController($foodID,$quantity){
+    //     global $booking;
 
-        if($booking -> orderItem($foodID,$quantity)){
-            return true;
-        }
-    }
+    //     if($booking -> orderItem($foodID,$quantity)){
+    //         return true;
+    //     }
+    // }
 
     // Searches for movies based on the given input
     public function searchMovieController($searchInput){
@@ -193,24 +193,31 @@ class booking_controller{
     }
 
     // Updates the price of a food order
-    public function updateOrderFoodController($orderID,$price){
+    public function updateOrderFoodController($orderID,$price,$orderedFood){
         global $booking;
-        if($booking->updateOrderFood($orderID,$price)){
+        if($booking->updateOrderFood($orderID,$price,$orderedFood)){
             return true;
         }else{
             return false;
         }
+    }
+    // Get the booking preview
+    public function getBookingPreviewController(){
+        global $booking;
+        $array = $booking -> getBookingPreview();
+      
+        return $array;
     }
 
-    // Updates the item quantity in a food order
-    public function updateOrderItemController($orderID,$foodID,$quantity){
-        global $booking;
-        if($booking->updateOrderItem($orderID,$foodID,$quantity)){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    // // Updates the item quantity in a food order
+    // public function updateOrderItemController($orderID,$foodID,$quantity){
+    //     global $booking;
+    //     if($booking->updateOrderItem($orderID,$foodID,$quantity)){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 }
 
 $booking_controller = new booking_controller;

@@ -1,7 +1,9 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
-
+// Include the header file
 require('header.html');
+// Create an instance of the admin controller
 $controller =  new admin_controller;
 ?>
 <html>
@@ -107,9 +109,10 @@ $controller =  new admin_controller;
     </div>
     <?php
         if(isset($_POST['submit'])){
+            // Retrieve the profile and updated value from the form
             $updateProfile = $_POST['updateProfile'];
             $updateValue = $_POST['updateValue'];
-            
+            // Call the updateProfileController method of the controller and check if it returns true
             if($controller->updateProfileController($updateProfile,$updateValue)){
                 echo '<script>alert("'.$updateProfile.' is updated")</script>'; 
                 echo "<script>window.location='../view/admin_home_view.php';</script>";

@@ -4,19 +4,14 @@ $conn = new mysqli('localhost','root', '');
 require ('user_model.php');
 
 class admin_model extends user_model{
-    private $profile;
-
-    public function _construct($profile){
-        $this->profile = $profile;
-    }
 
     // Function to create a table based on the profile
-    public function createTable($profile){
+    public function createTable($newProfile){
         global $conn;
         $conn -> select_db("CSIT314_Test");
 
         // Check if the profile is 'customer'
-        if ($profile == 'customer'){
+        if ($newProfile == 'customer'){
             // Create customer table with specific columns
             $sql = "CREATE TABLE IF NOT EXISTS `customer` (
                 `fname` varchar(255) NOT NULL,
@@ -33,7 +28,7 @@ class admin_model extends user_model{
             );";
         }else{
             // Create a table with generic columns for other profiles
-            $sql = "CREATE TABLE IF NOT EXISTS `$profile` (
+            $sql = "CREATE TABLE IF NOT EXISTS `$newProfile` (
                 `fname` varchar(255) NOT NULL,
                 `lname` varchar(255) NOT NULL,
                 `phone` INT NOT NULL DEFAULT 0,
@@ -138,7 +133,7 @@ class admin_model extends user_model{
     public function updateProfile($updateProfile, $updateValue){
         global $conn;
         $conn->select_db('CSIT314_Test');
-        $sql = "ALTER TABLE $updateProfile RENAME TO $updateValue;";
+        $sql = "ALTER TABLE `$updateProfile` RENAME TO `$updateValue`;";
         try {
             mysqli_query($conn, $sql); 
             return true; 

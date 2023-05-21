@@ -349,25 +349,25 @@ $database->setupDatabase();
 
                 <div class="mySlides fade">
                     <div class="numbertext">1 / 4</div>
-                    <img src="mariobros.jpg" style="width:100%">
-                    <div class="text">Caption Text</div>
+                    <img src="mariobros.jpg" style="height:60%; width:100%">
+                    <div class="text">Mario Bros</div>
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">2 / 4</div>
-                    <img src="air.jpg" style="width:100%">
-                    <div class="text">Caption Two</div>
+                    <img src="air.jpg" style="height:60%; width:100%">
+                    <div class="text">Air</div>
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">3 / 4</div>
-                    <img src="popeexorcist.jpg" style="width:100%">
-                    <div class="text">Caption Three</div>
+                    <img src="popeexorcist.jpg" style="height:60%; width:100%">
+                    <div class="text">Pope Exorcist</div>
                 </div>
                 <div class="mySlides fade">
                     <div class="numbertext">4 / 4</div>
-                    <img src="rideOn.jpg" style="width:100%">
-                    <div class="text">Caption Four</div>
+                    <img src="rideOn.jpg" style="height:60%; width:100%">
+                    <div class="text">Ride On</div>
                 </div>
 
                 <a class="prev" onclick="plusSlides(-1)">❮</a>

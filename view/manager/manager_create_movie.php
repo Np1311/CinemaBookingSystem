@@ -80,11 +80,14 @@ require('../header.html');
         }
         </style>
         <script>
+            // Function to preview the selected image
             function previewImage() {
+                //Get the element
                 const fileInput = document.getElementById('movieBanner');
                 const previewContainer = document.getElementById('imagePreview');
                 const previewImage = previewContainer.querySelector('.preview-image');
-
+                
+                // Check if files are selected
                 if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
@@ -135,6 +138,7 @@ require('../header.html');
 
         <?php
             if(isset($_POST['submit'])){
+                // Get the value from the input field
                 $movieName = $_POST['movieName'];
                 $movieBanner = $_POST['movieBanner'];
                 $relDate = $_POST['relDate'];
@@ -144,6 +148,7 @@ require('../header.html');
                 // Process the form data
                 
                 if($controller->createMovieController($movieName, $movieBanner, $relDate, $genre, $duration)){
+                    // If the createFoodController method returns true (indicating successful food creation)
                     echo "<script>window.location='../manager/manager_view_movie.php';</script>";
                 }
             }

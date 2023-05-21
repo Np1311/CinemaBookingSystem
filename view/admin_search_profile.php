@@ -1,7 +1,9 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
-
+// Include the header file
 require('header.html');
+// Create an instance of the admin controller
 $controller = new admin_controller;
 ?>
 
@@ -148,15 +150,19 @@ table td {
   
   <?php
   if(isset($_POST['submit'])){
-      $searchProfile=$_POST['search'];
-
-      if($controller->searchProfile($searchProfile) === false){
-          echo '<script>alert("'.$searchProfile.' is not found");</script>';  
+      // Retrieve the profile from the form
+      $profile=$_POST['search'];
+      // Check if the profile exists
+      if($controller->searchProfile($profile) === false){
+          echo '<script>alert("'.$profile.' is not found");</script>';  
       } else {
-          $profileArray = $controller->searchProfile($searchProfile);
-
-          echo "<h2>$searchProfile</h2>";
+          // Get the profile array from the searchProfile method
+          $profileArray = $controller->searchProfile($profile);
+          // Display the profile title
+          echo "<h2>$profile</h2>";
+          // Check if there are results in the profile array
           if(count($profileArray) > 0 ) {
+            // Display a table for the profile results
               echo "<table>";
               echo "<tr><th>First name</th><th>Last name</th><th>Phone</th><th>Email</th><th>Password</th><th>Date of Birth</th><th>Status</th><th>Action</th></tr>";
 
@@ -173,10 +179,10 @@ table td {
                               echo '<td>
                                     <div class="button-container">
                                       <button class="custom-button">
-                                        <a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$searchProfile.'" class="text-light">Update</a>
+                                        <a href="../view/userUpdate.php?updateID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Update</a>
                                       </button>
                                       <button class="custom-button">
-                                        <a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$searchProfile.'" class="text-light">Suspend</a>
+                                        <a href="../view/admin_home_view.php?deleteID='.$array['phone'].'&curProfile='.$profile.'" class="text-light">Suspend</a>
                                       </button>
                                     </div>
                                   </td>';

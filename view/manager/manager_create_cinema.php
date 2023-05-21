@@ -1,6 +1,7 @@
 <?php
+// Include the manager controller
 require('../../controller/manager_controller.php');
-
+// Include the header file
 require('../header.html');
 
 ?>
@@ -125,6 +126,7 @@ require('../header.html');
     </div>
         <?php
             if(isset($_POST['submit'])){
+                // Retrieve the values from the form
                 $roomName = $_POST['roomName'];
 
                 $roomType = $_POST['roomType'];
@@ -135,6 +137,7 @@ require('../header.html');
                 
                 $totalColumn = $_POST['totalColumn'];
                 
+                // Call the createRoomController method of the controller and check if it returns true
                 if($controller -> createRoomController($roomName,$roomType, $roomCapacity, $totalRow, $totalColumn)){
                     echo" <script>window.location='../manager/manager_view_cinemaRoom.php';</script>";
                 }

@@ -1,7 +1,9 @@
 <?php
+// Include the manager_controller.php file
 require('../../controller/manager_controller.php');
+// Include the header.html file
 require('../header.html');
-
+// Retrieve the customer reviews from the viewReviewController function
 $reviewArr = $controller -> viewReviewController();
 
 ?>
@@ -84,7 +86,9 @@ $reviewArr = $controller -> viewReviewController();
 		</thead>
 		<tbody>
         <?php
+        // Check if there are customer reviews available
         if(count($reviewArr)>0){
+            // Loop through the reviews and display them in table rows
             foreach($reviewArr as $key => $array){
 
             

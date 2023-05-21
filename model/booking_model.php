@@ -150,8 +150,10 @@ class booking_model{
 
         try {
             if ($bookedID == 0) {
+                // Query to retrieve seats for a specific movie, show timing, and date when bookedID is 0
                 $sql = "SELECT seats FROM `booking` WHERE movieID = '$movie' && showTiming = '$showTiming' && bookingDate = '$date';";
             } else {
+                // Query to retrieve seats for a specific movie, show timing, and date excluding a particular booking ID
                 $sql = "SELECT bookingID,seats FROM `booking` WHERE movieID = '$movie' && showTiming = '$showTiming' && bookingDate = '$date' && bookingID != $bookedID;";
             }
 
@@ -170,6 +172,7 @@ class booking_model{
             $array = [];
         }
 
+        // Check if $result is not set or false, set $array to an empty array
         if (!isset($result) || !$result) {
             $array = [];
         }
@@ -201,7 +204,7 @@ class booking_model{
 
         return $taken_seats;
     }
-
+    //Function to retrieve booking details
     public function getBookingDetail($phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -242,7 +245,7 @@ class booking_model{
             }
         }        
     }
-    
+    //Function to redeem loyalty points
     public function redeemPoint($points,$phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -260,7 +263,7 @@ class booking_model{
             return false;
         }    
     }
-    
+    //Function to retrieve food and drinks data
     public function getFoodAndDrink(){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -284,7 +287,7 @@ class booking_model{
         
         return $array;
     }
-    
+    //Function to retrieve food ordered
     public function orderFood($phone,$date,$price,$orderedFood){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -333,7 +336,7 @@ class booking_model{
             return false;
         }
     }
-    
+    //Function to see item ordered
     public function orderItem($foodID,$quantity){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -367,7 +370,7 @@ class booking_model{
             return false;
         }
     }
-    
+    //Function to earn points once booking is made
     public function gainPoints($loyaltypoints,$phone){
         global $conn;
         $conn->select_db('CSIT314_Test');
@@ -384,7 +387,7 @@ class booking_model{
             return false;
         }
     }
-    
+    //Function to search movie
     public function searchMovie($searchInput){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -411,7 +414,7 @@ class booking_model{
         
         return $array;
     }
-    
+    //Function to retrieve bookingID
     public function getBookingByID($bookedID){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -440,6 +443,7 @@ class booking_model{
         }
         return $array;
     }
+    //Function to retrieve selected seat by ID
     public function getSelectedSeatByID($bookedID){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -490,7 +494,7 @@ class booking_model{
         
         return $selectedSeat;
     }
-    
+    //Function to update bookings that are already made
     public function updateBooking($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -522,7 +526,7 @@ class booking_model{
         }
         
     }
-    
+    //Function to retrieve booking details from customer phone number
     public function getBookings($phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -551,7 +555,7 @@ class booking_model{
         }
         return $array;
     }
-    
+    //Function to retrieve food ordered
     public function getFoodOrder($phone){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -584,7 +588,7 @@ class booking_model{
         }
         return $array;
     }
-    
+    //Function to retrieve food and drinks by ID
     public function getFoodAndDrinkByID($orderID){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -613,8 +617,8 @@ class booking_model{
         }
         return $array;
     }
-    
-    public function updateOrderFood($orderID,$price){
+    //Function to update food ordered by customer
+    public function updateOrderFood($orderID,$price,$orderedFood){
         global $conn;
         $conn->select_db("CSIT314_Test");
         try {
@@ -626,7 +630,13 @@ class booking_model{
             $result = $conn->query($sql);
         
             if ($result) {
-                // Update successful
+                foreach($orderedFood as $foodID => $quantity){
+                    if($quantity > 0){
+                        if($this->updateOrderItem($orderID,$foodID,$quantity)==false){
+                            continue;
+                        }
+                    }
+                } 
                 return true;
             } else {
                 // Update failed
@@ -637,7 +647,7 @@ class booking_model{
             return false;
         }
     }
-    
+    //Function to update item ordered
     public function updateOrderItem($orderID,$foodID,$quantity){
         global $conn;
         $conn->select_db("CSIT314_Test");
@@ -660,7 +670,40 @@ class booking_model{
             // echo "Error: " . $e->getMessage();
             return false;
         }
-    }    
+    } 
+    //FUnction to preview booking made
+    public function getBookingPreview() {
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        try {
+            // Query to retrieve the booking details and final price for the latest booking with associated fnbOrder
+            $query = "SELECT fnbOrder.*, booking.*, (fnbOrder.totalPrice + booking.total_amnt) AS finalPrice
+                      FROM fnbOrder
+                      JOIN booking ON fnbOrder.bookingID = booking.bookingID
+                      WHERE booking.bookingID = (
+                        SELECT MAX(bookingID)
+                        FROM booking
+                      )";
+            
+            $result = $conn->query($query);
+            
+            if ($result && $result->num_rows > 0) {
+                $data = array();
+                
+                while ($row = $result->fetch_assoc()) {
+                    $data = $row;
+                }
+                
+                return $data;
+            } else {
+                return array(); // Return an empty array if no rows are found
+            }
+        } catch (Exception $e) {
+            // Handle any exceptions that occur during the query execution
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }   
 }
 
 //$con = new customer;

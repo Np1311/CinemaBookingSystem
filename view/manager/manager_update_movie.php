@@ -1,15 +1,14 @@
 <?php
+// Include the manager_controller.php file
 require('../../controller/manager_controller.php');
-
-
-
+// Include the header.html file
 require('../header.html');
-
+// Get the value of the 'updateID' parameter from the URL
 $updateID = $_GET['updateID'];
+// Call the getMovieDetail function from the controller and store the result in $arr
 $arr = $controller -> getMovieDetail($updateID);
-
+// Get the release date from the $arr array
 $date = $arr['relDate'];
-
 
 ?>
 
@@ -98,17 +97,21 @@ $date = $arr['relDate'];
     </style>
     <script>
     function previewImage() {
+        //Get the elements
         const fileInput = document.getElementById('movieBanner');
         const previewContainer = document.getElementById('imagePreview');
         const previewImage = previewContainer.querySelector('.preview-image');
 
         if (fileInput.files && fileInput.files[0]) {
+            // Create a new FileReader object
             const reader = new FileReader();
-
+            
+            // Set the source of the preview image to the loaded file
             reader.onload = function (e) {
                 previewImage.src = e.target.result;
             };
-
+            
+            // Read the selected file as a data URL
             reader.readAsDataURL(fileInput.files[0]);
             previewContainer.style.display = 'block';
         } else {
@@ -120,6 +123,7 @@ $date = $arr['relDate'];
     <title>Update Movie Details Form</title>
     </head>
     <body>
+    <!--Form COntent-->
     <div class="container">
         <div class="form">
         <h1>Update Movie Details Form</h1>
@@ -179,6 +183,7 @@ $date = $arr['relDate'];
 </div>
         <?php
             if(isset($_POST['submit'])){
+                // Retrieve the form input values
                 $movieName = $_POST['movieName'];
 
                 $movieBanner = $_POST['movieBanner'];
@@ -206,6 +211,8 @@ $date = $arr['relDate'];
                 // echo $relDate;
                 // echo $genre;
                 // echo $duration;
+
+                // Call the updateMovieController function from the controller to update the movie details
                 if($controller -> updateMovieController($updateID,$movieName,$movieBanner, $relDate, $genre, $duration, $status, $roomID, $timing1,$timing2,$timing3,$timing4)){
                     echo" <script>window.location='../manager/manager_view_movie.php';</script>";
                 }

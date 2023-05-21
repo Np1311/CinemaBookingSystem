@@ -4,6 +4,7 @@ require_once('../header_login.php'); //unappear
 
 $bookedID = $_GET['bookedID'];
 
+// Get booking details by ID
 if($booking_controller -> getBookingByID_controller($bookedID) == false){
     echo '<script>alert("data is not found")</script>';  
 }else{
@@ -23,13 +24,15 @@ $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
 
+// Get selected seats for the booking
 $selectedSeat = $booking_controller -> getSelectedSeatByID_controller($bookedID);
 
-
+// Output the booking details
 var_dump($array);
-
+// Output the selected seats
 var_dump($selectedSeat);
 
+// Get taken seats for the specific movie, show timing, and date
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 ?>
 <html>
@@ -47,18 +50,21 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <script>
+      // Parse the JSON string and assign it to the alphabet variable
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
         var total_price = 0;
         $(document).ready(function() {
             let selectedSeat = <?php echo json_encode($selectedSeat);?>;
+            // Get the taken seats from PHP and assign it to the takenSeats variable
             let takenSeats = <?php echo json_encode($takenSeat);?>;
-        
             for (let i = 1; i <= <?php echo $row;?>; i++) {
                 let row = alphabet[i - 1];
-            
+              
+                // Loop through the columns
                 for (let j = 1; j <= <?php echo $column;?>; j++) {
                     let seatValue = row + j;
                     let checkedAttribute = '';
+                     // Check for selected seat
                     for (let seat in selectedSeat) {
                         if (selectedSeat[seat].row === row && selectedSeat[seat].column === String(j)) {
                             checkedAttribute = 'checked';
@@ -66,13 +72,14 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
                         }
                     }
                     let disabledAttribute = '';
+                     // Check if the seat is taken
                     for (let seat in takenSeats) {
                         if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
                             disabledAttribute = 'disabled';
                             break;
                         }
                     }
-            
+                    // Append the seat element to the seat_chart div
                     $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + ' ' + disabledAttribute + '>' + seatValue + '</div>');
                 }
             }
@@ -82,18 +89,21 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
 
 
         function checkboxtotal() {
+            // Create an empty array to store the selected seats
             var seat = [];
+            // Iterate through each checked seat checkbox
             $('input[name="seat_chart[]"]:checked').each(function() {
                 if (!$(this).is(':disabled')) {
                     seat.push($(this).val());
                 }
             });
-
+            // Get the total number of selected seats and set it to the 'no_ticket' input field
             var st = seat.length;
             document.getElementById('no_ticket').value = st;
-
-            var ad = st; // Set the initial value of adult tickets to the total number of tickets
-
+            // Set the initial value of adult tickets to the total number of tickets
+            var ad = st;
+            
+            // Get the values of child, student, and senior inputs
             var ch = document.getElementById('child').value;
             var child = (ch * 4);
 
@@ -103,8 +113,10 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
             var sr = document.getElementById('senior').value;
             var senior = (sr * 2);
 
+            // Calculate the remaining adult tickets after deducting child, student, and senior tickets
             ad = ad - parseInt(ch) - parseInt(std) - parseInt(sr); 
-
+            
+            // Calculate the total price based on the number of seats and ticket prices
             total_price = ((st * 12) - (child) - (senior) - (student));
             $('#price_details').text("SGD$" + total_price);
 
@@ -112,6 +124,11 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
             document.getElementById('adult').value = ad;
 
             $('#seat_dt').val(seat.join(", "));
+        }
+
+        //Function to go to the previous browser's page
+        function goBack() {
+            window.history.go(-1);
         }
 
         </script>
@@ -132,7 +149,7 @@ input[type="password"],
 input[type="tel"],
 input[type="number"],
 input[type="date"] {
-  width: 100%;
+  width: 93%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
@@ -217,10 +234,11 @@ span {
             border-radius: 5px;
             cursor: pointer;
             background-color: #bd9a7a;
-            color: black;
+            color: white;
             border: none;
             font-size: 14px;
-            width:150px;
+            width:30%;
+            margin-left:10%;
         }
 
         .custom-button:hover {
@@ -239,15 +257,15 @@ span {
     </head>
     <body>
 
-        
-        <section class="mt-5">
+        <!--Display sitting chart and booking information-->
+        <section style=" margin-top: 1rem;">
             <h3 class="text-center">Book Your Ticket Now</h3>
 
             <div class="container">
             <div class="row">
-                <div class="">
+                <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class="text-center mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3  style="color:#BD9A7A; margin-top: 1rem;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -257,18 +275,18 @@ span {
                 </div>
 
                 </div>
-                <form method="post" class="mt-1">
+                <form method="post" style=" margin-top: 1rem;">
                     <div class="container" style="color:#BD9A7A;">
                     <center>
-                        <p>Please fill in this form to book your ticket.</p>
+                        <p style=" margin-right: 5rem;">Please fill in this form to book your ticket.</p>
                     </center>
 
                     <hr>
-
-                    <label for="Show"><b>Show Id</b></label>
+                    <!--label and input textbox for entering booking details-->
+                    <label for="Show"><b>Show Time</b></label>
 
                     <div class="form-group">
-                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;">
+                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px; width:93%;">
                            
                             
                             <?php
@@ -296,33 +314,30 @@ span {
                     <label for="psw"><b>No. of Senior Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="senior" name="senior" value='<?php echo $array['noOfSeniorTicket']; ?>' onchange='checkboxtotal()'>
 
-                    <br>
-                    <h2>&nbsp</h2>
+                    <br><br>
+                    <h2 style="color:black; margin-top: 5px;">Summary</h2>
+                    <h6 style="color:#BD9A7A; margin-top: 1rem;">Movie Show</h6>
+                    <span id="MovieName"><?php echo $array['movieName'];?></span>
 
-                    <h2 class="mt-1"  style="color:black;">Summary</h2>
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Movie Show</h6>
-                    <span class="mt-3" id="MovieName"><?php echo $array['movieName'];?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 1rem;">Booking Date</h6>
+                    <span id="date"><?php echo $date ?></span>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Booking Date</h6>
-                    <span class="mt-3" id="date"><?php echo $date ?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 1rem;">Time:</h6>
+                    <span id="timing"><?php echo $showTiming;?></span>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Time:</h6>
-                    <span class="mt-3" id="timing"><?php echo $showTiming;?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 1rem;">Ticket Price:</h6>
+                    <p  id="price">Adult: SGD$12</p>
+                    <p  id="price">Child: SGD$8</p>
+                    <p  id="price">Student: SGD$9</p>
+                    <p  id="price">Senior: SGD$10</p>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Ticket Price:</h6>
-                    <p class="mt-1" id="price">Adult: SGD$12</p>
-                    <p class="mt-1" id="price">Child: SGD$8</p>
-                    <p class="mt-1" id="price">Student: SGD$9</p>
-                    <p class="mt-1" id="price">Senior: SGD$10</p>
-                    <br>
-
-                    <h6 class="mt-3" style="color:#BD9A7A;">Total Ticket Price</h6>
-                    <p class="mt-1" id="price_details"></p>
+                    <h6 style="color:#BD9A7A; margin-top: 1rem;">Total Ticket Price</h6>
+                    <p id="price_details"></p>
                     <br>
 
                     <button type="submit" name="btn_booking" class="custom-button" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
-                    &nbsp&nbsp<a href="staff_home_view.php" style="text-decoration: none;">
-                    <button name="btn_booking1" class="custom-button" style="background-color: #BD9A7A;color:white;">Back</button>
+                    <a href="staff_home_view.php" style="text-decoration: none;">
+                    <button type="button" class= "custom-button" onclick="goBack()" style="background-color: #BD9A7A;color:white;">Back</button>
                 </a>
                 </div>
                 </form>
@@ -349,16 +364,11 @@ span {
                 $bookingDate = $date;
                 $roomName = $array['roomName'];
 
-                
-                
+                // Calculate the total amount based on the number of tickets and ticket prices for different types
                 $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                 $loyaltypoints = $total_amnt;
                 
-
-                
-                
-                
-
+                // Update the booking details using the booking controller's updateBookingController method
                 if($booking_controller->updateBookingController($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints)){
                     echo" <script>window.location='staff_home_view.php';</script>";
                 }else{

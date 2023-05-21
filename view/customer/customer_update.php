@@ -1,7 +1,7 @@
 <?php
 session_start();
 $profile = $_SESSION['profile'];
-//require ('header_customer.html');
+// Including the header file
 require('../header.html');
 require ('../../controller/customer_controller.php');
 ?>
@@ -10,7 +10,7 @@ require ('../../controller/customer_controller.php');
 <head>
   <title>Update Profile</title>
   <script>
-
+    // Function to go back to the previous page
   function goBack() {
     window.history.go(-1);
   }
@@ -104,8 +104,9 @@ require ('../../controller/customer_controller.php');
 </head>
 <body>
     <?php
-   if($controller -> getAccount_controller($_SESSION['profile'],$_SESSION['customerID']) == false){
-    echo '<script>alert("No Movie listed")</script>';
+    // Checking if the user's account exists and retrieving the account details
+    if($controller -> getAccount_controller($_SESSION['profile'],$_SESSION['customerID']) == false){
+      echo '<script>alert("No Movie listed")</script>';
     }else{
       $user = $controller -> getAccount_controller($_SESSION['profile'],$_SESSION['customerID']);
     }
@@ -134,6 +135,7 @@ require ('../../controller/customer_controller.php');
     </form>
   </div>
   <?php
+  // Updating the user's profile when the form is submitted
   if(isset($_POST['submit'])){
     
       $fname = $_POST['first_name'];

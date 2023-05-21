@@ -1,29 +1,31 @@
 <?php
-//require('../header.html');
-//require('../header.html');
-require('../../controller/booking_controller.php');
-session_start();
-$phone = $_GET['phone'];
 
+// Include the header file
+require('../header.html');
+
+// Include the booking controller
+require('../../controller/booking_controller.php');
+
+session_start();
+
+// Get the phone and date values from the URL parameters
+$phone = $_GET['phone'];
 $date = $_GET['date'];
 
+// Check if the food and drink data is available
 if($booking_controller -> getFoodAndDrinkController() == false){
     echo '<script>alert("No food listed")</script>';
 }else{
+    // Retrieve the food and drink data
     $array = $booking_controller -> getFoodAndDrinkController();
 }
-
+// Print the food and drink data
 print_r($array);
 
 ?>
 <html>
     <head>
         <title>Capybara Cinema</title>
-        <script>
-        function goBack() {
-            window.history.go(-1);
-        }
-        </script>
         <style>
             .formContainer{
                 
@@ -168,8 +170,9 @@ print_r($array);
                 color: white;
                 border: none;
                 font-size: 14px;
-                margin-left:30%;
-                width:20%;
+                margin-left:26%;
+                width:25%;
+                margin-bottom:3%;
             }
             
             input[type="submit"]:hover {
@@ -189,7 +192,7 @@ print_r($array);
             border: none;
             font-size: 14px;
             text-decoration: none;
-            width:20%;
+            width:25%;
         }
 
         .custom-button:hover {
@@ -203,6 +206,7 @@ print_r($array);
         
     </head>
     <body>        
+        <!--Display the all of the foods available for order-->
         <form method ='post'>
             <div class="food-container">
                 <div class="food-list">
@@ -234,9 +238,11 @@ print_r($array);
 
             </form>
             <script>
+                // Get the plus and minus buttons
                 const plusBtns = document.querySelectorAll('.plus-btn');
                 const minusBtns = document.querySelectorAll('.minus-btn');
 
+                // Add event listeners to plus buttons
                 for (let i = 0; i < plusBtns.length; i++) {
                 plusBtns[i].addEventListener('click', () => {
                     const input = plusBtns[i].previousElementSibling;
@@ -244,7 +250,7 @@ print_r($array);
                     value++;
                     input.value = value;
                 });
-
+                // Add event listeners to minus buttons
                 minusBtns[i].addEventListener('click', () => {
                     const input = minusBtns[i].nextElementSibling;
                     let value = parseInt(input.value);
@@ -254,27 +260,33 @@ print_r($array);
                     }
                 });
                 }
+                // Function to go back to the previous page
+                function goBack() {
+            window.history.go(-1);
+        }
             </script>
 
 
 
         <?php
+        //Get the price and quantity of the foods
         if(isset($_POST['submit'])){
             $orderedFood = $_POST['quantity'];
             $priceArr = $_POST['price'];
             $price = 0;
             
-
+            // Calculate the total price based on the ordered quantities and prices
             foreach ($orderedFood as $id => $quantity1) {
                 if($quantity1 != 0){
                     $price += $quantity1 * $priceArr[$id];
                 }
             }
+            // Set the loyalty points to the total price
             $loyaltypoints = $price;
 
+            // Call the orderFoodController function to place the food order
             if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
-                
-                echo" <script>window.location='staff_home_view.php';</script>";
+                echo" <script>window.location='booking_preorder_receipt.php';</script>";
             }
 
 

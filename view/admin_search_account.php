@@ -1,7 +1,9 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
+// Include the header file
 require('header.html');
-
+// Create an instance of the admin controller
 $controller = new admin_controller;
 ?>
 
@@ -165,13 +167,17 @@ table td {
   </form>
   <?php
     if(isset($_POST['submit'])){
+        // Retrieve search parameters from the form
         $searchAccount = $_POST['searchAccount'];
         $profile = $_POST['profile'];
         $searchBy = $_POST['searchBy'];
+        // Call the searchAccount method of the controller and check if it returns false
         if($controller->searchAccount($profile,$searchAccount,$searchBy) == false){
           echo '<script>alert("'.$searchAccount.' is not found")</script>';  
         }else{
+        // Get the account array from the searchAccount method
         $accountArray = $controller->searchAccount($profile,$searchAccount,$searchBy);
+        // Display the search results in a table
         echo '<div>';
         echo "<h2>$profile</h2>";
         echo "<table>";

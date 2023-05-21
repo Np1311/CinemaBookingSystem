@@ -91,7 +91,7 @@ session_start();
 <div class="header">
     <div class='logoAndName'>
         <img src="../cap.png" alt="Your Image" class="header-image">
-        <h2><a href="index.php" id="home">CAPYBARA CINEMA</a></h2>
+        <h2><a  id="home">CAPYBARA CINEMA</a></h2>
     </div>
     <div class='logoutbtn'>
         <?php

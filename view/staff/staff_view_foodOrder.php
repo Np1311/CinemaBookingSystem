@@ -1,15 +1,18 @@
 <?php
 //require('../header.html');
+require('../header.html');
 require('../../controller/booking_controller.php');
 
 $orderID = $_GET['orderID'];
 
+// Retrieve the list of food and drinks
 if($booking_controller -> getFoodAndDrinkController() == false){
     echo '<script>alert("No Food listed")</script>';
 }else{
     $array = $booking_controller -> getFoodAndDrinkController();
 }
 
+// Retrieve the specific food and drink order by ID
 if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
     echo '<script>alert("Order id not found")</script>';
 }else{
@@ -159,8 +162,8 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 color: white;
                 border: none;
                 font-size: 14px;
-                margin-left:150px;
-                width:80%;
+                margin-left:17%;
+                width:30%;
             }
             
             input[type="submit"]:hover {
@@ -180,7 +183,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 border: none;
                 font-size: 14px;
                 text-decoration: none;
-                width:20%;
+                width:30%;
             }
 
             .custom-button:hover {
@@ -201,14 +204,33 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
 
             .custom-button {
             flex: 1;
-            margin-left: 5px;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
             }
+
+            .custom-button:hover {
+                background-color:white;
+                color: #bd9a7a;
+                border: 1px solid #bd9a7a;
+            }
+            .custom-button a {
+                text-decoration: none;
+                color: white;
+            }
+
 
             
         </style>
         
     </head>
     <body>        
+        <!--Display food picture image,description, price and quantity-->
         <form method ='post'>
             <div class="food-container">
                 <div class="food-list">
@@ -246,17 +268,21 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 }
                 ?>
             <script>
+                // Get all plus buttons and minus buttons
                 const plusBtns = document.querySelectorAll('.plus-btn');
                 const minusBtns = document.querySelectorAll('.minus-btn');
 
+                // Iterate over plus buttons
                 for (let i = 0; i < plusBtns.length; i++) {
-                plusBtns[i].addEventListener('click', () => {
+                    // Add click event listener to plus button
+                    plusBtns[i].addEventListener('click', () => {
                     const input = plusBtns[i].previousElementSibling;
                     let value = parseInt(input.value);
                     value++;
                     input.value = value;
                 });
 
+                // Add click event listener to minus button
                 minusBtns[i].addEventListener('click', () => {
                     const input = minusBtns[i].nextElementSibling;
                     let value = parseInt(input.value);
@@ -270,10 +296,9 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
 
 
         </div>
-        <div class="button-container">
   <input type="submit" name="submit" value="Order">
   <button type="button" class="custom-button" onclick="window.location.href='staff_home_view.php'">Back</button>
-</div>
+
 
         </form>
     </div>
@@ -283,7 +308,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             $priceArr = $_POST['price'];
             $price = 0;
             
-
+            // Calculate the total price based on the ordered quantities and their respective prices
             foreach ($orderedFood as $id => $quantity1) {
                 if($quantity1 != 0){
                     $price += $quantity1 * $priceArr[$id];
@@ -291,14 +316,9 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             }
             $loyaltypoints = $price;
 
-            if($booking_controller->updateOrderFoodController($orderID,$price,$loyaltypoints)){
-                foreach($orderedFood as $foodID => $quantity){
-                    if($quantity > 0){
-                        if($booking_controller->updateOrderItemController($orderID,$foodID,$quantity)==false){
-                            echo '<script>alert("Error updating data")</script>';
-                        }
-                    }
-                } 
+            // Update the order food details in the database using the booking controller
+            if($booking_controller->updateOrderFoodController($orderID,$price,$orderedFood)){
+                
                 echo" <script>window.location='staff_home_view.php';</script>";
             }
 

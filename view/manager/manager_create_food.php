@@ -76,15 +76,18 @@ require('../header.html');
     }
 </style>
 <script>
+// Function to preview the selected image
  function previewImage() {
     const fileInput = document.getElementById('image');
     const previewContainer = document.getElementById('imagePreview');
     const previewImage = previewContainer.querySelector('.preview-image');
 
+    // Check if files are selected
     if (fileInput.files && fileInput.files[0]) {
       const reader = new FileReader();
 
       reader.onload = function (e) {
+        // Set the source of the preview image to the selected file
        previewImage.src = e.target.result;
       };
 
@@ -100,6 +103,7 @@ require('../header.html');
 </head>
 <body>
   <form method="post">
+    <!-- Form content -->
     <h1>Food Details Form</h1>
 
     <label for="name">Name:</label>

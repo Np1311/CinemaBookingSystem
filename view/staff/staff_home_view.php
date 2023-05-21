@@ -2,12 +2,14 @@
 require('../../controller/booking_controller.php');
 require('../header_login.php');
 
+// Check if there are any showing movies
 if($booking_controller -> getShowingMovie_controller() == false){
     echo '<script>alert("No Movie listed")</script>';
 }else{
+    // Retrieve the array of showing movies
     $array = $booking_controller -> getShowingMovie_controller();
 }
-
+// Output the array
 print_r($array);
 
 ?>
@@ -218,6 +220,7 @@ print_r($array);
             <button type="submit" name="bookedIDSubmit">Search</button>
         </form>
         <?php 
+        // Check if the booking ID form is submitted
         if(isset($_POST['bookedIDSubmit'])){
             $bookedID = $_POST['bookedID'];
             echo" <script>window.location='staff_view_booking.php?bookedID=$bookedID';</script>";
@@ -228,6 +231,7 @@ print_r($array);
             <button type="submit" name="orderIDSubmit">Search</button>
         </form>
         <?php 
+        // Check if the order ID form is submitted
         if(isset($_POST['orderIDSubmit'])){
             $orderID = $_POST['orderID'];
             echo" <script>window.location='staff_view_foodOrder.php?orderID=$orderID';</script>";
@@ -239,6 +243,7 @@ print_r($array);
         </form>
         </div>
             <?php 
+            // Check if the search form is submitted
             if(isset($_POST['submit'])){
                 $searchInput = $_POST['searchInput'];
 
@@ -258,7 +263,7 @@ print_r($array);
 
 
             <?php
-
+                // Check if the View All button is clicked
                 if (isset($_POST['viewAll'])) {
                     if($booking_controller -> getShowingMovie_controller() == false){
                         echo '<script>alert("No Movie listed")</script>';
@@ -268,6 +273,7 @@ print_r($array);
                            
                 }
             ?>
+            <!--Display movie for booking-->
                 <div class="movie-list">
                 <?php
                 foreach($array as $key=>$arr){
@@ -277,10 +283,9 @@ print_r($array);
                         <h2 style="text-align: center;"><?php echo $arr['movieName'];?></h2>
                         </br>
                         <p><b>Genre: </b><?php echo $arr['genre'];?></p>
-                        </br>
-                        <p><b>Duration: </b><?php echo $arr['duration'];?></p></br>
+                        <p><b>Duration: </b><?php echo $arr['duration'];?>&nbspminutes</p></br>
                         <div class="movie-button">
-                            <label for="number"><b>Booking Date</b></label></br>
+                            <label for="number"><b>Booking Date:</b></label></br>
                             <input type="date" id="booking_date_<?php echo $arr['movieID'];?>" style="border-radius:10px;width: 300px;height: 50px;" name="booking_date" required></br></br>
 
                             <a href="staff_booking.php?bookingID=<?php echo $arr['movieID'];?>&showTiming=<?php echo $arr['timing1'];?>"  style="text-decoration: none;">

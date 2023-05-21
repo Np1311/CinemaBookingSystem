@@ -42,6 +42,7 @@
     <title>Home</title>
 </head>
 <body>
+    <!--Display different buttons for manager to select-->
     <div class="managerButton">
         <a href="manager_view_cinemaRoom.php">
             <button id="bodyButton">Manage Room</button>

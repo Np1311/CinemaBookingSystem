@@ -2,8 +2,9 @@
 require('../../controller/manager_controller.php');
 
 require('../header.html');
-
+// Get the movieID from the URL parameter
 $movieID = $_GET['movieID'];
+// Call the viewActiveRoomController function to retrieve the active rooms
 $array = $controller -> viewActiveRoomController();
 
 
@@ -85,6 +86,7 @@ $array = $controller -> viewActiveRoomController();
 </head>
 <body>
   <form method='post'>
+    <!-- Form content-->
     <h1>Allocate Movie Form</h1></br>
     <label>Select Room to Allocate:</label>
     <?php
@@ -116,12 +118,14 @@ $array = $controller -> viewActiveRoomController();
   </form>
   <?php
     if(isset($_POST['submit'])){
+      // Get the value
       $roomID = $_POST['roomID'];
       $timing1 = $_POST['timing1'];
       $timing2 = $_POST['timing2'];
       $timing3 = $_POST['timing3'];
       $timing4 = $_POST['timing4'];
 
+      // Call the allocateMovieController function and pass the required parameters
       if($controller->allocateMovieController($movieID,$roomID,$timing1,$timing2,$timing3,$timing4)){
         echo" <script>window.location='../manager/manager_view_movie.php';</script>";
       }

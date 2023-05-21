@@ -1,8 +1,11 @@
 <?php
+// Include the header file
 require('header.html');
+// Include the admin controller
 require('../controller/admin_controller.php');
-
+// Start the session
 session_start();
+// Create an instance of the admin controller
 $admin_controller = new admin_controller;
 ?>
 
@@ -84,6 +87,7 @@ $admin_controller = new admin_controller;
             border: 2px solid;
         }
 
+     /* Create form to fill in details to create account */
     </style>
     <title>Create an Account</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -131,9 +135,12 @@ $admin_controller = new admin_controller;
 </div>
 
 <?php
+// Check if the form has been submitted
 if (isset($_POST['submit'])) {
+    // Create an instance of the sign-up controller
     require('../controller/signUp_controller.php');
     $controller = new signUp_controller;
+    // Retrieve form data
     $profile = $_POST['profile'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -142,6 +149,7 @@ if (isset($_POST['submit'])) {
     $dob = $_POST['dob'];
     $password = $_POST['password'];
 
+    // Call the createAccount method of the sign-up controller
     if ($controller->createAccount($profile, $fname, $lname, $phone, $email, $password, $dob)) {
         echo '<script>alert("Create Account Successful")</script>';
         echo ' <script>window.location="../view/admin_home_view.php";</script>';
@@ -150,10 +158,12 @@ if (isset($_POST['submit'])) {
 ?>
 
 <script>
+    // Function to toggle password visibility
     function togglePasswordVisibility(id) {
         var input = document.getElementById(id);
         var icon = event.target;
 
+        // Check the input type and toggle between text and password
         if (input.type === "password") {
             input.type = "text";
             icon.classList.remove("fa-eye");
@@ -164,15 +174,15 @@ if (isset($_POST['submit'])) {
             icon.classList.add("fa-eye");
         }
     }
-
+    // Form submit event listener
     document.querySelector("form").addEventListener("submit", function(event) {
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirm-password").value;
         var passwordError = document.getElementById("password-error");
-
+        // Check if the passwords match
         if (password !== confirmPassword) {
             passwordError.textContent = "Passwords do not match.";
-            event.preventDefault();
+            event.preventDefault(); // Prevent form submission
         } else {
             passwordError.textContent = "";
         }

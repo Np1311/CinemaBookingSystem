@@ -127,6 +127,7 @@ button:hover{
 </head>
 <body>
   <div class="container">
+  <!-- Form content -->
   <form method='post' onsubmit="return validateForm()">
     <label for="selection" >Select Option:</label>
     <select id="selection" onchange="handleOptionChange()" name="reportType">
@@ -197,11 +198,15 @@ button:hover{
        
 
   <script>
+    // Function to handle the change event of the selection element
     function handleOptionChange() {
+      // Get the selected value from the selection element
       var selection = document.getElementById("selection").value;
+      // Get the monthlyFields and weeklyFields elements
       var monthlyFields = document.getElementById("monthlyFields");
       var weeklyFields = document.getElementById("weeklyFields");
 
+      // Check the selected value and show/hide the corresponding fields
       if (selection === "monthly") {
         monthlyFields.style.display = "block";
         weeklyFields.style.display = "none";
@@ -210,10 +215,13 @@ button:hover{
         weeklyFields.style.display = "block";
       }
     }
+    // Function to validate the form
     function validateForm() {
+      // Get the values of the startDate and endDate input fields
         var startDate = document.getElementById('startDate').value;
         var endDate = document.getElementById('endDate').value;
 
+        // Perform validation check: start date should not be greater than end date
         if (startDate > endDate) {
         alert('Start date cannot be greater than the end date.');
         return false;
@@ -230,6 +238,7 @@ button:hover{
         if ($reportType === 'monthly') {
             $year = $_POST['year'];
             $month = $_POST['month'];
+            // Generate monthly report table
             echo '<table>';
             echo '<thead><tr><th>No</th><th>Movie Name</th><th>Month</th><th>Total Tickets</th><th>Total Amount</th></tr></thead>';
             echo '<tbody>';
@@ -252,6 +261,7 @@ button:hover{
             echo '</table>';
             echo '<p style="font-weight: bold; margin-top: 20px;">Monthly Report Selected: Year ' . $year . ', Month ' . $month . '</p>';
         } elseif ($reportType === 'weekly') {
+            // Generate weekly report table
             echo '<table>';
             echo '<thead><tr><th>No</th><th>Movie Name</th><th>Total Tickets</th><th>Total Amount</th></tr></thead>';
             echo '<tbody>';

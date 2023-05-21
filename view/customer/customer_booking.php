@@ -3,6 +3,8 @@ require('../header.html');
 
 require('../../controller/booking_controller.php');
 session_start();
+
+//Retrieves the values
 $bookedID = 0;
 $phone = $_SESSION['customerID'];
 $movie=$_GET['bookingID'];
@@ -13,20 +15,20 @@ $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
 
 
 
-
+//for labeling the rows of the seat
 $alphabet = range('A', 'Z');
 $letters = array();
 foreach ($alphabet as $char) {
   $letters[] = $char;
 }
 
+//Retrieves the values
 $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
 $selected_row = $array['seat_row'];
 $selected_column = $array['seat_column'];
 $loyalty_point = $array['loyalty_point'];
-
 
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 
@@ -54,10 +56,12 @@ if ($selected_row === NULL){
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
         var total_price = 0;
         $(document).ready(function() {
+            // Retrieving PHP variables and assigning them to JavaScript variables
             let selected_row = '<?php echo $selected_row;?>';
             let selected_column = <?php echo $selected_column;?>;
             let takenSeats = <?php echo json_encode($takenSeat);?>;
-        
+            
+            // Generating the seat chart using a loop
             for (let i = 1; i <= <?php echo $row;?>; i++) {
                 let row = alphabet[i - 1];
             
@@ -65,13 +69,15 @@ if ($selected_row === NULL){
                     let seatValue = row + j;
                     let checkedAttribute = (row === selected_row && j === selected_column) ? 'checked' : '';
                     let disabledAttribute = '';
+
+                    // Checking if the seat is taken and disabling it if so
                     for (let seat in takenSeats) {
                         if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
                             disabledAttribute = 'disabled';
                             break;
                         }
                     }
-            
+                    // Appending the seat element to the seat chart div
                     $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + ' ' + disabledAttribute + '>' + seatValue + '</div>');
                 }
             }
@@ -82,6 +88,8 @@ if ($selected_row === NULL){
 
         function checkboxtotal() {
             var seat = [];
+
+            // Iterate over each checked seat checkbox and add its value to the seat array
             $('input[name="seat_chart[]"]:checked').each(function() {
                 if (!$(this).is(':disabled')) {
                     seat.push($(this).val());
@@ -103,15 +111,18 @@ if ($selected_row === NULL){
             var senior = (sr * 2);
 
             ad = ad - parseInt(ch) - parseInt(std) - parseInt(sr); 
-
+            
+            // Calculate the total price based on the number of seats and ticket prices
             total_price = ((st * 12) - (child) - (senior) - (student));
             $('#price_details').text("SGD$" + total_price);
 
             // Set the value of adult tickets input field using innerHTML
             document.getElementById('adult').value = ad;
-
+            
+            // Set the value of the 'seat_dt' input field with the selected seat values joined by commas
             $('#seat_dt').val(seat.join(", "));
         }
+        //Return to the previous page
         function goBack() {
             window.history.go(-1);
         }
@@ -135,7 +146,7 @@ if ($selected_row === NULL){
 
         /* Full-width input fields */
         textarea,input[type=text],  input[type=password], input[type=tel], input[type=number] , input[type=date]{
-        width: 100%;
+        width: 93%;
         padding: 15px;
         margin: 5px 0 22px 0;
         display: inline-block;
@@ -205,15 +216,15 @@ if ($selected_row === NULL){
     <body>
 
         
-        <section class="mt-5">
-            <h3 class="mt-5"  style="color:#BD9A7A;">&nbsp</h3>
-            <h3 class="text-center">Book Your Ticket Now</h3>
+        <section style=" margin-top: 1rem;">
+            <h3 style="color:#BD9A7A; margin-top: 1rem;">&nbsp</h3>
+            <h3 class="text-center" style=" margin-top: 3rem;">Book Your Ticket Now</h3>
 
             <div class="mycontainer">
             <div class="row">
                 <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class=" mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3 style="color:#BD9A7A; margin-top: 1rem;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -223,10 +234,10 @@ if ($selected_row === NULL){
                 </div>
 
                 </div>
-                <form method="post" class="mt-1">
+                <form method="post" style=" margin-top: 1rem;">
                     <div class="mycontainer" style="color:#BD9A7A;">
                     <center>
-                        <p>Please fill in this form to book your ticket.</p>
+                        <p style=" margin-right: 5rem;">Please fill in this form to book your ticket.</p>
                     </center>
 
                     <hr>
@@ -234,7 +245,7 @@ if ($selected_row === NULL){
                     <label for="Show"><b>Show Time</b></label>
 
                     <div class="form-group">
-                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;">
+                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px; width:93%;">
                            
                             
                             <?php
@@ -263,7 +274,7 @@ if ($selected_row === NULL){
                     <input type="number" style="border-radius:30px;" id="senior" name="senior" value='0' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>Pre-order Food & Drink:</b></label>
-                    <select class="form-control"  name="preOrderFood"  id="preOrderFood" style="border-radius:30px;">
+                    <select class="form-control"  name="preOrderFood"  id="preOrderFood" style="border-radius:30px;  width:93%;">
                         
                         <option value='no'> No </option>  
                         <option value='yes'> Yes </option>
@@ -278,30 +289,31 @@ if ($selected_row === NULL){
                     <label for="food" style="display:none;"><b>Pre-order Coca-Cola</b></label>
                     <input type="number" style="border-radius:30px; display:none;" id="drinks" name="drinks" > -->
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Movie Show</h6>
-                    <span class="mt-1" id="MovieName"><?php echo $array['movieName'];?></span>
+                    <br><br>
+                    <h2 style="color:black; margin-top: 5px;">Summary</h2>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Movie Show</h6>
+                    <span  id="MovieName"><?php echo $array['movieName'];?></span>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Booking Date</h6>
-                    <span class="mt-1" id="date"><?php echo $date ?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Booking Date</h6>
+                    <span  id="date"><?php echo $date ?></span>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Time:</h6>
-                    <span class="mt-1" id="timing"><?php echo $showTiming;?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Time:</h6>
+                    <span  id="timing"><?php echo $showTiming;?></span>
 
-                    <h6 class="mt-3"  style="color:#BD9A7A;">Ticket Price</h6>
-                    <p class="mt-1" id="price">Adult: SGD$12</p>
-                    <p class="mt-1" id="price">Child: SGD$8</p>
-                    <p class="mt-1" id="price">Student: SGD$9</p>
-                    <p class="mt-1" id="price">Senior: SGD$10</p>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Ticket Price</h6>
+                    <p  id="price">Adult: SGD$12</p>
+                    <p  id="price">Child: SGD$8</p>
+                    <p  id="price">Student: SGD$9</p>
+                    <p  id="price">Senior: SGD$10</p>
 
-                    <h6 class="mt-3" style="color:#BD9A7A;">Total Ticket Price</h6>
-                    <p class="mt-1" id="price_details"></p>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Total Ticket Price</h6>
+                    <p id="price_details"></p>
 
-                    <h6 class="mt-3" style="color:#BD9A7A;">Your Loyalty Point</h6>
-                    <p class="mt-1" id="loyalty_point"><?php echo $loyalty_point;?></p>
-
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Your Loyalty Point</h6>
+                    <p  id="loyalty_point"><?php echo $loyalty_point;?></p>
                     
                     <input type="checkbox" name ='redeemPoint' value='yes'onclick="redeemPoints()" > Redeem Loyalty Points</input></br>
-                    
+                    <br>
                     <div style="text-align: center;">
                         <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
                         <button type="button" class= "btn" onclick="goBack()">Back</button> <!--Check-->

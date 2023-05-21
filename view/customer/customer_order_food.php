@@ -6,9 +6,11 @@ $phone = $_SESSION['customerID'];
 
 $date = $_GET['date'];
 
+// Check if there are food and drink items available
 if($booking_controller -> getFoodAndDrinkController() == false){
     echo '<script>alert("No Movie listed")</script>';
 }else{
+    // Get the food and drink items array
     $array = $booking_controller -> getFoodAndDrinkController();
 }
 
@@ -180,6 +182,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                 foreach($array as $key=>$arr){
                 ?>
                     <div class="food">
+                        <!-- Food Description-->
                     <img src="<?php echo $arr['image'];?>" alt="Movie 1">
                     <h1><?php echo $arr['foodName'];?></h1>
                     <p>Description: <?php echo $arr['foodDescription'];?></p>
@@ -190,6 +193,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                     <br>
                     <label for="number">Quantity:</label><br>
                     <div class="quantity">
+                        <!-- Buttons to increase or decrease quantity-->
                         <button type='button' class="minus-btn">-</button>
                         <input type="number" name="quantity[<?php echo $arr['foodID']?>]" value="0">
                         <button type='button' class="plus-btn">+</button>
@@ -203,9 +207,11 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             <input type="submit" name="submit" value="Order">
             </form>
             <script>
+                // Select and store all of the elements in their respective array
                 const plusBtns = document.querySelectorAll('.plus-btn');
                 const minusBtns = document.querySelectorAll('.minus-btn');
 
+                // Loop through each plus button
                 for (let i = 0; i < plusBtns.length; i++) {
                 plusBtns[i].addEventListener('click', () => {
                     const input = plusBtns[i].previousElementSibling;
@@ -214,6 +220,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                     input.value = value;
                 });
 
+                // Add a click event listener to the minus button
                 minusBtns[i].addEventListener('click', () => {
                     const input = minusBtns[i].nextElementSibling;
                     let value = parseInt(input.value);
@@ -233,7 +240,7 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             $priceArr = $_POST['price'];
             $price = 0;
             
-
+            // Calculate the total price
             foreach ($orderedFood as $id => $quantity1) {
                 if($quantity1 != 0){
                     $price += $quantity1 * $priceArr[$id];
@@ -241,8 +248,9 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             }
             $loyaltypoints = $price;
 
+            // Order the food
             if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
-                echo" <script>window.location='customer_home_view.php';</script>";
+                echo" <script>window.location='customer_view_bookings.php';</script>";
             }
 
                   

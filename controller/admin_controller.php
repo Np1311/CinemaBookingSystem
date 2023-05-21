@@ -65,6 +65,7 @@ class admin_controller {
         }
     }
     
+    //function to validate profile
     public function validateProfile($newProfile) {
         global $system_admin_session;
         $profileArr = $system_admin_session->listedProfile();
@@ -81,7 +82,7 @@ class admin_controller {
             }
         }
     }
-
+    //function to suspend account
     public function suspendAccountController($curProfile, $userID) {
         global $system_admin_session;
         
@@ -91,6 +92,7 @@ class admin_controller {
         }
     }
     
+    //function to show profile
     public function showProfile() {
         global $system_admin_session;
         
@@ -106,6 +108,7 @@ class admin_controller {
         }
     }
     
+    //function to suspend profile
     public function susProfile($suspendProfile) {
         global $system_admin_session;
         
@@ -115,6 +118,7 @@ class admin_controller {
         }
     }
     
+    //function to reactivate profile
     public function reactivateProfile($reactivateProfile) {
         global $system_admin_session;
         
@@ -124,22 +128,24 @@ class admin_controller {
         }
     }
 
-    public function searchProfile($searchProfile) {
+    //function to search profile
+    public function searchProfile($profile) {
         global $system_admin_session;
         
         // Get the list of profiles from the admin model
         $arrayProfile = $system_admin_session->listedProfile();
         
         // Check if the search profile exists
-        if (in_array($searchProfile, $arrayProfile)) {
+        if (in_array($profile, $arrayProfile)) {
             // Get the user accounts for the search profile
-            $array = $system_admin_session->getAllAccount($searchProfile);
+            $array = $system_admin_session->getAllAccount($profile);
             return $array;
         } else {
             return false;
         }
     }
     
+    //function to search account
     public function searchAccount($profile, $searchAccount, $searchBy) {
         global $system_admin_session;
         
@@ -153,6 +159,7 @@ class admin_controller {
         }
     }
     
+    //function to update profile
     public function updateProfileController($updateProfile, $updateValue) {
         global $system_admin_session;
         

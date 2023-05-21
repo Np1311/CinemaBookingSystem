@@ -1,17 +1,23 @@
 <?php
-session_start();
+session_start(); // Start the session
+
+// Include the header file for the customer
 require ('header_customer.html');
+// Include the customer controller file
 require('../../controller/customer_controller.php');
 
+// Get the customer's phone number from the session
 $phone =  $_SESSION['customerID'];
+//Set profile to customer
 $profile = 'customer';
 
 //echo $customer -> getAccount();
 
-
+// Check if the account exists in the controller
 if($controller -> getAccount_controller($profile,$phone) == false){
   echo '<script>alert("No customer listed")</script>';
 }else{
+  // Get the customer account details as an array
   $array = $controller -> getAccount_controller($profile,$phone);
 }
 
@@ -19,7 +25,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Profile</title>
+  <title>User Account</title>
   <style>
     /* General styles */
     body {
@@ -100,13 +106,10 @@ if($controller -> getAccount_controller($profile,$phone) == false){
 <body>
 <?php
   // Assume we have fetched the user's profile data from a database
-
-
-  //require ('header_login.html');
   ?>
   
   <div class="profile">
-    <h1 style="text-align: center;">Profile View</h1>
+    <h1 style="text-align: center;">Account View</h1>
     <table>
       <tr>
         <th>First Name</th>
