@@ -202,6 +202,13 @@ class booking_controller{
         }
     }
 
+    public function getBookingPreviewController(){
+        global $booking;
+        $array = $booking -> getBookingPreview();
+      
+        return $array;
+    }
+
     // // Updates the item quantity in a food order
     // public function updateOrderItemController($orderID,$foodID,$quantity){
     //     global $booking;

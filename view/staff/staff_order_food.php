@@ -272,7 +272,7 @@ print_r($array);
 
             if($booking_controller->orderFoodController($phone,$date,$price,$loyaltypoints,$orderedFood)){
                 
-                echo" <script>window.location='staff_home_view.php';</script>";
+                echo" <script>window.location='booking_preorder_receipt.php';</script>";
             }
 
 

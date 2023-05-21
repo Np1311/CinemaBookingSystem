@@ -666,7 +666,38 @@ class booking_model{
             // echo "Error: " . $e->getMessage();
             return false;
         }
-    }    
+    } 
+    public function getBookingPreview() {
+        global $conn;
+        $conn->select_db("CSIT314_Test");
+        try {
+            $query = "SELECT fnbOrder.*, booking.*, (fnbOrder.totalPrice + booking.total_amnt) AS finalPrice
+                      FROM fnbOrder
+                      JOIN booking ON fnbOrder.bookingID = booking.bookingID
+                      WHERE booking.bookingID = (
+                        SELECT MAX(bookingID)
+                        FROM booking
+                      )";
+            
+            $result = $conn->query($query);
+            
+            if ($result && $result->num_rows > 0) {
+                $data = array();
+                
+                while ($row = $result->fetch_assoc()) {
+                    $data = $row;
+                }
+                
+                return $data;
+            } else {
+                return array(); // Return an empty array if no rows are found
+            }
+        } catch (Exception $e) {
+            // Handle any exceptions that occur during the query execution
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }   
 }
 
 //$con = new customer;
