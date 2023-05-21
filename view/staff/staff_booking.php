@@ -227,14 +227,13 @@ if ($selected_row === NULL){
     <body>
 
         
-        <section class="mt-5">
-            <h3 class="mt-5"  style="color:#BD9A7A;">&nbsp</h3>
+        <section style=" margin-top: 1rem;">
             <h3 class="text-center">Book Your Ticket Now</h3>
             <div class="container">
             <div class="row">
                 <div class="col-lg-12 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class="mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3 style="color:#BD9A7A; margin-top: 1rem;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -244,10 +243,10 @@ if ($selected_row === NULL){
                 </div>
 
                 </div>
-                <form method="post" class="mt-2">
+                <form method="post" style=" margin-top: 1rem;">
                     <div class="container" style="color:#BD9A7A;">
                     <center>
-                        <p>Please fill in this form to book your ticket.</p>
+                        <p style=" margin-right: 5rem;">Please fill in this form to book your ticket.</p>
                     </center>
 
                     <hr>
