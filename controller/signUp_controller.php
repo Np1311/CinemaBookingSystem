@@ -5,7 +5,7 @@ $model = new user_model;
 
 //require ('../view/header.php');
 class signUp_controller{
-
+    //function to create a new account
     public function createAccount($profile,$fname,$lname,$phone,$email,$password,$dob){
         global $model;
 

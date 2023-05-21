@@ -201,7 +201,7 @@ class booking_controller{
             return false;
         }
     }
-
+    // Get the booking preview
     public function getBookingPreviewController(){
         global $booking;
         $array = $booking -> getBookingPreview();

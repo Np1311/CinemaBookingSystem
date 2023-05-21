@@ -65,6 +65,7 @@ class admin_controller {
         }
     }
     
+    //function to validate profile
     public function validateProfile($newProfile) {
         global $system_admin_session;
         $profileArr = $system_admin_session->listedProfile();
@@ -81,7 +82,7 @@ class admin_controller {
             }
         }
     }
-
+    //function to suspend account
     public function suspendAccountController($curProfile, $userID) {
         global $system_admin_session;
         
@@ -91,6 +92,7 @@ class admin_controller {
         }
     }
     
+    //function to show profile
     public function showProfile() {
         global $system_admin_session;
         
@@ -106,6 +108,7 @@ class admin_controller {
         }
     }
     
+    //function to suspend profile
     public function susProfile($suspendProfile) {
         global $system_admin_session;
         
@@ -115,6 +118,7 @@ class admin_controller {
         }
     }
     
+    //function to reactivate profile
     public function reactivateProfile($reactivateProfile) {
         global $system_admin_session;
         
@@ -124,6 +128,7 @@ class admin_controller {
         }
     }
 
+    //function to search profile
     public function searchProfile($profile) {
         global $system_admin_session;
         
@@ -140,6 +145,7 @@ class admin_controller {
         }
     }
     
+    //function to search account
     public function searchAccount($profile, $searchAccount, $searchBy) {
         global $system_admin_session;
         
@@ -153,6 +159,7 @@ class admin_controller {
         }
     }
     
+    //function to update profile
     public function updateProfileController($updateProfile, $updateValue) {
         global $system_admin_session;
         
