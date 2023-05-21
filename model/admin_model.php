@@ -133,7 +133,7 @@ class admin_model extends user_model{
     public function updateProfile($updateProfile, $updateValue){
         global $conn;
         $conn->select_db('CSIT314_Test');
-        $sql = "ALTER TABLE $updateProfile RENAME TO $updateValue;";
+        $sql = "ALTER TABLE `$updateProfile` RENAME TO `$updateValue`;";
         try {
             mysqli_query($conn, $sql); 
             return true; 
