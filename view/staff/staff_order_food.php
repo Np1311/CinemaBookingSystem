@@ -165,6 +165,7 @@ print_r($array);
                 font-size: 14px;
                 margin-left:26%;
                 width:25%;
+                margin-bottom:3%;
             }
             
             input[type="submit"]:hover {
