@@ -1,16 +1,19 @@
 <?php
+// Including the customer header file
 require ('header_customer.html');
+// Including the booking controller
 require('../../controller/booking_controller.php');
 session_start();
 
 $phone = $_SESSION['customerID'];
 
+// Retrieving bookings for the customer
 if($bookingArray = $booking_controller -> getBookingsController($phone)==false){
     $bookingArray = [];
 }else{
     $bookingArray = $booking_controller -> getBookingsController($phone);
 }
-
+// Retrieving food and drink orders for the customer
 if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==false){
     $foodOrderArray = [];
 }else{
@@ -161,6 +164,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                             }
                             $previousOrderID = $row["orderID"];
                             ?>
+                            <!-- Display Order details -->
                             <h4>OrderID: <?= $row["orderID"] ?></h4>
                             <h4>Order Date: <?= $row["orderDate"] ?></h4>
                             <h4>Total Price: <?= $row["totalPrice"] ?></h4>
@@ -176,6 +180,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
                         }
                         ?>
                         <tr>
+                            <!-- Display Food and Quantity for each order -->
                             <td><?= $row["foodName"] ?></td>
                             <td><?= $row["quantity"] ?></td>
                         </tr>
@@ -194,6 +199,7 @@ if($foodOrderArray = $booking_controller -> getFoodOrderController($phone)==fals
     
     </div>
     <div class="customerButton">
+        <!-- Button to go back -->
             <a href="customer_home_view.php">
             <button>Back</button>
             </a><br>

@@ -3,6 +3,8 @@ require('../header.html');
 
 require('../../controller/booking_controller.php');
 session_start();
+
+//Retrieves the values
 $bookedID = 0;
 $phone = $_SESSION['customerID'];
 $movie=$_GET['bookingID'];
@@ -13,20 +15,20 @@ $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
 
 
 
-
+//for labeling the rows of the seat
 $alphabet = range('A', 'Z');
 $letters = array();
 foreach ($alphabet as $char) {
   $letters[] = $char;
 }
 
+//Retrieves the values
 $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
 $selected_row = $array['seat_row'];
 $selected_column = $array['seat_column'];
 $loyalty_point = $array['loyalty_point'];
-
 
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 
@@ -54,10 +56,12 @@ if ($selected_row === NULL){
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
         var total_price = 0;
         $(document).ready(function() {
+            // Retrieving PHP variables and assigning them to JavaScript variables
             let selected_row = '<?php echo $selected_row;?>';
             let selected_column = <?php echo $selected_column;?>;
             let takenSeats = <?php echo json_encode($takenSeat);?>;
-        
+            
+            // Generating the seat chart using a loop
             for (let i = 1; i <= <?php echo $row;?>; i++) {
                 let row = alphabet[i - 1];
             
@@ -65,13 +69,15 @@ if ($selected_row === NULL){
                     let seatValue = row + j;
                     let checkedAttribute = (row === selected_row && j === selected_column) ? 'checked' : '';
                     let disabledAttribute = '';
+
+                    // Checking if the seat is taken and disabling it if so
                     for (let seat in takenSeats) {
                         if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
                             disabledAttribute = 'disabled';
                             break;
                         }
                     }
-            
+                    // Appending the seat element to the seat chart div
                     $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + ' ' + disabledAttribute + '>' + seatValue + '</div>');
                 }
             }
@@ -82,6 +88,8 @@ if ($selected_row === NULL){
 
         function checkboxtotal() {
             var seat = [];
+
+            // Iterate over each checked seat checkbox and add its value to the seat array
             $('input[name="seat_chart[]"]:checked').each(function() {
                 if (!$(this).is(':disabled')) {
                     seat.push($(this).val());
@@ -103,15 +111,18 @@ if ($selected_row === NULL){
             var senior = (sr * 2);
 
             ad = ad - parseInt(ch) - parseInt(std) - parseInt(sr); 
-
+            
+            // Calculate the total price based on the number of seats and ticket prices
             total_price = ((st * 12) - (child) - (senior) - (student));
             $('#price_details').text("SGD$" + total_price);
 
             // Set the value of adult tickets input field using innerHTML
             document.getElementById('adult').value = ad;
-
+            
+            // Set the value of the 'seat_dt' input field with the selected seat values joined by commas
             $('#seat_dt').val(seat.join(", "));
         }
+        //Return to the previous page
         function goBack() {
             window.history.go(-1);
         }

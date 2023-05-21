@@ -5,6 +5,8 @@ require_once('../../controller/customer_controller.php');
 session_start();
 $phone = $_SESSION['customerID'];
 
+
+// Get booking details for the customer's phone number
 if($array = $booking_controller->getBookingController($phone)== false){
   $array = [];
 }else{
@@ -148,12 +150,13 @@ if($array = $booking_controller->getBookingController($phone)== false){
         color: white;
       }
     </style>
-  </head>
+    </head>
   <body>
-    <h1>Movie Review Form</h1>
-    <?php
-    if(count($array)>0){
-        foreach ($array as $booking) {
+        <h1>Movie Review Form</h1>
+        <?php
+        // Display the review form for each booking
+        if(count($array)>0){
+            foreach ($array as $booking) {
         ?>
             <form method="post">
                 <br>
@@ -203,7 +206,7 @@ if($array = $booking_controller->getBookingController($phone)== false){
       }
         ?>
     <?php
-        
+        // Handle form submission
         if (isset($_POST['submit'])) {
             $bookingID = $_POST['booking_id'];
             $roomID = $_POST['room_ID'];
