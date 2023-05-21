@@ -11,6 +11,7 @@ class login_model extends user_model{
     private $uid;
     private $pass;
 
+    // The constructor initializes the profile, phone, and password properties.
     public function __construct($profile,$phone, $pass){
         $this->profile = $profile;
         $this->uid = $phone;
@@ -18,7 +19,7 @@ class login_model extends user_model{
 
     }
 
-    
+    //Function to retrieve phone and password
     public function getPhoneandPass($profile){
         global $conn;
         $conn -> select_db("CSIT314_Test");
@@ -34,6 +35,7 @@ class login_model extends user_model{
        
         return $array;
     }
+    //Function to check user
     public function checkUser(){
       
         $found = 'not found';
@@ -45,19 +47,23 @@ class login_model extends user_model{
                 $found = 'found';
                 if ($this->pass == $x_value){
                    $this->setAccount($this->uid);
+                   // Password is correct
                    echo "<script>alert('Password Correct');</script>";
                    return true;
                 }else{
+                    // Incorrect password
                     echo "<script>alert('Inccorect password');</script>";
                     return false;
                 }
             }
         }
+        // User not found
         if ($found == 'not found'){
             echo "<script>alert('User not found');</script>";
         }
 
     }
+    //Function to log out of account
     public function logout(){
         session_start();
         session_unset();
