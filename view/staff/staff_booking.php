@@ -397,8 +397,8 @@ if ($selected_row === NULL){
                     if($_POST['redeemPoint']=='yes'){
                         $total_amnt = $_SESSION['new_total_price'];
                         $loyaltypoints=$total_amnt;
-                        $newLoyaltyPoints= $_SESSION['new_loyalty_point'];
-                        $booking_controller->redeemPointController($newLoyaltyPoints,$phone);
+                        $points = $_SESSION['new_loyalty_point'];
+                        $booking_controller->redeemPointController($points,$phone);
 
                     } else {
                         $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
