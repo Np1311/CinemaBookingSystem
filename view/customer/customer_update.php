@@ -114,7 +114,7 @@ require ('../../controller/customer_controller.php');
     // $formatted_dob = $dob->format('Y-m-d');
     ?>
   <div class="profile">
-    <h1>Update Profile</h1>
+    <h1>Update Account</h1>
     <form  method="post">
       
       <label for="first_name">First Name:</label>
