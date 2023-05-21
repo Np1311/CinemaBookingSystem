@@ -62,7 +62,7 @@ class user_model {
         global $conn;
         $conn -> select_db("CSIT314_Test");
         $mysql_date = date('Y-m-d', strtotime($dob));
-        $sql =" UPDATE `$profile` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `password` = $password ,`phone`='$phone' ,`status`='$status' WHERE phone = '$oldPhone';";
+        $sql =" UPDATE `$profile` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `password` = '$password' ,`phone`='$phone' ,`status`='$status' WHERE phone = '$oldPhone';";
 
         try {
             mysqli_query($conn, $sql); 
