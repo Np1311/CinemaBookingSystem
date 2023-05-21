@@ -146,7 +146,7 @@ if ($selected_row === NULL){
 
         /* Full-width input fields */
         textarea,input[type=text],  input[type=password], input[type=tel], input[type=number] , input[type=date]{
-        width: 100%;
+        width: 93%;
         padding: 15px;
         margin: 5px 0 22px 0;
         display: inline-block;
@@ -216,15 +216,15 @@ if ($selected_row === NULL){
     <body>
 
         
-        <section class="mt-5">
-            <h3 class="mt-5"  style="color:#BD9A7A;">&nbsp</h3>
-            <h3 class="text-center">Book Your Ticket Now</h3>
+        <section style=" margin-top: 1rem;">
+            <h3 style="color:#BD9A7A; margin-top: 1rem;">&nbsp</h3>
+            <h3 class="text-center" style=" margin-top: 3rem;">Book Your Ticket Now</h3>
 
             <div class="mycontainer">
             <div class="row">
                 <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
-                <h3 class=" mt-5"  style="color:#BD9A7A;">Select Seat</h3>
+                <h3 style="color:#BD9A7A; margin-top: 1rem;">Select Seat</h3>
                 <hr>
                 <label class="text-center" style="width:93%;background-color:#BD9A7A;color:white;padding:2%"> 
                 SCREEN
@@ -234,10 +234,10 @@ if ($selected_row === NULL){
                 </div>
 
                 </div>
-                <form method="post" class="mt-1">
+                <form method="post" style=" margin-top: 1rem;">
                     <div class="mycontainer" style="color:#BD9A7A;">
                     <center>
-                        <p>Please fill in this form to book your ticket.</p>
+                        <p style=" margin-right: 5rem;">Please fill in this form to book your ticket.</p>
                     </center>
 
                     <hr>
@@ -245,7 +245,7 @@ if ($selected_row === NULL){
                     <label for="Show"><b>Show Time</b></label>
 
                     <div class="form-group">
-                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px;">
+                        <select class="form-control"  name="show_id"  id="show_id" style="border-radius:30px; width:93%;">
                            
                             
                             <?php
@@ -274,7 +274,7 @@ if ($selected_row === NULL){
                     <input type="number" style="border-radius:30px;" id="senior" name="senior" value='0' onchange='checkboxtotal()'>
 
                     <label for="psw"><b>Pre-order Food & Drink:</b></label>
-                    <select class="form-control"  name="preOrderFood"  id="preOrderFood" style="border-radius:30px;">
+                    <select class="form-control"  name="preOrderFood"  id="preOrderFood" style="border-radius:30px;  width:93%;">
                         
                         <option value='no'> No </option>  
                         <option value='yes'> Yes </option>
@@ -289,30 +289,31 @@ if ($selected_row === NULL){
                     <label for="food" style="display:none;"><b>Pre-order Coca-Cola</b></label>
                     <input type="number" style="border-radius:30px; display:none;" id="drinks" name="drinks" > -->
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Movie Show</h6>
-                    <span class="mt-1" id="MovieName"><?php echo $array['movieName'];?></span>
+                    <br><br>
+                    <h2 style="color:black; margin-top: 5px;">Summary</h2>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Movie Show</h6>
+                    <span  id="MovieName"><?php echo $array['movieName'];?></span>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Booking Date</h6>
-                    <span class="mt-1" id="date"><?php echo $date ?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Booking Date</h6>
+                    <span  id="date"><?php echo $date ?></span>
 
-                    <h6 class="mt-5"  style="color:#BD9A7A;">Time:</h6>
-                    <span class="mt-1" id="timing"><?php echo $showTiming;?></span>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Time:</h6>
+                    <span  id="timing"><?php echo $showTiming;?></span>
 
-                    <h6 class="mt-3"  style="color:#BD9A7A;">Ticket Price</h6>
-                    <p class="mt-1" id="price">Adult: SGD$12</p>
-                    <p class="mt-1" id="price">Child: SGD$8</p>
-                    <p class="mt-1" id="price">Student: SGD$9</p>
-                    <p class="mt-1" id="price">Senior: SGD$10</p>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Ticket Price</h6>
+                    <p  id="price">Adult: SGD$12</p>
+                    <p  id="price">Child: SGD$8</p>
+                    <p  id="price">Student: SGD$9</p>
+                    <p  id="price">Senior: SGD$10</p>
 
-                    <h6 class="mt-3" style="color:#BD9A7A;">Total Ticket Price</h6>
-                    <p class="mt-1" id="price_details"></p>
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Total Ticket Price</h6>
+                    <p id="price_details"></p>
 
-                    <h6 class="mt-3" style="color:#BD9A7A;">Your Loyalty Point</h6>
-                    <p class="mt-1" id="loyalty_point"><?php echo $loyalty_point;?></p>
-
+                    <h6 style="color:#BD9A7A; margin-top: 2rem;">Your Loyalty Point</h6>
+                    <p  id="loyalty_point"><?php echo $loyalty_point;?></p>
                     
                     <input type="checkbox" name ='redeemPoint' value='yes'onclick="redeemPoints()" > Redeem Loyalty Points</input></br>
-                    
+                    <br>
                     <div style="text-align: center;">
                         <button type="submit" name="btn_booking" class="btn" style="background-color: #BD9A7A;color:white;" >Confirm Booking</button>
                         <button type="button" class= "btn" onclick="goBack()">Back</button> <!--Check-->
