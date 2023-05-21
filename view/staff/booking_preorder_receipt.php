@@ -1,5 +1,6 @@
 <?php
 require('../../controller/booking_controller.php');
+require('../header.html');
 
 $array = $booking_controller -> getBookingPreviewController();
 
@@ -16,15 +17,18 @@ $array = $booking_controller -> getBookingPreviewController();
             background-color: #e7dbd0;
             /* padding: 20px; */
             border-radius: 5px;
-            margin-left: 40px;
+            /*margin-left: 70%;*/
         }
         body{
             background-color: #e7dbd0;
         }
         .container{
+            width:900px;
             margin-top: 100px;
+            margin-left: 42%;
         }
         button {
+            width:20%;
             text-align: center;
             margin-top: 20px;
             display: flex;
@@ -60,6 +64,7 @@ $array = $booking_controller -> getBookingPreviewController();
     <div class="container">
         <h2>Booking Preview:</h2>
             <div class="cinema-bookingTicket">
+                <br>
                 <p>Booking ID: <?php echo $array["bookingID"]; ?></p>
                 <p>Order Date: <?php echo $array["orderDate"]; ?></p>
                 <p>Movie Name: <?php echo $array["movieName"]; ?></p>
