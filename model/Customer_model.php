@@ -5,6 +5,7 @@ class customer_model extends user_model{
     public function updateSeat($phone,$columnSeat,$rowSeat){
         global $conn;
         $conn->select_db("CSIT314_Test");
+        // SQL query to update the seat information of the customer
         $sql = "UPDATE customer SET seat_row = '$rowSeat', seat_column = '$columnSeat' WHERE phone = '$phone';";
         if ($conn->query($sql) === TRUE) {
             echo "Table updated successfully";
@@ -13,10 +14,11 @@ class customer_model extends user_model{
         }
     }
     
-
+    //Function to add review
     public function addReview($bookingID, $roomID,$movieID,$movieName,$showTiming,$rating,$review){
         global $conn;
         $conn->select_db("CSIT314_Test");
+        // SQL query to create the customerReview table
         $sql = "CREATE TABLE IF NOT EXISTS customerReview (
             reviewID INT AUTO_INCREMENT PRIMARY KEY,
             bookingID INT,
@@ -36,6 +38,7 @@ class customer_model extends user_model{
         } else {
             echo "Error creating table: " . $conn->error;
         }
+        // SQL query to insert the review into the customerReview table
         $sql2 = "INSERT INTO customerReview (bookingID, roomID, movieID, movieName, showTiming, rating, review)
         VALUES ('$bookingID', '$roomID', '$movieID', '$movieName', '$showTiming', '$rating', '$review');";
 
