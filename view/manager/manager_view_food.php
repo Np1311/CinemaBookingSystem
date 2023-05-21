@@ -1,10 +1,14 @@
 <?php
+// Include the manager_controller.php file
 require('../../controller/manager_controller.php');
+// Include the header.html file
 require('../header.html');
 
+// Check if the result of viewFoodAndDrinkController is false
 if($array = $controller -> viewFoodAndDrinkController()==false){
     $array =[];
 }else{
+    // Retrieve the data from viewFoodAndDrinkController
     $array = $controller -> viewFoodAndDrinkController();
 }        
 ?>
@@ -163,6 +167,7 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
     </style>
     </head>
     <body>
+        <!--Form Content-->
         <div class="container">
             <form  method="post">
                 <input type="text" name="searchInput" placeholder="Search...">
@@ -171,11 +176,14 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
             </form>
             <?php 
             if(isset($_POST['submit'])){
+                // Retrieve the search input value from the form
                 $searchInput = $_POST['searchInput'];
-
+                
+                // Call the searchFoodController function from the controller and check if the result is false
                 if($controller->searchFoodController($searchInput) == false){
                     echo '<script>alert("'.$searchInput.' is not found")</script>';  
                 }else{
+                    // Retrieve the search results from the searchFoodController function
                     $array = $controller->searchFoodController($searchInput);
                 }
             }
@@ -185,11 +193,12 @@ if($array = $controller -> viewFoodAndDrinkController()==false){
                 <button type="submit" name="viewAll">View All</button>
             </form> -->
             <?php
-
+                // Check if the 'viewAll' button is clicked
                 if (isset($_POST['viewAll'])) {
                     if($array = $controller -> viewFoodAndDrinkController()==false){
                         $array =[];
                     }else{
+                        // Retrieve the data from viewFoodAndDrinkController
                         $array = $controller -> viewFoodAndDrinkController();
                     }                
                 }

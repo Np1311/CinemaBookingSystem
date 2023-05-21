@@ -1,11 +1,11 @@
 <?php
+// Include the manager_controller.php file
 require('../../controller/manager_controller.php');
+// Include the header.html file
 require('../header.html');
-
-
-
+// Get the value of the 'updateID' parameter from the URL
 $updateID = $_GET['updateID'];
-
+// Call the getFoodAndDrinkDetail function from the controller and store the result in $array
 $array = $controller -> getFoodAndDrinkDetail($updateID);
 ?>
 
@@ -98,12 +98,13 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
         const previewImage = previewContainer.querySelector('.preview-image');
 
         if (fileInput.files && fileInput.files[0]) {
+            // Create a new FileReader object
             const reader = new FileReader();
-
+            // Set the source of the preview image to the loaded file
             reader.onload = function (e) {
                 previewImage.src = e.target.result;
             };
-
+            // Read the selected file as a data URL
             reader.readAsDataURL(fileInput.files[0]);
             previewContainer.style.display = 'block';
         } else {
@@ -116,6 +117,7 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
     <title>Manager Update Food</title>
     </head>
     <body>
+        <!--Form Content-->
     <div class="container">
         <div class="form">
         <h1>Food Details Form</h1>
@@ -166,6 +168,7 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
     </div>
 </div>
             <script>
+                // Get and set the value of the textarea to the foodDescription value from the PHP array
                 var textarea = document.getElementById("description");
                 textarea.value = "<?php echo $array['foodDescription'];?>";
 
@@ -173,6 +176,7 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
 
         <?php
             if(isset($_POST['submit'])){
+                // Retrieve the form input values
                 $foodName = $_POST['foodName'];
 
                 $description = $_POST['description'];
@@ -193,6 +197,8 @@ $array = $controller -> getFoodAndDrinkDetail($updateID);
                 // echo $category;
                 // echo $stock;
                 // echo $image;
+
+                // Call the updateFoodAndDrinkController function from the controller to update the food and drink item
                 if($controller -> updateFoodAndDrinkController($updateID,$foodName,$description, $price, $category, $stock, $image, $status)){
                     echo" <script>window.location='../manager/manager_view_food.php';</script>";
                 }

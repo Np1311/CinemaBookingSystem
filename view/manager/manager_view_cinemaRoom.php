@@ -1,7 +1,9 @@
 <?php
+// Include the manager_controller.php file
     require('../../controller/manager_controller.php');
+    // Include the header.html file
     require('../header.html');
-
+    // Call the viewRoomController function from the controller and store the result
     $arr = $controller->viewRoomController();
     
 ?>
@@ -101,6 +103,7 @@
     </style>
 </head>
 <body>
+    <!--Form content-->
     <div class="container">
        
 

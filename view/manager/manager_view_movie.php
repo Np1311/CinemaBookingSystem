@@ -1,11 +1,14 @@
 <?php
+// Include the manager_controller.php file
 require('../../controller/manager_controller.php');
+// Include the header.html file
 require('../header.html');
 
-
+// Check if the result of viewMovieController is false
 if($arr = $controller -> viewMovieController()==false){
     $arr =[];
 }else{
+    // Retrieve the data from viewMovieController
     $arr = $controller -> viewMovieController();
 }
 
@@ -170,11 +173,15 @@ if($arr = $controller -> viewMovieController()==false){
         </form>
         <?php 
         if(isset($_POST['submit'])){
+            // Retrieve the search input value from the form
             $searchInput = $_POST['searchInput'];
 
+            // Call the searchMovieController function from the controller and check if the result is false
             if($controller->searchMovieController($searchInput) == false){
+                // Display an alert message if the search input is not found
                 echo '<script>alert("'.$searchInput.' is not found")</script>';  
               }else{
+                // Retrieve the search results from the searchMovieController function
                 $arr = $controller->searchMovieController($searchInput);
               }
         }
@@ -185,10 +192,12 @@ if($arr = $controller -> viewMovieController()==false){
         </form>-->
         <?php
 
+            // Check if the 'viewAll' button is clicked
             if (isset($_POST['viewAll'])) {
                 if($arr = $controller -> viewMovieController()==false){
                     $arr =[];
                 }else{
+                    // Retrieve the data from viewMovieController
                     $arr = $controller -> viewMovieController();
                 }                
             }

@@ -1,9 +1,14 @@
 
 <?php
+// Include the manager_controller.php file
 require('../../controller/manager_controller.php');
+
+// Include the header.html file
 require('../header.html');
 
+// Get the value of the 'updateID' parameter from the URL
 $updateID = $_GET['updateID'];
+// Call the getRoomDetail function from the controller and store the result in $arr
 $arr = $controller -> getRoomDetail($updateID);
 ?>
 <!DOCTYPE html>
@@ -62,6 +67,7 @@ $arr = $controller -> getRoomDetail($updateID);
 
   <div class="update-room">
     <h1>Update Room</h1>
+    <!--form content-->
     <form method="post">
       <label for="room-name">Room Name:</label>
       <input type="text" name="roomName" id="roomName" value="<?php echo $arr['roomName']; ?>"><br><br>
@@ -98,6 +104,7 @@ $arr = $controller -> getRoomDetail($updateID);
 
   <?php
   if (isset($_POST['submit'])) {
+    // Get the values from the form
       $roomName = $_POST['roomName'];
       $roomType = $_POST['roomType'];
       $roomCapacity = $_POST['roomCapacity'];
@@ -105,6 +112,7 @@ $arr = $controller -> getRoomDetail($updateID);
       $totalColumn = $_POST['totalColumn'];
       $status = $_POST['status'];
 
+      // Call the updateRoomController function from the controller to update the room
       if ($controller->updateRoomController($updateID, $roomName, $roomType, $roomCapacity, $totalRow, $totalColumn, $status)) {
           echo "<script>window.location='../manager/manager_view_cinemaRoom.php';</script>";
       }

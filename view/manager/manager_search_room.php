@@ -141,6 +141,7 @@ table td {
 </head>
 <body>
   <!-- <h1>Search Account</h1> -->
+  <!-- Form content-->
   <form method="post">
     <label for="searchRoom">Search a Room:</label><br>
     
@@ -159,25 +160,30 @@ table td {
   </form>
   <?php
     if(isset($_POST['submit'])){
+        // Get the search input and search by option from the form
         $searchInput = $_POST['searchInput'];
-        
         $searchBy = $_POST['searchBy'];
+
+        // Call the getRoomDetailController function to retrieve the room details
         if($controller->getRoomDetailController($searchInput,$searchBy) == false){
-          echo '<script>alert("'.$searchInput.' is not found")</script>';  
+        // Display an alert if the room is not found
+            echo '<script>alert("'.$searchInput.' is not found")</script>';  
         }else{
-        $roomArray = $controller->getRoomDetailController($searchInput,$searchBy);
-        echo '<div>';
-        echo "<table>";
-        echo "<tr>
-            <th>ID</th>
-            <th>Room Name</th>
-            <th>Room Type</th>
-            <th>Room Capacity</th>
-            <th>Total Row</th>
-            <th>Total Column</th>
-            <th>Status</th>
-            <th>Action</th>
-            </tr>";
+            // Retrieve the room details
+            $roomArray = $controller->getRoomDetailController($searchInput,$searchBy);
+            // Display the room details in a table
+            echo '<div>';
+            echo "<table>";
+            echo "<tr>
+                    <th>ID</th>
+                    <th>Room Name</th>
+                    <th>Room Type</th>
+                    <th>Room Capacity</th>
+                    <th>Total Row</th>
+                    <th>Total Column</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>";
     
         // loop through results and display in table rows
         foreach($roomArray as $key => $array){
