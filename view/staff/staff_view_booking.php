@@ -4,6 +4,7 @@ require_once('../header_login.php'); //unappear
 
 $bookedID = $_GET['bookedID'];
 
+// Get booking details by ID
 if($booking_controller -> getBookingByID_controller($bookedID) == false){
     echo '<script>alert("data is not found")</script>';  
 }else{
@@ -23,13 +24,15 @@ $json_string = json_encode($letters);
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
 
+// Get selected seats for the booking
 $selectedSeat = $booking_controller -> getSelectedSeatByID_controller($bookedID);
 
-
+// Output the booking details
 var_dump($array);
-
+// Output the selected seats
 var_dump($selectedSeat);
 
+// Get taken seats for the specific movie, show timing, and date
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 ?>
 <html>
@@ -47,18 +50,21 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <script>
+      // Parse the JSON string and assign it to the alphabet variable
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
         var total_price = 0;
         $(document).ready(function() {
             let selectedSeat = <?php echo json_encode($selectedSeat);?>;
+            // Get the taken seats from PHP and assign it to the takenSeats variable
             let takenSeats = <?php echo json_encode($takenSeat);?>;
-        
             for (let i = 1; i <= <?php echo $row;?>; i++) {
                 let row = alphabet[i - 1];
-            
+              
+                // Loop through the columns
                 for (let j = 1; j <= <?php echo $column;?>; j++) {
                     let seatValue = row + j;
                     let checkedAttribute = '';
+                     // Check for selected seat
                     for (let seat in selectedSeat) {
                         if (selectedSeat[seat].row === row && selectedSeat[seat].column === String(j)) {
                             checkedAttribute = 'checked';
@@ -66,13 +72,14 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
                         }
                     }
                     let disabledAttribute = '';
+                     // Check if the seat is taken
                     for (let seat in takenSeats) {
                         if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
                             disabledAttribute = 'disabled';
                             break;
                         }
                     }
-            
+                    // Append the seat element to the seat_chart div
                     $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + ' ' + disabledAttribute + '>' + seatValue + '</div>');
                 }
             }
@@ -82,18 +89,21 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
 
 
         function checkboxtotal() {
+            // Create an empty array to store the selected seats
             var seat = [];
+            // Iterate through each checked seat checkbox
             $('input[name="seat_chart[]"]:checked').each(function() {
                 if (!$(this).is(':disabled')) {
                     seat.push($(this).val());
                 }
             });
-
+            // Get the total number of selected seats and set it to the 'no_ticket' input field
             var st = seat.length;
             document.getElementById('no_ticket').value = st;
-
-            var ad = st; // Set the initial value of adult tickets to the total number of tickets
-
+            // Set the initial value of adult tickets to the total number of tickets
+            var ad = st;
+            
+            // Get the values of child, student, and senior inputs
             var ch = document.getElementById('child').value;
             var child = (ch * 4);
 
@@ -103,8 +113,10 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
             var sr = document.getElementById('senior').value;
             var senior = (sr * 2);
 
+            // Calculate the remaining adult tickets after deducting child, student, and senior tickets
             ad = ad - parseInt(ch) - parseInt(std) - parseInt(sr); 
-
+            
+            // Calculate the total price based on the number of seats and ticket prices
             total_price = ((st * 12) - (child) - (senior) - (student));
             $('#price_details').text("SGD$" + total_price);
 
@@ -114,6 +126,7 @@ $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$dat
             $('#seat_dt').val(seat.join(", "));
         }
 
+        //Function to go to the previous browser's page
         function goBack() {
             window.history.go(-1);
         }
@@ -244,7 +257,7 @@ span {
     </head>
     <body>
 
-        
+        <!--Display sitting chart and booking information-->
         <section style=" margin-top: 1rem;">
             <h3 class="text-center">Book Your Ticket Now</h3>
 
@@ -269,7 +282,7 @@ span {
                     </center>
 
                     <hr>
-
+                    <!--label and input textbox for entering booking details-->
                     <label for="Show"><b>Show Time</b></label>
 
                     <div class="form-group">
@@ -351,16 +364,11 @@ span {
                 $bookingDate = $date;
                 $roomName = $array['roomName'];
 
-                
-                
+                // Calculate the total amount based on the number of tickets and ticket prices for different types
                 $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                 $loyaltypoints = $total_amnt;
                 
-
-                
-                
-                
-
+                // Update the booking details using the booking controller's updateBookingController method
                 if($booking_controller->updateBookingController($bookedID,$numOfTicket,$seats,$noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket,$total_amnt, $loyaltypoints)){
                     echo" <script>window.location='staff_home_view.php';</script>";
                 }else{

@@ -5,12 +5,14 @@ require('../../controller/booking_controller.php');
 
 $orderID = $_GET['orderID'];
 
+// Retrieve the list of food and drinks
 if($booking_controller -> getFoodAndDrinkController() == false){
     echo '<script>alert("No Food listed")</script>';
 }else{
     $array = $booking_controller -> getFoodAndDrinkController();
 }
 
+// Retrieve the specific food and drink order by ID
 if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
     echo '<script>alert("Order id not found")</script>';
 }else{
@@ -228,6 +230,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
         
     </head>
     <body>        
+        <!--Display food picture image,description, price and quantity-->
         <form method ='post'>
             <div class="food-container">
                 <div class="food-list">
@@ -265,17 +268,21 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
                 }
                 ?>
             <script>
+                // Get all plus buttons and minus buttons
                 const plusBtns = document.querySelectorAll('.plus-btn');
                 const minusBtns = document.querySelectorAll('.minus-btn');
 
+                // Iterate over plus buttons
                 for (let i = 0; i < plusBtns.length; i++) {
-                plusBtns[i].addEventListener('click', () => {
+                    // Add click event listener to plus button
+                    plusBtns[i].addEventListener('click', () => {
                     const input = plusBtns[i].previousElementSibling;
                     let value = parseInt(input.value);
                     value++;
                     input.value = value;
                 });
 
+                // Add click event listener to minus button
                 minusBtns[i].addEventListener('click', () => {
                     const input = minusBtns[i].nextElementSibling;
                     let value = parseInt(input.value);
@@ -301,7 +308,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             $priceArr = $_POST['price'];
             $price = 0;
             
-
+            // Calculate the total price based on the ordered quantities and their respective prices
             foreach ($orderedFood as $id => $quantity1) {
                 if($quantity1 != 0){
                     $price += $quantity1 * $priceArr[$id];
@@ -309,6 +316,7 @@ if($booking_controller -> getFoodAndDrinkByIDController($orderID) == false){
             }
             $loyaltypoints = $price;
 
+            // Update the order food details in the database using the booking controller
             if($booking_controller->updateOrderFoodController($orderID,$price,$orderedFood)){
                 
                 echo" <script>window.location='staff_home_view.php';</script>";

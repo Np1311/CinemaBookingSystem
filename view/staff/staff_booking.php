@@ -1,8 +1,8 @@
 <?php
-//require ('../header_login.php');
 require('../header.html');
 require('../../controller/booking_controller.php');
 
+// Initialize variables
 $phone = 0;
 $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
@@ -17,14 +17,15 @@ echo '</div>';
 echo '</form>';
 */
 
-
+// Retrieve the phone number
 if(isset($_POST['submit'])){
     $phone = intval($_POST['phone']);
 }
-
+// Check if the movie detail exists in the booking controller
 if($booking_controller -> getMovieDetail_controller($movie,$phone) == false){
 echo '<script>alert("data is not found")</script>';  
 }else{
+    // Retrieve and assign the movie detail
     $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
 }
 
@@ -34,11 +35,14 @@ echo '<script>alert("data is not found")</script>';
 
 $alphabet = range('A', 'Z');
 $letters = array();
+// Iterate over the alphabet array and add each character to the letters array
 foreach ($alphabet as $char) {
   $letters[] = $char;
 }
-
+// Convert the letters array to a JSON string
 $json_string = json_encode($letters);
+
+// Retrieve values from the $array variable
 $row = $array['totalRow'];
 $column = $array['totalColumn'];
 $selected_row = $array['seat_row'];
@@ -46,13 +50,19 @@ $selected_column = $array['seat_column'];
 $loyalty_point = $array['loyalty_point'];
 // $takenRow = 'I';
 // $takenColumn = 4;
+
+// Get taken seats from the booking controller for the specified movie, show timing, date, and booked ID
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
+// Output the takenSeat variable
 var_dump($takenSeat);
 echo "</br>";
+// Output the array variable
 var_dump($array);
 echo "</br>";
+// Output the phone number
 echo $phone;
 
+// Check if $selected_row is NULL and assign an empty string if true
 if ($selected_row === NULL){
     $selected_row = '';
 }
@@ -73,27 +83,33 @@ if ($selected_row === NULL){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <script>
+        // Parse the JSON string and assign it to the alphabet variable
         var alphabet = JSON.parse('<?php echo $json_string; ?>');
         var total_price = 0;
         $(document).ready(function() {
+            // Get the selected row and column values
             let selected_row = '<?php echo $selected_row;?>';
             let selected_column = <?php echo $selected_column;?>;
+            // Get the taken seats from PHP and assign it to the takenSeats variable
             let takenSeats = <?php echo json_encode($takenSeat);?>;
-        
+            
+            // Loop through the rows
             for (let i = 1; i <= <?php echo $row;?>; i++) {
                 let row = alphabet[i - 1];
-            
+
+                // Loop through the columns
                 for (let j = 1; j <= <?php echo $column;?>; j++) {
                     let seatValue = row + j;
                     let checkedAttribute = (row === selected_row && j === selected_column) ? 'checked' : '';
                     let disabledAttribute = '';
+                    // Check if the seat is taken
                     for (let seat in takenSeats) {
                         if (takenSeats[seat].row === row && takenSeats[seat].column === String(j)) {
                             disabledAttribute = 'disabled';
                             break;
                         }
                     }
-            
+                    // Append the seat element to the seat_chart div
                     $('#seat_chart').append('<div class="col-md-1 mt-2 mb-2 ml-1 mr-2 text-center" style="background-color:grey;color:white"><input type="checkbox" id="seat" value="' + seatValue + '" name="seat_chart[]" class="mr-2 col-md-2 mb-2" onclick="checkboxtotal();" ' + checkedAttribute + ' ' + disabledAttribute + '>' + seatValue + '</div>');
                 }
             }
@@ -103,18 +119,22 @@ if ($selected_row === NULL){
 
 
         function checkboxtotal() {
+            // Create an empty array to store the selected seats
             var seat = [];
+            // Iterate through each checked seat checkbox
             $('input[name="seat_chart[]"]:checked').each(function() {
                 if (!$(this).is(':disabled')) {
                     seat.push($(this).val());
                 }
             });
-
+            // Get the total number of selected seats and set it to the 'no_ticket' input field
             var st = seat.length;
             document.getElementById('no_ticket').value = st;
 
-            var ad = st; // Set the initial value of adult tickets to the total number of tickets
+            // Set the initial value of adult tickets to the total number of tickets
+            var ad = st;
 
+            // Get the values of child, student, and senior inputs
             var ch = document.getElementById('child').value;
             var child = (ch * 4);
 
@@ -124,8 +144,10 @@ if ($selected_row === NULL){
             var sr = document.getElementById('senior').value;
             var senior = (sr * 2);
 
+            // Calculate the remaining adult tickets after deducting child, student, and senior tickets
             ad = ad - parseInt(ch) - parseInt(std) - parseInt(sr); 
 
+            // Calculate the total price based on the number of seats and ticket prices
             total_price = ((st * 12) - (child) - (senior) - (student));
             $('#price_details').text("SGD$" + total_price);
 
@@ -135,6 +157,7 @@ if ($selected_row === NULL){
             $('#seat_dt').val(seat.join(", "));
         }
 
+        //Function to go to the previous browser's page
         function goBack() {
             window.history.go(-1);
         }
@@ -225,7 +248,7 @@ if ($selected_row === NULL){
     </head>
     <body>
 
-        
+        <!--Display sitting chart and booking information-->
         <section style=" margin-top: 1rem;">
             <h3 class="text-center">Book Your Ticket Now</h3>
             <div class="container">
@@ -249,6 +272,7 @@ if ($selected_row === NULL){
                     </center>
 
                     <hr>
+                    <!--label and input textbox for entering booking details-->
                     <form method="post">
                     <input type="text" name="phone" placeholder="Search phone...">
                     <div style="text-align: center;">
@@ -268,7 +292,6 @@ if ($selected_row === NULL){
                                 
                         </select>
                     </div>
-
                     <label for="psw"><b>No. of Tickets</b></label>
                     <input type="number" style="border-radius:30px;" id="no_ticket" name="no_ticket"  required>
 
@@ -295,6 +318,7 @@ if ($selected_row === NULL){
 
                     </select>
                     <br><br>
+                    <!--Summary for the movie booking-->
                     <h2 style="color:black; margin-top: 5px;">Summary</h2>
                     <h6 style="color:#BD9A7A; margin-top: 1rem;">Movie Show:</h6>
                     <span id="MovieName"><?php echo $array['movieName'];?></span>
@@ -392,42 +416,49 @@ if ($selected_row === NULL){
                 $bookingDate = $date;
                 $roomName = $array['roomName'];
 
-                
+                // Check if loyalty points redemption is selected
                 if(isset($_POST['redeemPoint'])){
                     if($_POST['redeemPoint']=='yes'){
+                        // Redeem loyalty points
                         $total_amnt = $_SESSION['new_total_price'];
                         $loyaltypoints=$total_amnt;
                         $points = $_SESSION['new_loyalty_point'];
                         $booking_controller->redeemPointController($points,$phone);
 
                     } else {
+                        // Calculate total amount without redeeming points
                         $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                         $loyaltypoints = $total_amnt;
                     }
                 }else {
+                    // Calculate total amount without redeeming points
                     $total_amnt = (($numOfTicket*12) - ($noOfChildTicket*4) - ($noOfSeniorTicket*2)-($noOfStudentTicket*3));
                     $loyaltypoints = $total_amnt;
                 }
-                
+                // Split the seats string into an array
                 $seatArr = explode(", ",$seats);
 
                 
                 
                 if($selected_row == null && $selected_column == 0){
+                    // Extract column and row information from the first seat in the array
                     $columnSeat = substr($seatArr[0], 1);
                     $rowSeat =  substr($seatArr[0], 0, 1); 
                 }else {
+                    // No specific seat is selected
                     $columnSeat = 0;
                     $rowSeat =  null; 
                 }
                 
 
                 if($_POST['preOrderFood']== 'yes'){
+                    // Pre-order food is selected
                     if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
                         echo" <script>window.location='staff_order_food.php?date=$date&phone=$phone';</script>";
                     }
                     
                 }else{
+                    // Pre-order food is not selected
                     if($booking_controller->createBookingController($phone,$movieID,$roomID,$movieName,$roomName, $time, $numOfTicket, $seats, $noOfAdultTicket,$noOfChildTicket, $noOfSeniorTicket, $noOfStudentTicket, $bookingDate, $total_amnt, $loyaltypoints, $columnSeat, $rowSeat)){
                         echo" <script>window.location='staff_home_view.php';</script>";
                     }
