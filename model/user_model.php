@@ -58,11 +58,11 @@ class user_model {
         
        
     }
-    public function updateUser($curProfile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone){
+    public function updateUser($profile,$fname,$lname,$phone,$email,$password,$dob,$status,$oldPhone){
         global $conn;
         $conn -> select_db("CSIT314_Test");
         $mysql_date = date('Y-m-d', strtotime($dob));
-        $sql =" UPDATE `$curProfile` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `password` = $password ,`phone`='$phone' ,`status`='$status' WHERE phone = '$oldPhone';";
+        $sql =" UPDATE `$profile` SET `fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$mysql_date', `password` = $password ,`phone`='$phone' ,`status`='$status' WHERE phone = '$oldPhone';";
 
         try {
             mysqli_query($conn, $sql); 

@@ -24,11 +24,11 @@ class user_update_controller{
     }
     
     // Validates and updates user account information
-    public function validateUser($curProfile, $fname, $lname, $phone, $email, $password, $dob, $status, $oldPhone){
+    public function validateUser($profile, $fname, $lname, $phone, $email, $password, $dob, $status, $oldPhone){
         global $user;
         
         // Update the user account information using the user model
-        if($user->updateUser($curProfile, $fname, $lname, $phone, $email, $password, $dob, $status, $oldPhone)){
+        if($user->updateUser($profile, $fname, $lname, $phone, $email, $password, $dob, $status, $oldPhone)){
             return true;
         }
     }

@@ -159,7 +159,7 @@ $arr = $userAccount -> showUpdate($curProfile,$oldPhone);
         $dob = $_POST['date_of_birth'];
         $status = $_POST['status'];
         $password = $_POST['pass'];
-        if ($userAccount->validateUser($curProfile, $fname, $lname, $phone, $email,$password,$dob, $status, $oldPhone)) {
+        if ($userAccount->validateUser($profile, $fname, $lname, $phone, $email,$password,$dob, $status, $oldPhone)) {
             echo " <script>window.location='../view/admin_home_view.php';</script>";
         }
     }
