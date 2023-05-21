@@ -1,7 +1,9 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
-
+// Include the header file
 require('header.html');
+// Create an instance of the admin controller
 $controller = new admin_controller;
 ?>
 <html>
@@ -72,6 +74,7 @@ select {
 </head>
 
 <body>
+  <!--Form to reactivate profile-->
   <div class='formContainer'>
     <form method="post">
       <label for="profile">Reactivate a Profile:</label></br>
@@ -88,9 +91,13 @@ select {
     </form>
   </div>
   <?php
+  // Check if the form has been submitted
   if (isset($_POST['reactivate'])) {
+    // Retrieve the reactivated profile value from the form
     $reactivateProfile = $_POST['reactivate'];
+    // Output the reactivated profile value for testing
     echo $reactivateProfile;
+    // Call the reactivateProfile method of the controller
     if ($controller->reactivateProfile($reactivateProfile)) {
       echo '<script>alert("' . $reactivateProfile . ' activated")</script>';
       echo " <script>window.location='../view/admin_home_view.php';</script>";

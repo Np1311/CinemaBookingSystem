@@ -1,7 +1,9 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
-
+// Include the header file
 require('header.html');
+// Create an instance of the admin controller
 $controller =  new admin_controller;
 ?>
 <html>
@@ -83,8 +85,10 @@ $controller =  new admin_controller;
         <?php
 
             if(isset($_POST['deleteProfile'])){
+                // Retrieve the profile to suspend from the form
                 $suspendProfile = $_POST['deleteProfile'];
                 echo $suspendProfile;
+                // Call the susProfile method of the controller and check if it returns true
                 if($controller->susProfile($suspendProfile)){
                     echo '<script>alert("'.$suspendProfile.' is suspend")</script>'; 
                     echo" <script>window.location='admin_home_view.php';</script>";

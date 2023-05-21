@@ -1,7 +1,9 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
-
+// Include the header file
 require('header.html');
+// Create an instance of the admin controller
 $admin = new admin_controller;
 
 // $admin->displayUser('system_admin');
@@ -73,6 +75,7 @@ $admin = new admin_controller;
 <title>Add Profile</title>
     </head>
     <body>
+    <!-- Form to add profile -->
         <form method='post'>
             <div class="signIn">
                 <label for="addProfile">Create Profile Form:</label>
@@ -82,8 +85,11 @@ $admin = new admin_controller;
             <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
         </form>
         <?php
+        // Check if the form has been submitted
             if(isset($_POST['submit'])){
+                // Retrieve the new profile value from the form
                 $newProfile = $_POST['addProfile'];
+                // Call the validateProfile method of the admin controller
                 if($admin -> validateProfile($newProfile)){
                     echo" <script>window.location='admin_home_view.php';</script>";
                 }else{

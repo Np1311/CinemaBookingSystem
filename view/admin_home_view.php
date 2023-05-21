@@ -1,16 +1,27 @@
 <?php
+// Include the admin controller
 require('../controller/admin_controller.php');
+
+// Include the header login file
 require('header_login.php');
+
+// Create an instance of the admin controller
 $admin = new admin_controller;
 
+// Display all users
 $admin->displayUser();
-// $admin->displayUser('customer');
 
+// $admin->displayUser('customer');
 // $admin -> validateProfile('customer');
+
+// Check if the deleteID parameter is set in the URL
 if(isset($_GET['deleteID'])){
+    // Get the user ID and current profile from the URL parameters
     $userID = $_GET['deleteID'];
     $curProfile = $_GET['curProfile'];
+    // Call the suspendAccountController method of the admin controller
    if($admin->suspendAccountController($curProfile,$userID)){
+    // Redirect to the admin home view if the account suspension is successful
         echo" <script>window.location='admin_home_view.php';</script>";
    }
 
@@ -150,6 +161,7 @@ if(isset($_GET['deleteID'])){
         <title>HOME</title>
     </head>
     <body>
+        <!--Display all of the buttons that leads to their respective functions-->
         <div class="adminButton">
             <a href="admin_create_profile.php">
                 <button id='bodyButton'>Create Profile</button>
