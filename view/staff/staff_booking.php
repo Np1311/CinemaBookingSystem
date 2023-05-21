@@ -146,7 +146,6 @@ if ($selected_row === NULL){
         /* Add padding to containers */
         .container {
         padding: 16px;
-        margin-right:5px;
         }
 
         /* Full-width input fields */
@@ -231,7 +230,7 @@ if ($selected_row === NULL){
             <h3 class="text-center">Book Your Ticket Now</h3>
             <div class="container">
             <div class="row">
-                <div class="col-lg-12 offset-lg-1">
+                <div class="col-lg-11 offset-lg-1">
                 <div id="seat-map" id="seatCharts">
                 <h3 style="color:#BD9A7A; margin-top: 1rem;">Select Seat</h3>
                 <hr>
