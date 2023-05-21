@@ -124,16 +124,16 @@ class admin_controller {
         }
     }
 
-    public function searchProfile($searchProfile) {
+    public function searchProfile($profile) {
         global $system_admin_session;
         
         // Get the list of profiles from the admin model
         $arrayProfile = $system_admin_session->listedProfile();
         
         // Check if the search profile exists
-        if (in_array($searchProfile, $arrayProfile)) {
+        if (in_array($profile, $arrayProfile)) {
             // Get the user accounts for the search profile
-            $array = $system_admin_session->getAllAccount($searchProfile);
+            $array = $system_admin_session->getAllAccount($profile);
             return $array;
         } else {
             return false;
