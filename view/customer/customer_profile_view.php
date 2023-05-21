@@ -25,7 +25,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Profile</title>
+  <title>User Account</title>
   <style>
     /* General styles */
     body {
@@ -109,7 +109,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
   ?>
   
   <div class="profile">
-    <h1 style="text-align: center;">Profile View</h1>
+    <h1 style="text-align: center;">Account View</h1>
     <table>
       <tr>
         <th>First Name</th>
