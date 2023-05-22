@@ -1,6 +1,8 @@
 <?php
 require('../header.html');
 require('../../controller/booking_controller.php');
+session_start():
+//session_unset($_SESSION['phn']);
 
 // Initialize variables
 $phone = 0;
@@ -19,7 +21,14 @@ echo '</form>';
 
 // Retrieve the phone number
 if(isset($_POST['submit'])){
-    $phone = intval($_POST['phone']);
+    $_SESSION['phn'] = intval($_POST['phone']);
+}
+
+if(isset($_SESSION['phn'])){
+    $phone = $_SESSION['phn'];
+
+}else{
+    $phone = 0;
 }
 // Check if the movie detail exists in the booking controller
 if($booking_controller -> getMovieDetail_controller($movie,$phone) == false){
@@ -415,6 +424,11 @@ if ($selected_row === NULL){
                 $noOfStudentTicket = $_POST['student'];
                 $bookingDate = $date;
                 $roomName = $array['roomName'];
+                if(isset($_SESSION['phn'])){
+                    $phone = $_SESSION['phn'];
+                }else{
+                    $phone = 0;
+                }
 
                 // Check if loyalty points redemption is selected
                 if(isset($_POST['redeemPoint'])){
