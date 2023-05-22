@@ -2,13 +2,10 @@
 require('../header.html');
 require('../../controller/booking_controller.php');
 session_start();
-if(isset($_SESSION['phn'])){
-   $_SESSION['phn']=0;
-}
-// 
+
 
 // Initialize variables
-$phone = 0;
+
 $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
 $date = $_GET['date'];
@@ -29,10 +26,11 @@ if(isset($_POST['submit'])){
 
 if(isset($_SESSION['phn'])){
     $phone = $_SESSION['phn'];
-
 }else{
-    $phone = 0;
+    $phone = 0 ;
 }
+
+
 // Check if the movie detail exists in the booking controller
 if($booking_controller -> getMovieDetail_controller($movie,$phone) == false){
 echo '<script>alert("data is not found")</script>';  
@@ -277,20 +275,22 @@ if ($selected_row === NULL){
                 </div>
 
                 </div>
+                <form method="post">
+                    <input type="text" name="phone" placeholder="Search phone...">
+                    <div style="text-align: center;">
+                    <button type="submit" name="submit" class="btn" style="margin-right:8%;">Search</button>
+                    </div>
+                </form>
                 <form method="post" style=" margin-top: 1rem;">
                     <div class="container" style="color:#BD9A7A;">
                     <center>
                         <p style=" margin-right: 5rem;">Please fill in this form to book your ticket.</p>
                     </center>
+            
 
                     <hr>
                     <!--label and input textbox for entering booking details-->
-                    <form method="post">
-                    <input type="text" name="phone" placeholder="Search phone...">
-                    <div style="text-align: center;">
-                    <button type="submit" name="submit" class="btn" style="margin-right:8%;">Search</button>
-                    </div>
-                    </form>
+                    
 
                     <label for="Show"><b>Show Time</b></label>
 
@@ -427,13 +427,18 @@ if ($selected_row === NULL){
                 $noOfStudentTicket = $_POST['student'];
                 $bookingDate = $date;
                 $roomName = $array['roomName'];
+                
                 if(isset($_SESSION['phn'])){
                     $phone = $_SESSION['phn'];
+
                 }else{
                     $phone = 0;
                 }
 
-                // Check if loyalty points redemption is selected
+                
+                
+
+                //Check if loyalty points redemption is selected
                 if(isset($_POST['redeemPoint'])){
                     if($_POST['redeemPoint']=='yes'){
                         // Redeem loyalty points
@@ -480,7 +485,10 @@ if ($selected_row === NULL){
                         echo" <script>window.location='staff_home_view.php';</script>";
                     }
                 }
-
+                if(isset($_SESSION['phn'])){
+                    unset($_SESSION['phn']);
+                    unset($_POST['submit']);
+                }
                
             }
         ?>

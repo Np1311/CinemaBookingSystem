@@ -252,7 +252,7 @@ class booking_model{
     
         // Update the loyalty points for a specific customer
         $escapedPhone = mysqli_real_escape_string($conn, $phone);
-        $sql = "UPDATE `customer` SET loyalty_point = $points WHERE phone = '$escapedPhone';";
+        $sql = "UPDATE `customer` SET loyalty_point = '$points' WHERE phone = '$escapedPhone';";
         
         try { 
             mysqli_query($conn, $sql); 
