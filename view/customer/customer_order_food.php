@@ -160,15 +160,34 @@ if($booking_controller -> getFoodAndDrinkController() == false){
             color: white;
             border: none;
             font-size: 14px;
-            margin-left:150px;
-            width:80%;
+            margin-left:25%;
+            width:25%;
     }
     
     input[type="submit"]:hover {
-      background-color:#e7dbd0;
+      background-color:white;
             color: #bd9a7a;
             border: 1px solid white;
     }
+    .custom-button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #bd9a7a;
+            color: white;
+            border: none;
+            font-size: 14px;
+            text-decoration: none;
+            width:25%;
+        }
+
+        .custom-button:hover {
+            background-color:white;
+            color: #bd9a7a;
+            border: 2px solid white;
+        }
 
             
         </style>
@@ -205,8 +224,13 @@ if($booking_controller -> getFoodAndDrinkController() == false){
                 </div>
             </div>
             <input type="submit" name="submit" value="Order">
+            <button type="button" class= "custom-button" onclick="goBack()">Back</button>
             </form>
             <script>
+
+                function goBack() {
+                    window.history.go(-1);
+                }
                 // Select and store all of the elements in their respective array
                 const plusBtns = document.querySelectorAll('.plus-btn');
                 const minusBtns = document.querySelectorAll('.minus-btn');
