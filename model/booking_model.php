@@ -251,14 +251,15 @@ class booking_model{
         $conn->select_db("CSIT314_Test");
     
         // Update the loyalty points for a specific customer
-        $sql = "UPDATE `customer` SET loyalty_point = $points WHERE phone = $phone;";
+        $escapedPhone = mysqli_real_escape_string($conn, $phone);
+        $sql = "UPDATE `customer` SET loyalty_point = $points WHERE phone = '$escapedPhone';";
         
         try { 
             mysqli_query($conn, $sql); 
             return true; 
         }
         catch(mysqli_sql_exception $e) {
-            die("Error creating user: " . mysqli_error($conn)); 
+            die("Error updating user: " . mysqli_error($conn)); 
             echo '<script>alert("error updating user")</script>'; 
             return false;
         }    

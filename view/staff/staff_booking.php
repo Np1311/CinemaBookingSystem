@@ -1,8 +1,11 @@
 <?php
 require('../header.html');
 require('../../controller/booking_controller.php');
-session_start():
-//session_unset($_SESSION['phn']);
+session_start();
+if(isset($_SESSION['phn'])){
+   $_SESSION['phn']=0;
+}
+// 
 
 // Initialize variables
 $phone = 0;
