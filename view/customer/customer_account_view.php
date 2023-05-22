@@ -87,7 +87,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
     border: none;
     font-size: 14px;
     width: 200px;
-    margin-left: 60px;
+    margin-left: 70px;
   }
 
   .custom-button:hover {
@@ -132,7 +132,7 @@ if($controller -> getAccount_controller($profile,$phone) == false){
         <td><?php echo $phone; ?></td>
       </tr>
     </table>
-    <button class="custom-button" onclick="location.href='customer_update.php'">Edit Profile</button>
+    <button class="custom-button" onclick="location.href='customer_update.php'">Edit Account</button>
     <button class="custom-button" onclick="location.href='customer_home_view.php'">Back</button>
   </div>
   
