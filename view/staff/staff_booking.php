@@ -10,14 +10,7 @@ $movie=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
 $date = $_GET['date'];
 $bookedID = 0;
-/*
-echo '<form method="post">';
-echo '<input type="text" name="phone" placeholder="Search phone...">';
-echo '<div style="text-align: center;">';
-echo '<button type="submit" name="submit" class="btn">Search</button>';
-echo '</div>';
-echo '</form>';
-*/
+
 
 // Retrieve the phone number
 if(isset($_POST['submit'])){
