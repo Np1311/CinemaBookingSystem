@@ -6,7 +6,7 @@ session_start();
 
 // Initialize variables
 
-$movie=$_GET['bookingID'];
+$bookingID=$_GET['bookingID'];
 $showTiming = $_GET['showTiming'];
 $date = $_GET['date'];
 $bookedID = 0;
@@ -25,11 +25,11 @@ if(isset($_SESSION['phn'])){
 
 
 // Check if the movie detail exists in the booking controller
-if($booking_controller -> getMovieDetail_controller($movie,$phone) == false){
+if($booking_controller -> getMovieDetail_controller($bookingID,$phone) == false){
 echo '<script>alert("data is not found")</script>';  
 }else{
     // Retrieve and assign the movie detail
-    $array = $booking_controller -> getMovieDetail_controller($movie,$phone);
+    $array = $booking_controller -> getMovieDetail_controller($bookingID,$phone);
 }
 
 
