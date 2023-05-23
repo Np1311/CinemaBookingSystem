@@ -13,7 +13,7 @@ class booking_model{
                         a.timing1, a.timing2, a.timing3, a.timing4
                         FROM cinemaMovie m
                         JOIN cinemaAllocation a ON m.movieID = a.movieID
-                        WHERE m.relDate < CURDATE() AND m.status = 'active';";
+                        WHERE m.relDate <= CURDATE() AND m.status = 'active';";
          
             $result = $conn->query($sql);
         
