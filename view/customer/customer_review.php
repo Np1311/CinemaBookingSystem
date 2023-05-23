@@ -180,7 +180,7 @@ if($array = $booking_controller->getBookingController($phone)== false){
         
                 <label for="rating">Rating:</label>
                 <div class="stars">
-                    <input type="radio" id="5stars" name="rating" value="5">
+                    <input type="radio" id="5stars" name="rating" value="5" required>
                     <label for="5stars">&#9733;</label>
                     <input type="radio" id="4stars" name="rating" value="4">
                     <label for="4stars">&#9733;</label>
