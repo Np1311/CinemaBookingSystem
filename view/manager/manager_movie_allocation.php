@@ -103,13 +103,13 @@ $array = $controller -> viewActiveRoomController();
     <input type="text" id="timing1" name="timing1" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
     <label for="timing2">Timing:</label>
-    <input type="text" id="timing2" name="timing2" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
+    <input type="text" id="timing2" name="timing2" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
     <label for="timing3">Timing:</label>
-    <input type="text" id="timing3" name="timing3" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
+    <input type="text" id="timing3" name="timing3" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
     <label for="timing4">Timing:</label>
-    <input type="text" id="timing4" name="timing4" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
+    <input type="text" id="timing4" name="timing4" placeholder="Enter Hours E.g 00:00 - 00:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
     <div class="btn-group">
       <input type="submit" name='submit' value="Submit">

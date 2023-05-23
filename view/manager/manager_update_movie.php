@@ -132,7 +132,7 @@ $date = $arr['relDate'];
             <input type="text" id="movieName" name="movieName" value = "<?php echo $arr['movieName']?>" required><br><br>
 
             <label for="movieBanner">Movie Banner:</label>
-            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()" required><br><br>
+            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()" ><br><br>
             
             <div id="imagePreview" style="display: none;">
                 <img class="preview-image" src="<?php echo $arr['movieBanner']; ?>" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
