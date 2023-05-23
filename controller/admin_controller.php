@@ -25,8 +25,8 @@ class admin_controller {
             'cinemamovie',
             'cinemaroom',
             "customerreview",
-            "fnbOrder",
-            "orderItem"
+            "fnborder",
+            "orderitem"
         );
         
         // Filter out the excluded profiles
