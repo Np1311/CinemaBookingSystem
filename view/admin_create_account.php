@@ -128,6 +128,7 @@ $admin_controller = new admin_controller;
             <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter Confirm Password" required>
             <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')"><i class="fas fa-eye"></i></span>
         </div><br>
+        <span id="password-error" class="error-message"></span><br>
 
         <button class="btn-primary" type='submit' name='submit' value='Create Account'>Create Account</button>
         <button class="btn-primary" type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
