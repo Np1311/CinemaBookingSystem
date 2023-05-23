@@ -83,19 +83,19 @@ $arr = $controller -> getRoomDetail($updateID);
     <!--form content-->
     <form method="post">
       <label for="room-name">Room Name:</label>
-      <input type="text" name="roomName" id="roomName" value="<?php echo $arr['roomName']; ?>"><br><br>
+      <input type="text" name="roomName" id="roomName" value="<?php echo $arr['roomName']; ?>" required><br><br>
 
       <label for="room-type">Room Type:</label>
-      <input type="text" name="roomType" id="roomType" value="<?php echo $arr['roomType']; ?>"><br><br>
+      <input type="text" name="roomType" id="roomType" value="<?php echo $arr['roomType']; ?>" required><br><br>
 
       <label for="roomCapacity">Room Capacity:</label>
       <input type="number" name="roomCapacity" id="roomCapacity" value="<?php echo $arr['roomCapacity']; ?>" min="0" max="1000"><br><br>
 
       <label for="totalRow">Total Row:</label>
-      <input type="number" name="totalRow" id="totalRow" value="<?php echo $arr['totalRow']; ?>" min="0" max="999" onchange="addCapacity()"><br><br>
+      <input type="number" name="totalRow" id="totalRow" value="<?php echo $arr['totalRow']; ?>" min="0" max="999" onchange="addCapacity()" required><br><br>
 
       <label for="totalColumn">Total Column:</label>
-      <input type="number" name="totalColumn" id="totalColumn" value="<?php echo $arr['totalColumn']; ?>" min="0" max="999" onchange="addCapacity()"><br><br>
+      <input type="number" name="totalColumn" id="totalColumn" value="<?php echo $arr['totalColumn']; ?>" min="0" max="999" onchange="addCapacity()" required><br><br>
 
       <label for="status">Status:</label>
       <select class="form-control" name="status">

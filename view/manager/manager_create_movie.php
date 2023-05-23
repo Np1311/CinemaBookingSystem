@@ -109,27 +109,27 @@ require('../header.html');
         <h2>Create Movie Details Form</h2>
         <form method="post">
             <label for="movieName">Movie Name:</label>
-            <input type="text" id="movieName" name="movieName" placeholder="Enter Movie Name">
+            <input type="text" id="movieName" name="movieName" placeholder="Enter Movie Name" required>
 
             <label for="movieBanner">Movie Banner:</label>
-            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()">
+            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()" required>
 
             <div id="imagePreview" style="display: none;">
                 <img class="preview-image" src="" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
             </div>
 
             <label for="relDate">Release Date:</label>
-            <input type="date" id="relDate" name="relDate">
+            <input type="date" id="relDate" name="relDate" required>
 
             <label for="genre">Genre:</label>
-            <input type="text" id="genre" name="genre" placeholder="Enter Genre">
+            <input type="text" id="genre" name="genre" placeholder="Enter Genre" required>
 
             <label for="duration">Duration:</label>
-            <input type="number" id="duration" name="duration" min="0" max="9999" placeholder="Enter Duration in Minutes">
+            <input type="number" id="duration" name="duration" min="0" max="9999" placeholder="Enter Duration in Minutes" required>
 
             <div class="btn-group">
                 <input type="submit" name="submit" value="Submit">
-                <button type="button" onclick="window.location.href = 'manager_view_movie.php'">Back</button>
+                <button type="button" onclick="window.location.href = 'manager_view_movie.php'" >Back</button>
             </div>
         </form>
     </div>

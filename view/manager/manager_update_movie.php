@@ -129,22 +129,22 @@ $date = $arr['relDate'];
         <h1>Update Movie Details Form</h1>
         <form method = 'post'>
             <label for="movieName">Movie Name:</label>
-            <input type="text" id="movieName" name="movieName" value = "<?php echo $arr['movieName']?>"><br><br>
+            <input type="text" id="movieName" name="movieName" value = "<?php echo $arr['movieName']?>" required><br><br>
 
             <label for="movieBanner">Movie Banner:</label>
-            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()"><br><br>
+            <input type="file" id="movieBanner" name="movieBanner" onchange="previewImage()" required><br><br>
             
             <div id="imagePreview" style="display: none;">
                 <img class="preview-image" src="<?php echo $arr['movieBanner']; ?>" alt="Preview Image" style="max-width: 300px; margin-top: 10px;">
             </div>
             <label for="relDate">Release Date:</label>
-            <input type="date" id="relDate" name="relDate" value = "<?php echo $date?>"><br><br>
+            <input type="date" id="relDate" name="relDate" value = "<?php echo $date?>" required><br><br>
 
             <label for="genre">Genre:</label>
-            <input type="text" id="genre" name="genre" value = "<?php echo $arr['genre']?>"><br><br>
+            <input type="text" id="genre" name="genre" value = "<?php echo $arr['genre']?>" required><br><br>
 
             <label for="duration">Duration:</label>
-            <input type="number" id="duration" name="duration" min = '0' max = '9999' value = "<?php echo $arr['duration']?>"><br><br>
+            <input type="number" id="duration" name="duration" min = '0' max = '9999' value = "<?php echo $arr['duration']?>" required><br><br>
             
             <label for="roomID">Room ID:</label>
             <input type="number" id="roomID" min = '0' name="roomID" value = "<?php echo $arr['roomID']?>" placeholder="Enter Room ID" required><br><br>
@@ -153,13 +153,13 @@ $date = $arr['relDate'];
             <input type="text" id="timing1" name="timing1" value="<?php echo $arr['timing1'] ?>" placeholder="Enter Time E.g 10:00 - 20:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
             <label for="timing2">Timing:</label>
-            <input type="text" id="timing2" name="timing2"  value = "<?php echo $arr['timing2']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
+            <input type="text" id="timing2" name="timing2"  value = "<?php echo $arr['timing2']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
             <label for="timing3">Timing:</label>
-            <input type="text" id="timing3" name="timing3"  value = "<?php echo $arr['timing3']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
+            <input type="text" id="timing3" name="timing3"  value = "<?php echo $arr['timing3']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
             <label for="timing4">Timing:</label>
-            <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}"><br><br>
+            <input type="text" id="timing4" name="timing4"  value = "<?php echo $arr['timing4']?>" placeholder="Enter Time E.g 01:00 - 24:00" pattern="\d{2}:\d{2} - \d{2}:\d{2}" required><br><br>
 
             <label for="status">Status:</label>
             <?php
