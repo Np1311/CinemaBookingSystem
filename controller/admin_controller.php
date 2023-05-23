@@ -23,7 +23,8 @@ class admin_controller {
             'cinemaallocation',
             'cinemafoodanddrink',
             'cinemamovie',
-            'cinemaroom'
+            'cinemaroom',
+            "customerreview"
         );
         
         // Filter out the excluded profiles
