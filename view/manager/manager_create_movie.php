@@ -20,7 +20,7 @@ require('../header.html');
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 110vh;
         }
 
         .form {
