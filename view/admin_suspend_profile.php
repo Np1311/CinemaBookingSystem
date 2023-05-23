@@ -72,7 +72,7 @@ $controller =  new admin_controller;
         <div class = 'formContainer'>
             <form method="post">
                 <label for="profile">Suspend a Profile Name:</label></br></br>
-                <select name="deleteProfile">
+                <select name="deleteProfile" required>
                 <option value="" disabled selected>-- Choose a Profile --</option>
                     <?php
                         $controller->showProfile();

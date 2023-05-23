@@ -144,13 +144,13 @@ table td {
   <!-- <h1>Search Account</h1> -->
   <form method="post">
     <label for="profile">Search an Account:</label><br>
-    <select name="profile">
+    <select name="profile" required>
         <option value="" disabled selected> --Choose a Profile-- </option>
         <?php
             $controller->showProfile();
         ?>
     </select>
-    <select name="searchBy" id="searching">
+    <select name="searchBy" id="searching" required>
         <option value="" disabled selected> --Choose a Filter-- </option>
         <option value="fname">First Name</option>
         <option value="lname">Last Name</option>

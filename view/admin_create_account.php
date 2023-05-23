@@ -96,8 +96,8 @@ $admin_controller = new admin_controller;
 <div class="formContainer">
     <form method="post">
         <label for="profile">Profile:</label>
-        <select name="profile">
-            <option value="" disabled selected>-- Choose a Profile --</option>
+        <select name="profile" required>
+            <option value="" disabled selected >-- Choose a Profile --</option>
             <?php
             $admin_controller->showProfile();
             ?>

@@ -141,7 +141,7 @@ table td {
   <div class="container">
   <form method="post">
     <label for="search">Search Profile:</label></br></br>
-    <input type="text" id="search" name="search" placeholder="Enter search term...">
+    <input type="text" id="search" name="search" placeholder="Enter search term..."required> 
     <div class="button-container">
       <button type="submit" name="submit">Go</button>
       <button type="button" onclick="window.location.href = 'admin_home_view.php'">Back</button>
