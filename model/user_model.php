@@ -21,12 +21,21 @@ class user_model {
         VALUES ('$fname','$lname','$phone','$email','$password','$mysql_date');";
         try {
             // Execute the SQL query
-            mysqli_query($conn, $sql); 
+            if(mysqli_query($conn, $sql)==false){
+                echo '<script>alert("Phone number already exists in the database")</script>';
+                return false;
+            } else{
+                mysqli_query($conn, $sql);
+            }
             // $this->setProfile($fname,$lname,$phone,$email,$mysql_date,$password);
             return true; }
         catch(mysqli_sql_exception $e) {
-            //die("Error creating user: " . mysqli_error($conn)); 
-            echo '<script>alert("error creating user")</script>'; 
+            $error_message = mysqli_error($conn);
+            if (strpos($error_message, "Duplicate entry") !== false) {
+                echo '<script>alert("Phone number already exists in the database")</script>';
+            } else {
+                echo '<script>alert("Error creating user: ' . $error_message . '")</script>';
+            }
         return false;}
     }
     //Function to set account
