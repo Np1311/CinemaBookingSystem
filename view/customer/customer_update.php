@@ -8,7 +8,7 @@ require ('../../controller/customer_controller.php');
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Update Profile</title>
+  <title>Update Account</title>
   <script>
     // Function to go back to the previous page
   function goBack() {
