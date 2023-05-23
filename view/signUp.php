@@ -115,19 +115,19 @@ $_SESSION['profile']='customer';
         <div class = 'formContainer'>
             <form method="post">
                 <label for="fname">First Name:</label>
-                <input type="text" id="fname" name="fname" placeholder="Enter First Name"><br>
+                <input type="text" id="fname" name="fname" placeholder="Enter First Name" required><br>
 
                 <label for="lname">Last Name:</label>
-                <input type="text" id="lname" name="lname" placeholder="Enter Last Name"><br>
+                <input type="text" id="lname" name="lname" placeholder="Enter Last Name" required><br>
 
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number"><br>
+                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter Email"><br>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required><br>
 
                 <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob"><br>
+                <input type="date" id="dob" name="dob" required><br>
 
                 <label for="password">Password:</label>
                 <div class="password-input">

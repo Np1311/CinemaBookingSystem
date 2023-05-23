@@ -161,7 +161,7 @@ if($array = $booking_controller->getBookingController($phone)== false){
             <form method="post">
                 <br>
                 <label for="booking_id">Booking ID:</label>
-                <input type="text" id="booking_id" name="booking_id" value="<?php echo $booking['bookingID'];?>">
+                <input type="text" id="booking_id" name="booking_id" value="<?php echo $booking['bookingID'];?>" >
 
                 <label for="room_name"style="display:none;">Room ID:</label>
                 <input type="hidden" id="room_name" name="room_ID" value="<?php echo $booking['roomID'];?>" required><br><br>
@@ -194,7 +194,7 @@ if($array = $booking_controller->getBookingController($phone)== false){
                 <br><br>
         
                 <label for="review">Review:</label><br>
-                <textarea id="review" name="review" rows="5" cols="50"></textarea><br><br>
+                <textarea id="review" name="review" rows="5" cols="50" required></textarea><br><br>
         
                 <input type="submit" name ='submit' value="Submit">
             </form> 
