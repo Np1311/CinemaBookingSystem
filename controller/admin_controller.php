@@ -101,9 +101,32 @@ class admin_controller {
         
         // Get the list of profiles from the admin model, excluding profiles starting with 'cinema'
         $profileArr = $system_admin_session->listedProfile();
-        $profileArr = array_filter($profileArr, function($profile) {
-            return stripos($profile, 'cinema') === false;
+        $excluded = array(
+            "booking",
+            "customerReview",
+            "fnbOrder",
+            "orderItem",
+            'cinemaAllocation',
+            'cinemaFoodAndDrink',
+            'cinemaMovie',
+            'cinemaRoom',
+            'cinemaallocation',
+            'cinemafoodanddrink',
+            'cinemamovie',
+            'cinemaroom',
+            "customerreview",
+            "fnborder",
+            "orderitem"
+        );
+        
+        // Filter out the excluded profiles
+        $profileArr = array_filter($profileArr, function ($value) use ($excluded) {
+            return !in_array($value, $excluded);
         });
+        
+        // $profileArr = array_filter($profileArr, function($profile) {
+        //     return stripos($profile, 'cinema') === false;
+        // });
         
         // Display the profile options in a select dropdown
         foreach ($profileArr as $element) {
