@@ -57,13 +57,13 @@ $loyalty_point = $array['loyalty_point'];
 // Get taken seats from the booking controller for the specified movie, show timing, date, and booked ID
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
 // Output the takenSeat variable
-var_dump($takenSeat);
-echo "</br>";
-// Output the array variable
-var_dump($array);
-echo "</br>";
-// Output the phone number
-echo $phone;
+// var_dump($takenSeat);
+// echo "</br>";
+// // Output the array variable
+// var_dump($array);
+// echo "</br>";
+// // Output the phone number
+// echo $phone;
 
 // Check if $selected_row is NULL and assign an empty string if true
 if ($selected_row === NULL){

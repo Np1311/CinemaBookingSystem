@@ -27,10 +27,10 @@ $column = $array['totalColumn'];
 // Get selected seats for the booking
 $selectedSeat = $booking_controller -> getSelectedSeatByID_controller($bookedID);
 
-// Output the booking details
-var_dump($array);
-// Output the selected seats
-var_dump($selectedSeat);
+// // Output the booking details
+// var_dump($array);
+// // Output the selected seats
+// var_dump($selectedSeat);
 
 // Get taken seats for the specific movie, show timing, and date
 $takenSeat = $booking_controller ->takenSeats_controller($movie,$showTiming,$date,$bookedID);
