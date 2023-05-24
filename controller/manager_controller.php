@@ -28,7 +28,7 @@ class manager_controller{
         global $manager;
 
         $arr = $manager -> viewActiveRoom();
-        print_r($arr);
+        // print_r($arr);
         return $arr;
     }
 
