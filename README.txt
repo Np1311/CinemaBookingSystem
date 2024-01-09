@@ -11,7 +11,7 @@ Skip step 1 if you have xampp
 
 4. copy and paste/put the source code in the htdoc folder
 
-5. http://localhost/CSIT314/View/ 
+5. http://localhost/CinemaBookingSystem/View/ 
 
 6. paste the link in step 5 to any browser.
 
